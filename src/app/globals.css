@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #f0f4ff;
+  --color-primary-100: #e1ebff;
+  --color-primary-200: #c7daff;
+  --color-primary-300: #9ebbff;
+  --color-primary-400: #6b93ff;
+  --color-primary-500: #3b66ff;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e3a8a; /* Deep Royal Blue */
+  --color-primary-900: #172b64;
+  --color-primary-950: #0f1a3d;
+
+  --color-accent-50: #fff1f2;
+  --color-accent-100: #ffe4e6;
+  --color-accent-200: #fecdd3;
+  --color-accent-300: #fda4af;
+  --color-accent-400: #fb7185;
+  --color-accent-500: #f43f5e; /* Warm Coral */
+  --color-accent-600: #e11d48;
+  --color-accent-700: #be123c;
+
+  --color-warm-bg: #fdfcf7; /* Warm Pearl Cream background */
+  --color-warm-neutral: #f5f2eb; /* Soft Warm Neutral */
+  --color-warm-card: #ffffff;
+  --color-slate-dark: #0f172a;
+
+  --font-heading: var(--font-heading), system-ui, sans-serif;
+  --font-sans: var(--font-body), system-ui, sans-serif;
+
+  --animate-pulse-subtle: pulse-subtle 2s infinite ease-in-out;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.95;
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+}
+
+:root {
+  --font-heading: 'Quicksand';
+  --font-body: 'Plus Jakarta Sans';
+  background-color: #fdfcf7;
+  color: #0f172a;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-warm-bg);
+  color: var(--color-slate-dark);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-primary-800);
+}
+
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fdfcf7;
+}
+::-webkit-scrollbar-thumb {
+  background: #c7daff;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ebbff;
+}
+
+/* Custom classes for typography */
+.prose {
+  max-width: 65ch;
+  line-height: 1.75;
+}
+.prose p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+.prose h2 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 1.5em;
+}
+.prose h3 {
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  font-size: 1.25em;
+}
+.prose ul, .prose ol {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+.prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.prose blockquote {
+  border-left-width: 4px;
+  border-left-color: var(--color-primary-600);
+  background-color: var(--color-primary-50);
+  padding: 1em 1.5em;
+  font-style: italic;
+  border-radius: 0.375rem;
+  margin: 1.5em 0;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}
+.prose th, .prose td {
+  border: 1px solid var(--color-primary-200);
+  padding: 0.75em 1em;
+  text-align: left;
+}
+.prose th {
+  background-color: var(--color-primary-50);
+  font-weight: 600;
+}
+
+/* Zero layout shift local maps / media */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+}
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

@@ -1,0 +1,42 @@
+name: Build and Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9 # Matches pnpm major version
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-dir: '.'
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build Next.js Static Site
+        run: pnpm run build
+
+      - name: Deploy via FTP to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: /public_html/
+          dangerous-clean-slate: false # Set to true only if you want to delete existing files on Hostinger first
