@@ -1,80 +1,25 @@
 import type { Metadata } from 'next';
-import { Quicksand, Plus_Jakarta_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
-import MobileStickyBar from '@/components/MobileStickyBar';
+import BottomNav from '@/components/BottomNav';
+import SlideOutCart from '@/components/SlideOutCart';
 
-const quicksand = Quicksand({
-  variable: '--font-heading',
+const inter = Inter({
+  variable: '--font-sans',
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
   display: 'swap',
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: '--font-body',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-});
-
-// Primary Site Suffix and Fallback Metadata
 export const metadata: Metadata = {
   title: {
-    default: 'Warden & Sons Kids Wear | Kemps Corner, South Mumbai',
-    template: '%s | Warden & Sons Kids Wear',
+    default: 'Warden & Sons | Heritage Kidswear Mumbai',
+    template: '%s | Warden & Sons',
   },
-  description:
-    'Warden & Sons Kids Wear is South Bombay’s trusted family-run clothing boutique at Kemps Corner since 1994. Shop newborn baby clothes, boys/girls wear, and quality basics.',
-  keywords: [
-    'kids wear shop Kemps Corner',
-    'children\'s clothing store South Bombay',
-    'newborn baby clothes Mumbai',
-    'kids clothes shop near me Mumbai',
-    'buy kids clothes on WhatsApp Mumbai',
-    'custom bulk kids clothing Mumbai',
-    'school uniform bulk order Mumbai',
-    'video shopping kids clothes India',
-    'boys girls clothing store Kemps Corner',
-  ],
-  metadataBase: new URL('https://wardenandsons.com'), // Replace with actual domain after deployment
-  alternates: {
-    canonical: '/',
-  },
-  openGraph: {
-    title: 'Warden & Sons Kids Wear | Kemps Corner, South Mumbai',
-    description:
-      'South Bombay’s trusted kids and family clothing store at Kemps Corner. Shop newborn essentials, boys & girls playwear, school uniforms, and custom bulk orders.',
-    url: 'https://wardenandsons.com',
-    siteName: 'Warden & Sons Kids Wear',
-    locale: 'en_IN',
-    type: 'website',
-    images: [
-      {
-        url: '/brand_logo.jpg',
-        width: 800,
-        height: 800,
-        alt: 'Warden & Sons Kids Wear - Kemps Corner, South Mumbai',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Warden & Sons Kids Wear | Kemps Corner, South Mumbai',
-    description:
-      'South Bombay’s trusted kids and family clothing store at Kemps Corner. Shop newborn essentials, boys & girls playwear, school uniforms, and custom bulk orders.',
-    images: ['/brand_logo.jpg'],
-  },
-  verification: {
-    google: 'GOOGLE_SEARCH_CONSOLE_VERIFICATION_PLACEHOLDER',
-    yandex: 'yandex',
-    yahoo: 'yahoo',
-    other: {
-      'msvalidate.01': 'BING_WEBMASTER_VERIFICATION_PLACEHOLDER',
-    },
-  },
+  description: 'Premium kids clothing, school uniforms, and custom B2B printing in South Bombay since 1994.',
+  metadataBase: new URL('https://wardenandsons.com'),
 };
 
 export default function RootLayout({
@@ -82,96 +27,75 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // LocalBusiness (ClothingStore) JSON-LD schema markup
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'ClothingStore',
     name: 'Warden & Sons Kids Wear',
     image: 'https://wardenandsons.com/brand_logo.jpg',
-    '@id': 'https://wardenandsons.com/#store',
     url: 'https://wardenandsons.com',
     telephone: '+919920751567',
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Kemps Corner, South Mumbai',
+      streetAddress: 'Kemps Corner',
       addressLocality: 'Mumbai',
       addressRegion: 'Maharashtra',
       postalCode: '400036',
       addressCountry: 'IN',
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 18.9634,
-      longitude: 72.8055,
+  };
+
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Warden & Sons',
+    url: 'https://wardenandsons.com',
+    logo: 'https://wardenandsons.com/brand_logo.jpg',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+919920751567',
+      contactType: 'customer service',
     },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '10:30',
-        closes: '20:30',
-      },
-    ],
-    sameAs: [
-      'https://g.page/r/CRi_iIq4yd6gEBM/review',
-      'https://wa.me/message/NBG6MFUV3EXYG1',
-    ],
-    areaServed: [
-      {
-        '@type': 'AdministrativeArea',
-        name: 'Kemps Corner',
-      },
-      {
-        '@type': 'AdministrativeArea',
-        name: 'South Mumbai',
-      },
-      {
-        '@type': 'AdministrativeArea',
-        name: 'South Bombay',
-      },
-      {
-        '@type': 'AdministrativeArea',
-        name: 'Mumbai',
-      },
-    ],
   };
 
   return (
-    <html
-      lang="en"
-      className={`${quicksand.variable} ${plusJakartaSans.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <head>
-        {/* Local SEO Schema Markup */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-        />
-        {/* Google Analytics 4 Script Placeholders */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-GA4_MEASUREMENT_ID_PLACEHOLDER"
-        />
+        {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-GA4_MEASUREMENT_ID_PLACEHOLDER', {
-                page_path: window.location.pathname,
-              });
-            `,
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-XXXXXXX');`,
           }}
         />
+        {/* GA4 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');`,
+          }}
+        />
+        {/* JSON-LD Schemas */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       </head>
-      <body className="min-h-full flex flex-col bg-warm-bg text-slate-dark selection:bg-primary-100 selection:text-primary-800">
+      <body className="min-h-full flex flex-col bg-white text-black selection:bg-gray-200 selection:text-black">
+        <noscript>
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} />
+        </noscript>
+        
         <Header />
+        <SlideOutCart />
         <main className="flex-grow pb-16 md:pb-0">{children}</main>
         <Footer />
+        <BottomNav />
         <FloatingWhatsApp />
-        <MobileStickyBar />
       </body>
     </html>
   );
