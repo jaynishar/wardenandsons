@@ -1,24 +1,31 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BottomNav from '@/components/BottomNav';
-import SlideOutCart from '@/components/SlideOutCart';
+import WhatsAppFloat from '@/components/WhatsAppFloat';
+import CartDrawer from '@/components/CartDrawer';
 
 const inter = Inter({
-  variable: '--font-sans',
+  variable: '--font-inter',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  variable: '--font-playfair',
   subsets: ['latin'],
   display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Warden & Sons | Heritage Kidswear Mumbai',
-    template: '%s | Warden & Sons',
+    default: 'Warden & Sons Kids Wear | Kemps Corner, Mumbai Since 1994',
+    template: '%s | Warden & Sons Kids Wear',
   },
-  description: 'Premium kids clothing, school uniforms, and custom B2B printing in South Bombay since 1994.',
+  description:
+    'Heritage children’s clothing boutique in Kemps Corner, South Mumbai since 1994. 100% pure cotton newborn essentials, boys & girls playwear, nightsuits, and custom bulk orders via WhatsApp.',
   metadataBase: new URL('https://wardenandsons.com'),
 };
 
@@ -34,7 +41,7 @@ export default function RootLayout({
     image: 'https://wardenandsons.com/brand_logo.jpg',
     url: 'https://wardenandsons.com',
     telephone: '+919920751567',
-    priceRange: '$$',
+    priceRange: '₹₹',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Kemps Corner',
@@ -59,43 +66,34 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+    >
       <head>
-        {/* Google Tag Manager */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-XXXXXXX');`,
-          }}
-        />
-        {/* GA4 */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');`,
-          }}
-        />
+        {/* Preconnect for performance */}
+        <link rel="preconnect" href="https://wa.me" />
         {/* JSON-LD Schemas */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-black selection:bg-gray-200 selection:text-black">
-        <noscript>
-          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} />
-        </noscript>
-        
+      <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#1A1A1A] selection:bg-[#D4A574]/30 selection:text-[#1B4332]">
         <Header />
-        <SlideOutCart />
-        <main className="flex-grow pb-16 md:pb-0">{children}</main>
+        <CartDrawer />
+        <main className="flex-grow pb-20 md:pb-0">{children}</main>
         <Footer />
         <BottomNav />
-        <FloatingWhatsApp />
+        <WhatsAppFloat />
       </body>
     </html>
   );

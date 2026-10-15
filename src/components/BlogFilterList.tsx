@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Search, Calendar, User, Clock, ArrowRight } from 'lucide-react';
+import { Search, Calendar, User, ArrowRight } from 'lucide-react';
 import { BlogPost } from '@/lib/blog';
 
 interface BlogFilterListProps {

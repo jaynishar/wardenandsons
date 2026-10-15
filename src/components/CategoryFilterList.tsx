@@ -1,15 +1,15 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { MessageSquare, Phone, ShieldCheck, ArrowUpDown } from 'lucide-react';
+import { MessageSquare, ArrowUpDown } from 'lucide-react';
 import { Product } from '@/lib/products';
 
 interface CategoryFilterListProps {
   products: Product[];
-  category: string;
+  category?: string;
 }
 
-export default function CategoryFilterList({ products, category }: CategoryFilterListProps) {
+export default function CategoryFilterList({ products }: CategoryFilterListProps) {
   const [selectedSubCategory, setSelectedSubCategory] = useState('All');
   const [sortBy, setSortBy] = useState('default'); // 'default', 'low-high', 'high-low'
 

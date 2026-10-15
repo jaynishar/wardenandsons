@@ -1,6 +1,6 @@
 import React from 'react';
 import VideoBookingForm from '@/components/VideoBookingForm';
-import { Video, Award, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Video, Award, Clock, ShieldCheck } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function VideoShoppingPage() {
               Personal Video Call Shopping
             </h1>
             <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Can't make it to Kemps Corner? Shop virtually! Our dedicated store shoppers will walk you through the racks live on video call, verify fabric texture, measure sizes live, and deliver to your home.
+              Can&apos;t make it to Kemps Corner? Shop virtually! Our dedicated store shoppers will walk you through the racks live on video call, verify fabric texture, measure sizes live, and deliver to your home.
             </p>
           </div>
 
@@ -50,7 +50,7 @@ export default function VideoShoppingPage() {
               <div>
                 <h3 className="font-heading font-bold text-base text-primary-800">Perfect Sizing Check</h3>
                 <p className="text-xs text-slate-500 leading-relaxed mt-1">
-                  Our store assistant can lay a tape measure flat on any shirt or pants to check exact dimensions against your kid's fits.
+                  Our store assistant can lay a tape measure flat on any shirt or pants to check exact dimensions against your kid&apos;s fits.
                 </p>
               </div>
             </div>

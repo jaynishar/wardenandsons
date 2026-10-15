@@ -1,137 +1,162 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/image';
-import { ShieldCheck, HeartHandshake, Compass, Users } from 'lucide-react';
+import Link from 'next/link';
+import { ShieldCheck, Heart, Sparkles, MessageSquare, Phone, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Our Story',
-  description: 'Learn about the heritage of Warden & Sons Kids Wear, serving South Bombay families at Kemps Corner since 1994. Read about our neighborhood values.',
+  title: 'Our Heritage (Since 1994)',
+  description:
+    'The story of Warden & Sons Kids Wear, serving South Bombay families at Kemps Corner since 1994. Read about our pure cotton philosophy and neighborhood roots.',
   alternates: {
     canonical: '/about',
   },
 };
 
 export default function AboutPage() {
+  const values = [
+    {
+      title: '100% Pure Combed Cotton',
+      description:
+        'We select breathable, organic-grade cottons and airy muslins. Pre-shrunk and chemical-free, crafted specially for Mumbai’s tropical humidity.',
+      icon: ShieldCheck,
+    },
+    {
+      title: 'Three Decades of Family Trust',
+      description:
+        'Founded in 1994 at Kemps Corner. Parents who wore our rompers as infants now bring their own children to our boutique.',
+      icon: Heart,
+    },
+    {
+      title: 'Bespoke WhatsApp Attention',
+      description:
+        'No automated bot replies. Every customer chat and size measurement is personally checked with a physical tape by our family members.',
+      icon: Sparkles,
+    },
+  ];
+
   return (
-    <div className="py-12 md:py-20 font-sans space-y-16">
-      {/* Intro Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-        <span className="text-[10px] text-accent-500 font-bold uppercase tracking-widest bg-primary-50 px-3 py-1.5 rounded-full">
-          Established 1994 • Kemps Corner
+    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 md:space-y-16">
+      {/* Intro Heading */}
+      <section className="text-center space-y-3 max-w-3xl mx-auto">
+        <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
+          Est. 1994 • Kemps Corner, South Mumbai
         </span>
-        <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-primary-800 max-w-3xl mx-auto leading-tight">
-          Dressing South Bombay’s Families For Generations
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
+          Dressing South Bombay’s Children For Generations
         </h1>
-        <p className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          At Warden & Sons, we believe that children’s wear should be warm, comfortable, and chemical-free. Read about our journey from a local boutique to a trusted South Mumbai institution.
+        <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
+          From a cozy neighborhood boutique founded in 1994 to a South Mumbai institution. Discover how our family business preserves comfort, trust, and craftsmanship.
         </p>
       </section>
 
-      {/* Story & Image Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="relative h-[300px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-          <Image
-            src="/store_front.jpg"
-            alt="Inside Warden & Sons Kids Wear Boutique in South Mumbai"
-            fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 40vw"
-          />
+      {/* Story & Store Photo Grid */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="lg:col-span-6">
+          <div className="relative h-[340px] sm:h-[460px] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+            <Image
+              src="/store_front.jpg"
+              alt="Inside Warden & Sons Kids Wear boutique at Kemps Corner, Mumbai"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
+          </div>
         </div>
 
-        <div className="space-y-6">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-primary-800">
-            Our Heritage at Kemps Corner
+        <div className="lg:col-span-6 space-y-5 text-[#1A1A1A]">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574]">
+            Our Kemps Corner Story
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B4332] leading-snug">
+            Where Quality Meets Family Warmth
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
-            Warden & Sons Kids Wear was founded in 1994 in the historic shopping district of <strong>Kemps Corner, South Mumbai</strong>. Our goal was simple: to create a cozy, neighborhood clothing boutique where local parents could find soft, high-quality garments for their children without the hassle of navigating large commercial department stores.
-          </p>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
-            Over the last three decades, our family business has grown alongside the families we serve. We have seen toddlers who once wore our cotton rompers grow up, get married, and walk back into our boutique to select newborn sets for their own babies. This beautiful circle of trust is what defines us.
-          </p>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
-            We are not a cold, automated corporate D2C brand or a venture-backed tech company. We are a family of retail experts who take pride in checking every thread, measuring sizes live with a tape, and answering every WhatsApp chat personally.
-          </p>
-        </div>
-      </section>
-
-      {/* Core Values Grid */}
-      <section className="bg-warm-neutral py-16 px-4 sm:px-6 lg:px-8 border-y border-primary-50">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <div className="text-center space-y-3">
-            <h2 className="font-heading text-2xl md:text-3xl font-bold">The Values That Guide Us</h2>
-            <p className="text-slate-600 text-xs max-w-md mx-auto">
-              Our business operations are built around these four core values.
+          <div className="space-y-3.5 text-xs sm:text-sm text-[#666666] leading-relaxed">
+            <p>
+              In 1994, Warden &amp; Sons opened its doors in the historic retail avenue of <strong>Kemps Corner, South Mumbai</strong>. Our founding purpose was simple: to create a welcoming neighborhood space where parents could find pure, soft, honest cotton clothing for their little ones without the noise of corporate department stores.
+            </p>
+            <p>
+              Over the last 30 years, South Mumbai has transformed, but our values haven’t wavered. We inspect every seam, avoid harmful synthetic polyester in everyday sleepwear, and keep prices honest and transparent.
+            </p>
+            <p>
+              Today, we are honored to dress the children and grandchildren of our earliest customers. Whether you walk into our Kemps Corner shop or message us on WhatsApp from across India, you will always be treated as a welcomed family neighbor.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-primary-50 text-center space-y-3">
-              <div className="w-12 h-12 bg-primary-100 text-primary-800 rounded-full flex items-center justify-center mx-auto">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-base text-primary-800">100% Pure Comfort</h3>
-              <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                We select premium, organic-grade cottons and light, open-weave muslins. Every garment is pre-washed and chemical-safe.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-primary-50 text-center space-y-3">
-              <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
-                <HeartHandshake className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-base text-primary-800">Uncompromising Trust</h3>
-              <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                We don't use high-pressure sales tactics. If a garment is not the right size or fit for your child, we will gladly exchange it.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-primary-50 text-center space-y-3">
-              <div className="w-12 h-12 bg-red-100 text-accent-500 rounded-full flex items-center justify-center mx-auto">
-                <Compass className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-base text-primary-800">Local Preservation</h3>
-              <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                We support local Indian textile manufacturers and weavers. Our bulk school orders are tailored right here in Maharashtra.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-primary-50 text-center space-y-3">
-              <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto">
-                <Users className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-base text-primary-800">Bespoke Attention</h3>
-              <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                Whether you walk in, text us on WhatsApp, or hop on a video shopping call, you will be treated with personal warmth.
-              </p>
-            </div>
+          <div className="pt-2 flex flex-wrap gap-3">
+            <Link
+              href="/shop"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#1B4332] text-white hover:bg-[#143527] font-bold text-xs shadow-xs"
+            >
+              <span>Browse Catalog</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href="https://wa.me/919920751567"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-[#EBE7DF] text-[#1A1A1A] hover:bg-[#FAF8F5] font-bold text-xs shadow-xs"
+            >
+              <MessageSquare className="w-4 h-4 text-[#25D366]" />
+              <span>Say Hello on WhatsApp</span>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* CTA section */}
-      <section className="max-w-4xl mx-auto px-4 text-center space-y-6">
-        <h2 className="font-heading text-2xl md:text-3xl font-bold text-primary-800">
-          Experience Warden & Sons Today
-        </h2>
-        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-          Need a quick gift for a friend’s baby shower in Malabar Hill or new cotton basics for your kids? Let us serve you with the best.
+      {/* Values Grid */}
+      <section className="bg-white rounded-3xl border border-[#EBE7DF] p-8 sm:p-12 shadow-xs space-y-8">
+        <div className="text-center space-y-2 max-w-xl mx-auto">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574]">
+            Core Principles
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B4332]">
+            Why Mumbai Parents Trust Us
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {values.map((v) => {
+            const Icon = v.icon;
+            return (
+              <div
+                key={v.title}
+                className="p-6 bg-[#FAF8F5] rounded-2xl border border-[#EBE7DF] space-y-3"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#1B4332] text-white flex items-center justify-center">
+                  <Icon className="w-6 h-6 text-[#D4A574]" />
+                </div>
+                <h3 className="font-serif font-bold text-base text-[#1A1A1A]">{v.title}</h3>
+                <p className="text-xs text-[#666666] leading-relaxed">{v.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Visit Store Callout */}
+      <section className="bg-[#FAF8F5] rounded-3xl border border-[#EBE7DF] p-8 sm:p-10 text-center space-y-4 max-w-3xl mx-auto">
+        <h3 className="font-serif text-2xl font-bold text-[#1B4332]">
+          Experience Our Boutique in Person
+        </h3>
+        <p className="text-xs sm:text-sm text-[#666666] leading-relaxed max-w-lg mx-auto">
+          We are located at Kemps Corner, near Pedder Road Flyover. Drop in between 10:30 AM and 8:30 PM (Mon–Sat) to feel our fabric quality firsthand.
         </p>
-        <div className="flex justify-center gap-4 pt-2">
-          <a
-            href="https://wa.me/message/NBG6MFUV3EXYG1"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-green-600 hover:bg-green-500 text-white font-bold text-xs px-6 py-3.5 rounded-lg shadow-md transition-colors"
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <Link
+            href="/visit-us"
+            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-[#1B4332] text-white text-xs font-bold shadow-xs hover:bg-[#143527]"
           >
-            💬 Chat on WhatsApp
-          </a>
+            <span>View Map &amp; Directions</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
           <a
             href="tel:+919920751567"
-            className="bg-primary-800 hover:bg-primary-700 text-white font-bold text-xs px-6 py-3.5 rounded-lg shadow-md transition-colors"
+            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-white border border-[#EBE7DF] text-[#1A1A1A] text-xs font-bold shadow-xs hover:bg-gray-50"
           >
-            📞 Call Store: +91 99207 51567
+            <Phone className="w-4 h-4 text-[#D4A574]" />
+            <span>Call: +91 99207 51567</span>
           </a>
         </div>
       </section>

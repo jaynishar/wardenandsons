@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { getBlogPosts } from '@/lib/blog';
 import BlogFilterList from '@/components/BlogFilterList';
 import type { Metadata } from 'next';

@@ -118,7 +118,7 @@ export default function ReviewsCarousel() {
             className="w-full"
           >
             <p className="font-sans text-sm md:text-base italic text-slate-dark leading-relaxed max-w-2xl mx-auto px-6">
-              "{activeReview.text}"
+              &ldquo;{activeReview.text}&rdquo;
             </p>
             <div className="mt-4">
               <h4 className="font-heading font-bold text-primary-800 text-sm md:text-base">

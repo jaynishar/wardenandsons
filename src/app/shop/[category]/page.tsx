@@ -1,6 +1,6 @@
-import { notFound } from 'next/navigation'; // next/navigation
+import { notFound } from 'next/navigation';
 import { getProductsByCategory } from '@/lib/products';
-import CategoryFilterList from '@/components/CategoryFilterList';
+import ShopCatalog from '@/components/ShopCatalog';
 import type { Metadata } from 'next';
 
 interface CategoryPageProps {
@@ -20,21 +20,21 @@ function getCategoryDisplayName(cat: string): string {
     case 'newborn':
       return 'Newborns & Infants (0-24M)';
     case 'boys':
-      return 'Boys Clothing (0-16Y)';
+      return 'Boys Playwear & Sports (0-16Y)';
     case 'girls':
-      return 'Girls Clothing (0-16Y)';
+      return 'Girls Clothing & Sleepwear (0-16Y)';
     case 'men':
-      return 'Men\'s Basics & Comfort';
+      return 'Men’s Basics & Loungewear';
     case 'women':
-      return 'Women\'s Basics & Comfort';
+      return 'Women’s Muslin Sleepwear & Basics';
     default:
-      return 'Shop';
+      return 'Shop Category';
   }
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { category } = await params;
-  
+
   if (!validCategories.includes(category)) {
     return {
       title: 'Category Not Found',
@@ -44,13 +44,15 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const name = getCategoryDisplayName(category);
 
   return {
-    title: `${name} | Warden & Sons Kids Wear`,
-    description: `Shop our premium, weather-breathable collection of ${name}. Buy cotton swaddles, t-shirts, nightwear, and activewear at Warden & Sons, Kemps Corner.`,
+    title: `${name} | Sample Catalog`,
+    description: `Shop our 100% pure cotton collection of ${name}. Add items to your bag and order directly on WhatsApp from Warden & Sons, Kemps Corner.`,
     alternates: {
       canonical: `/shop/${category}`,
     },
   };
 }
+
+type CategoryType = 'newborn' | 'boys' | 'girls' | 'men' | 'women';
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category } = await params;
@@ -59,26 +61,30 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     return notFound();
   }
 
-  const products = getProductsByCategory(category as any);
+  const products = getProductsByCategory(category as CategoryType);
   const displayName = getCategoryDisplayName(category);
 
   return (
-    <div className="py-12 md:py-20 font-sans max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      {/* Header */}
-      <div className="text-center space-y-4">
-        <span className="inline-flex items-center gap-1 bg-primary-100 text-primary-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider font-sans">
-          🛍️ Category Catalog
+    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      {/* Editorial Header */}
+      <div className="text-center space-y-3 max-w-3xl mx-auto">
+        <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
+          Department Collection
         </span>
-        <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-primary-800 leading-tight">
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
           {displayName}
         </h1>
-        <p className="text-sm md:text-base text-slate-600 max-w-xl mx-auto leading-relaxed">
-          Below is our current stock listing. Since our shelves rotate daily, contact us on WhatsApp or book a video call to see the newest prints and confirm fits.
+        <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
+          Pre-washed, azo-free cotton garments crafted for sensitive skin. Select items and quantities, then send your order on WhatsApp to confirm live colors and sizes.
         </p>
       </div>
 
-      {/* Interactive Products Grid with filters */}
-      <CategoryFilterList products={products} category={category} />
+      {/* Main Interactive Catalog */}
+      <ShopCatalog
+        products={products}
+        initialCategory={category}
+        categoryTitle={displayName}
+      />
     </div>
   );
 }

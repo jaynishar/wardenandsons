@@ -1,11 +1,12 @@
 import React from 'react';
+import { Phone, MapPin, Clock, MessageSquare } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
-import { Phone, MapPin, MessageSquare, Clock, Star } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Warden & Sons Kids Wear',
-  description: 'Get in touch with Warden & Sons Kids Wear. Reach out for sizing support, bulk uniforms, or visit our Kemps Corner store in South Mumbai.',
+  title: 'Contact Store Desk',
+  description:
+    'Get in touch with Warden & Sons Kids Wear Kemps Corner. Send sizing questions, newborn gift queries, or visit us in South Mumbai.',
   alternates: {
     canonical: '/contact',
   },
@@ -13,94 +14,88 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="py-12 md:py-20 font-sans max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       {/* Header */}
-      <div className="text-center space-y-4">
-        <span className="inline-flex items-center gap-1 bg-primary-100 text-primary-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider font-sans">
-          📞 Customer Support Desk
+      <div className="text-center space-y-3 max-w-3xl mx-auto">
+        <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
+          We Are Here To Help
         </span>
-        <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-primary-800 leading-tight">
-          Get in Touch With Us
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
+          Contact Our Store Desk
         </h1>
-        <p className="text-sm md:text-base text-slate-600 max-w-xl mx-auto leading-relaxed">
-          Have a question about fabric stretch, stock levels, custom sizing, or school uniforms? Reach out to our family members directly.
+        <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
+          Have questions regarding infant sizes, fabric softness, or custom orders? Reach out via form or chat directly on WhatsApp.
         </p>
       </div>
 
-      {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        {/* Info Columns */}
-        <div className="lg:col-span-6 space-y-8">
-          <div className="space-y-4">
-            <h2 className="font-heading text-2xl font-bold text-primary-800">Support Channels</h2>
-            <p className="text-slate-600 text-xs leading-relaxed font-sans">
-              Choose the fastest channel to reach us. WhatsApp is recommended for immediate stock validations and live sizing pictures.
-            </p>
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Contact Information Column */}
+        <div className="lg:col-span-5 space-y-6">
+          <div className="bg-white rounded-3xl border border-[#EBE7DF] p-7 shadow-xs space-y-6">
+            <h2 className="font-serif font-bold text-xl text-[#1B4332]">
+              Kemps Corner Atelier
+            </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="bg-primary-50 p-6 rounded-2xl border border-primary-100 space-y-2 font-sans text-xs">
-              <Phone className="w-5 h-5 text-accent-500" />
-              <h3 className="font-heading font-bold text-slate-800">Phone Support</h3>
-              <p className="text-slate-500">Call us during store hours.</p>
-              <a href="tel:+919920751567" className="font-bold text-primary-800 hover:underline block pt-1">
-                +91 99207 51567
-              </a>
+            <div className="space-y-4 text-xs sm:text-sm text-[#666666]">
+              <div className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-[#D4A574] shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-bold text-[#1A1A1A]">Store Address</p>
+                  <p>Kemps Corner, South Mumbai, Mumbai, Maharashtra 400036</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Clock className="w-5 h-5 text-[#D4A574] shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-bold text-[#1A1A1A]">Store Hours</p>
+                  <p>Monday – Saturday: 10:30 AM – 8:30 PM</p>
+                  <p className="text-red-600 font-semibold text-xs mt-0.5">Sunday: Closed</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-[#D4A574] shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-bold text-[#1A1A1A]">Store Desk Phone</p>
+                  <a href="tel:+919920751567" className="text-[#1B4332] font-bold hover:underline">
+                    +91 99207 51567
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <MessageSquare className="w-5 h-5 text-[#25D366] shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-bold text-[#1A1A1A]">WhatsApp Ordering</p>
+                  <a
+                    href="https://wa.me/919920751567"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#25D366] font-bold hover:underline"
+                  >
+                    +91 99207 51567 (Click to Chat)
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <div className="bg-primary-50 p-6 rounded-2xl border border-primary-100 space-y-2 font-sans text-xs">
-              <MessageSquare className="w-5 h-5 text-green-600" />
-              <h3 className="font-heading font-bold text-slate-800">WhatsApp Chat</h3>
-              <p className="text-slate-500">Fastest way to get options.</p>
-              <a href="https://wa.me/message/NBG6MFUV3EXYG1" target="_blank" rel="noopener noreferrer" className="font-bold text-green-600 hover:underline block pt-1">
-                Chat Live (Click here)
-              </a>
-            </div>
-
-            <div className="bg-primary-50 p-6 rounded-2xl border border-primary-100 space-y-2 font-sans text-xs">
-              <MapPin className="w-5 h-5 text-accent-500" />
-              <h3 className="font-heading font-bold text-slate-800">Physical Store</h3>
-              <p className="text-slate-500">Walk into our boutique.</p>
-              <span className="text-primary-800 font-bold block pt-1">
-                Kemps Corner, South Mumbai
-              </span>
-            </div>
-
-            <div className="bg-primary-50 p-6 rounded-2xl border border-primary-100 space-y-2 font-sans text-xs">
-              <Clock className="w-5 h-5 text-accent-500" />
-              <h3 className="font-heading font-bold text-slate-800">Operating Hours</h3>
-              <p className="text-slate-500">Mon - Sat: 10:30 AM - 8:30 PM</p>
-              <span className="text-slate-500 block">Sunday: Closed</span>
-            </div>
-          </div>
-
-          {/* Feedback & Review card */}
-          <div className="bg-warm-neutral p-6 rounded-2xl border border-primary-50 space-y-4 text-center sm:text-left">
-            <h3 className="font-heading font-bold text-lg text-primary-800">Satisfied with our service?</h3>
-            <p className="text-xs text-slate-600 leading-relaxed font-sans">
-              We appreciate the feedback from our neighbors in South Bombay. If you've shopped with us, please support our local business by sharing a Google Business review.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="pt-2 border-t border-[#EBE7DF]">
               <a
-                href="https://g.page/r/CRi_iIq4yd6gEBM/review"
+                href="https://wa.me/919920751567"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary-800 hover:bg-primary-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-sm hover:shadow transition-all inline-flex items-center gap-1.5"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs shadow-md transition-all"
               >
-                ⭐ Leave Us a Google Review
+                <MessageSquare className="w-4 h-4 fill-white text-[#25D366]" />
+                <span>Immediate WhatsApp Chat</span>
               </a>
-              <div className="flex items-center space-x-0.5 text-yellow-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-yellow-500" />
-                ))}
-                <span className="text-[11px] text-slate-500 font-semibold ml-1.5">(4.9/5.0)</span>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Contact Form Side */}
-        <div className="lg:col-span-6">
+        {/* Contact Form Column */}
+        <div className="lg:col-span-7">
           <ContactForm />
         </div>
       </div>

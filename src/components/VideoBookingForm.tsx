@@ -143,8 +143,8 @@ Notes: ${data.notes || 'None'}`;
             <option value="Newborns (0-24M)">Newborns / Infants (0-24M)</option>
             <option value="Boys Wear (0-16Y)">Boys Wear (0-16Y)</option>
             <option value="Girls Wear (0-16Y)">Girls Wear (0-16Y)</option>
-            <option value="Men Basics">Men's Basics & Undershirts</option>
-            <option value="Women Basics">Women's Basics & Loungewear</option>
+            <option value="Men Basics">Men&apos;s Basics & Undershirts</option>
+            <option value="Women Basics">Women&apos;s Basics & Loungewear</option>
           </select>
           {errors.category && <p className="text-[10px] font-bold text-red-500 font-sans">{errors.category.message}</p>}
         </div>

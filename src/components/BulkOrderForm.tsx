@@ -4,206 +4,222 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { User, Building, Phone, Calendar, Layers, Clipboard, CheckCircle2 } from 'lucide-react';
+import { Building2, User, Phone, Mail, Package, MessageSquare, CheckCircle2 } from 'lucide-react';
 
 const bulkSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
-  orgName: z.string().min(2, { message: 'School or Organization name is required.' }),
+  organization: z.string().min(2, { message: 'School or company name required.' }),
+  contactPerson: z.string().min(2, { message: 'Contact person name required.' }),
   phone: z
     .string()
-    .min(10, { message: 'Phone number must be at least 10 digits.' })
-    .regex(/^[0-9+\s-]{10,15}$/, { message: 'Please enter a valid phone number.' }),
-  garmentType: z.string().min(1, { message: 'Please select a garment type.' }),
-  quantity: z
-    .string()
-    .min(1, { message: 'Estimated quantity is required.' })
-    .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-      message: 'Quantity must be a positive number.',
-    }),
-  deadline: z.string().min(1, { message: 'Target delivery deadline is required.' }),
-  details: z.string().min(5, { message: 'Please provide some details about your order.' }),
+    .min(10, { message: 'Valid 10-digit phone required.' })
+    .regex(/^[0-9+\s-]{10,15}$/, { message: 'Enter a valid phone number.' }),
+  email: z.string().email({ message: 'Valid email required.' }),
+  quantity: z.string().min(1, { message: 'Please specify estimated quantity.' }),
+  category: z.string().min(1, { message: 'Please select uniform or product type.' }),
+  details: z.string().min(5, { message: 'Please provide design or fabric requirements.' }),
 });
 
 type BulkFormValues = z.infer<typeof bulkSchema>;
 
 export default function BulkOrderForm() {
   const [isSuccess, setIsSuccess] = useState(false);
-  const [whatsappLink, setWhatsappLink] = useState('');
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm<BulkFormValues>({
     resolver: zodResolver(bulkSchema),
-    defaultValues: {
-      garmentType: '',
-    },
   });
 
-  const onSubmit = async (data: BulkFormValues) => {
-    console.log('Bulk Order captured:', data);
+  const onSubmit = (data: BulkFormValues) => {
+    const whatsappMessage = [
+      `*WARDEN & SONS — B2B / BULK ORDER ENQUIRY*`,
+      `-----------------------------------------`,
+      `• Organization: ${data.organization}`,
+      `• Contact Person: ${data.contactPerson}`,
+      `• Phone: ${data.phone}`,
+      `• Email: ${data.email}`,
+      `• Category: ${data.category}`,
+      `• Estimated Quantity: ${data.quantity} (Min. 50 pcs)`,
+      `• Specific Details: ${data.details}`,
+      `-----------------------------------------`,
+      `Please provide bulk quotation and fabric swatch availability.`,
+    ].join('\n');
 
-    const message = `Hello Warden & Sons! I have a Custom Bulk Order Enquiry.
-Name: ${data.name}
-School/Org: ${data.orgName}
-Phone: ${data.phone}
-Garment Type: ${data.garmentType}
-Est. Quantity: ${data.quantity}
-Deadline: ${data.deadline}
-Details: ${data.details}`;
+    const url = `https://wa.me/919920751567?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(url, '_blank');
 
-    const encodedMessage = encodeURIComponent(message);
-    const link = `https://wa.me/919920751567?text=${encodedMessage}`;
-    setWhatsappLink(link);
     setIsSuccess(true);
+    reset();
   };
 
-  if (isSuccess) {
-    return (
-      <div className="bg-white border border-green-200 rounded-3xl p-8 shadow-md text-center space-y-6">
-        <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
-          <CheckCircle2 className="w-10 h-10" />
-        </div>
-        <div className="space-y-2">
-          <h3 className="font-heading font-bold text-2xl text-slate-800">Enquiry Submitted!</h3>
-          <p className="text-xs text-slate-500 leading-relaxed font-sans max-w-sm mx-auto">
-            Your bulk order details have been captured. To discuss fabric selections, timelines, and special pricing directly with our tailoring coordinators, please click the button below to message us on WhatsApp.
-          </p>
-        </div>
-        <div className="pt-2">
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-green-600 hover:bg-green-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all inline-flex items-center gap-2"
-          >
-            💬 Contact Bulk Desk on WhatsApp
-          </a>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="bg-white border border-primary-100 rounded-3xl p-6 sm:p-8 shadow-md space-y-6">
-      <div className="border-b border-primary-50 pb-4">
-        <h3 className="font-heading font-bold text-xl text-primary-800">Send Bulk Enquiry</h3>
-        <p className="text-xs text-slate-500 font-sans mt-1">
-          Minimum Order Quantities (MOQ) apply based on customization.
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Name */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-700 flex items-center gap-1 font-sans">
-            <User className="w-3.5 h-3.5" /> Contact Person Name
-          </label>
-          <input
-            {...register('name')}
-            type="text"
-            placeholder="Enter contact name"
-            className="w-full px-4 py-3 rounded-lg border border-primary-100 text-xs font-sans focus:outline-none focus:ring-2 focus:ring-primary-500 bg-warm-bg/30 focus:bg-white"
-          />
-          {errors.name && <p className="text-[10px] font-bold text-red-500 font-sans">{errors.name.message}</p>}
-        </div>
-
-        {/* Organization / School */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-700 flex items-center gap-1 font-sans">
-            <Building className="w-3.5 h-3.5" /> School / Organization Name
-          </label>
-          <input
-            {...register('orgName')}
-            type="text"
-            placeholder="e.g. Cathedral School, Bombay Gymkhana"
-            className="w-full px-4 py-3 rounded-lg border border-primary-100 text-xs font-sans focus:outline-none focus:ring-2 focus:ring-primary-500 bg-warm-bg/30 focus:bg-white"
-          />
-          {errors.orgName && <p className="text-[10px] font-bold text-red-500 font-sans">{errors.orgName.message}</p>}
-        </div>
-
-        {/* Phone */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-700 flex items-center gap-1 font-sans">
-            <Phone className="w-3.5 h-3.5" /> Mobile Number
-          </label>
-          <input
-            {...register('phone')}
-            type="tel"
-            placeholder="e.g. 9920751567"
-            className="w-full px-4 py-3 rounded-lg border border-primary-100 text-xs font-sans focus:outline-none focus:ring-2 focus:ring-primary-500 bg-warm-bg/30 focus:bg-white"
-          />
-          {errors.phone && <p className="text-[10px] font-bold text-red-500 font-sans">{errors.phone.message}</p>}
-        </div>
-
-        {/* Garment Type */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-700 flex items-center gap-1 font-sans">
-            <Layers className="w-3.5 h-3.5" /> Garment Category
-          </label>
-          <select
-            {...register('garmentType')}
-            className="w-full px-4 py-3 rounded-lg border border-primary-100 text-xs font-sans focus:outline-none focus:ring-2 focus:ring-primary-500 bg-warm-bg/30 focus:bg-white"
+    <div className="bg-white rounded-3xl border border-[#EBE7DF] p-6 sm:p-8 shadow-xs">
+      {isSuccess ? (
+        <div className="py-12 text-center space-y-4">
+          <div className="w-16 h-16 bg-[#1B4332]/10 text-[#1B4332] rounded-full flex items-center justify-center mx-auto">
+            <CheckCircle2 className="w-8 h-8 text-[#25D366]" />
+          </div>
+          <h3 className="font-serif text-2xl font-bold text-[#1B4332]">
+            Bulk Enquiry Received!
+          </h3>
+          <p className="text-xs sm:text-sm text-[#666666] max-w-sm mx-auto leading-relaxed">
+            Your bulk uniform specifications have been routed to our B2B production desk. Our team will share quotations and sample swatches on WhatsApp.
+          </p>
+          <button
+            onClick={() => setIsSuccess(false)}
+            className="text-xs font-bold text-[#1B4332] bg-[#FAF8F5] border border-[#1B4332] px-6 py-2.5 rounded-full hover:bg-[#1B4332] hover:text-white transition-all cursor-pointer"
           >
-            <option value="">Select category</option>
-            <option value="School Uniforms">School Uniforms (Everyday / Blazers / Ties)</option>
-            <option value="Sports Kits">Sports Uniforms (Cricket Whites / Football Kits)</option>
-            <option value="Event T-Shirts">Printed Event T-Shirts (All Sizes)</option>
-            <option value="Corporate Gift Hamper">Corporate Newborn Gift Hampers</option>
-            <option value="Custom Family Festival Sets">Coordinated Family Outfits</option>
-          </select>
-          {errors.garmentType && <p className="text-[10px] font-bold text-red-500 font-sans">{errors.garmentType.message}</p>}
+            Submit Another Request
+          </button>
         </div>
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="p-3.5 bg-[#FAF8F5] rounded-xl border border-[#EBE7DF] flex items-center gap-3">
+            <Package className="w-5 h-5 text-[#D4A574] shrink-0" />
+            <p className="text-xs text-[#1B4332] font-semibold">
+              Note: Bulk production has a minimum order quantity (MOQ) of <strong>50 pieces</strong>.
+            </p>
+          </div>
 
-        {/* Quantity & Deadline Grid */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1">
-            <label className="text-xs font-bold text-slate-700 flex items-center gap-1 font-sans">
-              <Clipboard className="w-3.5 h-3.5" /> Est. Quantity (Pieces)
-            </label>
-            <input
-              {...register('quantity')}
-              type="text"
-              placeholder="e.g. 50"
-              className="w-full px-4 py-3 rounded-lg border border-primary-100 text-xs font-sans focus:outline-none focus:ring-2 focus:ring-primary-500 bg-warm-bg/30 focus:bg-white"
-            />
-            {errors.quantity && <p className="text-[10px] font-bold text-red-500 font-sans">{errors.quantity.message}</p>}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-[#1A1A1A] flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-[#D4A574]" />
+                Institution / School Name
+              </label>
+              <input
+                {...register('organization')}
+                type="text"
+                placeholder="e.g. Cathedral & John Connon / Local Academy"
+                className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
+              />
+              {errors.organization && (
+                <p className="text-[11px] font-semibold text-red-500">{errors.organization.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-[#1A1A1A] flex items-center gap-1.5">
+                <User className="w-3.5 h-3.5 text-[#D4A574]" />
+                Contact Person Name
+              </label>
+              <input
+                {...register('contactPerson')}
+                type="text"
+                placeholder="e.g. Ramesh Kothari"
+                className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
+              />
+              {errors.contactPerson && (
+                <p className="text-[11px] font-semibold text-red-500">{errors.contactPerson.message}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-[#1A1A1A] flex items-center gap-1.5">
+                <Phone className="w-3.5 h-3.5 text-[#D4A574]" />
+                WhatsApp / Mobile Number
+              </label>
+              <input
+                {...register('phone')}
+                type="tel"
+                placeholder="e.g. 9920751567"
+                className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
+              />
+              {errors.phone && <p className="text-[11px] font-semibold text-red-500">{errors.phone.message}</p>}
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-[#1A1A1A] flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5 text-[#D4A574]" />
+                Official Email Address
+              </label>
+              <input
+                {...register('email')}
+                type="email"
+                placeholder="e.g. admin@school.edu"
+                className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
+              />
+              {errors.email && <p className="text-[11px] font-semibold text-red-500">{errors.email.message}</p>}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-[#1A1A1A] block">Uniform / Garment Type</label>
+              <select
+                {...register('category')}
+                className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
+              >
+                <option value="">Select garment category</option>
+                <option value="School Uniforms (Shirts, Pinafores, Skirts, Trousers)">
+                  School Uniforms (Shirts, Skirts, Trousers)
+                </option>
+                <option value="Cricket Whites & Academy Kits">
+                  Cricket Whites &amp; Academy Kits
+                </option>
+                <option value="Dryfit Sports Jersey & Shorts Quad-Sets">
+                  Dryfit Sports Jersey &amp; Shorts Quad-Sets
+                </option>
+                <option value="Annual Day / Sports Day Event T-Shirts">
+                  Annual Day / Sports Day Event T-Shirts
+                </option>
+                <option value="Hospital / Nursery Swaddle Bundles">
+                  Hospital / Nursery Swaddle Bundles
+                </option>
+                <option value="Custom Corporate Gifting & Embroidery">
+                  Custom Corporate Gifting &amp; Embroidery
+                </option>
+              </select>
+              {errors.category && (
+                <p className="text-[11px] font-semibold text-red-500">{errors.category.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-[#1A1A1A] block">Estimated Quantity</label>
+              <select
+                {...register('quantity')}
+                className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
+              >
+                <option value="">Select quantity bracket</option>
+                <option value="50 - 100 Pieces">50 – 100 Pieces</option>
+                <option value="100 - 250 Pieces">100 – 250 Pieces</option>
+                <option value="250 - 500 Pieces">250 – 500 Pieces</option>
+                <option value="500 - 1000 Pieces">500 – 1,000 Pieces</option>
+                <option value="1000+ Pieces">1,000+ Pieces</option>
+              </select>
+              {errors.quantity && (
+                <p className="text-[11px] font-semibold text-red-500">{errors.quantity.message}</p>
+              )}
+            </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-bold text-slate-700 flex items-center gap-1 font-sans">
-              <Calendar className="w-3.5 h-3.5" /> Target Deadline
-            </label>
-            <input
-              {...register('deadline')}
-              type="date"
-              className="w-full px-4 py-3 rounded-lg border border-primary-100 text-xs font-sans focus:outline-none focus:ring-2 focus:ring-primary-500 bg-warm-bg/30 focus:bg-white"
+            <label className="text-xs font-bold text-[#1A1A1A] block">Design &amp; Fabric Specifications</label>
+            <textarea
+              {...register('details')}
+              rows={4}
+              placeholder="Specify fabric preferences (e.g. 100% combed cotton, 180 GSM, poly-cotton blend), school colors, crest embroidery requirements, or required delivery deadline..."
+              className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white resize-none"
             />
-            {errors.deadline && <p className="text-[10px] font-bold text-red-500 font-sans">{errors.deadline.message}</p>}
+            {errors.details && <p className="text-[11px] font-semibold text-red-500">{errors.details.message}</p>}
           </div>
-        </div>
 
-        {/* Details */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-700 font-sans">Requirements & Custom Details</label>
-          <textarea
-            {...register('details')}
-            placeholder="e.g. Need 100 sets of cricket whites with customized club embroidery for ages 6 to 14. Target deadline is before school session opens."
-            rows={4}
-            className="w-full px-4 py-3 rounded-lg border border-primary-100 text-xs font-sans focus:outline-none focus:ring-2 focus:ring-primary-500 bg-warm-bg/30 focus:bg-white resize-none"
-          />
-          {errors.details && <p className="text-[10px] font-bold text-red-500 font-sans">{errors.details.message}</p>}
-        </div>
-
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-primary-800 hover:bg-primary-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-colors text-xs uppercase tracking-wider font-sans focus:outline-none focus:ring-4 focus:ring-primary-300 min-h-[44px] cursor-pointer"
-        >
-          {isSubmitting ? 'Sending Request...' : 'Send Bulk Request'}
-        </button>
-      </form>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full min-h-[48px] bg-[#1B4332] hover:bg-[#143527] text-white font-bold py-3.5 px-4 rounded-xl shadow-sm transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <MessageSquare className="w-4 h-4 text-[#25D366]" />
+            <span>Send Bulk Enquiry on WhatsApp</span>
+          </button>
+        </form>
+      )}
     </div>
   );
 }

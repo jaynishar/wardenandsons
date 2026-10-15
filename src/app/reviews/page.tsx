@@ -146,7 +146,7 @@ export default function ReviewsPage() {
               </div>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed font-sans italic">
-              "{review.text}"
+              &ldquo;{review.text}&rdquo;
             </p>
             <div className="text-[10px] text-slate-400 text-right font-sans">
               Reviewed: {review.date}
