@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Grid, ShoppingBag, MessageSquare, Layers } from 'lucide-react';
+import { Home, Grid, ClipboardList, MessageSquare, Layers } from 'lucide-react';
 import { useCartStore } from '@/store/cart';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function BottomNav() {
   const pathname = usePathname();
@@ -19,7 +20,7 @@ export default function BottomNav() {
 
   const links = [
     { label: 'Home', href: '/', icon: Home },
-    { label: 'Shop', href: '/shop', icon: Grid },
+    { label: 'Catalogue', href: '/shop', icon: Grid },
     { label: 'How It Works', href: '/how-it-works', icon: Layers },
   ];
 
@@ -44,27 +45,29 @@ export default function BottomNav() {
           );
         })}
 
-        {/* Cart Item with badge */}
+        {/* Request List Item with badge */}
         <button
           onClick={toggleCart}
+          aria-label="Request List"
           className="flex flex-col items-center justify-center h-full min-h-[44px] text-gray-500 hover:text-[#1B4332] relative transition-colors cursor-pointer"
         >
           <div className="relative">
-            <ShoppingBag className="w-5 h-5 mb-1" />
+            <ClipboardList className="w-5 h-5 mb-1" />
             {totalItems > 0 && (
               <span className="absolute -top-1.5 -right-2 bg-[#1B4332] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
                 {totalItems}
               </span>
             )}
           </div>
-          <span className="text-[10px] font-semibold">Bag</span>
+          <span className="text-[10px] font-semibold">Request</span>
         </button>
 
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/919920751567"
+          href={BUSINESS_CONFIG.phone.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="WhatsApp Store Desk"
           className="flex flex-col items-center justify-center h-full min-h-[44px] text-[#25D366] hover:text-[#20ba59] transition-colors"
         >
           <MessageSquare className="w-5 h-5 mb-1 fill-[#25D366]/20" />

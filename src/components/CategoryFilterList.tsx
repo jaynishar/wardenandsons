@@ -2,16 +2,17 @@
 
 import React, { useState, useMemo } from 'react';
 import { MessageSquare, ArrowUpDown } from 'lucide-react';
-import { Product } from '@/lib/products';
+import { CatalogueItem } from '@/lib/products';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 interface CategoryFilterListProps {
-  products: Product[];
+  products: CatalogueItem[];
   category?: string;
 }
 
 export default function CategoryFilterList({ products }: CategoryFilterListProps) {
   const [selectedSubCategory, setSelectedSubCategory] = useState('All');
-  const [sortBy, setSortBy] = useState('default'); // 'default', 'low-high', 'high-low'
+  const [sortBy, setSortBy] = useState('default');
 
   // Extract distinct subcategories
   const subCategories = useMemo(() => {
@@ -29,35 +30,34 @@ export default function CategoryFilterList({ products }: CategoryFilterListProps
     }
 
     // Sort
-    if (sortBy === 'low-high') {
-      result.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'high-low') {
-      result.sort((a, b) => b.price - a.price);
+    if (sortBy === 'az') {
+      result.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === 'za') {
+      result.sort((a, b) => b.title.localeCompare(a.title));
     }
 
     return result;
   }, [products, selectedSubCategory, sortBy]);
 
-  const handleWhatsappOrder = (product: Product) => {
-    const message = `Hello Warden & Sons! I am interested in buying this item from your catalog:
-Product: ${product.name}
+  const handleWhatsappOrder = (product: CatalogueItem) => {
+    const message = `Hello Warden & Sons! I am interested in this item from your catalogue:
+Product: ${product.title}
 Category: ${product.category.toUpperCase()}
 Subcategory: ${product.subCategory}
-Fabric: ${product.fabric}
-Price: ₹${product.price}
-Sizes: Please advise on size options.`;
+Fabric: ${product.fabricDetails}
+Size/Age: ${product.ageOrSizeRange}
+Please advise on available colours and pricing.`;
 
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/919920751567?text=${encoded}`, '_blank');
+    window.open(BUSINESS_CONFIG.whatsappUrl(message), '_blank', 'noopener,noreferrer');
   };
 
   return (
     <div className="space-y-8 font-sans">
       {/* Filtering and Sorting Bar */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-white border border-primary-50 p-6 rounded-2xl shadow-sm">
+      <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-white border border-[#EBE7DF] p-6 rounded-2xl shadow-xs">
         {/* Subcategory Filter Buttons */}
         <div className="flex items-center space-x-2 overflow-x-auto w-full pb-2 sm:pb-0 scrollbar-none scroll-smooth">
-          <span className="text-xs font-bold text-slate-500 shrink-0 font-sans">Filters:</span>
+          <span className="text-xs font-bold text-gray-500 shrink-0 font-sans">Filters:</span>
           <div className="flex gap-1.5">
             {subCategories.map((sub) => (
               <button
@@ -65,8 +65,8 @@ Sizes: Please advise on size options.`;
                 onClick={() => setSelectedSubCategory(sub)}
                 className={`text-xs px-3.5 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-colors min-h-[38px] cursor-pointer ${
                   selectedSubCategory === sub
-                    ? 'bg-primary-800 text-white'
-                    : 'bg-warm-bg text-primary-800 border border-primary-100 hover:bg-primary-50'
+                    ? 'bg-[#1B4332] text-white'
+                    : 'bg-[#FAF8F5] text-[#1B4332] border border-[#EBE7DF] hover:bg-gray-100'
                 }`}
               >
                 {sub}
@@ -77,15 +77,15 @@ Sizes: Please advise on size options.`;
 
         {/* Sort Select */}
         <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
-          <ArrowUpDown className="w-4 h-4 text-slate-500" />
+          <ArrowUpDown className="w-4 h-4 text-gray-500" />
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="w-full sm:w-48 px-3 py-2 rounded-lg border border-primary-100 text-xs font-sans focus:outline-none focus:ring-2 focus:ring-primary-500 bg-warm-bg/30 focus:bg-white"
+            className="w-full sm:w-48 px-3 py-2 rounded-lg border border-[#EBE7DF] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] bg-[#FAF8F5] focus:bg-white"
           >
             <option value="default">Sort: Default</option>
-            <option value="low-high">Price: Low to High</option>
-            <option value="high-low">Price: High to Low</option>
+            <option value="az">Alphabetical: A to Z</option>
+            <option value="za">Alphabetical: Z to A</option>
           </select>
         </div>
       </div>
@@ -96,52 +96,54 @@ Sizes: Please advise on size options.`;
           {processedProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white border border-primary-50 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow"
+              className="bg-white border border-[#EBE7DF] rounded-2xl overflow-hidden shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow"
             >
               <div className="p-6 space-y-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="text-[10px] text-accent-500 font-bold uppercase tracking-wider">
+                    <span className="text-[10px] text-[#D4A574] font-bold uppercase tracking-wider">
                       {product.subCategory}
                     </span>
-                    <h3 className="font-heading font-bold text-lg text-primary-800 mt-1">{product.name}</h3>
+                    <h3 className="font-serif font-bold text-lg text-[#1B4332] mt-1">{product.title}</h3>
                   </div>
-                  <span className="text-lg font-bold text-slate-800 shrink-0">₹{product.price}</span>
+                  <span className="text-xs font-bold text-[#1B4332] bg-[#FAF8F5] px-2.5 py-1 rounded-md border border-[#EBE7DF] shrink-0">
+                    Enquire on WhatsApp
+                  </span>
                 </div>
 
-                <p className="text-xs text-slate-500 leading-relaxed font-sans">{product.description}</p>
-                
-                <div className="space-y-1.5 pt-2 text-[10px] font-semibold text-slate-400 font-sans border-t border-primary-50">
+                <p className="text-xs text-[#666666] leading-relaxed font-sans">{product.description}</p>
+
+                <div className="space-y-1.5 pt-2 text-[10px] font-semibold text-gray-500 font-sans border-t border-[#EBE7DF]">
                   <div className="flex justify-between">
-                    <span>Sizes Available:</span>
-                    <span className="text-slate-600">{product.sizes}</span>
+                    <span>Range / Sizes:</span>
+                    <span className="text-gray-800">{product.ageOrSizeRange}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Fabric Sourcing:</span>
-                    <span className="text-slate-600">{product.fabric}</span>
+                    <span className="text-gray-800">{product.fabricDetails}</span>
                   </div>
                 </div>
               </div>
 
               {/* Action Button */}
-              <div className="px-6 pb-6 pt-3 bg-warm-bg/25 border-t border-primary-50">
+              <div className="px-6 pb-6 pt-3 bg-[#FAF8F5] border-t border-[#EBE7DF]">
                 <button
                   onClick={() => handleWhatsappOrder(product)}
-                  className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all duration-300 hover:scale-[1.02] text-xs uppercase tracking-wider font-sans focus:outline-none flex items-center justify-center gap-1.5 min-h-[44px] cursor-pointer"
+                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3.5 px-4 rounded-xl shadow-xs transition-all duration-300 text-xs uppercase tracking-wider font-sans focus:outline-none flex items-center justify-center gap-1.5 min-h-[44px] cursor-pointer"
                   id={`cta-product-order-${product.id}`}
                 >
-                  <MessageSquare className="w-4 h-4" /> Order on WhatsApp
+                  <MessageSquare className="w-4 h-4" /> Enquire on WhatsApp
                 </button>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-white border border-primary-50 rounded-2xl shadow-sm">
-          <p className="text-slate-400 text-sm font-sans">No products found in this subcategory.</p>
+        <div className="text-center py-16 bg-white border border-[#EBE7DF] rounded-2xl shadow-xs">
+          <p className="text-gray-500 text-sm font-sans">No products found in this subcategory.</p>
           <button
             onClick={() => setSelectedSubCategory('All')}
-            className="text-xs font-bold text-accent-500 hover:underline mt-2 cursor-pointer"
+            className="text-xs font-bold text-[#D4A574] hover:underline mt-2 cursor-pointer"
           >
             Reset Filters
           </button>

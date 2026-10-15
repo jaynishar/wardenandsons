@@ -1,27 +1,44 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export interface CartItem {
+export interface RequestItem {
+  id: string;
   productId: string;
   name: string;
-  price: number;
-  quantity: number;
   category: string;
   subCategory: string;
   image?: string;
+  quantity: number;
+  ageGroup?: string;
+  size?: string;
+  preferredColor?: string;
+  styleNotes?: string;
 }
 
 interface CartStore {
-  items: CartItem[];
+  items: RequestItem[];
   isOpen: boolean;
-  addItem: (item: Omit<CartItem, 'quantity'>) => void;
-  removeItem: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
+  addItem: (item: {
+    productId: string;
+    name: string;
+    category: string;
+    subCategory: string;
+    image?: string;
+    ageGroup?: string;
+    size?: string;
+    preferredColor?: string;
+    styleNotes?: string;
+  }) => void;
+  removeItem: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
+  updateItemDetails: (
+    id: string,
+    details: Partial<Pick<RequestItem, 'ageGroup' | 'size' | 'preferredColor' | 'styleNotes'>>
+  ) => void;
   clearCart: () => void;
   setIsOpen: (isOpen: boolean) => void;
   toggleCart: () => void;
   getTotalItems: () => number;
-  getTotalPrice: () => number;
 }
 
 export const useCartStore = create<CartStore>()(
@@ -32,8 +49,13 @@ export const useCartStore = create<CartStore>()(
 
       addItem: (newItem) => {
         set((state) => {
+          // If identical item exists without custom notes, increment quantity
           const existingIndex = state.items.findIndex(
-            (item) => item.productId === newItem.productId
+            (item) =>
+              item.productId === newItem.productId &&
+              !item.size &&
+              !item.preferredColor &&
+              !item.styleNotes
           );
 
           if (existingIndex > -1) {
@@ -42,32 +64,57 @@ export const useCartStore = create<CartStore>()(
             return { items: updated, isOpen: true };
           }
 
+          const uniqueId = `${newItem.productId}-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`;
           return {
-            items: [...state.items, { ...newItem, quantity: 1 }],
+            items: [
+              ...state.items,
+              {
+                id: uniqueId,
+                productId: newItem.productId,
+                name: newItem.name,
+                category: newItem.category,
+                subCategory: newItem.subCategory,
+                image: newItem.image,
+                quantity: 1,
+                ageGroup: newItem.ageGroup || '',
+                size: newItem.size || '',
+                preferredColor: newItem.preferredColor || '',
+                styleNotes: newItem.styleNotes || '',
+              },
+            ],
             isOpen: true,
           };
         });
       },
 
-      removeItem: (productId) => {
+      removeItem: (id) => {
         set((state) => ({
-          items: state.items.filter((item) => item.productId !== productId),
+          items: state.items.filter((item) => item.id !== id && item.productId !== id),
         }));
       },
 
-      updateQuantity: (productId, quantity) => {
+      updateQuantity: (id, quantity) => {
         if (quantity <= 0) {
-          get().removeItem(productId);
+          get().removeItem(id);
           return;
         }
 
         set((state) => ({
           items: state.items.map((item) =>
-            item.productId === productId ? { ...item, quantity } : item
+            item.id === id || item.productId === id ? { ...item, quantity } : item
           ),
         }));
       },
 
+      updateItemDetails: (id, details) => {
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id ? { ...item, ...details } : item
+          ),
+        }));
+      },
+
+      // Only called upon explicit user action ("Clear Request")
       clearCart: () => {
         set({ items: [] });
       },
@@ -79,16 +126,9 @@ export const useCartStore = create<CartStore>()(
       getTotalItems: () => {
         return get().items.reduce((total, item) => total + item.quantity, 0);
       },
-
-      getTotalPrice: () => {
-        return get().items.reduce(
-          (total, item) => total + item.price * item.quantity,
-          0
-        );
-      },
     }),
     {
-      name: 'warden-cart-storage',
+      name: 'warden-request-list-storage',
     }
   )
 );

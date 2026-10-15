@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle, MessageSquare } from 'lucide-react';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 interface FAQItem {
   question: string;
@@ -10,34 +11,34 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: 'How does WhatsApp shopping work if there is no online payment checkout?',
+    question: 'How does WhatsApp enquiry and ordering work?',
     answer:
-      'We believe children’s clothing deserves personal care. You can browse our sample catalog online, add items to your bag, and click "Send Order on WhatsApp". Our family team at Kemps Corner receives your exact list, checks live inventory, sends real photographs of colors, and provides our official UPI QR or bank link for direct settlement.',
+      'Warden & Sons carries a wide, rotating physical inventory at Kemps Corner. You can browse our representative catalogue online, add items to your Request List, specify any size or colour preferences, and click "Send Enquiry on WhatsApp". Our shop team receives your list, checks live availability, sends real photographs and dimensions, confirms current prices, and arranges payment and fulfillment directly.',
   },
   {
     question: 'How do you ensure the right fit and sizing for my child?',
     answer:
-      'Kids grow quickly, and sizes vary across brands. When you order on WhatsApp, you can share your child’s age, height, and current fit preferences. Our store assistants will lay a physical measuring tape flat on the garment to send you chest, length, and waist dimensions before dispatch.',
+      'Children grow quickly, and fits vary between garments. When you send your request on WhatsApp, you can mention your child’s age, approximate height, and fit preference. Our store team will lay a physical measuring tape flat across chest, waist, and length dimensions and share photos before you complete any purchase.',
   },
   {
-    question: 'What delivery options do you offer across Mumbai and India?',
+    question: 'What delivery and pickup options do you offer?',
     answer:
-      'For South Bombay and suburban Mumbai, we offer same-day or next-day local courier delivery (or store pickup from Kemps Corner). We also ship across India via trusted express air couriers within 2–4 business days.',
+      'Customers in South Mumbai and across the city can pick up ready packages directly from our Kemps Corner store or have orders delivered via local couriers. For orders across India, courier shipping is coordinated directly during your WhatsApp conversation based on your address and timeline.',
   },
   {
-    question: 'Can I visit the physical store at Kemps Corner directly?',
+    question: 'Can I visit the physical boutique at Kemps Corner in person?',
     answer:
-      'Yes, absolutely! We love welcoming families. We are located at Kemps Corner, South Mumbai (near Pedder Road flyover). Store hours are Monday to Saturday from 10:30 AM to 8:30 PM (Sunday closed).',
+      'Yes, absolutely! We love welcoming families into our boutique. We are located at Kemps Corner, South Mumbai (near the Pedder Road flyover). Store hours are Monday to Saturday from 10:30 AM to 8:30 PM (Sunday closed).',
   },
   {
-    question: 'What is your exchange policy?',
+    question: 'How do exchanges work if a size doesn’t fit?',
     answer:
-      'We offer a hassle-free 7-day exchange on all unworn items with tags intact. You can exchange directly at our store or arrange a courier exchange via WhatsApp.',
+      'Because every piece is personally verified before dispatch, sizing mismatches are rare. If an unworn garment with tags intact needs an exchange, you can exchange it directly at our Kemps Corner boutique or coordinate an exchange with our store team on WhatsApp.',
   },
   {
-    question: 'Do you take custom school uniform or bulk B2B orders?',
+    question: 'Do you take custom school uniform or bulk institutional enquiries?',
     answer:
-      'Yes! Warden & Sons has been manufacturing high-quality cotton school uniforms, sports kits, and corporate event shirts since 1994. Bulk orders start at a minimum of 50 pieces. You can submit our Bulk Order form or message us on WhatsApp.',
+      'Yes! Warden & Sons has provided cotton school uniforms, sports kits, and customized event apparel for South Mumbai schools and institutions for over 30 years. Contact our store team via the Bulk Enquiries form or directly on WhatsApp with your design and quantity requirements.',
   },
 ];
 
@@ -49,7 +50,7 @@ export default function FAQ() {
   };
 
   return (
-    <div className="space-y-4 max-w-3xl mx-auto">
+    <div className="space-y-4 max-w-3xl mx-auto font-sans">
       {faqs.map((faq, idx) => {
         const isOpen = openIndex === idx;
 
@@ -89,12 +90,12 @@ export default function FAQ() {
         <p className="text-xs text-[#666666]">
           Have a specific question not listed here?{' '}
           <a
-            href="https://wa.me/919920751567"
+            href={BUSINESS_CONFIG.phone.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="font-bold text-[#1B4332] underline hover:text-[#D4A574] inline-flex items-center gap-1 ml-1"
           >
-            <MessageSquare className="w-3.5 h-3.5" /> Ask on WhatsApp
+            <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" /> Ask on WhatsApp
           </a>
         </p>
       </div>

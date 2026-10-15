@@ -2,11 +2,12 @@ import React from 'react';
 import BulkOrderForm from '@/components/BulkOrderForm';
 import { GraduationCap, Trophy, Gift, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export const metadata: Metadata = {
-  title: 'Custom Bulk Clothing & Uniform Orders (MOQ 50)',
+  title: 'Custom School Uniforms & Bulk Enquiries',
   description:
-    'Custom school uniforms, cricket whites, academy jerseys, and institutional clothing in Mumbai since 1994. Bulk manufacturing with minimum 50 pieces by Warden & Sons.',
+    'Custom school uniforms, cricket whites, sports academy jerseys, and institutional clothing in Mumbai. Bespoke tailoring by Warden & Sons, Kemps Corner.',
   alternates: {
     canonical: '/bulk-orders',
   },
@@ -16,7 +17,7 @@ export default function BulkOrdersPage() {
   const capabilities = [
     {
       title: 'School Uniforms & Pinafores',
-      desc: 'Durable, colorfast poly-cotton and pure cotton shirts, skirts, shorts, and trousers tailored to school guidelines.',
+      desc: 'Durable, colorfast poly-cotton and pure cotton shirts, skirts, shorts, and trousers tailored to school dress codes.',
       icon: GraduationCap,
     },
     {
@@ -25,24 +26,24 @@ export default function BulkOrdersPage() {
       icon: Trophy,
     },
     {
-      title: 'Annual Day & Event T-Shirts',
-      desc: 'Vibrant 180 GSM cotton screen-printed tees for sports day houses, school clubs, festivals, and cultural events.',
+      title: 'Annual Day & Event Apparel',
+      desc: 'Vibrant combed cotton screen-printed tees for sports day houses, school clubs, festivals, and cultural gatherings.',
       icon: Gift,
     },
   ];
 
   return (
-    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
-          Institutional Tailoring • Since 1994
+          Institutional Tailoring • South Mumbai
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
-          Custom Bulk &amp; School Uniforms
+          Custom School Uniforms &amp; Bulk Apparel
         </h1>
         <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
-          Warden &amp; Sons partners with Mumbai schools, sports academies, and educational foundations to manufacture high-grade uniforms with a <strong>minimum order of 50 pieces</strong>.
+          Warden &amp; Sons partners with Mumbai schools, sports academies, and educational foundations to manufacture high-grade cotton uniforms and bespoke event apparel.
         </p>
       </div>
 
@@ -78,21 +79,25 @@ export default function BulkOrdersPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#25D366] shrink-0" />
-                <span>Fabric swatches delivered to your school desk</span>
+                <span>Fabric swatches shared directly with your committee</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#25D366] shrink-0" />
-                <span>Strict batch-level quality control in Maharashtra</span>
+                <span>Flexible batch sizes and quality-controlled stitching</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-[#1B4332] text-white rounded-3xl p-6 shadow-sm space-y-2">
+          <div className="bg-[#1B4332] text-white rounded-3xl p-6 shadow-xs space-y-2">
             <h3 className="font-serif font-bold text-base text-[#D4A574]">
               Urgent Uniform Requirement?
             </h3>
             <p className="text-xs text-gray-200 leading-relaxed">
-              Call our B2B desk directly at <a href="tel:+919920751567" className="underline font-bold">+91 99207 51567</a> or message us on WhatsApp with your deadline and specifications.
+              Call our store desk directly at{' '}
+              <a href={BUSINESS_CONFIG.phone.telLink} className="underline font-bold">
+                {BUSINESS_CONFIG.phone.display}
+              </a>{' '}
+              or message us on WhatsApp with your specifications.
             </p>
           </div>
         </div>

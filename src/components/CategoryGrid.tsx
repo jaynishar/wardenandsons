@@ -66,7 +66,7 @@ export default function CategoryGrid() {
           Explore by Category
         </h2>
         <p className="text-xs sm:text-sm text-[#666666] max-w-xl mx-auto leading-relaxed">
-          Select a category to view sample styles, fabric details, and sample pricing. All garments are available for personalized WhatsApp ordering and South Mumbai store pickup.
+          Select a category to view representative styles and fabric details. All garments are available for personalized WhatsApp enquiries and South Mumbai store pickup.
         </p>
       </div>
 

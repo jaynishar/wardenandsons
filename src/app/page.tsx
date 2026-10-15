@@ -6,34 +6,35 @@ import HowItWorks from '@/components/HowItWorks';
 import CategoryGrid from '@/components/CategoryGrid';
 import ProductCard from '@/components/ProductCard';
 import FAQ from '@/components/FAQ';
-import { getFeaturedProducts } from '@/lib/products';
+import { getFeaturedCatalogueItems } from '@/lib/products';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function HomePage() {
-  const featuredProducts = getFeaturedProducts(6);
+  const featuredProducts = getFeaturedCatalogueItems(6);
 
   return (
-    <div className="space-y-12 md:space-y-16">
+    <div className="space-y-12 md:space-y-16 font-sans">
       {/* 1. Hero with Marquee */}
       <Hero />
 
       {/* 2. How It Works (High-priority on mobile) */}
       <HowItWorks />
 
-      {/* 3. Category Grid (5 categories) */}
+      {/* 3. Category Grid (Curated Departments) */}
       <CategoryGrid />
 
-      {/* 4. Featured Sample Products */}
+      {/* 4. Featured Representative Products */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
             <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3 py-1 rounded-full border border-[#D4A574]/30 inline-block mb-2">
-              Popular Samples
+              Representative Offerings
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B4332]">
               Featured Atelier Basics
             </h2>
             <p className="text-xs sm:text-sm text-[#666666] mt-1 max-w-lg">
-              A curated preview of our everyday essentials. Actual store inventory carries hundreds more colors and sizes.
+              A curated preview of our everyday essentials. Actual store inventory carries hundreds more prints, colors, and sizes.
             </p>
           </div>
 
@@ -41,7 +42,7 @@ export default function HomePage() {
             href="/shop"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1B4332] hover:text-[#D4A574] transition-colors"
           >
-            <span>View Full Catalog</span>
+            <span>View Full Catalogue</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -69,13 +70,13 @@ export default function HomePage() {
 
             <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
               <a
-                href="https://wa.me/919920751567"
+                href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs shadow-md transition-all hover:scale-102 cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-[#25D366]" />
-                <span>Chat on WhatsApp (+91 99207 51567)</span>
+                <span>Chat on WhatsApp ({BUSINESS_CONFIG.phone.display})</span>
               </a>
 
               <Link
@@ -115,7 +116,7 @@ export default function HomePage() {
               <div className="space-y-1 text-xs">
                 <h3 className="font-serif font-bold text-base text-[#1A1A1A]">Kemps Corner Store</h3>
                 <p className="text-[#666666]">
-                  Warden &amp; Sons Kids Wear, Kemps Corner, South Mumbai, Maharashtra 400036
+                  {BUSINESS_CONFIG.location.fullAddress}
                 </p>
                 <p className="text-gray-400">Near Pedder Road Flyover</p>
               </div>
@@ -128,8 +129,8 @@ export default function HomePage() {
               </div>
               <div className="space-y-1 text-xs">
                 <h3 className="font-serif font-bold text-base text-[#1A1A1A]">Opening Hours</h3>
-                <p className="text-[#1A1A1A] font-semibold">Mon – Sat: 10:30 AM – 8:30 PM</p>
-                <p className="text-red-600 font-medium">Sunday: Closed</p>
+                <p className="text-[#1A1A1A] font-semibold">{BUSINESS_CONFIG.hours.display}</p>
+                <p className="text-red-600 font-medium">Sunday: {BUSINESS_CONFIG.hours.sunday}</p>
                 <p className="text-gray-400">WhatsApp orders answered continuously</p>
               </div>
             </div>
@@ -142,8 +143,8 @@ export default function HomePage() {
               <div className="space-y-1 text-xs">
                 <h3 className="font-serif font-bold text-base text-[#1A1A1A]">Get in Touch</h3>
                 <p className="text-[#1A1A1A] font-bold">
-                  <a href="tel:+919920751567" className="hover:text-[#1B4332]">
-                    +91 99207 51567
+                  <a href={BUSINESS_CONFIG.phone.telLink} className="hover:text-[#1B4332]">
+                    {BUSINESS_CONFIG.phone.display}
                   </a>
                 </p>
                 <p className="text-[#666666]">Call or text for immediate size assistance</p>

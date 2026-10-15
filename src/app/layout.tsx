@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -21,11 +22,11 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Warden & Sons Kids Wear | Kemps Corner, Mumbai Since 1994',
+    default: 'Warden & Sons Kids Wear | Kemps Corner, South Mumbai',
     template: '%s | Warden & Sons Kids Wear',
   },
   description:
-    'Heritage children’s clothing boutique in Kemps Corner, South Mumbai since 1994. 100% pure cotton newborn essentials, boys & girls playwear, nightsuits, and custom bulk orders via WhatsApp.',
+    'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Serving families for over 30 years with 100% pure cotton newborn essentials, boys & girls playwear, nightsuits, and custom school uniforms via WhatsApp.',
   metadataBase: new URL('https://wardenandsons.com'),
 };
 
@@ -40,7 +41,7 @@ export default function RootLayout({
     name: 'Warden & Sons Kids Wear',
     image: 'https://wardenandsons.com/brand_logo.jpg',
     url: 'https://wardenandsons.com',
-    telephone: '+919920751567',
+    telephone: BUSINESS_CONFIG.phone.display,
     priceRange: '₹₹',
     address: {
       '@type': 'PostalAddress',
@@ -60,7 +61,7 @@ export default function RootLayout({
     logo: 'https://wardenandsons.com/brand_logo.jpg',
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+919920751567',
+      telephone: BUSINESS_CONFIG.phone.display,
       contactType: 'customer service',
     },
   };

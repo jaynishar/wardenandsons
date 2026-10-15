@@ -2,10 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, MessageSquare, ShieldCheck, Heart, Sparkles } from 'lucide-react';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#FAF8F5] pt-6 pb-12 md:py-16">
+    <section className="relative overflow-hidden bg-[#FAF8F5] pt-6 pb-12 md:py-16 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Text Column */}
@@ -13,7 +14,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 bg-white border border-[#EBE7DF] px-3.5 py-1.5 rounded-full shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#D4A574]" />
               <span className="text-[11px] font-bold text-[#1B4332] uppercase tracking-wider">
-                South Bombay’s Trusted Kidswear • Est. 1994
+                {BUSINESS_CONFIG.establishment.displayText}
               </span>
             </div>
 
@@ -29,14 +30,14 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
               <Link
                 href="/shop"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-7 py-3 rounded-xl bg-[#1B4332] text-white hover:bg-[#143527] font-bold text-sm shadow-sm transition-all hover:scale-102"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-7 py-3 rounded-xl bg-[#1B4332] text-white hover:bg-[#143527] font-bold text-sm shadow-xs transition-all hover:scale-102"
               >
-                <span>Shop All Categories</span>
+                <span>Browse Catalogue</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
 
               <a
-                href="https://wa.me/919920751567"
+                href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-white border border-[#EBE7DF] text-[#1A1A1A] hover:bg-[#FAF8F5] font-bold text-sm shadow-xs transition-all hover:border-[#1B4332]"
@@ -54,7 +55,7 @@ export default function Hero() {
               </div>
               <div className="flex items-center gap-2">
                 <Heart className="w-4 h-4 text-[#D4A574] shrink-0" />
-                <span className="text-[11px] font-medium text-[#1A1A1A]">Family Run Since 1994</span>
+                <span className="text-[11px] font-medium text-[#1A1A1A]">Family Boutique</span>
               </div>
               <div className="flex items-center gap-2">
                 <MessageSquare className="w-4 h-4 text-[#25D366] shrink-0" />
@@ -80,7 +81,7 @@ export default function Hero() {
                 <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-xs p-3.5 rounded-2xl border border-white/50 shadow-md flex items-center justify-between">
                   <div>
                     <p className="font-serif font-bold text-xs text-[#1B4332]">Kemps Corner Store</p>
-                    <p className="text-[10px] text-gray-500 font-medium">Walk-ins &amp; WhatsApp Pickups Welcome</p>
+                    <p className="text-[10px] text-gray-500 font-medium">Walk-ins &amp; WhatsApp Enquiries Welcome</p>
                   </div>
                   <span className="text-[10px] font-bold px-2 py-1 rounded-md bg-[#FAF8F5] text-[#D4A574] border border-[#D4A574]/30">
                     Open Mon-Sat
@@ -95,15 +96,13 @@ export default function Hero() {
       {/* Marquee Banner Strip */}
       <div className="mt-12 bg-[#1B4332] text-white py-3 marquee-container border-y border-[#143527]">
         <div className="marquee-content font-sans text-xs tracking-widest uppercase font-semibold text-[#D4A574]">
-          <span className="mx-6">★ EST. 1994</span>
-          <span className="mx-6">• KEMPS CORNER, SOUTH MUMBAI</span>
+          <span className="mx-6">★ KEMPS CORNER, SOUTH MUMBAI</span>
           <span className="mx-6">• 100% PURE COMBED COTTON</span>
-          <span className="mx-6">• PRE-SHRUNK &amp; CHEMICAL-FREE</span>
-          <span className="mx-6">• REAL-TIME WHATSAPP CONCIERGE: +91 99207 51567</span>
+          <span className="mx-6">• THREE DECADES OF FAMILY TRUST</span>
+          <span className="mx-6">• DIRECT WHATSAPP STORE DESK: {BUSINESS_CONFIG.phone.display}</span>
           <span className="mx-6">• NEWBORN TO TEENS PLAYWEAR</span>
-          <span className="mx-6">• CUSTOM SCHOOL &amp; SPORTS UNIFORMS</span>
-          <span className="mx-6">★ EST. 1994</span>
-          <span className="mx-6">• KEMPS CORNER, SOUTH MUMBAI</span>
+          <span className="mx-6">• BESPOKE SCHOOL &amp; SPORTS UNIFORMS</span>
+          <span className="mx-6">★ KEMPS CORNER, SOUTH MUMBAI</span>
           <span className="mx-6">• 100% PURE COMBED COTTON</span>
         </div>
       </div>

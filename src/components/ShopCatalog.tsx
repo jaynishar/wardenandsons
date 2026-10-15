@@ -2,22 +2,24 @@
 
 import React, { useState, useMemo } from 'react';
 import { Search, MessageSquare } from 'lucide-react';
-import { Product } from '@/lib/products';
+import { CatalogueItem } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 interface ShopCatalogProps {
-  products: Product[];
+  products: CatalogueItem[];
   initialCategory?: string;
   categoryTitle?: string;
 }
 
 const categories = [
-  { id: 'all', label: 'All Products' },
+  { id: 'all', label: 'All Catalogue' },
   { id: 'newborn', label: 'Newborns (0-24M)' },
   { id: 'boys', label: 'Boys (0-16Y)' },
   { id: 'girls', label: 'Girls (0-16Y)' },
   { id: 'men', label: 'Men Basics' },
   { id: 'women', label: 'Women Basics' },
+  { id: 'bulk', label: 'School Uniforms & Bulk' },
 ];
 
 export default function ShopCatalog({
@@ -59,18 +61,19 @@ export default function ShopCatalog({
       const q = searchQuery.toLowerCase();
       result = result.filter(
         (p) =>
-          p.name.toLowerCase().includes(q) ||
+          p.title.toLowerCase().includes(q) ||
           p.description.toLowerCase().includes(q) ||
-          p.fabric.toLowerCase().includes(q) ||
-          p.subCategory.toLowerCase().includes(q)
+          p.fabricDetails.toLowerCase().includes(q) ||
+          p.subCategory.toLowerCase().includes(q) ||
+          p.ageOrSizeRange.toLowerCase().includes(q)
       );
     }
 
-    // 4. Sort
-    if (sortBy === 'low-high') {
-      result = [...result].sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'high-low') {
-      result = [...result].sort((a, b) => b.price - a.price);
+    // 4. Sort (Alphabetical or Default)
+    if (sortBy === 'az') {
+      result = [...result].sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === 'za') {
+      result = [...result].sort((a, b) => b.title.localeCompare(a.title));
     }
 
     return result;
@@ -86,7 +89,7 @@ export default function ShopCatalog({
             <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search by garment, fabric (e.g. muslin, cotton, dryfit)..."
+              placeholder="Search by garment, fabric (e.g. muslin, combed cotton)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
@@ -94,7 +97,7 @@ export default function ShopCatalog({
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-black"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-black cursor-pointer"
               >
                 Clear
               </button>
@@ -102,15 +105,15 @@ export default function ShopCatalog({
           </div>
 
           <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-            <span className="text-xs text-gray-500 font-medium">Sort by:</span>
+            <span className="text-xs text-gray-500 font-medium">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="px-3 py-2 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
             >
-              <option value="featured">Featured Collection</option>
-              <option value="low-high">Price: Low to High</option>
-              <option value="high-low">Price: High to Low</option>
+              <option value="featured">Curated Order</option>
+              <option value="az">Alphabetical: A to Z</option>
+              <option value="za">Alphabetical: Z to A</option>
             </select>
           </div>
         </div>
@@ -164,35 +167,35 @@ export default function ShopCatalog({
       </div>
 
       {/* Results Count Banner */}
-      <div className="flex items-center justify-between px-2">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 px-2">
         <p className="text-xs font-semibold text-[#666666]">
-          Showing <span className="text-[#1B4332] font-bold">{filteredProducts.length}</span> sample items
+          Showing <span className="text-[#1B4332] font-bold">{filteredProducts.length}</span> representative styles
           {categoryTitle ? ` in ${categoryTitle}` : ''}
         </p>
 
         <a
-          href="https://wa.me/919920751567"
+          href={BUSINESS_CONFIG.phone.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs font-bold text-[#1B4332] hover:text-[#D4A574] flex items-center gap-1.5"
         >
           <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
-          <span>Don’t see what you need? Inquire on WhatsApp</span>
+          <span>Don&apos;t see what you need? Inquire on WhatsApp</span>
         </a>
       </div>
 
-      {/* Product Cards Grid: 2 cols on mobile, 3-4 cols on desktop */}
+      {/* Product Cards Grid */}
       {filteredProducts.length === 0 ? (
         <div className="bg-white rounded-3xl border border-[#EBE7DF] p-12 text-center space-y-4">
-          <p className="font-serif text-lg text-[#1A1A1A]">No sample products matched your search.</p>
+          <p className="font-serif text-lg text-[#1A1A1A]">No representative styles matched your search.</p>
           <p className="text-xs text-gray-500 max-w-sm mx-auto">
-            Our Kemps Corner store stocks hundreds of additional designs, sizes, and colors. Message our team directly with a photo or request!
+            Our Kemps Corner boutique stocks hundreds of additional designs, colors, and sizes. Message our team directly with a photo or description!
           </p>
           <a
-            href="https://wa.me/919920751567"
+            href={BUSINESS_CONFIG.phone.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1B4332] text-white text-xs font-bold"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1B4332] text-white text-xs font-bold cursor-pointer hover:bg-[#143527]"
           >
             <MessageSquare className="w-4 h-4 text-[#25D366]" />
             Ask Store Desk on WhatsApp

@@ -3,11 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldCheck, Heart, Sparkles, MessageSquare, Phone, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export const metadata: Metadata = {
-  title: 'Our Heritage (Since 1994)',
+  title: 'Our Heritage | Kemps Corner, South Mumbai',
   description:
-    'The story of Warden & Sons Kids Wear, serving South Bombay families at Kemps Corner since 1994. Read about our pure cotton philosophy and neighborhood roots.',
+    'The story of Warden & Sons Kids Wear, serving South Bombay families at Kemps Corner for over 30 years. Read about our pure cotton philosophy and neighborhood roots.',
   alternates: {
     canonical: '/about',
   },
@@ -18,35 +19,35 @@ export default function AboutPage() {
     {
       title: '100% Pure Combed Cotton',
       description:
-        'We select breathable, organic-grade cottons and airy muslins. Pre-shrunk and chemical-free, crafted specially for Mumbai’s tropical humidity.',
+        'We select breathable cottons and airy muslins. Pre-shrunk and chemical-free, crafted specially for Mumbai’s tropical humidity.',
       icon: ShieldCheck,
     },
     {
       title: 'Three Decades of Family Trust',
       description:
-        'Founded in 1994 at Kemps Corner. Parents who wore our rompers as infants now bring their own children to our boutique.',
+        'Serving Kemps Corner for over 30 years. Parents who wore our garments as infants now bring their own children to our boutique.',
       icon: Heart,
     },
     {
       title: 'Bespoke WhatsApp Attention',
       description:
-        'No automated bot replies. Every customer chat and size measurement is personally checked with a physical tape by our family members.',
+        'No automated bot replies. Every customer chat and size measurement is personally checked with a physical tape by our shop team.',
       icon: Sparkles,
     },
   ];
 
   return (
-    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 md:space-y-16">
+    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 md:space-y-16 font-sans">
       {/* Intro Heading */}
       <section className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
-          Est. 1994 • Kemps Corner, South Mumbai
+          {BUSINESS_CONFIG.establishment.displayText}
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
           Dressing South Bombay’s Children For Generations
         </h1>
         <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
-          From a cozy neighborhood boutique founded in 1994 to a South Mumbai institution. Discover how our family business preserves comfort, trust, and craftsmanship.
+          From our neighborhood boutique at Kemps Corner to families across Mumbai. Discover how our family business preserves comfort, trust, and craftsmanship.
         </p>
       </section>
 
@@ -74,10 +75,10 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-3.5 text-xs sm:text-sm text-[#666666] leading-relaxed">
             <p>
-              In 1994, Warden &amp; Sons opened its doors in the historic retail avenue of <strong>Kemps Corner, South Mumbai</strong>. Our founding purpose was simple: to create a welcoming neighborhood space where parents could find pure, soft, honest cotton clothing for their little ones without the noise of corporate department stores.
+              For over three decades, Warden &amp; Sons has welcomed families in the historic retail avenue of <strong>Kemps Corner, South Mumbai</strong>. Our founding purpose was simple: to create a welcoming neighborhood space where parents could find pure, soft, honest cotton clothing for their little ones without the noise of corporate department stores.
             </p>
             <p>
-              Over the last 30 years, South Mumbai has transformed, but our values haven’t wavered. We inspect every seam, avoid harmful synthetic polyester in everyday sleepwear, and keep prices honest and transparent.
+              Over 30 years, South Mumbai has transformed, but our core philosophy has not wavered. We inspect every seam, avoid scratchy synthetic polyester in everyday sleepwear, and keep our relationships personal and transparent.
             </p>
             <p>
               Today, we are honored to dress the children and grandchildren of our earliest customers. Whether you walk into our Kemps Corner shop or message us on WhatsApp from across India, you will always be treated as a welcomed family neighbor.
@@ -89,11 +90,11 @@ export default function AboutPage() {
               href="/shop"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#1B4332] text-white hover:bg-[#143527] font-bold text-xs shadow-xs"
             >
-              <span>Browse Catalog</span>
+              <span>Browse Catalogue</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
-              href="https://wa.me/919920751567"
+              href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-[#EBE7DF] text-[#1A1A1A] hover:bg-[#FAF8F5] font-bold text-xs shadow-xs"
@@ -152,11 +153,11 @@ export default function AboutPage() {
             <ArrowRight className="w-4 h-4" />
           </Link>
           <a
-            href="tel:+919920751567"
+            href={BUSINESS_CONFIG.phone.telLink}
             className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-white border border-[#EBE7DF] text-[#1A1A1A] text-xs font-bold shadow-xs hover:bg-gray-50"
           >
             <Phone className="w-4 h-4 text-[#D4A574]" />
-            <span>Call: +91 99207 51567</span>
+            <span>Call: {BUSINESS_CONFIG.phone.display}</span>
           </a>
         </div>
       </section>

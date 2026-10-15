@@ -1,13 +1,14 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ShoppingBag, MessageSquare, Truck, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ClipboardList, MessageSquare, Truck, ArrowRight, ShieldCheck } from 'lucide-react';
 import FAQ from '@/components/FAQ';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export const metadata: Metadata = {
-  title: 'How It Works | WhatsApp Shopping Guide',
+  title: 'How It Works | WhatsApp Request Guide',
   description:
-    'Learn how WhatsApp shopping works at Warden & Sons Kids Wear Kemps Corner. Browse samples, generate an itemized WhatsApp order, verify live photos and get doorstep delivery.',
+    'Learn how WhatsApp catalogue requests work at Warden & Sons Kids Wear Kemps Corner. Browse representative samples, build your request list, and get personal guidance from our family store team.',
   alternates: {
     canonical: '/how-it-works',
   },
@@ -17,54 +18,54 @@ export default function HowItWorksPage() {
   const detailedSteps = [
     {
       step: '01',
-      title: 'Browse Samples & Build Your Bag',
+      title: 'Browse Catalogue & Build Request List',
       description:
-        'Explore our digital catalog of pure combed cotton and muslin kidswear. Choose your preferred categories, styles, and approximate quantities. Adding items to your bag stores them safely on your device.',
-      icon: ShoppingBag,
+        'Explore our digital catalogue of pure combed cotton and muslin kidswear. Choose your preferred categories and representative styles. Adding items to your Request List stores them safely on your device.',
+      icon: ClipboardList,
       details: [
         'Explore Newborn (0-24M), Boys (0-16Y), Girls (0-16Y), Men & Women basics',
-        'Add items without creating an account or entering passwords',
-        'Transparent sample prices in INR',
+        'Add items without creating an account or providing sensitive data',
+        'Specify optional age, size, and colour preferences per item',
       ],
     },
     {
       step: '02',
-      title: '1-Click WhatsApp Order Dispatch',
+      title: 'Review & Send Request on WhatsApp',
       description:
-        'Click "Send Order on WhatsApp" in your shopping bag. Enter your name and delivery preference. A perfectly formatted, itemized order message is prepared and delivered right to our Kemps Corner desk (+91 99207 51567).',
+        'Click "Send Enquiry on WhatsApp" from your Request List. A clear, itemized message is generated for you to review and send directly to our Kemps Corner store desk.',
       icon: MessageSquare,
       details: [
-        'Instant deep link opens your official WhatsApp app',
-        'No credit card details entered on website',
-        'Clear item list with estimated totals',
+        `Direct link opens WhatsApp with our official business number (${BUSINESS_CONFIG.phone.display})`,
+        'No online payment gateway or credit card required',
+        'Convenient "Copy Enquiry Text" fallback included',
       ],
     },
     {
       step: '03',
-      title: 'Live Photo Verification & Doorstep Dispatch',
+      title: 'Live Photos, Sizing & Confirmation',
       description:
-        'Our family members check real-time store racks, send you live photographs of current prints, and lay a measuring tape to confirm exact garment dimensions. We dispatch via express courier or keep ready for store pickup.',
+        'Our shop team checks real-time racks, sends you photographs of currently available prints, and confirms measurements with a measuring tape. Once approved, the shop completes payment and fulfills delivery or store pickup directly.',
       icon: Truck,
       details: [
-        'Precise chest & length measurements verified by tape',
-        'Convenient payment via UPI QR (GPay/PhonePe/Paytm) or Netbanking',
-        'Fast courier dispatch across Mumbai & pan-India',
+        'Precise chest & length dimensions verified by physical tape',
+        'Direct UPI QR or bank payment options confirmed with the shop',
+        'Doorstep delivery across Mumbai & pan-India or pickup at Kemps Corner',
       ],
     },
   ];
 
   return (
-    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 md:space-y-16">
+    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 md:space-y-16 font-sans">
       {/* Editorial Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
-          Simple • Personal • Trustworthy
+          Personal • Thoughtful • Trustworthy
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
-          How WhatsApp Shopping Works
+          How WhatsApp Catalogue Shopping Works
         </h1>
         <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
-          We combine the speed of online catalog browsing with the authentic warmth and custom sizing of South Bombay’s favorite boutique.
+          We combine the ease of digital catalogue browsing with the authentic warmth, live measuring-tape sizing, and personal care of our South Bombay boutique.
         </p>
       </div>
 
@@ -115,10 +116,10 @@ export default function HowItWorksPage() {
         </div>
         <div className="space-y-2">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#D4A574]">
-            Ready to Try It Out?
+            Ready to Explore the Catalogue?
           </h2>
           <p className="text-xs sm:text-sm text-gray-200 max-w-md mx-auto leading-relaxed">
-            Browse our catalog, add a few favorites, and send your list over. No payment commitment until you approve the photos!
+            Browse our departments, add representative styles to your Request List, and send it over. No payment until you approve photos and sizing!
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
@@ -126,17 +127,17 @@ export default function HowItWorksPage() {
             href="/shop"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-[#1B4332] hover:bg-[#FAF8F5] font-bold text-xs shadow-md transition-all hover:scale-102"
           >
-            <span>Explore Catalog</span>
+            <span>Explore Catalogue</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <a
-            href="https://wa.me/919920751567"
+            href={BUSINESS_CONFIG.phone.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs shadow-md transition-all hover:scale-102"
           >
             <MessageSquare className="w-4 h-4 fill-white text-[#25D366]" />
-            <span>Chat with Store (+91 99207 51567)</span>
+            <span>Chat with Store ({BUSINESS_CONFIG.phone.display})</span>
           </a>
         </div>
       </div>

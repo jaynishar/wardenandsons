@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, MapPin, Clock, MessageSquare, Heart } from 'lucide-react';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,22 +19,22 @@ export default function Footer() {
               Visit or Message Our Kemps Corner Store
             </h3>
             <p className="text-xs sm:text-sm text-gray-200">
-              Need size assistance, newborn gift wrapping, or bulk school uniform quotes?
+              Need size assistance, newborn gift wrapping, or school uniform quotes?
             </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
-              href="https://wa.me/919920751567"
+              href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold shadow-md transition-all"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold shadow-md transition-all cursor-pointer"
             >
               <MessageSquare className="w-4 h-4 fill-white text-[#25D366]" />
-              WhatsApp: +91 99207 51567
+              WhatsApp: {BUSINESS_CONFIG.phone.display}
             </a>
             <a
-              href="tel:+919920751567"
+              href={BUSINESS_CONFIG.phone.telLink}
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-[#1B4332] hover:bg-[#FAF8F5] text-xs font-bold shadow-xs transition-all"
             >
               <Phone className="w-4 h-4" />
@@ -49,13 +50,14 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#D4A574]/40 shrink-0">
+              {/* Authentic Unclipped Logo Container */}
+              <div className="relative w-14 h-10 rounded-md overflow-hidden bg-white border border-[#D4A574]/40 shrink-0 p-0.5 shadow-2xs">
                 <Image
                   src="/brand_logo.jpg"
-                  alt="Warden & Sons Crest"
+                  alt="Warden & Sons Official Crest"
                   fill
-                  className="object-cover"
-                  sizes="40px"
+                  className="object-contain"
+                  sizes="56px"
                 />
               </div>
               <div>
@@ -63,16 +65,16 @@ export default function Footer() {
                   Warden &amp; Sons
                 </h4>
                 <span className="text-[10px] uppercase font-bold text-[#D4A574] tracking-widest mt-0.5 block">
-                  Kids Wear • Est. 1994
+                  Kids Wear • Kemps Corner
                 </span>
               </div>
             </div>
             <p className="text-xs text-[#666666] leading-relaxed">
-              South Bombay’s neighborhood boutique for 100% pure combed cotton children’s wear, school uniforms, and family comfort basics since 1994.
+              South Bombay’s neighborhood boutique for 100% pure combed cotton children’s wear, school uniforms, and family comfort basics.
             </p>
             <div className="pt-1 flex items-center gap-1 text-[11px] text-[#1B4332] font-semibold">
               <Heart className="w-3.5 h-3.5 text-[#D4A574] fill-[#D4A574]" />
-              <span>Three Decades of Family Trust</span>
+              <span>{BUSINESS_CONFIG.establishment.displayText}</span>
             </div>
           </div>
 
@@ -109,7 +111,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/bulk-orders" className="hover:text-[#1B4332] transition-colors text-[#D4A574] font-bold">
-                  🎒 Custom Bulk &amp; School Uniforms (50+ pcs)
+                  🎒 Custom School Uniforms &amp; Bulk Enquiries
                 </Link>
               </li>
             </ul>
@@ -123,12 +125,12 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-[#666666]">
               <li>
                 <Link href="/how-it-works" className="hover:text-[#1B4332] transition-colors">
-                  How WhatsApp Shopping Works
+                  How WhatsApp Requests Work
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-[#1B4332] transition-colors">
-                  Our Heritage (Since 1994)
+                  Our Boutique Heritage
                 </Link>
               </li>
               <li>
@@ -142,8 +144,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/bulk-orders" className="hover:text-[#1B4332] transition-colors">
-                  B2B Wholesale Enquiries
+                <Link href="/shipping-returns" className="hover:text-[#1B4332] transition-colors">
+                  Delivery &amp; Exchange Information
                 </Link>
               </li>
             </ul>
@@ -158,20 +160,20 @@ export default function Footer() {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#D4A574] shrink-0 mt-0.5" />
                 <span>
-                  Kemps Corner, South Mumbai, Mumbai, Maharashtra 400036
+                  {BUSINESS_CONFIG.location.fullAddress}
                 </span>
               </div>
               <div className="flex items-start gap-2">
                 <Clock className="w-4 h-4 text-[#D4A574] shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium text-[#1A1A1A]">Mon – Sat: 10:30 AM – 8:30 PM</p>
-                  <p className="text-gray-400">Sunday: Closed</p>
+                  <p className="font-medium text-[#1A1A1A]">{BUSINESS_CONFIG.hours.display}</p>
+                  <p className="text-gray-400">Sunday: {BUSINESS_CONFIG.hours.sunday}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 pt-1">
                 <Phone className="w-4 h-4 text-[#D4A574] shrink-0" />
-                <a href="tel:+919920751567" className="font-semibold text-[#1B4332] hover:underline">
-                  +91 99207 51567
+                <a href={BUSINESS_CONFIG.phone.telLink} className="font-semibold text-[#1B4332] hover:underline">
+                  {BUSINESS_CONFIG.phone.display}
                 </a>
               </div>
             </div>
@@ -184,7 +186,7 @@ export default function Footer() {
           <p className="flex items-center gap-2">
             <span>Handcrafted with pure cotton</span>
             <span>•</span>
-            <span>South Bombay, India</span>
+            <span>Kemps Corner, South Mumbai</span>
           </p>
         </div>
       </div>

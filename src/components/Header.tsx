@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, MessageSquare, Menu, X, Phone } from 'lucide-react';
+import { ClipboardList, MessageSquare, Menu, X, Phone } from 'lucide-react';
 import { useCartStore } from '@/store/cart';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,11 +19,11 @@ export default function Header() {
   const totalItems = mounted ? getTotalItems() : 0;
 
   const navLinks = [
-    { name: 'Shop All', href: '/shop' },
+    { name: 'Catalogue', href: '/shop' },
     { name: 'How It Works', href: '/how-it-works' },
-    { name: 'About Store', href: '/about' },
-    { name: 'Bulk Orders', href: '/bulk-orders' },
-    { name: 'Visit Us', href: '/visit-us' },
+    { name: 'Our Heritage', href: '/about' },
+    { name: 'Bulk & Uniforms', href: '/bulk-orders' },
+    { name: 'Visit Store', href: '/visit-us' },
   ];
 
   return (
@@ -31,13 +32,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo & Brand Name */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-11 h-11 rounded-full overflow-hidden border border-[#D4A574]/40 shadow-sm shrink-0">
+            {/* Authentic Unclipped Logo Artwork Container */}
+            <div className="relative w-14 h-11 rounded-md overflow-hidden bg-white border border-[#D4A574]/40 shadow-xs shrink-0 p-0.5">
               <Image
                 src="/brand_logo.jpg"
-                alt="Warden & Sons Crest"
+                alt="Warden & Sons Kids Wear Official Logo"
                 fill
-                className="object-cover"
-                sizes="44px"
+                className="object-contain"
+                sizes="56px"
                 priority
               />
             </div>
@@ -46,7 +48,7 @@ export default function Header() {
                 Warden &amp; Sons
               </span>
               <span className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-[#D4A574] font-semibold mt-1 block">
-                Kemps Corner • Est. 1994
+                {BUSINESS_CONFIG.establishment.badgeText}
               </span>
             </div>
           </Link>
@@ -68,23 +70,24 @@ export default function Header() {
           <div className="flex items-center gap-3">
             {/* WhatsApp Quick Link */}
             <a
-              href="https://wa.me/919920751567"
+              href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full bg-[#1B4332] text-white hover:bg-[#143527] transition-all shadow-sm"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full bg-[#1B4332] text-white hover:bg-[#143527] transition-all shadow-xs"
             >
               <MessageSquare className="w-4 h-4 text-[#25D366]" />
               <span>WhatsApp Us</span>
             </a>
 
-            {/* Cart Button */}
+            {/* Request List Button */}
             <button
               onClick={toggleCart}
-              aria-label="Shopping Cart"
-              className="relative p-2.5 rounded-full bg-white border border-[#EBE7DF] text-[#1B4332] hover:bg-[#FAF8F5] transition-all shadow-sm cursor-pointer"
+              aria-label="Request List"
+              title="View Request List"
+              className="relative p-2.5 rounded-full bg-white border border-[#EBE7DF] text-[#1B4332] hover:bg-[#FAF8F5] transition-all shadow-xs cursor-pointer flex items-center justify-center"
             >
-              <ShoppingBag className="w-5 h-5" />
+              <ClipboardList className="w-5 h-5" />
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-[#1B4332] text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-[#FAF8F5] animate-in zoom-in-50">
                   {totalItems}
@@ -95,7 +98,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-full bg-white border border-[#EBE7DF] text-[#1A1A1A] hover:bg-[#FAF8F5]"
+              className="md:hidden p-2.5 rounded-full bg-white border border-[#EBE7DF] text-[#1A1A1A] hover:bg-[#FAF8F5] cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -122,16 +125,16 @@ export default function Header() {
 
           <div className="pt-2 flex flex-col gap-2.5">
             <a
-              href="https://wa.me/919920751567"
+              href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#1B4332] text-white font-semibold text-sm shadow-sm"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#1B4332] text-white font-semibold text-sm shadow-xs"
             >
               <MessageSquare className="w-4 h-4 text-[#25D366]" />
-              WhatsApp Store Desk (+91 99207 51567)
+              WhatsApp Store Desk ({BUSINESS_CONFIG.phone.display})
             </a>
             <a
-              href="tel:+919920751567"
+              href={BUSINESS_CONFIG.phone.telLink}
               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-[#EBE7DF] bg-white text-[#1A1A1A] text-xs font-semibold"
             >
               <Phone className="w-3.5 h-3.5 text-[#1B4332]" />

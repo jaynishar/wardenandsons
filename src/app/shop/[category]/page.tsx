@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getProductsByCategory } from '@/lib/products';
+import { getCatalogueItemsByCategory, CategorySlug } from '@/lib/products';
 import ShopCatalog from '@/components/ShopCatalog';
 import type { Metadata } from 'next';
 
@@ -7,7 +7,7 @@ interface CategoryPageProps {
   params: Promise<{ category: string }>;
 }
 
-const validCategories = ['newborn', 'boys', 'girls', 'men', 'women'];
+const validCategories: CategorySlug[] = ['newborn', 'boys', 'girls', 'men', 'women', 'bulk'];
 
 export async function generateStaticParams() {
   return validCategories.map((cat) => ({
@@ -27,6 +27,8 @@ function getCategoryDisplayName(cat: string): string {
       return 'Men’s Basics & Loungewear';
     case 'women':
       return 'Women’s Muslin Sleepwear & Basics';
+    case 'bulk':
+      return 'School Uniforms & Bulk Apparel';
     default:
       return 'Shop Category';
   }
@@ -35,7 +37,7 @@ function getCategoryDisplayName(cat: string): string {
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { category } = await params;
 
-  if (!validCategories.includes(category)) {
+  if (!validCategories.includes(category as CategorySlug)) {
     return {
       title: 'Category Not Found',
     };
@@ -44,28 +46,26 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const name = getCategoryDisplayName(category);
 
   return {
-    title: `${name} | Sample Catalog`,
-    description: `Shop our 100% pure cotton collection of ${name}. Add items to your bag and order directly on WhatsApp from Warden & Sons, Kemps Corner.`,
+    title: `${name} | Catalogue Preview`,
+    description: `Explore representative offerings of ${name}. Add items to your request list and enquire directly on WhatsApp with Warden & Sons, Kemps Corner.`,
     alternates: {
       canonical: `/shop/${category}`,
     },
   };
 }
 
-type CategoryType = 'newborn' | 'boys' | 'girls' | 'men' | 'women';
-
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category } = await params;
 
-  if (!validCategories.includes(category)) {
+  if (!validCategories.includes(category as CategorySlug)) {
     return notFound();
   }
 
-  const products = getProductsByCategory(category as CategoryType);
+  const products = getCatalogueItemsByCategory(category as CategorySlug);
   const displayName = getCategoryDisplayName(category);
 
   return (
-    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
       {/* Editorial Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
@@ -75,7 +75,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           {displayName}
         </h1>
         <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
-          Pre-washed, azo-free cotton garments crafted for sensitive skin. Select items and quantities, then send your order on WhatsApp to confirm live colors and sizes.
+          Pre-washed, azo-free cotton garments crafted for sensitive skin. Select items for your Request List, then send your enquiry on WhatsApp to confirm live colors, sizes, and pricing.
         </p>
       </div>
 
