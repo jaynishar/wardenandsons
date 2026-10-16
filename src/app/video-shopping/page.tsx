@@ -2,13 +2,14 @@ import React from 'react';
 import VideoBookingForm from '@/components/VideoBookingForm';
 import { Video, Award, Clock, ShieldCheck } from 'lucide-react';
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Video Call Shopping Session',
   description:
     'Book a video call shopping walkthrough with Warden & Sons Kids Wear. Our Kemps Corner store team will show you current racks and live sizing dimensions.',
   alternates: {
-    canonical: '/video-shopping',
+    canonical: getCanonicalUrl('/video-shopping'),
   },
 };
 

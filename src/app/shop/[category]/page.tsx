@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getCatalogueItemsByCategory, CategorySlug } from '@/lib/products';
 import ShopCatalog from '@/components/ShopCatalog';
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/config/site';
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     title: `${name} | Catalogue Preview`,
     description: `Explore representative offerings of ${name}. Add items to your request list and enquire directly on WhatsApp with Warden & Sons, Kemps Corner.`,
     alternates: {
-      canonical: `/shop/${category}`,
+      canonical: getCanonicalUrl(`/shop/${category}`),
     },
   };
 }

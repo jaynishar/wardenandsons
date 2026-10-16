@@ -2,13 +2,14 @@ import React from 'react';
 import { Star, MessageSquare, HeartHandshake, MapPin } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Customer Feedback & Boutique Trust',
   description:
     'Warden & Sons Kids Wear at Kemps Corner, South Mumbai. Share your experience, leave a Google review, or send feedback to our family store desk.',
   alternates: {
-    canonical: '/reviews',
+    canonical: getCanonicalUrl('/reviews'),
   },
 };
 
@@ -21,10 +22,10 @@ export default function ReviewsPage() {
           ★ Kemps Corner, South Mumbai
         </span>
         <h1 className="font-serif text-4xl md:text-5xl font-bold tracking-tight text-[#1B4332] leading-tight">
-          Customer Stories &amp; Neighborhood Trust
+          Customer Stories & Neighborhood Trust
         </h1>
         <p className="text-sm md:text-base text-[#666666] max-w-2xl mx-auto leading-relaxed">
-          For over 30 years, Warden &amp; Sons has grown through word-of-mouth recommendations from parents, grandparents, and schools across South Bombay.
+          For over 30 years, Warden & Sons has grown through word-of-mouth recommendations from parents, grandparents, and schools across South Mumbai.
         </p>
       </div>
 
@@ -66,7 +67,7 @@ export default function ReviewsPage() {
             Generational Continuity
           </h3>
           <p className="text-xs text-[#666666] leading-relaxed">
-            Many parents who visit us today were brought to Warden &amp; Sons as infants by their own parents. We continue to dress each generation with pure cotton care.
+            Many parents who visit us today were brought to Warden & Sons as infants by their own parents. We continue to dress each generation with breathable cotton care.
           </p>
         </div>
 

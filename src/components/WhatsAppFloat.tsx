@@ -9,7 +9,7 @@ export default function WhatsAppFloat() {
   const whatsappUrl = BUSINESS_CONFIG.whatsappUrl(defaultMessage);
 
   return (
-    <div className="fixed bottom-20 md:bottom-8 right-4 md:right-8 z-40">
+    <div className="hidden md:flex fixed bottom-8 right-8 z-40">
       <a
         href={whatsappUrl}
         target="_blank"

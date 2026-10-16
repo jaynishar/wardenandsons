@@ -213,10 +213,10 @@ export default function VideoBookingForm() {
               className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
             >
               <option value="">Select a department</option>
-              <option value="Newborns & Infants (0-24M)">Newborns &amp; Infants (0-24M)</option>
+              <option value="Newborns & Infants (0-24M)">Newborns & Infants (0-24M)</option>
               <option value="Boys Wear (0-16Y)">Boys Wear (0-16Y)</option>
               <option value="Girls Wear (0-16Y)">Girls Wear (0-16Y)</option>
-              <option value="Men's Basics">Men’s Basics &amp; Loungewear</option>
+              <option value="Men's Basics">Men’s Basics & Loungewear</option>
               <option value="Women's Muslin Basics">Women’s Muslin Basics</option>
               <option value="Multiple Departments">Multiple Departments / Family Gifting</option>
             </select>

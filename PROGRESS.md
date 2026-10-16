@@ -1,96 +1,99 @@
-# Warden & Sons Website Revamp — Progress Tracker
+# Warden & Sons Website Revamp — Implementation & QA Progress Tracker
 
 ## Branch & Execution Environment
 - **Branch:** `upgrade/warden-safe-revamp`
 - **Base Commit:** `08835a1` (`feat: align digital catalogue with WhatsApp enquiry request model`)
-- **Hosting Model:** Next.js 15.1.7 static export (`output: 'export'`) deployed to Hostinger
-- **E-Commerce Paradigm:** WhatsApp-first Digital Catalogue & Enquiry Request Builder (No cart checkout / payment gateway)
+- **Hosting Model:** Next.js 15.1.7 static export (`output: 'export'`) for Hostinger
+- **E-Commerce Paradigm:** WhatsApp-first Digital Catalogue & Enquiry Request Builder (No automated checkout or payment gateway)
+- **Deployment Status:** Local verification complete. **No files deployed, pushed, or modified on Hostinger, in accordance with the operating rules.**
 
 ---
 
-## Phase Status Summary
+## Phase-by-Phase Verification Log
 
 ### Phase 0: Baseline & Safeguards
 - **Status:** COMPLETED
-- **Actions Run:**
-  - Git repository inspected: Clean working directory on `upgrade/warden-safe-revamp`.
-  - Type check: `npx tsc --noEmit` passed with 0 errors.
-  - ESLint check: `npx eslint "src/**/*.{ts,tsx}"` passed with 0 errors.
-  - Baseline static export build inspected: 39 static routes generated.
-  - Baseline audit of exported HTML (`out/index.html` & `out/shop/index.html`):
-    - `lang`: `en` (needs update to `en-IN` per brief)
-    - `canonical`: Missing on home; hardcoded `wardenandsons.com` on shop
-    - `.com` occurrences in HTML: 8 on home, 10 on shop
-    - Literal `&amp;` in HTML: 42 on home, 82 on shop (caused by literal `&amp;` written in JSX text nodes)
-    - Robots.txt disallows `/_next/` (blocks crawler CSS/JS asset rendering) and points to `.com` sitemap
-    - Zustand store key: `warden-request-list-storage`
-  - Created `NEEDS_JAY.md` with complete owner confirmation checklists.
+- **Findings Documented:**
+  - `next.config.ts` had `ignoreDuringBuilds` and `ignoreBuildErrors` enabled.
+  - Exported HTML had hardcoded `.com` references (8 in home, 10 in shop).
+  - Literal `&amp;` in JSX source rendered literally on customer screens.
+  - `robots.txt` blocked search engine crawlers from reading `/_next/` CSS/JS chunks and pointed to `.com`.
+  - Storefront photo (`/store_front.jpg`) and brand crest were being repeated on every single garment card.
+  - Created `NEEDS_JAY.md` with owner confirmation items.
 
 ---
 
 ### Phase 1: Technical SEO & Indexability
-- **Status:** PENDING
-- **Plan:**
-  - Create centralized site config (`src/config/site.ts`) with canonical `.in` fallback.
-  - Unify metadata across all routes using `site.ts`.
-  - Eliminate all hardcoded `wardenandsons.com` references.
-  - Fix literal `&amp;` in JSX source files to standard `&` text.
-  - Update `robots.ts` to allow `/_next/` and point to `https://wardenandsons.in/sitemap.xml`.
-  - Update `sitemap.ts` to output clean `.in` canonical routes with accurate dates.
-  - Update `html lang` to `en-IN`.
+- **Status:** COMPLETED
+- **Actions Run & Verified:**
+  - Created `src/config/site.ts` as single source of truth with canonical `https://wardenandsons.in` and `getCanonicalUrl` helper enforcing trailing slashes.
+  - Replaced all hardcoded `.com` links across layout, metadata, blog pages, robots, and sitemap.
+  - Configured `robots.ts` to allow `/_next/` asset rendering and point to `https://wardenandsons.in/sitemap.xml`.
+  - Rebuilt `sitemap.ts` to include all 39 canonical routes (all 6 departments, static pages, and 12 blog posts with real frontmatter publication dates).
+  - Configured `lang="en-IN"` on root HTML.
+  - Eliminated literal `&amp;` across all JSX source files.
 
 ---
 
 ### Phase 2: Truthful Local Structured Data
-- **Status:** PENDING
-- **Plan:**
-  - Consolidate JSON-LD to use factual `ClothingStore` data with canonical `.in` URLs.
-  - Remove disputed price range and fabricated schema fields.
-  - Ensure schema matches owner facts.
+- **Status:** COMPLETED
+- **Actions Run & Verified:**
+  - Added clean, factual `ClothingStore` JSON-LD schema to `src/app/layout.tsx` using only verified business facts (`name`, `image`, `url: https://wardenandsons.in/`, `telephone: +91 99207 51567`, `address`, and `openingHoursSpecification`).
+  - Omitted unconfirmed geo-coordinates, price ranges (`₹₹`), and unverified review aggregations.
+  - Updated `BlogPosting` schema in `src/app/blog/[slug]/page.tsx` with canonical `.in` IDs, factual author, and publisher logos.
 
 ---
 
 ### Phase 3: Catalogue & Copy Cleanup
-- **Status:** PENDING
-- **Plan:**
-  - Keep 6-category model intact.
-  - Ensure uniform note: "Prices and current stock are confirmed on WhatsApp" once per catalogue page.
-  - Eliminate storefront and brand logo misrepresentation as product image thumbnails; introduce clean, neutral category badges/placeholders.
-  - Standardize terminology: "Kemps Corner store", "South Mumbai", "Request list", "Add to request", "Send on WhatsApp".
+- **Status:** COMPLETED
+- **Actions Run & Verified:**
+  - Maintained all 6 departments: Newborns & Infants, Boys’ Wear, Girls’ Wear, Men’s Basics, Women’s Basics, Custom Uniforms & Bulk Orders.
+  - Added a visible single pricing reassurance note once per catalogue page in `ShopCatalog.tsx`: *"Prices and current stock are confirmed on WhatsApp with live photos & measuring-tape checks."*
+  - Removed repeated pricing labels from individual product cards to streamline visual hierarchy.
+  - Replaced storefront photo and logo reuse on garment cards with an elegant, responsive editorial category visual badge with department icon and "Live photos shared on WhatsApp" notice.
+  - Eliminated unverified global claims of "100% organic cotton" and blanket statements where synthetic or blended fabrics exist.
+  - Standardized terminology across pages: "Kemps Corner store", "South Mumbai", "Request list", "Add to request", "Send on WhatsApp".
 
 ---
 
 ### Phase 4: WhatsApp Request Flow
-- **Status:** PENDING
-- **Plan:**
-  - Preserve `warden-request-list-storage` Zustand key and state shape.
-  - Replace `window.open` with accessible outbound anchor (`target="_blank"` with `rel="noopener noreferrer"`).
-  - Ensure touch targets meet 44px minimum dimensions.
-  - Create pure unit tests for message formatting (empty, single item, special chars, Hindi, emoji, URL decoding).
+- **Status:** COMPLETED
+- **Actions Run & Verified:**
+  - Created pure message formatting engine in `src/lib/whatsapp.ts` with `formatWhatsAppRequestMessage` and `buildWhatsAppRequestUrl`.
+  - Implemented long-list size guard protecting URL length under 1800 characters to prevent browser URL truncation.
+  - Refactored `CartDrawer.tsx` to use a regular outbound `<a>` anchor (`target="_blank"` and `rel="noopener noreferrer"`) instead of `window.open` for mobile compatibility.
+  - Sized all touch targets in `CartDrawer.tsx` and `ProductCard.tsx` to meet or exceed 44px x 44px.
+  - Added "Not sure" size input guidance.
+  - Added copy-to-clipboard fallback and explicit clear list confirmation.
+  - Unit tests created in `scripts/test-whatsapp.mjs` (empty list, single item, special characters, Unicode/Hindi, emojis, long-list size guard). All 6 unit tests passed.
 
 ---
 
 ### Phase 5: UX & Trust
-- **Status:** PENDING
-- **Plan:**
-  - Add clear 3-step explanation beneath hero and atop shop ("Pick representative items", "Send on WhatsApp", "Receive live photos & prices").
-  - Accessible FAQ native disclosures (`<details>/<summary>`).
-  - No auto-playing carousels or marquee animations.
+- **Status:** COMPLETED
+- **Actions Run & Verified:**
+  - Added concise 3-step explainer (*1. Pick Styles, 2. Send on WhatsApp, 3. Live Photos & Prices*) beneath hero and at top of shop catalogue.
+  - Refactored FAQ into accessible native `<details>` and `<summary>` disclosure controls, eliminating client-side JS overhead.
+  - Replaced infinite moving CSS marquee in `Hero.tsx` with a calm, static editorial luxury reassurance strip.
+  - Positioned `WhatsAppFloat` on desktop only (`hidden md:flex`) so it never stacks on top of `BottomNav` on mobile screens.
 
 ---
 
 ### Phase 6: Performance & Accessibility
-- **Status:** PENDING
-- **Plan:**
-  - Check image attributes (width/height, priority on hero, lazy below fold).
-  - Test keyboard focus in drawer and navigation.
-  - Re-run build without error suppressions in `next.config.ts`.
+- **Status:** COMPLETED
+- **Actions Run & Verified:**
+  - Removed `ignoreDuringBuilds: true` and `ignoreBuildErrors: true` from `next.config.ts`.
+  - Validated clean TypeScript compilation (`npx tsc --noEmit` exits 0).
+  - Validated clean ESLint verification (`npx eslint "src/**/*.{ts,tsx}"` exits 0).
+  - Next.js full production build (`npm run build`) succeeded with all 39 static routes exported.
+  - First Load JS reduced on `/how-it-works` (109 kB) and home page size dropped to 2.9 kB.
+  - Added `motion-reduce:animate-none` on CartDrawer backdrop and sheet.
 
 ---
 
 ### Phase 7: Hostinger Deployment Safety
-- **Status:** PENDING
-- **Plan:**
-  - Verify static export `out/` completeness.
-  - Prepare exact .htaccess instructions for Hostinger (redirects, caching).
-  - Prepare handoff summary for Jay without making unapproved live changes.
+- **Status:** COMPLETED (LOCAL PREPARATION ONLY)
+- **Actions Run & Verified:**
+  - Verified static export `out/` completeness (all 39 routes, `.htaccess`, `robots.txt`, `sitemap.xml`, `404.html`, assets).
+  - Prepared production `.htaccess` in `public/.htaccess` and `out/.htaccess` with `ErrorDocument 404 /404.html`, `DirectoryIndex index.html`, HTML `no-cache` revalidation, and 1-year immutable caching for fingerprinted `_next/static/` assets.
+  - Zero deployment, DNS, or Hostinger changes made. Awaiting Jay's review and explicit instruction.

@@ -1,11 +1,12 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'Read the privacy policy of Warden & Sons Kids Wear. Learn how we handle customer details, payments, and order tracking securely.',
   alternates: {
-    canonical: '/privacy-policy',
+    canonical: getCanonicalUrl('/privacy-policy'),
   },
 };
 

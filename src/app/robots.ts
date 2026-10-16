@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL } from '@/config/site';
 
 export const dynamic = 'force-static';
 
@@ -7,8 +8,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/_next/'],
+      disallow: ['/api/'],
     },
-    sitemap: 'https://wardenandsons.com/sitemap.xml',
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

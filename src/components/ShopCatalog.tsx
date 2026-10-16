@@ -166,6 +166,25 @@ export default function ShopCatalog({
         </div>
       </div>
 
+      {/* Single Catalogue Pricing Reassurance Notice */}
+      <div className="bg-[#FAF8F5] border border-[#EBE7DF] rounded-2xl px-5 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-2xs">
+        <div className="flex items-center gap-2.5">
+          <span className="w-2 h-2 rounded-full bg-[#25D366] shrink-0" />
+          <span className="font-semibold text-[#1B4332]">
+            Prices and current stock are confirmed on WhatsApp with live photos & measuring-tape checks.
+          </span>
+        </div>
+        <a
+          href={BUSINESS_CONFIG.phone.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[11px] font-bold text-[#1B4332] hover:text-[#D4A574] inline-flex items-center gap-1 shrink-0"
+        >
+          <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
+          <span>Ask Store Desk</span>
+        </a>
+      </div>
+
       {/* Results Count Banner */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 px-2">
         <p className="text-xs font-semibold text-[#666666]">

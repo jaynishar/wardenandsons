@@ -45,7 +45,7 @@ export default function Header() {
             </div>
             <div>
               <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#1B4332] block leading-none">
-                Warden &amp; Sons
+                Warden & Sons
               </span>
               <span className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-[#D4A574] font-semibold mt-1 block">
                 {BUSINESS_CONFIG.establishment.badgeText}

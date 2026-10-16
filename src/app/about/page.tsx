@@ -4,20 +4,21 @@ import Link from 'next/link';
 import { ShieldCheck, Heart, Sparkles, MessageSquare, Phone, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Our Heritage | Kemps Corner, South Mumbai',
   description:
-    'The story of Warden & Sons Kids Wear, serving South Bombay families at Kemps Corner for over 30 years. Read about our pure cotton philosophy and neighborhood roots.',
+    'The story of Warden & Sons Kids Wear, serving South Mumbai families at Kemps Corner for over 30 years. Read about our breathable cotton philosophy and neighborhood roots.',
   alternates: {
-    canonical: '/about',
+    canonical: getCanonicalUrl('/about'),
   },
 };
 
 export default function AboutPage() {
   const values = [
     {
-      title: '100% Pure Combed Cotton',
+      title: 'Breathable Natural Cotton',
       description:
         'We select breathable cottons and airy muslins. Pre-shrunk and chemical-free, crafted specially for Mumbai’s tropical humidity.',
       icon: ShieldCheck,
@@ -44,7 +45,7 @@ export default function AboutPage() {
           {BUSINESS_CONFIG.establishment.displayText}
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
-          Dressing South Bombay’s Children For Generations
+          Dressing South Mumbai’s Children For Generations
         </h1>
         <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
           From our neighborhood boutique at Kemps Corner to families across Mumbai. Discover how our family business preserves comfort, trust, and craftsmanship.
@@ -75,7 +76,7 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-3.5 text-xs sm:text-sm text-[#666666] leading-relaxed">
             <p>
-              For over three decades, Warden &amp; Sons has welcomed families in the historic retail avenue of <strong>Kemps Corner, South Mumbai</strong>. Our founding purpose was simple: to create a welcoming neighborhood space where parents could find pure, soft, honest cotton clothing for their little ones without the noise of corporate department stores.
+              For over three decades, Warden & Sons has welcomed families in the historic retail avenue of <strong>Kemps Corner, South Mumbai</strong>. Our founding purpose was simple: to create a welcoming neighborhood space where parents could find pure, soft, honest cotton clothing for their little ones without the noise of corporate department stores.
             </p>
             <p>
               Over 30 years, South Mumbai has transformed, but our core philosophy has not wavered. We inspect every seam, avoid scratchy synthetic polyester in everyday sleepwear, and keep our relationships personal and transparent.
@@ -149,7 +150,7 @@ export default function AboutPage() {
             href="/visit-us"
             className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-[#1B4332] text-white text-xs font-bold shadow-xs hover:bg-[#143527]"
           >
-            <span>View Map &amp; Directions</span>
+            <span>View Map & Directions</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <a

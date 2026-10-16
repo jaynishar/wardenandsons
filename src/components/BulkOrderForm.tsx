@@ -251,10 +251,10 @@ export default function BulkOrderForm() {
                   School Uniforms (Shirts, Pinafores, Trousers)
                 </option>
                 <option value="Cricket Whites & Academy Kits">
-                  Cricket Whites &amp; Academy Kits
+                  Cricket Whites & Academy Kits
                 </option>
                 <option value="Dryfit Sports Jersey & Shorts">
-                  Dryfit Sports Jerseys &amp; Shorts
+                  Dryfit Sports Jerseys & Shorts
                 </option>
                 <option value="Annual Day / Sports Day Event T-Shirts">
                   Annual Day / Sports Day Event T-Shirts
@@ -263,7 +263,7 @@ export default function BulkOrderForm() {
                   Hospital / Nursery Swaddle Bundles
                 </option>
                 <option value="Custom Cotton Embroidery & Other Apparel">
-                  Custom Cotton Embroidery &amp; Other Apparel
+                  Custom Cotton Embroidery & Other Apparel
                 </option>
               </select>
               {errors.category && (
@@ -289,7 +289,7 @@ export default function BulkOrderForm() {
 
           <div className="space-y-1">
             <label className="text-xs font-bold text-[#1A1A1A] block">
-              Design, Colors &amp; Fabric Specifications <span className="text-red-500">*</span>
+              Design, Colors & Fabric Specifications <span className="text-red-500">*</span>
             </label>
             <textarea
               {...register('details')}

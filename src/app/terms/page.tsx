@@ -1,11 +1,12 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'Read the terms of service of Warden & Sons Kids Wear. Learn about our retail pricing, ordering, custom uniform production, and exchange guidelines.',
   alternates: {
-    canonical: '/terms',
+    canonical: getCanonicalUrl('/terms'),
   },
 };
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Plus, Check, MessageSquare } from 'lucide-react';
+import { Plus, Check, MessageSquare, Sparkles } from 'lucide-react';
 import { CatalogueItem } from '@/lib/products';
 import { useCartStore } from '@/store/cart';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -31,37 +31,58 @@ export default function ProductCard({ product }: ProductCardProps) {
     }, 1500);
   };
 
-  const handleWhatsAppQuickAsk = () => {
-    const message = `Hello Warden & Sons! I am inquiring about "${product.title}" (${product.subCategory}, ${product.ageOrSizeRange}). Could you please share available colors, prints, and confirm current pricing?`;
-    window.open(BUSINESS_CONFIG.whatsappUrl(message), '_blank', 'noopener,noreferrer');
-  };
+  const directInquiryMessage = `Hello Warden & Sons! I am inquiring about "${product.title}" (${product.subCategory}, ${product.ageOrSizeRange}). Could you please share available colors, prints, and confirm current pricing?`;
+  const directInquiryUrl = BUSINESS_CONFIG.whatsappUrl(directInquiryMessage);
+
+  // Check if item has an authentic garment photo (never reuse storefront or logo as garment photo)
+  const hasRealProductImage = Boolean(
+    product.image &&
+      product.image !== '/store_front.jpg' &&
+      product.image !== '/brand_logo.jpg'
+  );
 
   return (
     <div className="group bg-white rounded-2xl border border-[#EBE7DF] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between">
-      {/* Product Image Box */}
+      {/* Product Image / Category Visual Container */}
       <div className="relative aspect-[4/5] bg-[#FAF8F5] overflow-hidden">
-        <Image
-          src={product.image || '/store_front.jpg'}
-          alt={product.title}
-          fill
-          className="object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-        />
+        {hasRealProductImage ? (
+          <Image
+            src={product.image}
+            alt={product.title}
+            fill
+            className="object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-gradient-to-b from-[#FAF8F5] to-[#F3EFEA] border-b border-[#EBE7DF]/60">
+            <div className="w-11 h-11 rounded-xl bg-white border border-[#EBE7DF] flex items-center justify-center text-[#D4A574] mb-2 shadow-2xs">
+              <Sparkles className="w-5 h-5 text-[#1B4332]" />
+            </div>
+            <span className="font-serif font-bold text-xs text-[#1B4332] px-2 line-clamp-1">
+              {product.subCategory}
+            </span>
+            <span className="text-[10px] text-[#666666] mt-1 font-medium">
+              Live photos shared on WhatsApp
+            </span>
+          </div>
+        )}
 
         {/* Category Pill Tag */}
-        <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[#1B4332] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs border border-[#EBE7DF]">
+        <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-[#1B4332] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs border border-[#EBE7DF]">
           {product.subCategory}
         </span>
 
-        {/* Quick Inquire Button */}
-        <button
-          onClick={handleWhatsAppQuickAsk}
-          className="absolute top-3 right-3 p-2 rounded-full bg-white/90 backdrop-blur-xs text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all shadow-xs cursor-pointer"
+        {/* Quick Inquire Direct Anchor (Min 44x44px touch target) */}
+        <a
+          href={directInquiryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute top-3 right-3 min-w-[44px] min-h-[44px] rounded-full bg-white/95 backdrop-blur-xs text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all shadow-xs flex items-center justify-center cursor-pointer"
           title="Inquire directly on WhatsApp"
           aria-label={`Inquire about ${product.title} on WhatsApp`}
         >
           <MessageSquare className="w-4 h-4" />
-        </button>
+        </a>
       </div>
 
       {/* Details Box */}
@@ -80,20 +101,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
 
-        <div className="pt-3 border-t border-[#EBE7DF] space-y-2.5">
-          <div className="flex items-center justify-between text-xs">
-            <span className="text-[11px] text-gray-500 font-medium">Pricing:</span>
-            <span className="text-[11px] font-semibold text-[#1B4332] bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#EBE7DF]">
-              Confirmed on WhatsApp
-            </span>
-          </div>
-
+        <div className="pt-3 border-t border-[#EBE7DF]">
+          {/* Add to Request Button (Min 44px touch target) */}
           <button
             onClick={handleAddToRequest}
-            className={`w-full min-h-[42px] px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs ${
+            className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs ${
               justAdded
                 ? 'bg-[#1B4332] text-white'
-                : 'bg-[#1B4332] hover:bg-[#143527] text-white active:scale-95'
+                : 'bg-[#1B4332] hover:bg-[#143527] text-white active:scale-98'
             }`}
           >
             {justAdded ? (

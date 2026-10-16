@@ -62,7 +62,7 @@ export default function Footer() {
               </div>
               <div>
                 <h4 className="font-serif text-lg font-bold text-[#1B4332] leading-none">
-                  Warden &amp; Sons
+                  Warden & Sons
                 </h4>
                 <span className="text-[10px] uppercase font-bold text-[#D4A574] tracking-widest mt-0.5 block">
                   Kids Wear • Kemps Corner
@@ -70,7 +70,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-xs text-[#666666] leading-relaxed">
-              South Bombay’s neighborhood boutique for 100% pure combed cotton children’s wear, school uniforms, and family comfort basics.
+              South Mumbai’s neighborhood boutique for breathable cotton children’s wear, school uniforms, and family comfort basics.
             </p>
             <div className="pt-1 flex items-center gap-1 text-[11px] text-[#1B4332] font-semibold">
               <Heart className="w-3.5 h-3.5 text-[#D4A574] fill-[#D4A574]" />
@@ -86,32 +86,32 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-[#666666]">
               <li>
                 <Link href="/shop/newborn" className="hover:text-[#1B4332] transition-colors">
-                  Newborn &amp; Infants (0-24M)
+                  Newborn & Infants (0-24M)
                 </Link>
               </li>
               <li>
                 <Link href="/shop/boys" className="hover:text-[#1B4332] transition-colors">
-                  Boys Playwear &amp; Sports (0-16Y)
+                  Boys Playwear & Sports (0-16Y)
                 </Link>
               </li>
               <li>
                 <Link href="/shop/girls" className="hover:text-[#1B4332] transition-colors">
-                  Girls Dresses &amp; Sleepwear (0-16Y)
+                  Girls Dresses & Sleepwear (0-16Y)
                 </Link>
               </li>
               <li>
                 <Link href="/shop/men" className="hover:text-[#1B4332] transition-colors">
-                  Men’s Basics &amp; Lounge
+                  Men’s Basics & Lounge
                 </Link>
               </li>
               <li>
                 <Link href="/shop/women" className="hover:text-[#1B4332] transition-colors">
-                  Women’s Muslin Sleepwear &amp; Basics
+                  Women’s Muslin Sleepwear & Basics
                 </Link>
               </li>
               <li>
                 <Link href="/bulk-orders" className="hover:text-[#1B4332] transition-colors text-[#D4A574] font-bold">
-                  🎒 Custom School Uniforms &amp; Bulk Enquiries
+                  🎒 Custom School Uniforms & Bulk Enquiries
                 </Link>
               </li>
             </ul>
@@ -135,7 +135,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/visit-us" className="hover:text-[#1B4332] transition-colors">
-                  Kemps Corner Store &amp; Directions
+                  Kemps Corner Store & Directions
                 </Link>
               </li>
               <li>
@@ -145,7 +145,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/shipping-returns" className="hover:text-[#1B4332] transition-colors">
-                  Delivery &amp; Exchange Information
+                  Delivery & Exchange Information
                 </Link>
               </li>
             </ul>
@@ -182,10 +182,8 @@ export default function Footer() {
 
         {/* Bottom Strip */}
         <div className="mt-12 pt-8 border-t border-[#EBE7DF] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p>© {currentYear} Warden &amp; Sons Kids Wear. All rights reserved.</p>
+          <p>© {currentYear} Warden & Sons Kids Wear. All rights reserved.</p>
           <p className="flex items-center gap-2">
-            <span>Handcrafted with pure cotton</span>
-            <span>•</span>
             <span>Kemps Corner, South Mumbai</span>
           </p>
         </div>

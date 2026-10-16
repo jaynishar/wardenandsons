@@ -7,6 +7,7 @@ import BottomNav from '@/components/BottomNav';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { SITE_URL, SITE_CONFIG, getCanonicalUrl } from '@/config/site';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -26,8 +27,35 @@ export const metadata: Metadata = {
     template: '%s | Warden & Sons Kids Wear',
   },
   description:
-    'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Serving families for over 30 years with 100% pure cotton newborn essentials, boys & girls playwear, nightsuits, and custom school uniforms via WhatsApp.',
-  metadataBase: new URL('https://wardenandsons.com'),
+    'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Serving families for over 30 years with breathable cotton newborn essentials, boys & girls playwear, nightsuits, and custom school uniforms via WhatsApp.',
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: getCanonicalUrl('/'),
+  },
+  openGraph: {
+    type: 'website',
+    locale: SITE_CONFIG.locale,
+    url: getCanonicalUrl('/'),
+    siteName: SITE_CONFIG.name,
+    title: 'Warden & Sons Kids Wear | Kemps Corner, South Mumbai',
+    description:
+      'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Serving families for over 30 years with quality cotton newborn essentials, playwear, and custom uniforms via WhatsApp.',
+    images: [
+      {
+        url: `${SITE_URL}/brand_logo.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Warden & Sons Kids Wear Official Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Warden & Sons Kids Wear | Kemps Corner, South Mumbai',
+    description:
+      'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Quality cotton newborn essentials, boys & girls playwear, and custom uniforms.',
+    images: [`${SITE_URL}/brand_logo.jpg`],
+  },
 };
 
 export default function RootLayout({
@@ -35,56 +63,52 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Factual ClothingStore JSON-LD derived directly from owner-verified location and business config
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'ClothingStore',
-    name: 'Warden & Sons Kids Wear',
-    image: 'https://wardenandsons.com/brand_logo.jpg',
-    url: 'https://wardenandsons.com',
+    name: BUSINESS_CONFIG.name,
+    image: `${SITE_URL}/brand_logo.jpg`,
+    url: getCanonicalUrl('/'),
     telephone: BUSINESS_CONFIG.phone.display,
-    priceRange: '₹₹',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Kemps Corner',
-      addressLocality: 'Mumbai',
-      addressRegion: 'Maharashtra',
-      postalCode: '400036',
+      streetAddress: BUSINESS_CONFIG.location.neighborhood,
+      addressLocality: BUSINESS_CONFIG.location.city,
+      addressRegion: BUSINESS_CONFIG.location.state,
+      postalCode: BUSINESS_CONFIG.location.postalCode,
       addressCountry: 'IN',
     },
-  };
-
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Warden & Sons',
-    url: 'https://wardenandsons.com',
-    logo: 'https://wardenandsons.com/brand_logo.jpg',
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: BUSINESS_CONFIG.phone.display,
-      contactType: 'customer service',
-    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+        ],
+        opens: '10:30',
+        closes: '20:30',
+      },
+    ],
   };
 
   return (
     <html
-      lang="en"
+      lang="en-IN"
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <head>
-        {/* Preconnect for performance */}
+        {/* Preconnect for WhatsApp links */}
         <link rel="preconnect" href="https://wa.me" />
         {/* JSON-LD Schemas */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
           }}
         />
       </head>

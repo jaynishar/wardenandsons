@@ -95,7 +95,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="text-center space-y-3 mb-8">
           <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3 py-1 rounded-full border border-[#D4A574]/30 inline-block">
-            Clear &amp; Transparent
+            Clear & Transparent
           </span>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B4332]">
             Questions Parents Often Ask
@@ -131,7 +131,7 @@ export default function HomePage() {
                 <h3 className="font-serif font-bold text-base text-[#1A1A1A]">Opening Hours</h3>
                 <p className="text-[#1A1A1A] font-semibold">{BUSINESS_CONFIG.hours.display}</p>
                 <p className="text-red-600 font-medium">Sunday: {BUSINESS_CONFIG.hours.sunday}</p>
-                <p className="text-gray-400">WhatsApp orders answered continuously</p>
+                <p className="text-gray-400">WhatsApp enquiries answered during store hours</p>
               </div>
             </div>
 

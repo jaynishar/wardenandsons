@@ -19,7 +19,7 @@ export default function Hero() {
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1B4332] leading-[1.15]">
-              Pure Cotton Comfort For Your Little Ones.
+              Breathable Cotton Comfort For Your Little Ones.
             </h1>
 
             <p className="text-sm sm:text-base text-[#666666] leading-relaxed max-w-xl mx-auto lg:mx-0">
@@ -51,7 +51,7 @@ export default function Hero() {
             <div className="pt-4 grid grid-cols-3 gap-2 border-t border-[#EBE7DF]/80 max-w-lg mx-auto lg:mx-0 text-left">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#1B4332] shrink-0" />
-                <span className="text-[11px] font-medium text-[#1A1A1A]">100% Cotton</span>
+                <span className="text-[11px] font-medium text-[#1A1A1A]">Breathable Cotton</span>
               </div>
               <div className="flex items-center gap-2">
                 <Heart className="w-4 h-4 text-[#D4A574] shrink-0" />
@@ -81,7 +81,7 @@ export default function Hero() {
                 <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-xs p-3.5 rounded-2xl border border-white/50 shadow-md flex items-center justify-between">
                   <div>
                     <p className="font-serif font-bold text-xs text-[#1B4332]">Kemps Corner Store</p>
-                    <p className="text-[10px] text-gray-500 font-medium">Walk-ins &amp; WhatsApp Enquiries Welcome</p>
+                    <p className="text-[10px] text-gray-500 font-medium">Walk-ins & WhatsApp Enquiries Welcome</p>
                   </div>
                   <span className="text-[10px] font-bold px-2 py-1 rounded-md bg-[#FAF8F5] text-[#D4A574] border border-[#D4A574]/30">
                     Open Mon-Sat
@@ -93,17 +93,20 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Marquee Banner Strip */}
-      <div className="mt-12 bg-[#1B4332] text-white py-3 marquee-container border-y border-[#143527]">
-        <div className="marquee-content font-sans text-xs tracking-widest uppercase font-semibold text-[#D4A574]">
-          <span className="mx-6">★ KEMPS CORNER, SOUTH MUMBAI</span>
-          <span className="mx-6">• 100% PURE COMBED COTTON</span>
-          <span className="mx-6">• THREE DECADES OF FAMILY TRUST</span>
-          <span className="mx-6">• DIRECT WHATSAPP STORE DESK: {BUSINESS_CONFIG.phone.display}</span>
-          <span className="mx-6">• NEWBORN TO TEENS PLAYWEAR</span>
-          <span className="mx-6">• BESPOKE SCHOOL &amp; SPORTS UNIFORMS</span>
-          <span className="mx-6">★ KEMPS CORNER, SOUTH MUMBAI</span>
-          <span className="mx-6">• 100% PURE COMBED COTTON</span>
+      {/* Editorial Announcement Strip (Static, accessible, no moving marquee) */}
+      <div className="mt-12 bg-[#1B4332] text-white py-3.5 border-y border-[#143527]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-center text-xs tracking-wider uppercase font-semibold text-[#D4A574]">
+            <span>★ Kemps Corner, South Mumbai</span>
+            <span className="hidden sm:inline">•</span>
+            <span>Breathable Daily Cotton</span>
+            <span className="hidden sm:inline">•</span>
+            <span>Three Decades of Family Trust</span>
+            <span className="hidden sm:inline">•</span>
+            <span>WhatsApp Desk: {BUSINESS_CONFIG.phone.display}</span>
+            <span className="hidden sm:inline">•</span>
+            <span>Bespoke School & Sports Uniforms</span>
+          </div>
         </div>
       </div>
     </section>

@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import { ChevronDown, HelpCircle, MessageSquare } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 
@@ -13,7 +11,7 @@ const faqs: FAQItem[] = [
   {
     question: 'How does WhatsApp enquiry and ordering work?',
     answer:
-      'Warden & Sons carries a wide, rotating physical inventory at Kemps Corner. You can browse our representative catalogue online, add items to your Request List, specify any size or colour preferences, and click "Send Enquiry on WhatsApp". Our shop team receives your list, checks live availability, sends real photographs and dimensions, confirms current prices, and arranges payment and fulfillment directly.',
+      'Warden & Sons carries a wide, rotating physical inventory at Kemps Corner. You can browse our representative catalogue online, add items to your Request List, specify any size or colour preferences, and click "Send Enquiry on WhatsApp". Our shop team receives your list, checks live availability, sends real photographs and dimensions, confirms current prices, and arranges fulfillment directly.',
   },
   {
     question: 'How do you ensure the right fit and sizing for my child?',
@@ -43,48 +41,28 @@ const faqs: FAQItem[] = [
 ];
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const toggle = (idx: number) => {
-    setOpenIndex(openIndex === idx ? null : idx);
-  };
-
   return (
     <div className="space-y-4 max-w-3xl mx-auto font-sans">
-      {faqs.map((faq, idx) => {
-        const isOpen = openIndex === idx;
+      {faqs.map((faq) => (
+        <details
+          key={faq.question}
+          className="group bg-white rounded-2xl border border-[#EBE7DF] overflow-hidden shadow-xs transition-colors"
+        >
+          <summary className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 cursor-pointer focus:outline-none list-none select-none">
+            <div className="flex items-center gap-3">
+              <HelpCircle className="w-4 h-4 text-[#D4A574] shrink-0" />
+              <span className="font-serif font-bold text-sm sm:text-base text-[#1A1A1A]">
+                {faq.question}
+              </span>
+            </div>
+            <ChevronDown className="w-5 h-5 text-gray-500 shrink-0 transition-transform duration-200 group-open:rotate-180 group-open:text-[#1B4332]" />
+          </summary>
 
-        return (
-          <div
-            key={faq.question}
-            className="bg-white rounded-2xl border border-[#EBE7DF] overflow-hidden shadow-xs transition-all"
-          >
-            <button
-              onClick={() => toggle(idx)}
-              className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
-              aria-expanded={isOpen}
-            >
-              <div className="flex items-center gap-3">
-                <HelpCircle className="w-4 h-4 text-[#D4A574] shrink-0" />
-                <span className="font-serif font-bold text-sm sm:text-base text-[#1A1A1A]">
-                  {faq.question}
-                </span>
-              </div>
-              <ChevronDown
-                className={`w-5 h-5 text-gray-500 shrink-0 transition-transform duration-200 ${
-                  isOpen ? 'rotate-180 text-[#1B4332]' : ''
-                }`}
-              />
-            </button>
-
-            {isOpen && (
-              <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-[#666666] leading-relaxed border-t border-[#EBE7DF]/60 bg-[#FAF8F5]/50 animate-in fade-in duration-200">
-                {faq.answer}
-              </div>
-            )}
+          <div className="px-5 pb-5 pt-2 text-xs sm:text-sm text-[#666666] leading-relaxed border-t border-[#EBE7DF]/60 bg-[#FAF8F5]/50">
+            {faq.answer}
           </div>
-        );
-      })}
+        </details>
+      ))}
 
       <div className="p-4 bg-[#FAF8F5] rounded-2xl border border-[#EBE7DF] text-center mt-6">
         <p className="text-xs text-[#666666]">

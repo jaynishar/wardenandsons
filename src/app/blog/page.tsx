@@ -2,12 +2,13 @@ import React from 'react';
 import { getBlogPosts } from '@/lib/blog';
 import BlogFilterList from '@/components/BlogFilterList';
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Blog & Parenting Guides',
   description: 'Read the latest kids clothing sizing guides, fabric safety reviews, mild winter guides, and local Kemps Corner shopping tips by Warden & Sons.',
   alternates: {
-    canonical: '/blog',
+    canonical: getCanonicalUrl('/blog'),
   },
 };
 

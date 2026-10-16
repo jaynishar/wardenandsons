@@ -2,13 +2,14 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { MessageSquare, MapPin } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Delivery, Pickup & Exchanges',
   description:
     'Learn how delivery, store pickup at Kemps Corner, and size exchanges are coordinated directly with Warden & Sons Kids Wear.',
   alternates: {
-    canonical: '/shipping-returns',
+    canonical: getCanonicalUrl('/shipping-returns'),
   },
 };
 
@@ -17,13 +18,13 @@ export default function ShippingReturnsPage() {
     <div className="py-12 md:py-20 font-sans max-w-3xl mx-auto px-4 sm:px-6">
       <div className="space-y-3 mb-8">
         <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-[#FAF8F5] px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
-          Store Policies &amp; Fulfillment
+          Store Policies & Fulfillment
         </span>
         <h1 className="font-serif text-3xl md:text-4xl font-bold text-[#1B4332]">
-          Delivery, Pickup &amp; Exchanges
+          Delivery, Pickup & Exchanges
         </h1>
         <p className="text-xs text-[#666666]">
-          Warden &amp; Sons Kids Wear • Kemps Corner, South Mumbai
+          Warden & Sons Kids Wear • Kemps Corner, South Mumbai
         </p>
       </div>
 
@@ -33,7 +34,7 @@ export default function ShippingReturnsPage() {
             1. Personalized WhatsApp Ordering
           </h2>
           <p>
-            Because Warden &amp; Sons carries a large, rotating physical inventory at our Kemps Corner boutique, all product selections made through this website serve as a <strong>request enquiry</strong>.
+            Because Warden & Sons carries a large, rotating physical inventory at our Kemps Corner boutique, all product selections made through this website serve as a <strong>request enquiry</strong>.
           </p>
           <p>
             When you send your request on WhatsApp, our store team personally checks current stock, sends live photographs of available prints, confirms sizes with measuring tape dimensions, and verifies current pricing.
@@ -42,7 +43,7 @@ export default function ShippingReturnsPage() {
 
         <section className="bg-white p-6 rounded-2xl border border-[#EBE7DF] space-y-3 shadow-xs">
           <h2 className="font-serif font-bold text-base text-[#1B4332]">
-            2. Local Delivery &amp; In-Store Pickup
+            2. Local Delivery & In-Store Pickup
           </h2>
           <p>
             We offer two convenient ways to receive your garments:
@@ -52,7 +53,7 @@ export default function ShippingReturnsPage() {
               <strong>Store Pickup at Kemps Corner:</strong> You are welcome to collect your verified package directly from our store during opening hours (Monday to Saturday, 10:30 AM – 8:30 PM).
             </li>
             <li>
-              <strong>Doorstep Delivery (Mumbai &amp; Pan-India):</strong> We coordinate delivery via local courier services across Mumbai and express courier services across India. Exact delivery timelines and courier charges are confirmed directly during your WhatsApp conversation based on your address and urgency.
+              <strong>Doorstep Delivery (Mumbai & Pan-India):</strong> We coordinate delivery via local courier services across Mumbai and express courier services across India. Exact delivery timelines and courier charges are confirmed directly during your WhatsApp conversation based on your address and urgency.
             </li>
           </ul>
         </section>
@@ -76,7 +77,7 @@ export default function ShippingReturnsPage() {
 
         <section className="bg-white p-6 rounded-2xl border border-[#EBE7DF] space-y-3 shadow-xs">
           <h2 className="font-serif font-bold text-base text-[#1B4332]">
-            4. Custom Bulk &amp; School Uniforms
+            4. Custom Bulk & School Uniforms
           </h2>
           <p>
             Custom tailored school uniforms and embroidered institution kits are made to order based on agreed measurements and specifications. Advance details and production timelines are confirmed with the school or institution prior to manufacturing.

@@ -15,9 +15,11 @@ import {
   ChevronUp,
   AlertCircle,
   RotateCcw,
+  Sparkles,
 } from 'lucide-react';
 import { useCartStore } from '@/store/cart';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { formatWhatsAppRequestMessage, buildWhatsAppRequestUrl } from '@/lib/whatsapp';
 
 export default function CartDrawer() {
   const {
@@ -46,75 +48,25 @@ export default function CartDrawer() {
 
   const totalItems = getTotalItems();
 
-  const buildWhatsAppMessage = (): string => {
-    const lines: string[] = [
-      'Hello Warden & Sons Kids Wear!',
-      '',
-      'I would like to enquire about the following from your catalogue:',
-      '',
-    ];
+  const currentMessage = formatWhatsAppRequestMessage({
+    items,
+    customerName,
+    notes: additionalNotes,
+  });
 
-    items.forEach((item, index) => {
-      lines.push(`${index + 1}. ${item.name}`);
-      if (item.quantity > 1) {
-        lines.push(`   Quantity: ${item.quantity}`);
-      }
-      if (item.ageGroup && item.ageGroup.trim()) {
-        lines.push(`   Age / Group: ${item.ageGroup.trim()}`);
-      }
-      if (item.size && item.size.trim()) {
-        lines.push(`   Size: ${item.size.trim()}`);
-      }
-      if (item.preferredColor && item.preferredColor.trim()) {
-        lines.push(`   Preferred colour/style: ${item.preferredColor.trim()}`);
-      }
-      if (item.styleNotes && item.styleNotes.trim()) {
-        lines.push(`   Notes: ${item.styleNotes.trim()}`);
-      }
-      lines.push('');
-    });
-
-    if (customerName.trim()) {
-      lines.push(`Customer Name: ${customerName.trim()}`);
-    }
-    if (additionalNotes.trim()) {
-      lines.push(`Additional requirements: ${additionalNotes.trim()}`);
-    }
-
-    lines.push('');
-    lines.push(
-      'Please share suitable available options with photographs, and confirm current pricing and availability.'
-    );
-    lines.push('');
-    lines.push('Thank you!');
-
-    return lines.join('\n');
-  };
-
-  const handleOpenWhatsApp = () => {
-    if (items.length === 0) return;
-
-    const message = buildWhatsAppMessage();
-    const url = BUSINESS_CONFIG.whatsappUrl(message);
-
-    // Open WhatsApp in a new tab/window without clearing request list
-    window.open(url, '_blank', 'noopener,noreferrer');
-    setWhatsappTriggered(true);
-  };
+  const whatsappUrl = buildWhatsAppRequestUrl(currentMessage);
 
   const handleCopyMessage = async () => {
     if (items.length === 0) return;
 
-    const message = buildWhatsAppMessage();
     try {
       if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(message);
+        await navigator.clipboard.writeText(currentMessage);
         setCopied(true);
         setTimeout(() => setCopied(false), 2500);
       } else {
-        // Fallback for older browsers
         const textarea = document.createElement('textarea');
-        textarea.value = message;
+        textarea.value = currentMessage;
         document.body.appendChild(textarea);
         textarea.select();
         document.execCommand('copy');
@@ -128,7 +80,7 @@ export default function CartDrawer() {
   };
 
   const handleClearRequest = () => {
-    if (window.confirm('Are you sure you want to clear your current request list?')) {
+    if (typeof window !== 'undefined' && window.confirm('Are you sure you want to clear your current request list?')) {
       clearCart();
       setWhatsappTriggered(false);
     }
@@ -137,16 +89,21 @@ export default function CartDrawer() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end">
+    <div
+      className="fixed inset-0 z-50 flex justify-end"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="request-drawer-title"
+    >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/45 backdrop-blur-xs transition-opacity animate-in fade-in"
+        className="fixed inset-0 bg-black/45 backdrop-blur-xs transition-opacity animate-in fade-in motion-reduce:animate-none"
         onClick={() => setIsOpen(false)}
         aria-hidden="true"
       />
 
       {/* Drawer Container */}
-      <div className="relative w-full sm:max-w-lg bg-white h-full max-h-screen shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300 overflow-hidden font-sans">
+      <div className="relative w-full sm:max-w-lg bg-white h-full max-h-screen shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300 motion-reduce:animate-none overflow-hidden font-sans">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4.5 border-b border-[#EBE7DF] bg-[#FAF8F5]">
           <div className="flex items-center gap-2.5">
@@ -154,7 +111,7 @@ export default function CartDrawer() {
               <ClipboardList className="w-4 h-4 text-[#D4A574]" />
             </div>
             <div>
-              <h2 className="font-serif font-bold text-lg text-[#1B4332] leading-tight">
+              <h2 id="request-drawer-title" className="font-serif font-bold text-lg text-[#1B4332] leading-tight">
                 Request List
               </h2>
               <p className="text-[11px] text-[#666666]">
@@ -167,16 +124,16 @@ export default function CartDrawer() {
             {items.length > 0 && (
               <button
                 onClick={handleClearRequest}
-                className="text-xs text-gray-500 hover:text-red-600 px-2.5 py-1.5 rounded-lg hover:bg-red-50 transition-colors flex items-center gap-1 cursor-pointer"
+                className="min-h-[44px] px-3 py-2 text-xs text-gray-500 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors flex items-center gap-1 cursor-pointer"
                 title="Clear all selections"
               >
-                <RotateCcw className="w-3 h-3" />
+                <RotateCcw className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Clear</span>
               </button>
             )}
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 rounded-full hover:bg-black/5 text-gray-500 hover:text-black transition-colors cursor-pointer"
+              className="min-w-[44px] min-h-[44px] rounded-full hover:bg-black/5 text-gray-500 hover:text-black transition-colors cursor-pointer flex items-center justify-center"
               aria-label="Close Request List"
             >
               <X className="w-5 h-5" />
@@ -201,7 +158,7 @@ export default function CartDrawer() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="mt-2 text-xs font-bold text-[#1B4332] bg-[#FAF8F5] border border-[#1B4332] px-6 py-2.5 rounded-full hover:bg-[#1B4332] hover:text-white transition-all cursor-pointer"
+                className="mt-2 min-h-[44px] text-xs font-bold text-[#1B4332] bg-[#FAF8F5] border border-[#1B4332] px-6 py-2.5 rounded-full hover:bg-[#1B4332] hover:text-white transition-all cursor-pointer"
               >
                 Browse Catalogue
               </button>
@@ -211,12 +168,17 @@ export default function CartDrawer() {
               <div className="bg-[#FAF8F5] p-3 rounded-xl border border-[#EBE7DF] text-[11px] text-[#666666] leading-relaxed flex items-start gap-2">
                 <AlertCircle className="w-4 h-4 text-[#D4A574] shrink-0 mt-0.5" />
                 <span>
-                  <strong>Catalogue Note:</strong> Warden &amp; Sons carries rotating physical inventory. Prices, sizes, and live photos are verified directly on WhatsApp before any purchase is completed.
+                  <strong>Catalogue Note:</strong> Warden & Sons carries rotating physical inventory. Prices, sizes, and live photos are verified directly on WhatsApp before any purchase is completed.
                 </span>
               </div>
 
               {items.map((item) => {
                 const isExpanded = expandedItemId === item.id;
+                const hasRealImage = Boolean(
+                  item.image &&
+                    item.image !== '/store_front.jpg' &&
+                    item.image !== '/brand_logo.jpg'
+                );
 
                 return (
                   <div
@@ -225,14 +187,18 @@ export default function CartDrawer() {
                   >
                     {/* Item Summary Row */}
                     <div className="flex gap-3.5 items-center">
-                      <div className="relative w-16 h-18 bg-[#FAF8F5] rounded-xl overflow-hidden shrink-0 border border-[#EBE7DF]">
-                        <Image
-                          src={item.image || '/store_front.jpg'}
-                          alt={item.name}
-                          fill
-                          className="object-cover"
-                          sizes="64px"
-                        />
+                      <div className="relative w-16 h-18 bg-[#FAF8F5] rounded-xl overflow-hidden shrink-0 border border-[#EBE7DF] flex items-center justify-center">
+                        {hasRealImage ? (
+                          <Image
+                            src={item.image!}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                            sizes="64px"
+                          />
+                        ) : (
+                          <Sparkles className="w-5 h-5 text-[#D4A574]" />
+                        )}
                       </div>
 
                       <div className="flex-1 min-w-0">
@@ -247,32 +213,32 @@ export default function CartDrawer() {
                         </p>
                       </div>
 
-                      {/* Quantity & Delete */}
-                      <div className="flex flex-col items-end justify-between gap-2 shrink-0">
+                      {/* Quantity & Delete (All targets >= 44x44px) */}
+                      <div className="flex flex-col items-end justify-between gap-1 shrink-0">
                         <button
                           onClick={() => removeItem(item.id)}
-                          className="text-gray-400 hover:text-red-600 transition-colors p-1"
+                          className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 hover:text-red-600 transition-colors"
                           aria-label={`Remove ${item.name}`}
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
-                        <div className="flex items-center gap-1.5 bg-[#FAF8F5] rounded-lg border border-[#EBE7DF] px-1 py-0.5 shadow-2xs">
+                        <div className="flex items-center bg-[#FAF8F5] rounded-lg border border-[#EBE7DF] shadow-2xs">
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="w-5 h-5 flex items-center justify-center text-gray-600 hover:text-black cursor-pointer"
+                            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-600 hover:text-black cursor-pointer"
                             aria-label="Decrease quantity"
                           >
-                            <Minus className="w-3 h-3" />
+                            <Minus className="w-3.5 h-3.5" />
                           </button>
-                          <span className="text-xs font-bold px-1 min-w-[16px] text-center">
+                          <span className="text-xs font-bold px-1 min-w-[20px] text-center">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="w-5 h-5 flex items-center justify-center text-gray-600 hover:text-black cursor-pointer"
+                            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-600 hover:text-black cursor-pointer"
                             aria-label="Increase quantity"
                           >
-                            <Plus className="w-3 h-3" />
+                            <Plus className="w-3.5 h-3.5" />
                           </button>
                         </div>
                       </div>
@@ -283,7 +249,7 @@ export default function CartDrawer() {
                       <button
                         type="button"
                         onClick={() => setExpandedItemId(isExpanded ? null : item.id)}
-                        className="w-full flex items-center justify-between text-[11px] font-semibold text-[#1B4332] hover:text-[#D4A574] transition-colors py-1 cursor-pointer"
+                        className="w-full min-h-[44px] flex items-center justify-between text-[11px] font-semibold text-[#1B4332] hover:text-[#D4A574] transition-colors py-1 cursor-pointer"
                       >
                         <span>
                           {item.size || item.preferredColor || item.styleNotes
@@ -310,22 +276,22 @@ export default function CartDrawer() {
                               onChange={(e) =>
                                 updateItemDetails(item.id, { ageGroup: e.target.value })
                               }
-                              className="w-full px-2.5 py-1.5 rounded-lg border border-[#EBE7DF] bg-[#FAF8F5] text-xs focus:outline-none focus:ring-1 focus:ring-[#1B4332]"
+                              className="w-full px-2.5 py-2 rounded-lg border border-[#EBE7DF] bg-[#FAF8F5] text-xs focus:outline-none focus:ring-1 focus:ring-[#1B4332]"
                             />
                           </div>
 
                           <div>
                             <label className="text-[10px] font-bold text-gray-600 block mb-1">
-                              Size (Optional)
+                              Size (Optional, &quot;Not sure&quot; is fine)
                             </label>
                             <input
                               type="text"
-                              placeholder="e.g. Size 22, Medium, 3-6M"
+                              placeholder="e.g. Size 22, 3-6M, or Not sure"
                               value={item.size || ''}
                               onChange={(e) =>
                                 updateItemDetails(item.id, { size: e.target.value })
                               }
-                              className="w-full px-2.5 py-1.5 rounded-lg border border-[#EBE7DF] bg-[#FAF8F5] text-xs focus:outline-none focus:ring-1 focus:ring-[#1B4332]"
+                              className="w-full px-2.5 py-2 rounded-lg border border-[#EBE7DF] bg-[#FAF8F5] text-xs focus:outline-none focus:ring-1 focus:ring-[#1B4332]"
                             />
                           </div>
 
@@ -340,7 +306,7 @@ export default function CartDrawer() {
                               onChange={(e) =>
                                 updateItemDetails(item.id, { preferredColor: e.target.value })
                               }
-                              className="w-full px-2.5 py-1.5 rounded-lg border border-[#EBE7DF] bg-[#FAF8F5] text-xs focus:outline-none focus:ring-1 focus:ring-[#1B4332]"
+                              className="w-full px-2.5 py-2 rounded-lg border border-[#EBE7DF] bg-[#FAF8F5] text-xs focus:outline-none focus:ring-1 focus:ring-[#1B4332]"
                             />
                           </div>
 
@@ -355,7 +321,7 @@ export default function CartDrawer() {
                               onChange={(e) =>
                                 updateItemDetails(item.id, { styleNotes: e.target.value })
                               }
-                              className="w-full px-2.5 py-1.5 rounded-lg border border-[#EBE7DF] bg-[#FAF8F5] text-xs focus:outline-none focus:ring-1 focus:ring-[#1B4332]"
+                              className="w-full px-2.5 py-2 rounded-lg border border-[#EBE7DF] bg-[#FAF8F5] text-xs focus:outline-none focus:ring-1 focus:ring-[#1B4332]"
                             />
                           </div>
                         </div>
@@ -404,21 +370,24 @@ export default function CartDrawer() {
         {/* Footer Actions */}
         {items.length > 0 && (
           <div className="border-t border-[#EBE7DF] p-5 sm:p-6 bg-[#FAF8F5] space-y-3">
-            {/* Primary WhatsApp Action */}
-            <button
-              onClick={handleOpenWhatsApp}
-              className="w-full flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-md transition-all hover:scale-[1.01] cursor-pointer"
+            {/* Primary WhatsApp Action (Regular Outbound Anchor, min 48px height) */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setWhatsappTriggered(true)}
+              className="w-full min-h-[48px] flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-md transition-all hover:scale-[1.01] cursor-pointer"
             >
               <MessageSquare className="w-5 h-5 fill-white text-[#25D366]" />
               <span>Send Enquiry on WhatsApp (+91 99207 51567)</span>
-            </button>
+            </a>
 
-            {/* Copy Fallback Button */}
+            {/* Copy Fallback & Clear Action Buttons (min 44px height) */}
             <div className="flex gap-2">
               <button
                 type="button"
                 onClick={handleCopyMessage}
-                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg border border-[#EBE7DF] bg-white text-gray-700 hover:text-black hover:bg-gray-50 text-xs font-semibold transition-colors cursor-pointer"
+                className="flex-1 min-h-[44px] inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg border border-[#EBE7DF] bg-white text-gray-700 hover:text-black hover:bg-gray-50 text-xs font-semibold transition-colors cursor-pointer"
               >
                 {copied ? (
                   <>
@@ -436,7 +405,7 @@ export default function CartDrawer() {
               <button
                 type="button"
                 onClick={handleClearRequest}
-                className="py-2.5 px-3 rounded-lg border border-red-200 bg-red-50/50 hover:bg-red-50 text-red-700 text-xs font-semibold transition-colors cursor-pointer"
+                className="min-h-[44px] py-2.5 px-3 rounded-lg border border-red-200 bg-red-50/50 hover:bg-red-50 text-red-700 text-xs font-semibold transition-colors cursor-pointer"
               >
                 Clear Request
               </button>
@@ -452,7 +421,7 @@ export default function CartDrawer() {
                   Remember to click <strong>Send</strong> in WhatsApp. Your selections remain saved here until you decide to clear them.
                 </p>
                 <p className="text-gray-500 text-[10px]">
-                  Did not open? Click &quot;Copy Enquiry Text&quot; above and paste directly to <strong>+91 99207 51567</strong>.
+                  Did not open? Click &quot;Copy Enquiry Text&quot; above and paste directly to <strong>{BUSINESS_CONFIG.phone.display}</strong>.
                 </p>
               </div>
             )}

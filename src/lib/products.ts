@@ -6,6 +6,9 @@
  * Rather than displaying fabricated prices or AI-invented individual stock levels,
  * this catalogue presents authentic department categories and representative clothing types.
  *
+ * Individual garment photos are only shown when owner-approved item photographs exist.
+ * We never misrepresent the storefront photo or brand crest as an item photograph.
+ *
  * Actual designs, colors, fabrics, sizes, and pricing are confirmed directly by the
  * shop team on WhatsApp with real photographs and measuring-tape verifications.
  */
@@ -39,7 +42,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
     name: 'Newborns & Infants',
     ageOrSizeRange: '0 – 24 Months',
     summary:
-      'Ultra-soft, breathable combed cotton jhablas, bodysuits, muslin swaddles, rompers, bath towels, and infant accessories designed for sensitive newborn skin.',
+      'Breathable combed cotton jhablas, bodysuits, muslin swaddles, rompers, bath towels, and infant accessories designed for sensitive newborn skin.',
     typicalItems: [
       'Bodysuits & Onesies',
       'Muslin Swaddle Blankets',
@@ -49,7 +52,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Caps, Mittens & Booties',
       'Teething Bandana Bibs',
     ],
-    image: '/store_front.jpg',
+    image: '',
   },
   {
     slug: 'boys',
@@ -66,7 +69,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Light Cotton Hoodies & Shackets',
       'Tagless Cotton Innerwear',
     ],
-    image: '/store_front.jpg',
+    image: '',
   },
   {
     slug: 'girls',
@@ -82,7 +85,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Active Sportswear & Cycling Shorts',
       'Cotton Cardigans & Denim Jackets',
     ],
-    image: '/store_front.jpg',
+    image: '',
   },
   {
     slug: 'men',
@@ -97,7 +100,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Woven Poplin Sleep Pajamas',
       'Ribbed Athletic Undershirts',
     ],
-    image: '/store_front.jpg',
+    image: '',
   },
   {
     slug: 'women',
@@ -112,7 +115,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Hand-Dyed Cotton Kaftans',
       'Cotton Everyday Cycling Shorts',
     ],
-    image: '/store_front.jpg',
+    image: '',
   },
   {
     slug: 'bulk',
@@ -127,7 +130,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Dryfit Sports & House T-Shirts',
       'Annual Day & Event Apparel',
     ],
-    image: '/store_front.jpg',
+    image: '',
   },
 ];
 
@@ -135,14 +138,14 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
   // ==================== NEWBORN & INFANTS ====================
   {
     id: 'cat-nb-01',
-    title: 'Pure Combed Cotton Bodysuits & Jhablas',
+    title: 'Combed Cotton Bodysuits & Jhablas',
     category: 'newborn',
     subCategory: 'Bodysuits & Jhablas',
     ageOrSizeRange: '0-3M, 3-6M, 6-12M, 12-18M',
-    fabricDetails: '100% Organic Combed Cotton',
+    fabricDetails: 'Breathable Combed Cotton',
     description:
-      'Envelope necklines and nickel-free snap closures for gentle diaper changes. Soft, pre-washed, chemical-free cotton suited for delicate newborn skin.',
-    image: '/store_front.jpg',
+      'Envelope necklines and nickel-free snap closures for gentle diaper changes. Soft, pre-washed cotton suited for delicate newborn skin.',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -151,10 +154,10 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'newborn',
     subCategory: 'Swaddles & Blankets',
     ageOrSizeRange: 'Generous 47" x 47" Size',
-    fabricDetails: '100% Breathable Muslin Cotton',
+    fabricDetails: 'Breathable Muslin Cotton',
     description:
       'Lightweight open-weave swaddle blanket that prevents heat buildup in Mumbai’s humid coastal climate. Gets softer with each wash.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -163,10 +166,10 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'newborn',
     subCategory: 'Bath & Towels',
     ageOrSizeRange: 'Infants & Toddlers',
-    fabricDetails: 'Pure Cotton Terry (High Absorbency)',
+    fabricDetails: 'Cotton Terry Weave (High Absorbency)',
     description:
       'Absorbent hooded bath towel to gently wrap newborns dry instantly after bathing. Soft corner hood keeps baby warm.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -178,7 +181,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Double-Layer Muslin Cotton',
     description:
       'Sleeveless and short-sleeve daytime rompers with easy crotch snaps. Roomy cut that comfortably fits both cloth and disposable diapers.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -187,10 +190,10 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'newborn',
     subCategory: 'Accessories',
     ageOrSizeRange: '0-3M, 3-6M',
-    fabricDetails: '100% Cotton Rib-Knit',
+    fabricDetails: 'Soft Cotton Rib-Knit',
     description:
       'Protects delicate newborn faces from fingernail scratches. Soft ribbed cuffs stay secure without leaving tight elastic marks.',
-    image: '/brand_logo.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -199,24 +202,24 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'newborn',
     subCategory: 'Sleepsuits',
     ageOrSizeRange: '3-6M, 6-12M, 12-18M, 18-24M',
-    fabricDetails: '100% Interlock Cotton',
+    fabricDetails: 'Soft Interlock Cotton',
     description:
       'Two-way zip sleepers with protective chin guard for easy late-night diaper checks. Tagless collars prevent neckline irritation.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
 
-  // ==================== BOYS' WEAR ====================
+  // ==================== BOYS’ WEAR ====================
   {
     id: 'cat-by-01',
     title: 'Everyday Combed Cotton T-Shirts',
     category: 'boys',
     subCategory: 'T-Shirts',
     ageOrSizeRange: '2-3Y to 13-16Y',
-    fabricDetails: '180 GSM Pure Combed Cotton',
+    fabricDetails: '180 GSM Combed Cotton',
     description:
       'Opaque, durable everyday tees in solid neutrals and subtle prints. Pre-shrunk to retain shape through regular school and play cycles.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -228,7 +231,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Microfiber Active Wicking Polyester',
     description:
       'Moisture-wicking athletic t-shirt and shorts coordinate set. Ideal for Mumbai football turfs, coaching academies, and sports days.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -240,7 +243,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Breathable Poly-Cotton Blend',
     description:
       'Polo-collar match jersey with reinforced pants. Tailored specifically for morning cricket academy training at local Mumbai maidaans.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -249,10 +252,10 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'boys',
     subCategory: 'Nightwear',
     ageOrSizeRange: '2-3Y to 13-16Y',
-    fabricDetails: '100% Knitted Cotton Hosiery',
+    fabricDetails: 'Knitted Cotton Hosiery',
     description:
       'Button-down shirt and relaxed pajama set with non-pinching elastic waistbands. Gentle on active skin for restful sleep.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -261,10 +264,10 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'boys',
     subCategory: 'Bottoms',
     ageOrSizeRange: '4-5Y to 13-16Y',
-    fabricDetails: '100% Breathable Cotton Twill',
+    fabricDetails: 'Breathable Cotton Twill',
     description:
       'Rugged, multi-pocket cargo pants and casual shorts with adjustable drawstring waists. Ideal for evening outdoor play.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -276,21 +279,21 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Unbrushed Cotton French Terry',
     description:
       'Light zip-up sweater suited for mild Mumbai winter mornings, AC study rooms, and travel.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
 
   // ==================== GIRLS’ WEAR ====================
   {
     id: 'cat-gr-01',
-    title: 'Hand-Block & Floral Muslin Summer Frocks',
+    title: 'Floral Muslin Summer Frocks',
     category: 'girls',
     subCategory: 'Dresses',
     ageOrSizeRange: '2-3Y to 10-12Y',
-    fabricDetails: '100% Double-Layer Muslin Cotton',
+    fabricDetails: 'Double-Layer Muslin Cotton',
     description:
       'Airy A-line summer dresses with delicate flutter sleeves. Designed with generous cuts to allow natural movement and prevent underarm chafing.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -302,7 +305,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Knitted Hosiery Cotton',
     description:
       'Comfortable sleepwear sets with non-roll soft waistbands and tagless collars to prevent itching during warm nights.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -311,10 +314,10 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'girls',
     subCategory: 'Tops',
     ageOrSizeRange: '2-3Y to 10-12Y',
-    fabricDetails: '100% Pure Cotton Voile',
+    fabricDetails: 'Breathable Cotton Voile',
     description:
       'Lightweight summer tops featuring neat gathered shoulder ruffles and breathable cuts for tropical warmth.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -326,7 +329,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '95% Combed Cotton, 5% Elastane',
     description:
       'Opaque 4-way stretch leggings with non-digging waistbands. Resilient for dance practice, school sports, and everyday wear.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -338,7 +341,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Sweat-Wicking Microfiber & Cotton',
     description:
       'Flexible workout set for tennis, gymnastics, sports drills, and playground activities. Dries rapidly after wash.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -350,7 +353,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Enzyme-Washed Soft Cotton Denim',
     description:
       'Lightweight, wind-resistant outer layer that feels buttery soft against arms rather than stiff and heavy.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
 
@@ -364,7 +367,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '180 GSM Combed Cotton',
     description:
       'Solid non-transparent everyday crew tees. Opaque, durable, and highly absorbent in humid Mumbai heat.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -376,7 +379,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Double-Knit Cotton Hosiery',
     description:
       'Features deep zippered pockets and a wide adjustable drawstring waist for gym workouts or home comfort.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -385,10 +388,10 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'men',
     subCategory: 'Track Pants',
     ageOrSizeRange: 'Sizes S, M, L, XL, XXL',
-    fabricDetails: '100% Interlock Cotton',
+    fabricDetails: 'Interlock Cotton',
     description:
       'Tapered joggers with zippered side pockets. Retains color and elasticity through repeated machine washes.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -397,10 +400,10 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'men',
     subCategory: 'Nightwear',
     ageOrSizeRange: 'Sizes S, M, L, XL, XXL',
-    fabricDetails: '100% Crisp Cotton Poplin',
+    fabricDetails: 'Crisp Cotton Poplin',
     description:
       'Button-down shirt and relaxed-cut trousers with dual pockets and fly button for cool, comfortable night sleep.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
 
@@ -411,22 +414,22 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     category: 'women',
     subCategory: 'Night Suits',
     ageOrSizeRange: 'Sizes S, M, L, XL',
-    fabricDetails: '100% Pure Double-Gauze Muslin',
+    fabricDetails: 'Double-Gauze Muslin',
     description:
       'Notched-collar button-down shirt with straight-leg trousers. High-breathability sleepwear suited for hot weather.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
     id: 'cat-wm-02',
-    title: 'Premium Opaque Cotton Lycra Leggings',
+    title: 'Opaque Cotton Lycra Leggings',
     category: 'women',
     subCategory: 'Leggings',
     ageOrSizeRange: 'Free Size (Comfort Stretch)',
     fabricDetails: '95% Combed Cotton, 5% Lycra',
     description:
       'Matte black ankle leggings with a wide contour waistband that resists pilling and sagging at knees.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -438,7 +441,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '180 GSM Soft Slub Cotton / Mulmul',
     description:
       'Drop-shoulder relaxed silhouettes and airy kaftans with adjustable waist ties for effortless daily comfort.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -450,7 +453,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '95% Cotton, 5% Spandex',
     description:
       'Mid-thigh modesty shorts designed to be worn comfortably beneath dresses, tunics, and kurtas.',
-    image: '/brand_logo.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
 
@@ -464,7 +467,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Durable Poly-Cotton & Pure Cotton Weaves',
     description:
       'Custom school uniforms with bespoke pocket crest embroidery, color-matched trims, and reinforced stitching.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
   {
@@ -476,7 +479,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Moisture-Wicking Dryfit & 180 GSM Cotton',
     description:
       'Sublimation-printed and screen-printed athletic shirts, shorts, and tracksuits for sports days, tournaments, and annual events.',
-    image: '/store_front.jpg',
+    image: '',
     isRepresentativeSample: true,
   },
 ];

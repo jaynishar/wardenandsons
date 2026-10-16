@@ -3,13 +3,14 @@ import BulkOrderForm from '@/components/BulkOrderForm';
 import { GraduationCap, Trophy, Gift, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Custom School Uniforms & Bulk Enquiries',
   description:
     'Custom school uniforms, cricket whites, sports academy jerseys, and institutional clothing in Mumbai. Bespoke tailoring by Warden & Sons, Kemps Corner.',
   alternates: {
-    canonical: '/bulk-orders',
+    canonical: getCanonicalUrl('/bulk-orders'),
   },
 };
 
@@ -40,10 +41,10 @@ export default function BulkOrdersPage() {
           Institutional Tailoring • South Mumbai
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
-          Custom School Uniforms &amp; Bulk Apparel
+          Custom School Uniforms & Bulk Apparel
         </h1>
         <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
-          Warden &amp; Sons partners with Mumbai schools, sports academies, and educational foundations to manufacture high-grade cotton uniforms and bespoke event apparel.
+          Warden & Sons partners with Mumbai schools, sports academies, and educational foundations to manufacture high-grade cotton uniforms and bespoke event apparel.
         </p>
       </div>
 
