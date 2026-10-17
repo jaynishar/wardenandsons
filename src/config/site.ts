@@ -32,5 +32,15 @@ export const SITE_CONFIG = {
   locale: 'en_IN',
   themeColor: '#FAF8F5',
   ogImage: `${SITE_URL}/brand_logo.jpg`,
-  storefrontImage: `${SITE_URL}/store_front.jpg`,
+  storefrontImage: `${SITE_URL}/store_front.webp`,
 };
+
+/**
+ * Analytics & Measurement Configuration
+ * Single source of truth for GA4 & GTM. Replace placeholders with verified production IDs.
+ */
+export const ANALYTICS_CONFIG = {
+  gaMeasurementId: process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX',
+  gtmId: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-XXXXXXX',
+};
+

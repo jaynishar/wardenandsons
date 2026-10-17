@@ -6,8 +6,9 @@ import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
+import Analytics from '@/components/Analytics';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { SITE_URL, SITE_CONFIG, getCanonicalUrl } from '@/config/site';
+import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/config/site';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -111,8 +112,21 @@ export default function RootLayout({
             __html: JSON.stringify(localBusinessSchema),
           }}
         />
+        {/* Analytics & Tag Manager */}
+        <Analytics />
       </head>
-      <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#1A1A1A] selection:bg-[#D4A574]/30 selection:text-[#1B4332]">
+      <body className="min-h-full flex flex-col bg-bg-cream text-near-black selection:bg-gold/30 selection:text-forest">
+        {/* Google Tag Manager (noscript) */}
+        {ANALYTICS_CONFIG.gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${ANALYTICS_CONFIG.gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         <Header />
         <CartDrawer />
         <main className="flex-grow pb-20 md:pb-0">{children}</main>

@@ -2,6 +2,7 @@
 
 @theme {
   --color-bg-cream: #faf8f5;
+  --color-cream: #faf8f5;
   --color-forest: #1b4332;
   --color-forest-dark: #143527;
   --color-forest-light: #2d6a4f;
@@ -14,12 +15,23 @@
   --color-whatsapp: #25d366;
 
   --font-serif: var(--font-playfair), Georgia, serif;
+  --font-display: var(--font-playfair), Georgia, serif;
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 :root {
   background-color: #faf8f5;
   color: #1a1a1a;
+}
+
+.editorial-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 body {
@@ -50,6 +62,14 @@ body {
 }
 
 /* Clean Custom Scrollbar */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

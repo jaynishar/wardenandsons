@@ -41,39 +41,58 @@ const faqs: FAQItem[] = [
 ];
 
 export default function FAQ() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <div className="space-y-4 max-w-3xl mx-auto font-sans">
+      {/* FAQPage JSON-LD Rich Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {faqs.map((faq) => (
         <details
           key={faq.question}
-          className="group bg-white rounded-2xl border border-[#EBE7DF] overflow-hidden shadow-xs transition-colors"
+          className="group bg-white rounded-2xl border border-border-soft overflow-hidden shadow-xs transition-colors"
         >
           <summary className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 cursor-pointer focus:outline-none list-none select-none">
             <div className="flex items-center gap-3">
-              <HelpCircle className="w-4 h-4 text-[#D4A574] shrink-0" />
-              <span className="font-serif font-bold text-sm sm:text-base text-[#1A1A1A]">
+              <HelpCircle className="w-4 h-4 text-gold shrink-0" />
+              <span className="font-serif font-bold text-sm sm:text-base text-near-black">
                 {faq.question}
               </span>
             </div>
-            <ChevronDown className="w-5 h-5 text-gray-500 shrink-0 transition-transform duration-200 group-open:rotate-180 group-open:text-[#1B4332]" />
+            <ChevronDown className="w-5 h-5 text-gray-500 shrink-0 transition-transform duration-200 group-open:rotate-180 group-open:text-forest" />
           </summary>
 
-          <div className="px-5 pb-5 pt-2 text-xs sm:text-sm text-[#666666] leading-relaxed border-t border-[#EBE7DF]/60 bg-[#FAF8F5]/50">
+          <div className="px-5 pb-5 pt-2 text-xs sm:text-sm text-muted leading-relaxed border-t border-border-soft/60 bg-bg-cream/50">
             {faq.answer}
           </div>
         </details>
       ))}
 
-      <div className="p-4 bg-[#FAF8F5] rounded-2xl border border-[#EBE7DF] text-center mt-6">
-        <p className="text-xs text-[#666666]">
+      <div className="p-4 bg-bg-cream rounded-2xl border border-border-soft text-center mt-6">
+        <p className="text-xs text-muted">
           Have a specific question not listed here?{' '}
           <a
             href={BUSINESS_CONFIG.phone.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-[#1B4332] underline hover:text-[#D4A574] inline-flex items-center gap-1 ml-1"
+            className="font-bold text-forest underline hover:text-gold inline-flex items-center gap-1 ml-1"
           >
-            <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" /> Ask on WhatsApp
+            <MessageSquare className="w-3.5 h-3.5 text-whatsapp" /> Ask on WhatsApp
           </a>
         </p>
       </div>

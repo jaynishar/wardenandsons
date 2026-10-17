@@ -52,7 +52,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Caps, Mittens & Booties',
       'Teething Bandana Bibs',
     ],
-    image: '',
+    image: '/categories/newborn.webp',
   },
   {
     slug: 'boys',
@@ -69,7 +69,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Light Cotton Hoodies & Shackets',
       'Tagless Cotton Innerwear',
     ],
-    image: '',
+    image: '/categories/boys.webp',
   },
   {
     slug: 'girls',
@@ -85,7 +85,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Active Sportswear & Cycling Shorts',
       'Cotton Cardigans & Denim Jackets',
     ],
-    image: '',
+    image: '/categories/girls.webp',
   },
   {
     slug: 'men',
@@ -100,7 +100,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Woven Poplin Sleep Pajamas',
       'Ribbed Athletic Undershirts',
     ],
-    image: '',
+    image: '/categories/men.webp',
   },
   {
     slug: 'women',
@@ -115,7 +115,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Hand-Dyed Cotton Kaftans',
       'Cotton Everyday Cycling Shorts',
     ],
-    image: '',
+    image: '/categories/women.webp',
   },
   {
     slug: 'bulk',
@@ -130,7 +130,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       'Dryfit Sports & House T-Shirts',
       'Annual Day & Event Apparel',
     ],
-    image: '',
+    image: '/categories/bulk.webp',
   },
 ];
 
@@ -145,7 +145,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Breathable Combed Cotton',
     description:
       'Envelope necklines and nickel-free snap closures for gentle diaper changes. Soft, pre-washed cotton suited for delicate newborn skin.',
-    image: '',
+    image: '/products/nb-bodysuit.webp',
     isRepresentativeSample: true,
   },
   {
@@ -157,7 +157,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Breathable Muslin Cotton',
     description:
       'Lightweight open-weave swaddle blanket that prevents heat buildup in Mumbai’s humid coastal climate. Gets softer with each wash.',
-    image: '',
+    image: '/products/nb-swaddle.webp',
     isRepresentativeSample: true,
   },
   {
@@ -169,7 +169,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Cotton Terry Weave (High Absorbency)',
     description:
       'Absorbent hooded bath towel to gently wrap newborns dry instantly after bathing. Soft corner hood keeps baby warm.',
-    image: '',
+    image: '/products/nb-towel.webp',
     isRepresentativeSample: true,
   },
   {
@@ -181,7 +181,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Double-Layer Muslin Cotton',
     description:
       'Sleeveless and short-sleeve daytime rompers with easy crotch snaps. Roomy cut that comfortably fits both cloth and disposable diapers.',
-    image: '',
+    image: '/products/nb-romper.webp',
     isRepresentativeSample: true,
   },
   {
@@ -193,7 +193,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Soft Cotton Rib-Knit',
     description:
       'Protects delicate newborn faces from fingernail scratches. Soft ribbed cuffs stay secure without leaving tight elastic marks.',
-    image: '',
+    image: '/products/nb-accessories.webp',
     isRepresentativeSample: true,
   },
   {
@@ -205,7 +205,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Soft Interlock Cotton',
     description:
       'Two-way zip sleepers with protective chin guard for easy late-night diaper checks. Tagless collars prevent neckline irritation.',
-    image: '',
+    image: '/products/nb-sleepsuit.webp',
     isRepresentativeSample: true,
   },
 
@@ -219,7 +219,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '180 GSM Combed Cotton',
     description:
       'Opaque, durable everyday tees in solid neutrals and subtle prints. Pre-shrunk to retain shape through regular school and play cycles.',
-    image: '',
+    image: '/products/by-tee.webp',
     isRepresentativeSample: true,
   },
   {
@@ -231,7 +231,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Microfiber Active Wicking Polyester',
     description:
       'Moisture-wicking athletic t-shirt and shorts coordinate set. Ideal for Mumbai football turfs, coaching academies, and sports days.',
-    image: '',
+    image: '/products/by-sportswear.webp',
     isRepresentativeSample: true,
   },
   {
@@ -243,7 +243,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Breathable Poly-Cotton Blend',
     description:
       'Polo-collar match jersey with reinforced pants. Tailored specifically for morning cricket academy training at local Mumbai maidaans.',
-    image: '',
+    image: '/products/by-cricket.webp',
     isRepresentativeSample: true,
   },
   {
@@ -255,7 +255,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Knitted Cotton Hosiery',
     description:
       'Button-down shirt and relaxed pajama set with non-pinching elastic waistbands. Gentle on active skin for restful sleep.',
-    image: '',
+    image: '/products/by-nightsuit.webp',
     isRepresentativeSample: true,
   },
   {
@@ -267,7 +267,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Breathable Cotton Twill',
     description:
       'Rugged, multi-pocket cargo pants and casual shorts with adjustable drawstring waists. Ideal for evening outdoor play.',
-    image: '',
+    image: '/products/by-cargos.webp',
     isRepresentativeSample: true,
   },
   {
@@ -279,7 +279,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Unbrushed Cotton French Terry',
     description:
       'Light zip-up sweater suited for mild Mumbai winter mornings, AC study rooms, and travel.',
-    image: '',
+    image: '/products/by-layering.webp',
     isRepresentativeSample: true,
   },
 
@@ -293,7 +293,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Double-Layer Muslin Cotton',
     description:
       'Airy A-line summer dresses with delicate flutter sleeves. Designed with generous cuts to allow natural movement and prevent underarm chafing.',
-    image: '',
+    image: '/products/gl-dress.webp',
     isRepresentativeSample: true,
   },
   {
@@ -305,7 +305,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Knitted Hosiery Cotton',
     description:
       'Comfortable sleepwear sets with non-roll soft waistbands and tagless collars to prevent itching during warm nights.',
-    image: '',
+    image: '/products/gl-nightsuit.webp',
     isRepresentativeSample: true,
   },
   {
@@ -317,7 +317,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Breathable Cotton Voile',
     description:
       'Lightweight summer tops featuring neat gathered shoulder ruffles and breathable cuts for tropical warmth.',
-    image: '',
+    image: '/products/gl-top.webp',
     isRepresentativeSample: true,
   },
   {
@@ -329,7 +329,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '95% Combed Cotton, 5% Elastane',
     description:
       'Opaque 4-way stretch leggings with non-digging waistbands. Resilient for dance practice, school sports, and everyday wear.',
-    image: '',
+    image: '/products/gl-leggings.webp',
     isRepresentativeSample: true,
   },
   {
@@ -341,7 +341,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Sweat-Wicking Microfiber & Cotton',
     description:
       'Flexible workout set for tennis, gymnastics, sports drills, and playground activities. Dries rapidly after wash.',
-    image: '',
+    image: '/products/gl-sportswear.webp',
     isRepresentativeSample: true,
   },
   {
@@ -353,7 +353,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Enzyme-Washed Soft Cotton Denim',
     description:
       'Lightweight, wind-resistant outer layer that feels buttery soft against arms rather than stiff and heavy.',
-    image: '',
+    image: '/products/gl-jacket.webp',
     isRepresentativeSample: true,
   },
 
@@ -367,7 +367,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '180 GSM Combed Cotton',
     description:
       'Solid non-transparent everyday crew tees. Opaque, durable, and highly absorbent in humid Mumbai heat.',
-    image: '',
+    image: '/products/mn-tee.webp',
     isRepresentativeSample: true,
   },
   {
@@ -379,7 +379,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Double-Knit Cotton Hosiery',
     description:
       'Features deep zippered pockets and a wide adjustable drawstring waist for gym workouts or home comfort.',
-    image: '',
+    image: '/products/mn-shorts.webp',
     isRepresentativeSample: true,
   },
   {
@@ -391,7 +391,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Interlock Cotton',
     description:
       'Tapered joggers with zippered side pockets. Retains color and elasticity through repeated machine washes.',
-    image: '',
+    image: '/products/mn-trackpants.webp',
     isRepresentativeSample: true,
   },
   {
@@ -403,7 +403,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Crisp Cotton Poplin',
     description:
       'Button-down shirt and relaxed-cut trousers with dual pockets and fly button for cool, comfortable night sleep.',
-    image: '',
+    image: '/products/mn-pajamas.webp',
     isRepresentativeSample: true,
   },
 
@@ -417,7 +417,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Double-Gauze Muslin',
     description:
       'Notched-collar button-down shirt with straight-leg trousers. High-breathability sleepwear suited for hot weather.',
-    image: '',
+    image: '/products/wm-muslin-set.webp',
     isRepresentativeSample: true,
   },
   {
@@ -429,7 +429,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '95% Combed Cotton, 5% Lycra',
     description:
       'Matte black ankle leggings with a wide contour waistband that resists pilling and sagging at knees.',
-    image: '',
+    image: '/products/wm-leggings.webp',
     isRepresentativeSample: true,
   },
   {
@@ -441,7 +441,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '180 GSM Soft Slub Cotton / Mulmul',
     description:
       'Drop-shoulder relaxed silhouettes and airy kaftans with adjustable waist ties for effortless daily comfort.',
-    image: '',
+    image: '/products/wm-kaftan.webp',
     isRepresentativeSample: true,
   },
   {
@@ -453,7 +453,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: '95% Cotton, 5% Spandex',
     description:
       'Mid-thigh modesty shorts designed to be worn comfortably beneath dresses, tunics, and kurtas.',
-    image: '',
+    image: '/products/wm-top.webp',
     isRepresentativeSample: true,
   },
 
@@ -467,7 +467,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Durable Poly-Cotton & Pure Cotton Weaves',
     description:
       'Custom school uniforms with bespoke pocket crest embroidery, color-matched trims, and reinforced stitching.',
-    image: '',
+    image: '/products/bk-uniform.webp',
     isRepresentativeSample: true,
   },
   {
@@ -479,7 +479,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     fabricDetails: 'Moisture-Wicking Dryfit & 180 GSM Cotton',
     description:
       'Sublimation-printed and screen-printed athletic shirts, shorts, and tracksuits for sports days, tournaments, and annual events.',
-    image: '',
+    image: '/products/bk-cricket-kit.webp',
     isRepresentativeSample: true,
   },
 ];

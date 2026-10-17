@@ -6,31 +6,31 @@ import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#FAF8F5] pt-6 pb-12 md:py-16 font-sans">
+    <section className="relative overflow-hidden bg-bg-cream pt-6 pb-12 md:py-16 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Text Column */}
+          {/* Left Editorial Column (7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-white border border-[#EBE7DF] px-3.5 py-1.5 rounded-full shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#D4A574]" />
-              <span className="text-[11px] font-bold text-[#1B4332] uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 bg-white border border-border-soft px-3.5 py-1.5 rounded-full shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-gold" />
+              <span className="editorial-label text-forest">
                 {BUSINESS_CONFIG.establishment.displayText}
               </span>
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1B4332] leading-[1.15]">
-              Breathable Cotton Comfort For Your Little Ones.
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-forest leading-[1.12]">
+              Breathable Cotton Comfort, Since 1994.
             </h1>
 
-            <p className="text-sm sm:text-base text-[#666666] leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Serving generations of families from our Kemps Corner boutique. Explore breathable newborn essentials, playwear, and family comfort basics tailored for Mumbai’s tropical climate.
+            <p className="text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto lg:mx-0">
+              Serving generations of families from our Kemps Corner boutique. Explore breathable newborn essentials, playwear, and everyday comfort basics tailored for Mumbai’s tropical climate.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
               <Link
                 href="/shop"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-7 py-3 rounded-xl bg-[#1B4332] text-white hover:bg-[#143527] font-bold text-sm shadow-xs transition-all hover:scale-102"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-7 py-3 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-sm shadow-md transition-all active:scale-[0.98]"
               >
                 <span>Browse Catalogue</span>
                 <ArrowRight className="w-4 h-4" />
@@ -40,51 +40,73 @@ export default function Hero() {
                 href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-white border border-[#EBE7DF] text-[#1A1A1A] hover:bg-[#FAF8F5] font-bold text-sm shadow-xs transition-all hover:border-[#1B4332]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-white border border-border-soft text-near-black hover:bg-bg-cream font-bold text-sm shadow-xs transition-all hover:border-forest active:scale-[0.98]"
               >
-                <MessageSquare className="w-4 h-4 text-[#25D366]" />
+                <MessageSquare className="w-4 h-4 text-whatsapp" />
                 <span>Chat with Kemps Corner Store</span>
               </a>
             </div>
 
-            {/* Trust Badges */}
-            <div className="pt-4 grid grid-cols-3 gap-2 border-t border-[#EBE7DF]/80 max-w-lg mx-auto lg:mx-0 text-left">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#1B4332] shrink-0" />
-                <span className="text-[11px] font-medium text-[#1A1A1A]">Breathable Cotton</span>
+            {/* Trust Strip (3-up on mobile, clean luxury icons) */}
+            <div className="pt-6 border-t border-border-soft/80 grid grid-cols-3 gap-3 max-w-lg mx-auto lg:mx-0 text-center sm:text-left">
+              <div className="flex flex-col sm:flex-row items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-white border border-border-soft flex items-center justify-center shrink-0 shadow-2xs">
+                  <ShieldCheck className="w-4 h-4 text-forest" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold text-near-black leading-tight">Breathable Cotton</p>
+                  <p className="text-[10px] text-muted hidden sm:block">Pre-washed natural yarn</p>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Heart className="w-4 h-4 text-[#D4A574] shrink-0" />
-                <span className="text-[11px] font-medium text-[#1A1A1A]">Family Boutique</span>
+
+              <div className="flex flex-col sm:flex-row items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-white border border-border-soft flex items-center justify-center shrink-0 shadow-2xs">
+                  <Heart className="w-4 h-4 text-gold" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold text-near-black leading-tight">30+ Years in Kemps Corner</p>
+                  <p className="text-[10px] text-muted hidden sm:block">Neighborhood boutique</p>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-[#25D366] shrink-0" />
-                <span className="text-[11px] font-medium text-[#1A1A1A]">WhatsApp Personal Care</span>
+
+              <div className="flex flex-col sm:flex-row items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-white border border-border-soft flex items-center justify-center shrink-0 shadow-2xs">
+                  <MessageSquare className="w-4 h-4 text-whatsapp" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold text-near-black leading-tight">WhatsApp Personal Care</p>
+                  <p className="text-[10px] text-muted hidden sm:block">Live tape sizing checks</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Image Column */}
+          {/* Right Editorial Image Column (5 cols) */}
           <div className="lg:col-span-5">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              <div className="relative h-[340px] sm:h-[420px] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+              <div className="relative h-[380px] sm:h-[460px] lg:h-[490px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <Image
-                  src="/store_front.jpg"
-                  alt="Inside Warden & Sons boutique at Kemps Corner, Mumbai"
+                  src="/hero-editorial.webp"
+                  alt="Warden & Sons pure cotton luxury children's clothing atelier"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  sizes="(max-width: 1024px) 100vw, 42vw"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                 
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-xs p-3.5 rounded-2xl border border-white/50 shadow-md flex items-center justify-between">
-                  <div>
-                    <p className="font-serif font-bold text-xs text-[#1B4332]">Kemps Corner Store</p>
-                    <p className="text-[10px] text-gray-500 font-medium">Walk-ins & WhatsApp Enquiries Welcome</p>
+                {/* Kemps Corner Boutique Heritage Overlay Badge */}
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-white/60 shadow-lg flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <p className="font-serif font-bold text-sm text-forest leading-tight">
+                      Kemps Corner Boutique
+                    </p>
+                    <p className="text-[11px] text-muted">
+                      Near Pedder Road Flyover • Walk-ins & WhatsApp Welcome
+                    </p>
                   </div>
-                  <span className="text-[10px] font-bold px-2 py-1 rounded-md bg-[#FAF8F5] text-[#D4A574] border border-[#D4A574]/30">
-                    Open Mon-Sat
+                  <span className="editorial-label text-gold bg-bg-cream px-2.5 py-1.5 rounded-lg border border-gold/30 shrink-0">
+                    Est. 1994
                   </span>
                 </div>
               </div>
@@ -93,10 +115,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Editorial Announcement Strip (Static, accessible, no moving marquee) */}
-      <div className="mt-12 bg-[#1B4332] text-white py-3.5 border-y border-[#143527]">
+      {/* Editorial Announcement Strip */}
+      <div className="mt-12 bg-forest text-white py-3.5 border-y border-forest-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-center text-xs tracking-wider uppercase font-semibold text-[#D4A574]">
+          <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-center text-xs tracking-wider uppercase font-semibold text-gold font-mono">
             <span>★ Kemps Corner, South Mumbai</span>
             <span className="hidden sm:inline">•</span>
             <span>Breathable Daily Cotton</span>

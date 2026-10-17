@@ -69,13 +69,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
       {/* Editorial Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
+        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
           Department Collection
         </span>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
           {displayName}
         </h1>
-        <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
+        <p className="text-xs sm:text-sm text-muted leading-relaxed">
           Pre-washed, azo-free cotton garments crafted for sensitive skin. Select items for your Request List, then send your enquiry on WhatsApp to confirm live colors, sizes, and pricing.
         </p>
       </div>

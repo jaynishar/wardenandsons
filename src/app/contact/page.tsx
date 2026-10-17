@@ -19,13 +19,13 @@ export default function ContactPage() {
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
+        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
           We Are Here To Help
         </span>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
           Contact Our Store Desk
         </h1>
-        <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
+        <p className="text-xs sm:text-sm text-muted leading-relaxed">
           Have questions regarding infant sizes, fabric softness, or custom orders? Reach out via form or chat directly on WhatsApp.
         </p>
       </div>
@@ -33,48 +33,48 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Contact Information Column */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-3xl border border-[#EBE7DF] p-7 shadow-xs space-y-6">
-            <h2 className="font-serif font-bold text-xl text-[#1B4332]">
+          <div className="bg-white rounded-3xl border border-border-soft p-7 shadow-xs space-y-6">
+            <h2 className="font-serif font-bold text-xl text-forest">
               Kemps Corner Atelier
             </h2>
 
-            <div className="space-y-4 text-xs sm:text-sm text-[#666666]">
+            <div className="space-y-4 text-xs sm:text-sm text-muted">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#D4A574] shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-[#1A1A1A]">Store Address</p>
+                  <p className="font-bold text-near-black">Store Address</p>
                   <p>{BUSINESS_CONFIG.location.fullAddress}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-[#D4A574] shrink-0 mt-0.5" />
+                <Clock className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-[#1A1A1A]">Store Hours</p>
+                  <p className="font-bold text-near-black">Store Hours</p>
                   <p>{BUSINESS_CONFIG.hours.display}</p>
                   <p className="text-red-600 font-semibold text-xs mt-0.5">Sunday: {BUSINESS_CONFIG.hours.sunday}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-[#D4A574] shrink-0 mt-0.5" />
+                <Phone className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-[#1A1A1A]">Store Desk Phone</p>
-                  <a href={BUSINESS_CONFIG.phone.telLink} className="text-[#1B4332] font-bold hover:underline">
+                  <p className="font-bold text-near-black">Store Desk Phone</p>
+                  <a href={BUSINESS_CONFIG.phone.telLink} className="text-forest font-bold hover:underline">
                     {BUSINESS_CONFIG.phone.display}
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <MessageSquare className="w-5 h-5 text-[#25D366] shrink-0 mt-0.5" />
+                <MessageSquare className="w-5 h-5 text-whatsapp shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-[#1A1A1A]">WhatsApp Ordering</p>
+                  <p className="font-bold text-near-black">WhatsApp Ordering</p>
                   <a
                     href={BUSINESS_CONFIG.phone.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#25D366] font-bold hover:underline"
+                    className="text-whatsapp font-bold hover:underline"
                   >
                     {BUSINESS_CONFIG.phone.display} (Click to Chat)
                   </a>
@@ -82,14 +82,14 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="pt-2 border-t border-[#EBE7DF]">
+            <div className="pt-2 border-t border-border-soft">
               <a
                 href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs shadow-md transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all"
               >
-                <MessageSquare className="w-4 h-4 fill-white text-[#25D366]" />
+                <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
                 <span>Immediate WhatsApp Chat</span>
               </a>
             </div>

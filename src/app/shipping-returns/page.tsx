@@ -17,20 +17,20 @@ export default function ShippingReturnsPage() {
   return (
     <div className="py-12 md:py-20 font-sans max-w-3xl mx-auto px-4 sm:px-6">
       <div className="space-y-3 mb-8">
-        <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-[#FAF8F5] px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
+        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-bg-cream px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
           Store Policies & Fulfillment
         </span>
-        <h1 className="font-serif text-3xl md:text-4xl font-bold text-[#1B4332]">
+        <h1 className="font-serif text-3xl md:text-4xl font-bold text-forest">
           Delivery, Pickup & Exchanges
         </h1>
-        <p className="text-xs text-[#666666]">
+        <p className="text-xs text-muted">
           Warden & Sons Kids Wear • Kemps Corner, South Mumbai
         </p>
       </div>
 
-      <div className="space-y-8 text-xs sm:text-sm text-[#444] leading-relaxed">
-        <section className="bg-white p-6 rounded-2xl border border-[#EBE7DF] space-y-3 shadow-xs">
-          <h2 className="font-serif font-bold text-base text-[#1B4332]">
+      <div className="space-y-8 text-xs sm:text-sm text-muted leading-relaxed">
+        <section className="bg-white p-6 rounded-2xl border border-border-soft space-y-3 shadow-xs">
+          <h2 className="font-serif font-bold text-base text-forest">
             1. Personalized WhatsApp Ordering
           </h2>
           <p>
@@ -41,8 +41,8 @@ export default function ShippingReturnsPage() {
           </p>
         </section>
 
-        <section className="bg-white p-6 rounded-2xl border border-[#EBE7DF] space-y-3 shadow-xs">
-          <h2 className="font-serif font-bold text-base text-[#1B4332]">
+        <section className="bg-white p-6 rounded-2xl border border-border-soft space-y-3 shadow-xs">
+          <h2 className="font-serif font-bold text-base text-forest">
             2. Local Delivery & In-Store Pickup
           </h2>
           <p>
@@ -58,8 +58,8 @@ export default function ShippingReturnsPage() {
           </ul>
         </section>
 
-        <section className="bg-white p-6 rounded-2xl border border-[#EBE7DF] space-y-3 shadow-xs">
-          <h2 className="font-serif font-bold text-base text-[#1B4332]">
+        <section className="bg-white p-6 rounded-2xl border border-border-soft space-y-3 shadow-xs">
+          <h2 className="font-serif font-bold text-base text-forest">
             3. Size Exchanges
           </h2>
           <p>
@@ -75,8 +75,8 @@ export default function ShippingReturnsPage() {
           </ul>
         </section>
 
-        <section className="bg-white p-6 rounded-2xl border border-[#EBE7DF] space-y-3 shadow-xs">
-          <h2 className="font-serif font-bold text-base text-[#1B4332]">
+        <section className="bg-white p-6 rounded-2xl border border-border-soft space-y-3 shadow-xs">
+          <h2 className="font-serif font-bold text-base text-forest">
             4. Custom Bulk & School Uniforms
           </h2>
           <p>
@@ -84,8 +84,8 @@ export default function ShippingReturnsPage() {
           </p>
         </section>
 
-        <div className="bg-[#FAF8F5] p-6 rounded-2xl border border-[#EBE7DF] text-center space-y-3">
-          <p className="text-xs text-[#666666]">
+        <div className="bg-bg-cream p-6 rounded-2xl border border-border-soft text-center space-y-3">
+          <p className="text-xs text-muted">
             Have a specific delivery or exchange question? Our store team is here to assist you:
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -93,18 +93,18 @@ export default function ShippingReturnsPage() {
               href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] text-white font-bold text-xs shadow-xs hover:bg-[#20ba59]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-whatsapp text-white font-bold text-xs shadow-xs hover:bg-whatsapp/90"
             >
-              <MessageSquare className="w-4 h-4 fill-white text-[#25D366]" />
+              <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
               <span>Ask on WhatsApp: {BUSINESS_CONFIG.phone.display}</span>
             </a>
             <a
               href={BUSINESS_CONFIG.location.googleMapsSearchUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-[#EBE7DF] text-[#1A1A1A] font-bold text-xs shadow-xs hover:bg-gray-50"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-border-soft text-near-black font-bold text-xs shadow-xs hover:bg-gray-50"
             >
-              <MapPin className="w-4 h-4 text-[#D4A574]" />
+              <MapPin className="w-4 h-4 text-gold" />
               <span>Visit Kemps Corner Store</span>
             </a>
           </div>

@@ -37,13 +37,13 @@ export default function BulkOrdersPage() {
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-[#D4A574] bg-white px-3.5 py-1.5 rounded-full border border-[#D4A574]/30 inline-block">
+        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
           Institutional Tailoring • South Mumbai
         </span>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B4332] tracking-tight">
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
           Custom School Uniforms & Bulk Apparel
         </h1>
-        <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
+        <p className="text-xs sm:text-sm text-muted leading-relaxed">
           Warden & Sons partners with Mumbai schools, sports academies, and educational foundations to manufacture high-grade cotton uniforms and bespoke event apparel.
         </p>
       </div>
@@ -51,8 +51,8 @@ export default function BulkOrdersPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Information Side */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-3xl border border-[#EBE7DF] p-7 shadow-xs space-y-6">
-            <h2 className="font-serif font-bold text-xl text-[#1B4332]">
+          <div className="bg-white rounded-3xl border border-border-soft p-7 shadow-xs space-y-6">
+            <h2 className="font-serif font-bold text-xl text-forest">
               Production Capabilities
             </h2>
 
@@ -61,36 +61,36 @@ export default function BulkOrdersPage() {
                 const Icon = cap.icon;
                 return (
                   <div key={cap.title} className="flex gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-[#EBE7DF] flex items-center justify-center shrink-0 text-[#1B4332]">
-                      <Icon className="w-5 h-5 text-[#D4A574]" />
+                    <div className="w-10 h-10 rounded-xl bg-bg-cream border border-border-soft flex items-center justify-center shrink-0 text-forest">
+                      <Icon className="w-5 h-5 text-gold" />
                     </div>
                     <div>
-                      <h3 className="font-serif font-bold text-sm text-[#1A1A1A]">{cap.title}</h3>
-                      <p className="text-xs text-[#666666] leading-relaxed mt-0.5">{cap.desc}</p>
+                      <h3 className="font-serif font-bold text-sm text-near-black">{cap.title}</h3>
+                      <p className="text-xs text-muted leading-relaxed mt-0.5">{cap.desc}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            <div className="pt-4 border-t border-[#EBE7DF] space-y-2 text-xs text-[#1B4332]">
+            <div className="pt-4 border-t border-border-soft space-y-2 text-xs text-forest">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#25D366] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-whatsapp shrink-0" />
                 <span>Custom embroidery, pocket crests, and screen-printing</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#25D366] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-whatsapp shrink-0" />
                 <span>Fabric swatches shared directly with your committee</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#25D366] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-whatsapp shrink-0" />
                 <span>Flexible batch sizes and quality-controlled stitching</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-[#1B4332] text-white rounded-3xl p-6 shadow-xs space-y-2">
-            <h3 className="font-serif font-bold text-base text-[#D4A574]">
+          <div className="bg-forest text-white rounded-3xl p-6 shadow-xs space-y-2">
+            <h3 className="font-serif font-bold text-base text-gold">
               Urgent Uniform Requirement?
             </h3>
             <p className="text-xs text-gray-200 leading-relaxed">

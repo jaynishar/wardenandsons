@@ -98,36 +98,36 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-[#EBE7DF] p-6 sm:p-8 shadow-xs font-sans">
+    <div className="bg-white rounded-3xl border border-border-soft p-6 sm:p-8 shadow-xs font-sans">
       {whatsappOpened ? (
         <div className="py-8 space-y-6">
-          <div className="w-14 h-14 bg-[#25D366]/10 text-[#25D366] rounded-full flex items-center justify-center mx-auto">
+          <div className="w-14 h-14 bg-whatsapp/10 text-whatsapp rounded-full flex items-center justify-center mx-auto">
             <MessageSquare className="w-7 h-7" />
           </div>
 
           <div className="text-center space-y-2">
-            <h3 className="font-serif text-2xl font-bold text-[#1B4332]">
+            <h3 className="font-serif text-2xl font-bold text-forest">
               WhatsApp Window Opened
             </h3>
-            <p className="text-xs sm:text-sm text-[#666666] max-w-md mx-auto leading-relaxed">
+            <p className="text-xs sm:text-sm text-muted max-w-md mx-auto leading-relaxed">
               Your enquiry has been prepared and formatted for WhatsApp. Please press <strong>Send</strong> in your WhatsApp application to deliver it to our store desk.
             </p>
           </div>
 
           {/* Fallback Copy Area */}
-          <div className="bg-[#FAF8F5] rounded-2xl border border-[#EBE7DF] p-4 space-y-3 max-w-md mx-auto">
+          <div className="bg-bg-cream rounded-2xl border border-border-soft p-4 space-y-3 max-w-md mx-auto">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-[#1B4332] uppercase tracking-wider">
+              <span className="text-[11px] font-bold text-forest uppercase tracking-wider">
                 Prefilled Message Preview
               </span>
               <button
                 type="button"
                 onClick={handleCopyMessage}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1B4332] hover:text-[#D4A574] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-forest hover:text-gold transition-colors cursor-pointer"
               >
                 {copied ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-[#25D366]" />
+                    <Check className="w-3.5 h-3.5 text-whatsapp" />
                     <span>Copied!</span>
                   </>
                 ) : (
@@ -138,7 +138,7 @@ export default function ContactForm() {
                 )}
               </button>
             </div>
-            <pre className="text-[11px] text-[#555] whitespace-pre-wrap font-sans bg-white p-3 rounded-xl border border-[#EBE7DF]/80 max-h-36 overflow-y-auto">
+            <pre className="text-[11px] text-muted whitespace-pre-wrap font-sans bg-white p-3 rounded-xl border border-border-soft/80 max-h-36 overflow-y-auto">
               {generatedMessage}
             </pre>
             <p className="text-[10px] text-gray-500 italic">
@@ -152,14 +152,14 @@ export default function ContactForm() {
               href={BUSINESS_CONFIG.whatsappUrl(generatedMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold shadow-xs transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white text-xs font-bold shadow-xs transition-all"
             >
-              <MessageSquare className="w-4 h-4 fill-white text-[#25D366]" />
+              <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
               <span>Re-open WhatsApp</span>
             </a>
             <button
               onClick={handleNewEnquiry}
-              className="w-full sm:w-auto text-xs font-bold text-[#1B4332] bg-[#FAF8F5] border border-[#1B4332] px-6 py-3 rounded-xl hover:bg-[#1B4332] hover:text-white transition-all cursor-pointer"
+              className="w-full sm:w-auto text-xs font-bold text-forest bg-bg-cream border border-forest px-6 py-3 rounded-xl hover:bg-forest hover:text-white transition-all cursor-pointer"
             >
               Start Another Enquiry
             </button>
@@ -168,65 +168,65 @@ export default function ContactForm() {
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-1">
-            <label className="text-xs font-bold text-[#1A1A1A] flex items-center gap-1.5">
-              <User className="w-3.5 h-3.5 text-[#D4A574]" />
+            <label className="text-xs font-bold text-near-black flex items-center gap-1.5">
+              <User className="w-3.5 h-3.5 text-gold" />
               Full Name <span className="text-red-500">*</span>
             </label>
             <input
               {...register('name')}
               type="text"
               placeholder="e.g. Anandita Merchant"
-              className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
+              className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
             />
             {errors.name && <p className="text-[11px] font-semibold text-red-500">{errors.name.message}</p>}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-xs font-bold text-[#1A1A1A] flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5 text-[#D4A574]" />
+              <label className="text-xs font-bold text-near-black flex items-center gap-1.5">
+                <Phone className="w-3.5 h-3.5 text-gold" />
                 WhatsApp / Phone (Optional)
               </label>
               <input
                 {...register('phone')}
                 type="tel"
                 placeholder="e.g. 9920751567"
-                className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
+                className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
               {errors.phone && <p className="text-[11px] font-semibold text-red-500">{errors.phone.message}</p>}
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs font-bold text-[#1A1A1A] flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-[#D4A574]" />
+              <label className="text-xs font-bold text-near-black flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5 text-gold" />
                 Email Address (Optional)
               </label>
               <input
                 {...register('email')}
                 type="email"
                 placeholder="e.g. anandita@example.com"
-                className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white"
+                className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
               {errors.email && <p className="text-[11px] font-semibold text-red-500">{errors.email.message}</p>}
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-bold text-[#1A1A1A] flex items-center gap-1.5">
-              <MessageSquare className="w-3.5 h-3.5 text-[#D4A574]" />
+            <label className="text-xs font-bold text-near-black flex items-center gap-1.5">
+              <MessageSquare className="w-3.5 h-3.5 text-gold" />
               Your Question or Sizing Query <span className="text-red-500">*</span>
             </label>
             <textarea
               {...register('message')}
               rows={4}
               placeholder="Tell us what you are looking for (e.g. newborn hampers, school uniform sizing, or boutique visit timings)..."
-              className="w-full px-4 py-3 rounded-xl border border-[#EBE7DF] bg-[#FAF8F5] text-xs font-sans focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:bg-white resize-none"
+              className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white resize-none"
             />
             {errors.message && <p className="text-[11px] font-semibold text-red-500">{errors.message.message}</p>}
           </div>
 
-          <div className="bg-[#FAF8F5] p-3 rounded-xl border border-[#EBE7DF] text-[11px] text-gray-600 flex items-start gap-2">
-            <AlertCircle className="w-4 h-4 text-[#D4A574] shrink-0 mt-0.5" />
+          <div className="bg-bg-cream p-3 rounded-xl border border-border-soft text-[11px] text-gray-600 flex items-start gap-2">
+            <AlertCircle className="w-4 h-4 text-gold shrink-0 mt-0.5" />
             <span>
               Submitting opens a prefilled message directly on WhatsApp ({BUSINESS_CONFIG.phone.display}). You can review and edit before sending.
             </span>
@@ -235,9 +235,9 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full min-h-[48px] bg-[#1B4332] hover:bg-[#143527] text-white font-bold py-3.5 px-4 rounded-xl shadow-xs transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full min-h-[48px] bg-forest hover:bg-forest-dark text-white font-bold py-3.5 px-4 rounded-xl shadow-xs transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
           >
-            <MessageSquare className="w-4 h-4 text-[#25D366]" />
+            <MessageSquare className="w-4 h-4 text-whatsapp" />
             <span>Open Enquiry in WhatsApp</span>
           </button>
         </form>
