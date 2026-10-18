@@ -28,6 +28,8 @@ export default function Footer() {
               href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-track="whatsapp_click"
+              data-track-location="footer"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white text-xs font-bold shadow-md transition-all cursor-pointer"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
@@ -35,6 +37,7 @@ export default function Footer() {
             </a>
             <a
               href={BUSINESS_CONFIG.phone.telLink}
+              data-track="call_click"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-forest hover:bg-bg-cream text-xs font-bold shadow-xs transition-all"
             >
               <Phone className="w-4 h-4" />
@@ -158,12 +161,20 @@ export default function Footer() {
           {/* Store Location & Timings */}
           <div className="space-y-3">
             <h5 className="font-serif font-bold text-sm text-forest uppercase tracking-wider">
-              Kemps Corner Atelier
+              Kemps Corner Store
             </h5>
             <div className="space-y-2.5 text-xs text-muted">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-                <span>{BUSINESS_CONFIG.location.fullAddress}</span>
+                <a
+                  href={BUSINESS_CONFIG.location.googleMapsSearchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track="directions_click"
+                  className="hover:underline"
+                >
+                  {BUSINESS_CONFIG.location.fullAddress}
+                </a>
               </div>
               <div className="flex items-start gap-2">
                 <Clock className="w-4 h-4 text-gold shrink-0 mt-0.5" />
@@ -176,6 +187,7 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-gold shrink-0" />
                 <a
                   href={BUSINESS_CONFIG.phone.telLink}
+                  data-track="call_click"
                   className="font-semibold text-forest hover:underline"
                 >
                   {BUSINESS_CONFIG.phone.display}

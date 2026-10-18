@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
+import TrackingProvider from '@/components/TrackingProvider';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { SITE_URL, SITE_CONFIG, getCanonicalUrl } from '@/config/site';
 
@@ -95,6 +96,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="min-h-full flex flex-col bg-bg-cream text-near-black selection:bg-gold/30 selection:text-forest">
+        <TrackingProvider />
         <Header />
         <CartDrawer />
         <main className="flex-grow pb-20 md:pb-0">{children}</main>

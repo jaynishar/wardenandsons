@@ -79,6 +79,8 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chat on WhatsApp"
+                data-track="whatsapp_click"
+                data-track-location="header"
                 className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full bg-forest text-white hover:bg-forest-dark transition-all shadow-xs active:scale-[0.98]"
               >
                 <MessageSquare className="w-4 h-4 text-whatsapp" />
@@ -149,6 +151,8 @@ export default function Header() {
                   href={BUSINESS_CONFIG.phone.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-track="whatsapp_click"
+                  data-track-location="header"
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-forest text-white font-semibold text-sm shadow-xs active:scale-[0.98]"
                 >
                   <MessageSquare className="w-4 h-4 text-whatsapp" />
@@ -156,6 +160,7 @@ export default function Header() {
                 </a>
                 <a
                   href={BUSINESS_CONFIG.phone.telLink}
+                  data-track="call_click"
                   className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-border-soft bg-white text-near-black text-xs font-semibold active:scale-[0.98]"
                 >
                   <Phone className="w-3.5 h-3.5 text-forest" />

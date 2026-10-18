@@ -42,6 +42,8 @@ export default function Hero() {
                 href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track="whatsapp_click"
+                data-track-location="hero"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-white border border-border-soft text-near-black hover:bg-bg-cream font-bold text-sm shadow-xs transition-all hover:border-forest active:scale-[0.98]"
               >
                 <MessageSquare className="w-4 h-4 text-whatsapp" />

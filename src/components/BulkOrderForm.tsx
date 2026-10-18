@@ -182,7 +182,7 @@ export default function BulkOrderForm() {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} data-track="bulk_form_submit" className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
               <label className="text-xs font-bold text-near-black flex items-center gap-1.5">
@@ -329,6 +329,7 @@ export default function BulkOrderForm() {
           <button
             type="submit"
             disabled={isSubmitting}
+            data-track="bulk_form_submit"
             className="w-full min-h-[48px] bg-forest hover:bg-forest-dark text-white font-bold py-3.5 px-4 rounded-xl shadow-xs transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
           >
             <MessageSquare className="w-4 h-4 text-whatsapp" />

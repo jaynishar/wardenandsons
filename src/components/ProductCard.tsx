@@ -83,6 +83,8 @@ export default function ProductCard({ product }: ProductCardProps) {
             href={directInquiryUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="whatsapp_click"
+            data-track-location="product"
             className="absolute top-3 right-3 min-w-[44px] min-h-[44px] rounded-full bg-white/95 backdrop-blur-xs text-whatsapp hover:bg-whatsapp hover:text-white transition-all shadow-xs flex items-center justify-center cursor-pointer active:scale-[0.98]"
             title="Inquire directly on WhatsApp"
             aria-label={`Inquire about ${product.title} on WhatsApp`}
@@ -114,6 +116,9 @@ export default function ProductCard({ product }: ProductCardProps) {
               animate={justAdded ? { scale: [1, 1.02, 1] } : { scale: 1 }}
               transition={{ type: 'spring', damping: 20, stiffness: 300 }}
               onClick={handleAddToRequest}
+              data-track="add_to_request"
+              data-track-category={product.category}
+              data-track-item={product.title}
               className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-xs active:scale-[0.98] ${
                 justAdded ? 'bg-forest text-white' : 'bg-forest hover:bg-forest-dark text-white'
               }`}

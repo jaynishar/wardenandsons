@@ -440,6 +440,8 @@ export default function CartDrawer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setWhatsappTriggered(true)}
+                    data-track="send_enquiry"
+                    data-track-items-count={items.length}
                     className="w-full min-h-[48px] flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-sm shadow-md transition-all hover:scale-[1.01] cursor-pointer"
                   >
                     <MessageSquare className="w-5 h-5 fill-white text-whatsapp" />

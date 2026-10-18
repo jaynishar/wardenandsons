@@ -29,7 +29,7 @@ export default function VisitUsPage() {
       {/* Editorial Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
-          Physical Atelier
+          Our Shop
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
           Visit Our Kemps Corner Store
@@ -67,6 +67,7 @@ export default function VisitUsPage() {
                 href={googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track="directions_click"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-xs transition-all"
               >
                 <span>Open in Google Maps</span>
@@ -77,6 +78,8 @@ export default function VisitUsPage() {
                 href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track="whatsapp_click"
+                data-track-location="page"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-xs transition-all"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
@@ -121,7 +124,11 @@ export default function VisitUsPage() {
               accessible from{' '}
               <strong>Pedder Road, Altamount Road, Breach Candy, Nepean Sea Road</strong>, and Grant
               Road. If you need assistance finding parking or store access, call us directly at{' '}
-              <a href={BUSINESS_CONFIG.phone.telLink} className="font-bold text-forest underline">
+              <a
+                href={BUSINESS_CONFIG.phone.telLink}
+                data-track="call_click"
+                className="font-bold text-forest underline"
+              >
                 {BUSINESS_CONFIG.phone.display}
               </a>
               .
@@ -152,6 +159,8 @@ export default function VisitUsPage() {
               href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-track="whatsapp_click"
+              data-track-location="page"
               className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />

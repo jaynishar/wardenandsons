@@ -247,6 +247,8 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
+            data-track="whatsapp_click"
+            data-track-location="page"
             className="w-full min-h-[48px] bg-forest hover:bg-forest-dark text-white font-bold py-3.5 px-4 rounded-xl shadow-xs transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
           >
             <MessageSquare className="w-4 h-4 text-whatsapp" />

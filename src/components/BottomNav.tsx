@@ -81,6 +81,8 @@ export default function BottomNav() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp Store Desk"
+            data-track="whatsapp_click"
+            data-track-location="sticky"
             className="flex flex-col items-center justify-center h-full min-h-[44px] text-whatsapp hover:text-whatsapp/90 transition-colors"
           >
             <MessageSquare className="w-5 h-5 mb-1 fill-whatsapp/20" />
