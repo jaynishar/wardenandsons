@@ -22,7 +22,7 @@ export default function HowItWorksPage() {
       step: '01',
       title: 'Browse Catalogue & Build Request List',
       description:
-        'Explore our digital catalogue of pure combed cotton and muslin kidswear. Choose your preferred categories and representative styles. Adding items to your Request List stores them safely on your device.',
+        'Explore our digital catalogue of pure combed cotton and muslin kidswear. Choose your preferred categories and items. Adding items to your Request List stores them safely on your device.',
       icon: ClipboardList,
       details: [
         'Explore Newborn (0-24M), Boys (0-16Y), Girls (0-16Y), Men & Women basics',
@@ -74,7 +74,7 @@ export default function HowItWorksPage() {
         </h1>
         <p className="text-xs sm:text-sm text-muted leading-relaxed">
           We combine the ease of digital catalogue browsing with the authentic warmth, live
-          measuring-tape sizing, and personal care of our South Bombay boutique.
+          measuring-tape sizing, and personal care of our South Bombay shop.
         </p>
       </div>
 
@@ -124,7 +124,7 @@ export default function HowItWorksPage() {
             Ready to Explore the Catalogue?
           </h2>
           <p className="text-xs sm:text-sm text-gray-200 max-w-md mx-auto leading-relaxed">
-            Browse our departments, add representative styles to your Request List, and send it
+            Browse our shop categories, add items to your Request List, and send it
             over. No payment until you approve photos and sizing!
           </p>
         </div>
@@ -140,6 +140,8 @@ export default function HowItWorksPage() {
             href={BUSINESS_CONFIG.phone.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="whatsapp_click"
+            data-track-location="how_it_works_cta"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all hover:scale-102"
           >
             <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />

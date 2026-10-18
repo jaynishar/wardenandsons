@@ -212,9 +212,7 @@ export default function CartDrawer() {
                         Your request list is empty
                       </h3>
                       <p className="text-xs text-muted max-w-xs mx-auto leading-relaxed">
-                        Browse our catalogue and tap &quot;Add to Request&quot; on any department or
-                        representative garment. You can specify age, size, and preferences before
-                        sending to our Kemps Corner shop.
+                        Browse our catalogue and tap &quot;Add to Request&quot; on any item. You can specify age, size, and preferences before sending to our Kemps Corner shop.
                       </p>
                     </div>
                     <button

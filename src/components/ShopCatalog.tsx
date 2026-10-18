@@ -112,7 +112,7 @@ export default function ShopCatalog({
               onChange={e => setSortBy(e.target.value)}
               className="px-3 py-2 rounded-xl border border-border-soft bg-bg-cream text-xs font-medium focus:outline-none focus:ring-2 focus:ring-forest"
             >
-              <option value="featured">Curated Order</option>
+              <option value="featured">Featured</option>
               <option value="az">Alphabetical: A to Z</option>
               <option value="za">Alphabetical: Z to A</option>
             </select>
@@ -180,6 +180,8 @@ export default function ShopCatalog({
           href={BUSINESS_CONFIG.phone.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
+          data-track="whatsapp_click"
+          data-track-location="catalog_notice"
           className="text-[11px] font-bold text-forest hover:text-gold inline-flex items-center gap-1 shrink-0"
         >
           <MessageSquare className="w-3.5 h-3.5 text-whatsapp" />
@@ -190,8 +192,7 @@ export default function ShopCatalog({
       {/* Results Count Banner */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 px-2">
         <p className="text-xs font-semibold text-muted">
-          Showing <span className="text-forest font-bold">{filteredProducts.length}</span>{' '}
-          representative styles
+          Showing <span className="text-forest font-bold">{filteredProducts.length}</span> items
           {categoryTitle ? ` in ${categoryTitle}` : ''}
         </p>
 
@@ -199,6 +200,8 @@ export default function ShopCatalog({
           href={BUSINESS_CONFIG.phone.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
+          data-track="whatsapp_click"
+          data-track-location="catalog_help"
           className="text-xs font-bold text-forest hover:text-gold flex items-center gap-1.5"
         >
           <MessageSquare className="w-3.5 h-3.5 text-whatsapp" />
@@ -210,16 +213,18 @@ export default function ShopCatalog({
       {filteredProducts.length === 0 ? (
         <div className="bg-white rounded-3xl border border-border-soft p-12 text-center space-y-4">
           <p className="font-serif text-lg text-near-black">
-            No representative styles matched your search.
+            No items matched your search.
           </p>
           <p className="text-xs text-gray-500 max-w-sm mx-auto">
-            Our Kemps Corner boutique stocks hundreds of additional designs, colors, and sizes.
+            Our Kemps Corner shop stocks hundreds of additional designs, colors, and sizes.
             Message our team directly with a photo or description!
           </p>
           <a
             href={BUSINESS_CONFIG.phone.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="whatsapp_click"
+            data-track-location="catalog_empty_state"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-forest text-white text-xs font-bold cursor-pointer hover:bg-forest-dark"
           >
             <MessageSquare className="w-4 h-4 text-whatsapp" />

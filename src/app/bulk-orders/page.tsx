@@ -19,7 +19,7 @@ export default function BulkOrdersPage() {
   const capabilities = [
     {
       title: 'School Uniforms & Pinafores',
-      desc: 'Durable, colorfast poly-cotton and pure cotton shirts, skirts, shorts, and trousers tailored to school dress codes.',
+      desc: 'Durable, colorfast poly-cotton and pure cotton shirts, skirts, shorts, and trousers made to school dress codes.',
       icon: GraduationCap,
     },
     {
@@ -45,14 +45,14 @@ export default function BulkOrdersPage() {
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
-          Institutional Tailoring • South Mumbai
+          Uniforms & Bulk Orders • South Mumbai
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
           Custom School Uniforms & Bulk Apparel
         </h1>
         <p className="text-xs sm:text-sm text-muted leading-relaxed">
           Warden & Sons partners with Mumbai schools, sports academies, and educational foundations
-          to manufacture high-grade cotton uniforms and bespoke event apparel.
+          to manufacture high-grade cotton uniforms and custom event apparel.
         </p>
       </div>
 

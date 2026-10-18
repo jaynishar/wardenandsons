@@ -32,7 +32,7 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
   const lines: string[] = [
     'Hello Warden & Sons Kids Wear!',
     '',
-    'I would like to enquire about the following representative items from your catalogue:',
+    'I would like to enquire about the following items from your catalogue:',
     '',
   ];
 

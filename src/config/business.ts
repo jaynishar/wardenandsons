@@ -53,7 +53,7 @@ export const BUSINESS_CONFIG = {
   businessModel: {
     type: 'Digital Catalogue & WhatsApp Request Builder',
     description:
-      'Warden & Sons operates as a physical boutique at Kemps Corner. This website is a representative catalogue and enquiry builder. Customers build a request list and send it via WhatsApp. The shop confirms live availability, shares actual photos, provides exact size measurements with a measuring tape, and completes sales directly.',
+      'Warden & Sons operates as a physical shop at Kemps Corner. This website is a digital catalogue and enquiry builder. Customers build a request list and send it via WhatsApp. The shop confirms live availability, shares actual photos, provides exact size measurements with a measuring tape, and completes sales directly.',
   },
 
   whatsappUrl: (message?: string) =>

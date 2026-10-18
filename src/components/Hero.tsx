@@ -23,8 +23,8 @@ export default function Hero() {
             </h1>
 
             <p className="text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Serving generations of families from our Kemps Corner boutique. Explore breathable
-              newborn essentials, playwear, and everyday comfort basics tailored for Mumbai’s
+              Serving generations of families from our Kemps Corner shop. Explore breathable
+              newborn essentials, playwear, and everyday comfort basics crafted for Mumbai’s
               tropical climate.
             </p>
 
@@ -97,7 +97,7 @@ export default function Hero() {
               <div className="relative h-[380px] sm:h-[460px] lg:h-[490px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <Image
                   src="/hero-editorial.webp"
-                  alt="Warden & Sons pure cotton luxury children's clothing atelier"
+                  alt="Warden & Sons pure cotton children's clothing in Kemps Corner"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 42vw"
@@ -111,7 +111,7 @@ export default function Hero() {
                 <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-white/60 shadow-lg flex items-center justify-between">
                   <div className="space-y-0.5">
                     <p className="font-serif font-bold text-sm text-forest leading-tight">
-                      Kemps Corner Boutique
+                      Kemps Corner Store
                     </p>
                     <p className="text-[11px] text-muted">
                       Near Pedder Road Flyover • Walk-ins & WhatsApp Welcome
@@ -131,7 +131,7 @@ export default function Hero() {
       <div className="mt-12 bg-forest text-white py-3.5 border-y border-forest-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-center text-xs tracking-wider uppercase font-semibold text-gold font-mono">
-            <span>★ Kemps Corner, South Mumbai</span>
+            <span>Kemps Corner, South Mumbai</span>
             <span className="hidden sm:inline">•</span>
             <span>Breathable Daily Cotton</span>
             <span className="hidden sm:inline">•</span>
@@ -139,7 +139,7 @@ export default function Hero() {
             <span className="hidden sm:inline">•</span>
             <span>WhatsApp Desk: {BUSINESS_CONFIG.phone.display}</span>
             <span className="hidden sm:inline">•</span>
-            <span>Bespoke School & Sports Uniforms</span>
+            <span>Custom School & Sports Uniforms</span>
           </div>
         </div>
       </div>

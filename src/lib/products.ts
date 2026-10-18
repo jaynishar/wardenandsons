@@ -122,7 +122,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
     name: 'Custom Uniforms & Bulk Orders',
     ageOrSizeRange: 'Schools, Academies & Teams',
     summary:
-      'Bespoke school uniform manufacturing, cricket coaching whites, athletic event jerseys, and institutional clothing tailored to institutional specifications.',
+      'Custom school uniform manufacturing, cricket coaching whites, athletic event jerseys, and institutional clothing made to institutional specifications.',
     typicalItems: [
       'School Uniform Shirts & Trousers',
       'School Skirts & Pinafores',
@@ -242,7 +242,7 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
     ageOrSizeRange: '6-7Y to 13-16Y',
     fabricDetails: 'Breathable Poly-Cotton Blend',
     description:
-      'Polo-collar match jersey with reinforced pants. Tailored specifically for morning cricket academy training at local Mumbai maidaans.',
+      'Polo-collar match jersey with reinforced pants. Designed specifically for morning cricket academy training at local Mumbai maidaans.',
     image: '/products/by-cricket.webp',
     isRepresentativeSample: true,
   },
@@ -460,13 +460,13 @@ export const CATALOGUE_ITEMS: CatalogueItem[] = [
   // ==================== BULK & INSTITUTIONAL ====================
   {
     id: 'cat-bk-01',
-    title: 'Bespoke School Uniforms (Shirts, Pinafores & Trousers)',
+    title: 'Custom School Uniforms (Shirts, Pinafores & Trousers)',
     category: 'bulk',
     subCategory: 'School Uniforms',
     ageOrSizeRange: 'Nursery to Standard XII',
     fabricDetails: 'Durable Poly-Cotton & Pure Cotton Weaves',
     description:
-      'Custom school uniforms with bespoke pocket crest embroidery, color-matched trims, and reinforced stitching.',
+      'Custom school uniforms with direct pocket crest embroidery, color-matched trims, and reinforced stitching.',
     image: '/products/bk-uniform.webp',
     isRepresentativeSample: true,
   },

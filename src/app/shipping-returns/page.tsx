@@ -91,7 +91,7 @@ export default function ShippingReturnsPage() {
             4. Custom Bulk & School Uniforms
           </h2>
           <p>
-            Custom tailored school uniforms and embroidered institution kits are made to order based
+            Custom school uniforms and embroidered institution kits are made to order based
             on agreed measurements and specifications. Advance details and production timelines are
             confirmed with the school or institution prior to manufacturing.
           </p>
@@ -106,6 +106,8 @@ export default function ShippingReturnsPage() {
               href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-track="whatsapp_click"
+              data-track-location="shipping_returns"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-whatsapp text-white font-bold text-xs shadow-xs hover:bg-whatsapp/90"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />

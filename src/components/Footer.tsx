@@ -118,7 +118,7 @@ export default function Footer() {
                   href="/bulk-orders"
                   className="hover:text-forest transition-colors text-gold font-bold"
                 >
-                  🎒 Custom School Uniforms & Bulk Enquiries
+                  Custom School Uniforms & Bulk Enquiries
                 </Link>
               </li>
             </ul>
@@ -137,7 +137,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/about" className="hover:text-forest transition-colors">
-                  Our Boutique Heritage
+                  Our Shop Heritage (Est. 1994)
                 </Link>
               </li>
               <li>

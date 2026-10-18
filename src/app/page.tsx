@@ -29,24 +29,24 @@ export default function HomePage() {
         <HowItWorks />
       </Reveal>
 
-      {/* 3. Category Grid (Curated Departments) */}
+      {/* 3. Category Grid (Shop by Age) */}
       <Reveal>
         <CategoryGrid />
       </Reveal>
 
-      {/* 4. Featured Representative Products */}
+      {/* 4. Featured Products */}
       <Reveal>
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="editorial-label text-gold bg-white px-3 py-1 rounded-full border border-gold/30 inline-block mb-2">
-                Representative Offerings
+              <span className="text-[11px] font-mono uppercase tracking-widest text-muted block mb-1">
+                Everyday Essentials
               </span>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-forest">
-                Featured Atelier Basics
+                Featured Cotton Basics
               </h2>
               <p className="text-xs sm:text-sm text-muted mt-1 max-w-lg">
-                A curated preview of our everyday essentials. Actual store inventory carries
+                A selection of our everyday cotton clothing. Our Kemps Corner store carries
                 hundreds more prints, colors, and sizes.
               </p>
             </div>
@@ -73,16 +73,15 @@ export default function HomePage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
           <div className="bg-forest text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-forest-dark relative overflow-hidden">
             <div className="relative z-10 max-w-2xl space-y-4 text-center sm:text-left">
-              <span className="editorial-label text-gold bg-forest-dark px-3.5 py-1.5 rounded-full inline-block">
-                💬 Direct Concierge Shopping
+              <span className="text-[11px] font-mono uppercase tracking-widest text-gold block mb-1">
+                Direct WhatsApp Service
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold leading-tight">
                 Looking for a Specific Size, Print, or Gift Set?
               </h2>
               <p className="text-xs sm:text-sm text-gray-200 leading-relaxed">
-                Don’t spend hours searching through filters. Text our Kemps Corner store desk with
-                your requirements. We’ll immediately check live racks and share photos with accurate
-                dimensions.
+                Text our Kemps Corner store desk with your requirements. We’ll check live racks and
+                share photos with flat measuring tape dimensions.
               </p>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
@@ -90,6 +89,8 @@ export default function HomePage() {
                   href={BUSINESS_CONFIG.phone.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-track="whatsapp_click"
+                  data-track-location="page"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all active:scale-[0.98] cursor-pointer"
                 >
                   <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />

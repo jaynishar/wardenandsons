@@ -11,7 +11,7 @@ const faqs: FAQItem[] = [
   {
     question: 'How does WhatsApp enquiry and ordering work?',
     answer:
-      'Warden & Sons carries a wide, rotating physical inventory at Kemps Corner. You can browse our representative catalogue online, add items to your Request List, specify any size or colour preferences, and click "Send Enquiry on WhatsApp". Our shop team receives your list, checks live availability, sends real photographs and dimensions, confirms current prices, and arranges fulfillment directly.',
+      'Warden & Sons carries a wide, rotating physical inventory at Kemps Corner. You can browse our online catalogue, add items to your Request List, specify any size or colour preferences, and click "Send Enquiry on WhatsApp". Our shop team receives your list, checks live availability, sends real photographs and dimensions, confirms current prices, and arranges fulfillment directly.',
   },
   {
     question: 'How do you ensure the right fit and sizing for my child?',
@@ -24,14 +24,14 @@ const faqs: FAQItem[] = [
       'Customers in South Mumbai and across the city can pick up ready packages directly from our Kemps Corner store or have orders delivered via local couriers. For orders across India, courier shipping is coordinated directly during your WhatsApp conversation based on your address and timeline.',
   },
   {
-    question: 'Can I visit the physical boutique at Kemps Corner in person?',
+    question: 'Can I visit the physical shop at Kemps Corner in person?',
     answer:
-      'Yes, absolutely! We love welcoming families into our boutique. We are located at Kemps Corner, South Mumbai (near the Pedder Road flyover). Store hours are Monday to Saturday from 10:30 AM to 8:30 PM (Sunday closed).',
+      'Yes, absolutely! We love welcoming families into our shop. We are located at Kemps Corner, South Mumbai (near the Pedder Road flyover). Store hours are Monday to Saturday from 10:30 AM to 8:30 PM (Sunday closed).',
   },
   {
     question: 'How do exchanges work if a size doesn’t fit?',
     answer:
-      'Because every piece is personally verified before dispatch, sizing mismatches are rare. If an unworn garment with tags intact needs an exchange, you can exchange it directly at our Kemps Corner boutique or coordinate an exchange with our store team on WhatsApp.',
+      'Because every piece is personally verified before dispatch, sizing mismatches are rare. If an unworn garment with tags intact needs an exchange, you can exchange it directly at our Kemps Corner shop or coordinate an exchange with our store team on WhatsApp.',
   },
   {
     question: 'Do you take custom school uniform or bulk institutional enquiries?',

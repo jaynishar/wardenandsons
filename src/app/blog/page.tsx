@@ -28,7 +28,7 @@ export default function BlogIndexPage() {
       {/* Header */}
       <div className="text-center space-y-4">
         <span className="inline-flex items-center gap-1 bg-primary-100 text-primary-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider font-sans">
-          📚 Warden & Sons Library
+          Warden & Sons Library
         </span>
         <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-primary-800 leading-tight">
           Parenting & Sizing Guides
