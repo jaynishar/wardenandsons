@@ -49,7 +49,8 @@ export default function AboutPage() {
           Dressing South Mumbai’s Children For Generations
         </h1>
         <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          From our neighborhood boutique at Kemps Corner to families across Mumbai. Discover how our family business preserves comfort, trust, and craftsmanship.
+          From our neighborhood boutique at Kemps Corner to families across Mumbai. Discover how our
+          family business preserves comfort, trust, and craftsmanship.
         </p>
       </section>
 
@@ -77,13 +78,21 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-3.5 text-xs sm:text-sm text-muted leading-relaxed">
             <p>
-              For over three decades, Warden & Sons has welcomed families in the historic retail avenue of <strong>Kemps Corner, South Mumbai</strong>. Our founding purpose was simple: to create a welcoming neighborhood space where parents could find pure, soft, honest cotton clothing for their little ones without the noise of corporate department stores.
+              For over three decades, Warden & Sons has welcomed families in the historic retail
+              avenue of <strong>Kemps Corner, South Mumbai</strong>. Our founding purpose was
+              simple: to create a welcoming neighborhood space where parents could find pure, soft,
+              honest cotton clothing for their little ones without the noise of corporate department
+              stores.
             </p>
             <p>
-              Over 30 years, South Mumbai has transformed, but our core philosophy has not wavered. We inspect every seam, avoid scratchy synthetic polyester in everyday sleepwear, and keep our relationships personal and transparent.
+              Over 30 years, South Mumbai has transformed, but our core philosophy has not wavered.
+              We inspect every seam, avoid scratchy synthetic polyester in everyday sleepwear, and
+              keep our relationships personal and transparent.
             </p>
             <p>
-              Today, we are honored to dress the children and grandchildren of our earliest customers. Whether you walk into our Kemps Corner shop or message us on WhatsApp from across India, you will always be treated as a welcomed family neighbor.
+              Today, we are honored to dress the children and grandchildren of our earliest
+              customers. Whether you walk into our Kemps Corner shop or message us on WhatsApp from
+              across India, you will always be treated as a welcomed family neighbor.
             </p>
           </div>
 
@@ -120,7 +129,7 @@ export default function AboutPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {values.map((v) => {
+          {values.map(v => {
             const Icon = v.icon;
             return (
               <div
@@ -147,7 +156,8 @@ export default function AboutPage() {
           Experience Our Boutique in Person
         </h3>
         <p className="text-xs sm:text-sm text-muted leading-relaxed max-w-lg mx-auto">
-          We are located at Kemps Corner, near Pedder Road Flyover. Drop in between 10:30 AM and 8:30 PM (Mon–Sat) to feel our fabric quality firsthand.
+          We are located at Kemps Corner, near Pedder Road Flyover. Drop in between 10:30 AM and
+          8:30 PM (Mon–Sat) to feel our fabric quality firsthand.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link

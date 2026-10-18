@@ -8,7 +8,7 @@ export const BUSINESS_CONFIG = {
   name: 'Warden & Sons Kids Wear',
   legalName: 'Warden & Sons',
   tagline: 'Quality Kidswear & Cotton Essentials in South Mumbai',
-  
+
   /**
    * ESTABLISHMENT YEAR AUDIT NOTE:
    * Historical project materials cite both 1994 and 1995.

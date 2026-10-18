@@ -37,12 +37,13 @@ export default function HowItWorks() {
             How WhatsApp Catalogue Shopping Works
           </h2>
           <p className="text-xs sm:text-sm text-muted leading-relaxed">
-            No rigid automated checkouts or guessing sizes online. Experience personal service from an authentic South Mumbai family boutique.
+            No rigid automated checkouts or guessing sizes online. Experience personal service from
+            an authentic South Mumbai family boutique.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {steps.map((s) => {
+          {steps.map(s => {
             const Icon = s.icon;
             return (
               <div
@@ -53,18 +54,12 @@ export default function HowItWorks() {
                   <div className="w-12 h-12 rounded-xl bg-forest text-white flex items-center justify-center shadow-xs">
                     <Icon className="w-6 h-6 text-gold" />
                   </div>
-                  <span className="font-serif text-3xl font-bold text-gold/40">
-                    0{s.step}
-                  </span>
+                  <span className="font-serif text-3xl font-bold text-gold/40">0{s.step}</span>
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="font-serif font-bold text-lg text-near-black">
-                    {s.title}
-                  </h3>
-                  <p className="text-xs text-muted leading-relaxed">
-                    {s.description}
-                  </p>
+                  <h3 className="font-serif font-bold text-lg text-near-black">{s.title}</h3>
+                  <p className="text-xs text-muted leading-relaxed">{s.description}</p>
                 </div>
 
                 <div className="pt-2 flex items-center gap-1.5 text-[11px] font-semibold text-forest">

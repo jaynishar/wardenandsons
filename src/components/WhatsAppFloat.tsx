@@ -22,9 +22,7 @@ export default function WhatsAppFloat() {
           <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
         </span>
         <MessageSquare className="w-5 h-5 fill-white text-whatsapp" />
-        <span className="text-xs font-bold tracking-wide hidden sm:inline">
-          WhatsApp Desk
-        </span>
+        <span className="text-xs font-bold tracking-wide hidden sm:inline">WhatsApp Desk</span>
       </a>
     </div>
   );

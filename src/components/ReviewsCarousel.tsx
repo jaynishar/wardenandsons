@@ -19,7 +19,8 @@ export default function ReviewsCarousel() {
           {BUSINESS_CONFIG.establishment.displayText}
         </h3>
         <p className="text-xs sm:text-sm text-muted leading-relaxed italic">
-          &ldquo;Our boutique has dressed generations of South Mumbai children through personal family relationships, honest cotton quality, and word-of-mouth trust.&rdquo;
+          &ldquo;Our boutique has dressed generations of South Mumbai children through personal
+          family relationships, honest cotton quality, and word-of-mouth trust.&rdquo;
         </p>
       </div>
 

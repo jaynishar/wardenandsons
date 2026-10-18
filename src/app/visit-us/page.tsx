@@ -28,7 +28,8 @@ export default function VisitUsPage() {
           Visit Our Kemps Corner Store
         </h1>
         <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          Step inside our South Mumbai shop to touch our breathable cotton fabrics, check sizes in person, and meet our family team.
+          Step inside our South Mumbai shop to touch our breathable cotton fabrics, check sizes in
+          person, and meet our family team.
         </p>
       </div>
 
@@ -43,9 +44,7 @@ export default function VisitUsPage() {
                 <MapPin className="w-6 h-6 text-gold" />
               </div>
               <div className="space-y-1">
-                <h2 className="font-serif font-bold text-lg text-near-black">
-                  Boutique Location
-                </h2>
+                <h2 className="font-serif font-bold text-lg text-near-black">Boutique Location</h2>
                 <p className="text-xs sm:text-sm text-muted leading-relaxed">
                   <strong>Warden & Sons Kids Wear</strong>
                   <br />
@@ -86,9 +85,7 @@ export default function VisitUsPage() {
                 <Clock className="w-6 h-6 text-gold" />
               </div>
               <div className="space-y-1">
-                <h2 className="font-serif font-bold text-lg text-near-black">
-                  Opening Hours
-                </h2>
+                <h2 className="font-serif font-bold text-lg text-near-black">Opening Hours</h2>
                 <div className="space-y-1 text-xs sm:text-sm text-muted pt-1">
                   <div className="flex justify-between py-1 border-b border-border-soft/60">
                     <span className="font-semibold text-near-black">Monday – Saturday:</span>
@@ -113,7 +110,14 @@ export default function VisitUsPage() {
               <h3 className="font-serif font-bold text-base">Landmark Proximity</h3>
             </div>
             <p className="text-xs text-muted leading-relaxed">
-              We are located in the landmark shopping district of Kemps Corner, conveniently accessible from <strong>Pedder Road, Altamount Road, Breach Candy, Nepean Sea Road</strong>, and Grant Road. If you need assistance finding parking or store access, call us directly at <a href={BUSINESS_CONFIG.phone.telLink} className="font-bold text-forest underline">{BUSINESS_CONFIG.phone.display}</a>.
+              We are located in the landmark shopping district of Kemps Corner, conveniently
+              accessible from{' '}
+              <strong>Pedder Road, Altamount Road, Breach Candy, Nepean Sea Road</strong>, and Grant
+              Road. If you need assistance finding parking or store access, call us directly at{' '}
+              <a href={BUSINESS_CONFIG.phone.telLink} className="font-bold text-forest underline">
+                {BUSINESS_CONFIG.phone.display}
+              </a>
+              .
             </p>
           </div>
         </div>
@@ -132,11 +136,10 @@ export default function VisitUsPage() {
           </div>
 
           <div className="bg-white rounded-3xl border border-border-soft p-6 shadow-xs space-y-3 text-center">
-            <h3 className="font-serif font-bold text-lg text-forest">
-              Can’t Make It In Person?
-            </h3>
+            <h3 className="font-serif font-bold text-lg text-forest">Can’t Make It In Person?</h3>
             <p className="text-xs text-muted leading-relaxed">
-              Shop via our WhatsApp catalogue! We will show you current racks live and arrange delivery across Mumbai.
+              Shop via our WhatsApp catalogue! We will show you current racks live and arrange
+              delivery across Mumbai.
             </p>
             <a
               href={BUSINESS_CONFIG.phone.whatsappUrl}

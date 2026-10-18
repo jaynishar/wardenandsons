@@ -26,12 +26,12 @@ export function getBlogPosts(): BlogPost[] {
 
   const fileNames = fs.readdirSync(blogDirectory);
   const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith('.mdx') || fileName.endsWith('.md'))
-    .map((fileName) => {
+    .filter(fileName => fileName.endsWith('.mdx') || fileName.endsWith('.md'))
+    .map(fileName => {
       const slug = fileName.replace(/\.mdx$/, '').replace(/\.md$/, '');
       const fullPath = path.join(blogDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      
+
       const { data, content } = matter(fileContents);
 
       return {
@@ -94,6 +94,6 @@ export function getBlogPostBySlug(slug: string): BlogPost | null {
 export function getRelatedPosts(currentSlug: string, category: string, limit = 3): BlogPost[] {
   const allPosts = getBlogPosts();
   return allPosts
-    .filter((post) => post.slug !== currentSlug && post.category === category)
+    .filter(post => post.slug !== currentSlug && post.category === category)
     .slice(0, limit);
 }

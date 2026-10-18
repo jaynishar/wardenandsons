@@ -42,11 +42,7 @@ export default function StickyMobileBar() {
         <div className="max-w-md mx-auto pointer-events-auto">
           <m.div
             initial={shouldReduceMotion ? false : { y: 60, opacity: 0 }}
-            animate={
-              isVisible
-                ? { y: 0, opacity: 1 }
-                : { y: 60, opacity: 0 }
-            }
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 60, opacity: 0 }}
             transition={{
               type: 'spring',
               stiffness: 350,
@@ -69,9 +65,7 @@ export default function StickyMobileBar() {
                     <p className="font-serif font-bold text-xs text-white leading-tight truncate">
                       {totalItems} {totalItems === 1 ? 'Garment' : 'Garments'} in Request
                     </p>
-                    <p className="text-[10px] text-gold/90 truncate">
-                      Tap to review & enquire
-                    </p>
+                    <p className="text-[10px] text-gold/90 truncate">Tap to review & enquire</p>
                   </div>
                 </div>
 
@@ -93,7 +87,8 @@ export default function StickyMobileBar() {
                     <Sparkles className="w-3.5 h-3.5" />
                   </div>
                   <p className="text-[11px] text-muted truncate">
-                    Tap <span className="font-bold text-forest">+ Add</span> to create a WhatsApp request
+                    Tap <span className="font-bold text-forest">+ Add</span> to create a WhatsApp
+                    request
                   </p>
                 </div>
 

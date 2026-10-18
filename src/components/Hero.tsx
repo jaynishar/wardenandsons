@@ -23,7 +23,9 @@ export default function Hero() {
             </h1>
 
             <p className="text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Serving generations of families from our Kemps Corner boutique. Explore breathable newborn essentials, playwear, and everyday comfort basics tailored for Mumbai’s tropical climate.
+              Serving generations of families from our Kemps Corner boutique. Explore breathable
+              newborn essentials, playwear, and everyday comfort basics tailored for Mumbai’s
+              tropical climate.
             </p>
 
             {/* CTAs */}
@@ -54,7 +56,9 @@ export default function Hero() {
                   <ShieldCheck className="w-4 h-4 text-forest" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold text-near-black leading-tight">Breathable Cotton</p>
+                  <p className="text-[11px] font-bold text-near-black leading-tight">
+                    Breathable Cotton
+                  </p>
                   <p className="text-[10px] text-muted hidden sm:block">Pre-washed natural yarn</p>
                 </div>
               </div>
@@ -64,7 +68,9 @@ export default function Hero() {
                   <Heart className="w-4 h-4 text-gold" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold text-near-black leading-tight">30+ Years in Kemps Corner</p>
+                  <p className="text-[11px] font-bold text-near-black leading-tight">
+                    30+ Years in Kemps Corner
+                  </p>
                   <p className="text-[10px] text-muted hidden sm:block">Neighborhood boutique</p>
                 </div>
               </div>
@@ -74,7 +80,9 @@ export default function Hero() {
                   <MessageSquare className="w-4 h-4 text-whatsapp" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold text-near-black leading-tight">WhatsApp Personal Care</p>
+                  <p className="text-[11px] font-bold text-near-black leading-tight">
+                    WhatsApp Personal Care
+                  </p>
                   <p className="text-[10px] text-muted hidden sm:block">Live tape sizing checks</p>
                 </div>
               </div>
@@ -94,7 +102,7 @@ export default function Hero() {
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                
+
                 {/* Kemps Corner Boutique Heritage Overlay Badge */}
                 <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-white/60 shadow-lg flex items-center justify-between">
                   <div className="space-y-0.5">

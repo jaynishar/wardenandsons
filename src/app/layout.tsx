@@ -8,7 +8,7 @@ import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
 import Analytics from '@/components/Analytics';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/config/site';
+import { SITE_URL, SITE_CONFIG, getCanonicalUrl } from '@/config/site';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -57,6 +57,13 @@ export const metadata: Metadata = {
       'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Quality cotton newborn essentials, boys & girls playwear, and custom uniforms.',
     images: [`${SITE_URL}/brand_logo.jpg`],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
 };
 
 export default function RootLayout({
@@ -83,14 +90,7 @@ export default function RootLayout({
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: [
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday',
-          'Saturday',
-        ],
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         opens: '10:30',
         closes: '20:30',
       },
@@ -98,11 +98,20 @@ export default function RootLayout({
   };
 
   return (
-    <html
-      lang="en-IN"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
-    >
+    <html lang="en-IN" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
+        {/* Google Tag Manager */}
+        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PK75ST2X');`,
+          }}
+        />
+        {/* End Google Tag Manager */}
         {/* Preconnect for WhatsApp links */}
         <link rel="preconnect" href="https://wa.me" />
         {/* JSON-LD Schemas */}
@@ -112,21 +121,20 @@ export default function RootLayout({
             __html: JSON.stringify(localBusinessSchema),
           }}
         />
-        {/* Analytics & Tag Manager */}
+        {/* Additional Analytics */}
         <Analytics />
       </head>
       <body className="min-h-full flex flex-col bg-bg-cream text-near-black selection:bg-gold/30 selection:text-forest">
         {/* Google Tag Manager (noscript) */}
-        {ANALYTICS_CONFIG.gtmId && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${ANALYTICS_CONFIG.gtmId}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
-        )}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PK75ST2X"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <Header />
         <CartDrawer />
         <main className="flex-grow pb-20 md:pb-0">{children}</main>

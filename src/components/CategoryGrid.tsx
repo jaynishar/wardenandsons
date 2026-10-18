@@ -15,14 +15,18 @@ export default function CategoryGrid() {
           Explore by Category
         </h2>
         <p className="text-xs sm:text-sm text-muted max-w-xl mx-auto leading-relaxed">
-          Select a department to view representative styles and fabric details. All garments are available for personalized WhatsApp enquiries and Kemps Corner store pickup.
+          Select a department to view representative styles and fabric details. All garments are
+          available for personalized WhatsApp enquiries and Kemps Corner store pickup.
         </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {CATEGORIES_DATA.map((cat) => {
+        {CATEGORIES_DATA.map(cat => {
           const itemCount = getCatalogueItemsByCategory(cat.slug).length;
-          const displayCount = itemCount > 0 ? `${itemCount} Representative Styles` : `${cat.typicalItems.length} Key Styles`;
+          const displayCount =
+            itemCount > 0
+              ? `${itemCount} Representative Styles`
+              : `${cat.typicalItems.length} Key Styles`;
           const href = cat.slug === 'bulk' ? '/bulk-orders' : `/shop/${cat.slug}`;
 
           return (
@@ -71,13 +75,11 @@ export default function CategoryGrid() {
                   </h3>
                 </div>
 
-                <p className="text-xs text-white/80 line-clamp-2 leading-relaxed">
-                  {cat.summary}
-                </p>
+                <p className="text-xs text-white/80 line-clamp-2 leading-relaxed">{cat.summary}</p>
 
                 {/* Micro tags for top typical items */}
                 <div className="flex flex-wrap gap-1.5 pt-1">
-                  {cat.typicalItems.slice(0, 3).map((item) => (
+                  {cat.typicalItems.slice(0, 3).map(item => (
                     <span
                       key={item}
                       className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-white/15 text-white/90 border border-white/20 backdrop-blur-xs"

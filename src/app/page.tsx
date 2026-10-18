@@ -41,7 +41,8 @@ export default function HomePage() {
                 Featured Atelier Basics
               </h2>
               <p className="text-xs sm:text-sm text-muted mt-1 max-w-lg">
-                A curated preview of our everyday essentials. Actual store inventory carries hundreds more prints, colors, and sizes.
+                A curated preview of our everyday essentials. Actual store inventory carries
+                hundreds more prints, colors, and sizes.
               </p>
             </div>
 
@@ -55,7 +56,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
-            {featuredProducts.map((product) => (
+            {featuredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
@@ -74,7 +75,9 @@ export default function HomePage() {
                 Looking for a Specific Size, Print, or Gift Set?
               </h2>
               <p className="text-xs sm:text-sm text-gray-200 leading-relaxed">
-                Don’t spend hours searching through filters. Text our Kemps Corner store desk with your requirements. We’ll immediately check live racks and share photos with accurate dimensions.
+                Don’t spend hours searching through filters. Text our Kemps Corner store desk with
+                your requirements. We’ll immediately check live racks and share photos with accurate
+                dimensions.
               </p>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
@@ -132,10 +135,10 @@ export default function HomePage() {
                   <MapPin className="w-6 h-6 text-gold" />
                 </div>
                 <div className="space-y-1 text-xs">
-                  <h3 className="font-serif font-bold text-base text-near-black">Kemps Corner Store</h3>
-                  <p className="text-muted">
-                    {BUSINESS_CONFIG.location.fullAddress}
-                  </p>
+                  <h3 className="font-serif font-bold text-base text-near-black">
+                    Kemps Corner Store
+                  </h3>
+                  <p className="text-muted">{BUSINESS_CONFIG.location.fullAddress}</p>
                   <p className="text-gray-400">Near Pedder Road Flyover</p>
                 </div>
               </div>

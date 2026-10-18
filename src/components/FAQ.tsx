@@ -44,7 +44,7 @@ export default function FAQ() {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: faqs.map(faq => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -62,7 +62,7 @@ export default function FAQ() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {faqs.map((faq) => (
+      {faqs.map(faq => (
         <details
           key={faq.question}
           className="group bg-white rounded-2xl border border-border-soft overflow-hidden shadow-xs transition-colors"

@@ -10,7 +10,11 @@ import { BUSINESS_CONFIG } from '@/config/business';
 const contactSchema = z.object({
   name: z.string().min(2, { message: 'Please enter your name.' }),
   phone: z.string().optional().or(z.literal('')),
-  email: z.string().email({ message: 'Please enter a valid email address.' }).optional().or(z.literal('')),
+  email: z
+    .string()
+    .email({ message: 'Please enter a valid email address.' })
+    .optional()
+    .or(z.literal('')),
   message: z.string().min(3, { message: 'Please enter your message or question.' }),
 });
 
@@ -106,11 +110,10 @@ export default function ContactForm() {
           </div>
 
           <div className="text-center space-y-2">
-            <h3 className="font-serif text-2xl font-bold text-forest">
-              WhatsApp Window Opened
-            </h3>
+            <h3 className="font-serif text-2xl font-bold text-forest">WhatsApp Window Opened</h3>
             <p className="text-xs sm:text-sm text-muted max-w-md mx-auto leading-relaxed">
-              Your enquiry has been prepared and formatted for WhatsApp. Please press <strong>Send</strong> in your WhatsApp application to deliver it to our store desk.
+              Your enquiry has been prepared and formatted for WhatsApp. Please press{' '}
+              <strong>Send</strong> in your WhatsApp application to deliver it to our store desk.
             </p>
           </div>
 
@@ -178,7 +181,9 @@ export default function ContactForm() {
               placeholder="e.g. Anandita Merchant"
               className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
             />
-            {errors.name && <p className="text-[11px] font-semibold text-red-500">{errors.name.message}</p>}
+            {errors.name && (
+              <p className="text-[11px] font-semibold text-red-500">{errors.name.message}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -193,7 +198,9 @@ export default function ContactForm() {
                 placeholder="e.g. 9920751567"
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
-              {errors.phone && <p className="text-[11px] font-semibold text-red-500">{errors.phone.message}</p>}
+              {errors.phone && (
+                <p className="text-[11px] font-semibold text-red-500">{errors.phone.message}</p>
+              )}
             </div>
 
             <div className="space-y-1">
@@ -207,7 +214,9 @@ export default function ContactForm() {
                 placeholder="e.g. anandita@example.com"
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
-              {errors.email && <p className="text-[11px] font-semibold text-red-500">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-[11px] font-semibold text-red-500">{errors.email.message}</p>
+              )}
             </div>
           </div>
 
@@ -222,13 +231,16 @@ export default function ContactForm() {
               placeholder="Tell us what you are looking for (e.g. newborn hampers, school uniform sizing, or boutique visit timings)..."
               className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white resize-none"
             />
-            {errors.message && <p className="text-[11px] font-semibold text-red-500">{errors.message.message}</p>}
+            {errors.message && (
+              <p className="text-[11px] font-semibold text-red-500">{errors.message.message}</p>
+            )}
           </div>
 
           <div className="bg-bg-cream p-3 rounded-xl border border-border-soft text-[11px] text-gray-600 flex items-start gap-2">
             <AlertCircle className="w-4 h-4 text-gold shrink-0 mt-0.5" />
             <span>
-              Submitting opens a prefilled message directly on WhatsApp ({BUSINESS_CONFIG.phone.display}). You can review and edit before sending.
+              Submitting opens a prefilled message directly on WhatsApp (
+              {BUSINESS_CONFIG.phone.display}). You can review and edit before sending.
             </span>
           </div>
 

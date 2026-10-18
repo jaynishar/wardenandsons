@@ -70,7 +70,8 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-xs text-muted leading-relaxed">
-              South Mumbai’s neighborhood boutique for breathable cotton children’s wear, school uniforms, and family comfort basics.
+              South Mumbai’s neighborhood boutique for breathable cotton children’s wear, school
+              uniforms, and family comfort basics.
             </p>
             <div className="pt-1 flex items-center gap-1 text-[11px] text-forest font-semibold">
               <Heart className="w-3.5 h-3.5 text-gold fill-gold" />
@@ -110,7 +111,10 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/bulk-orders" className="hover:text-forest transition-colors text-gold font-bold">
+                <Link
+                  href="/bulk-orders"
+                  className="hover:text-forest transition-colors text-gold font-bold"
+                >
                   🎒 Custom School Uniforms & Bulk Enquiries
                 </Link>
               </li>
@@ -159,9 +163,7 @@ export default function Footer() {
             <div className="space-y-2.5 text-xs text-muted">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-                <span>
-                  {BUSINESS_CONFIG.location.fullAddress}
-                </span>
+                <span>{BUSINESS_CONFIG.location.fullAddress}</span>
               </div>
               <div className="flex items-start gap-2">
                 <Clock className="w-4 h-4 text-gold shrink-0 mt-0.5" />
@@ -172,7 +174,10 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 pt-1">
                 <Phone className="w-4 h-4 text-gold shrink-0" />
-                <a href={BUSINESS_CONFIG.phone.telLink} className="font-semibold text-forest hover:underline">
+                <a
+                  href={BUSINESS_CONFIG.phone.telLink}
+                  className="font-semibold text-forest hover:underline"
+                >
                   {BUSINESS_CONFIG.phone.display}
                 </a>
               </div>

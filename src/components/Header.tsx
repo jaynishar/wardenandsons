@@ -60,7 +60,7 @@ export default function Header() {
 
             {/* Desktop Nav Links */}
             <nav className="hidden md:flex items-center space-x-7">
-              {navLinks.map((link) => (
+              {navLinks.map(link => (
                 <Link
                   key={link.name}
                   href={link.href}
@@ -132,7 +132,7 @@ export default function Header() {
               className="md:hidden bg-bg-cream border-b border-border-soft px-6 py-6 space-y-4 shadow-lg overflow-hidden"
             >
               <nav className="flex flex-col space-y-3">
-                {navLinks.map((link) => (
+                {navLinks.map(link => (
                   <Link
                     key={link.name}
                     href={link.href}

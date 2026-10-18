@@ -4,7 +4,16 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Building2, User, Phone, Mail, MessageSquare, Copy, Check, AlertCircle } from 'lucide-react';
+import {
+  Building2,
+  User,
+  Phone,
+  Mail,
+  MessageSquare,
+  Copy,
+  Check,
+  AlertCircle,
+} from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 const bulkSchema = z.object({
@@ -116,7 +125,8 @@ export default function BulkOrderForm() {
               Bulk Enquiry Ready in WhatsApp
             </h3>
             <p className="text-xs sm:text-sm text-muted max-w-md mx-auto leading-relaxed">
-              Your bulk uniform specifications have been formatted. Please tap <strong>Send</strong> in WhatsApp to deliver the enquiry directly to our store desk.
+              Your bulk uniform specifications have been formatted. Please tap <strong>Send</strong>{' '}
+              in WhatsApp to deliver the enquiry directly to our store desk.
             </p>
           </div>
 
@@ -186,7 +196,9 @@ export default function BulkOrderForm() {
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
               {errors.organization && (
-                <p className="text-[11px] font-semibold text-red-500">{errors.organization.message}</p>
+                <p className="text-[11px] font-semibold text-red-500">
+                  {errors.organization.message}
+                </p>
               )}
             </div>
 
@@ -202,7 +214,9 @@ export default function BulkOrderForm() {
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
               {errors.contactPerson && (
-                <p className="text-[11px] font-semibold text-red-500">{errors.contactPerson.message}</p>
+                <p className="text-[11px] font-semibold text-red-500">
+                  {errors.contactPerson.message}
+                </p>
               )}
             </div>
           </div>
@@ -219,7 +233,9 @@ export default function BulkOrderForm() {
                 placeholder="e.g. 9920751567"
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
-              {errors.phone && <p className="text-[11px] font-semibold text-red-500">{errors.phone.message}</p>}
+              {errors.phone && (
+                <p className="text-[11px] font-semibold text-red-500">{errors.phone.message}</p>
+              )}
             </div>
 
             <div className="space-y-1">
@@ -233,7 +249,9 @@ export default function BulkOrderForm() {
                 placeholder="e.g. admin@school.edu"
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
-              {errors.email && <p className="text-[11px] font-semibold text-red-500">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-[11px] font-semibold text-red-500">{errors.email.message}</p>
+              )}
             </div>
           </div>
 
@@ -250,9 +268,7 @@ export default function BulkOrderForm() {
                 <option value="School Uniforms (Shirts, Pinafores, Skirts, Trousers)">
                   School Uniforms (Shirts, Pinafores, Trousers)
                 </option>
-                <option value="Cricket Whites & Academy Kits">
-                  Cricket Whites & Academy Kits
-                </option>
+                <option value="Cricket Whites & Academy Kits">Cricket Whites & Academy Kits</option>
                 <option value="Dryfit Sports Jersey & Shorts">
                   Dryfit Sports Jerseys & Shorts
                 </option>
@@ -297,13 +313,16 @@ export default function BulkOrderForm() {
               placeholder="Tell us about school colors, crest embroidery, fabric preference (pure cotton, poly-cotton blend, dryfit), or target delivery deadline..."
               className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white resize-none"
             />
-            {errors.details && <p className="text-[11px] font-semibold text-red-500">{errors.details.message}</p>}
+            {errors.details && (
+              <p className="text-[11px] font-semibold text-red-500">{errors.details.message}</p>
+            )}
           </div>
 
           <div className="bg-bg-cream p-3 rounded-xl border border-border-soft text-[11px] text-gray-600 flex items-start gap-2">
             <AlertCircle className="w-4 h-4 text-gold shrink-0 mt-0.5" />
             <span>
-              Submitting opens WhatsApp with your prefilled specifications. Our shop team will reply directly with quotations and fabric sample options.
+              Submitting opens WhatsApp with your prefilled specifications. Our shop team will reply
+              directly with quotations and fabric sample options.
             </span>
           </div>
 

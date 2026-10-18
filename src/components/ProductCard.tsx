@@ -37,9 +37,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   // Check if item has an authentic garment photo (never reuse storefront or logo as garment photo)
   const hasRealProductImage = Boolean(
-    product.image &&
-      product.image !== '/store_front.jpg' &&
-      product.image !== '/brand_logo.jpg'
+    product.image && product.image !== '/store_front.jpg' && product.image !== '/brand_logo.jpg',
   );
 
   const prefersReduced = useReducedMotion();
@@ -114,9 +112,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               transition={{ type: 'spring', damping: 20, stiffness: 300 }}
               onClick={handleAddToRequest}
               className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-xs active:scale-[0.98] ${
-                justAdded
-                  ? 'bg-forest text-white'
-                  : 'bg-forest hover:bg-forest-dark text-white'
+                justAdded ? 'bg-forest text-white' : 'bg-forest hover:bg-forest-dark text-white'
               }`}
             >
               <AnimatePresence mode="wait" initial={false}>

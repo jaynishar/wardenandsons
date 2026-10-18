@@ -11,7 +11,7 @@ interface CategoryPageProps {
 const validCategories: CategorySlug[] = ['newborn', 'boys', 'girls', 'men', 'women', 'bulk'];
 
 export async function generateStaticParams() {
-  return validCategories.map((cat) => ({
+  return validCategories.map(cat => ({
     category: cat,
   }));
 }
@@ -76,16 +76,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           {displayName}
         </h1>
         <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          Pre-washed, azo-free cotton garments crafted for sensitive skin. Select items for your Request List, then send your enquiry on WhatsApp to confirm live colors, sizes, and pricing.
+          Pre-washed, azo-free cotton garments crafted for sensitive skin. Select items for your
+          Request List, then send your enquiry on WhatsApp to confirm live colors, sizes, and
+          pricing.
         </p>
       </div>
 
       {/* Main Interactive Catalog */}
-      <ShopCatalog
-        products={products}
-        initialCategory={category}
-        categoryTitle={displayName}
-      />
+      <ShopCatalog products={products} initialCategory={category} categoryTitle={displayName} />
     </div>
   );
 }

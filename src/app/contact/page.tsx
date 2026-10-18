@@ -26,7 +26,8 @@ export default function ContactPage() {
           Contact Our Store Desk
         </h1>
         <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          Have questions regarding infant sizes, fabric softness, or custom orders? Reach out via form or chat directly on WhatsApp.
+          Have questions regarding infant sizes, fabric softness, or custom orders? Reach out via
+          form or chat directly on WhatsApp.
         </p>
       </div>
 
@@ -34,9 +35,7 @@ export default function ContactPage() {
         {/* Contact Information Column */}
         <div className="lg:col-span-5 space-y-6">
           <div className="bg-white rounded-3xl border border-border-soft p-7 shadow-xs space-y-6">
-            <h2 className="font-serif font-bold text-xl text-forest">
-              Kemps Corner Atelier
-            </h2>
+            <h2 className="font-serif font-bold text-xl text-forest">Kemps Corner Atelier</h2>
 
             <div className="space-y-4 text-xs sm:text-sm text-muted">
               <div className="flex items-start gap-3">
@@ -52,7 +51,9 @@ export default function ContactPage() {
                 <div>
                   <p className="font-bold text-near-black">Store Hours</p>
                   <p>{BUSINESS_CONFIG.hours.display}</p>
-                  <p className="text-red-600 font-semibold text-xs mt-0.5">Sunday: {BUSINESS_CONFIG.hours.sunday}</p>
+                  <p className="text-red-600 font-semibold text-xs mt-0.5">
+                    Sunday: {BUSINESS_CONFIG.hours.sunday}
+                  </p>
                 </div>
               </div>
 
@@ -60,7 +61,10 @@ export default function ContactPage() {
                 <Phone className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                 <div>
                   <p className="font-bold text-near-black">Store Desk Phone</p>
-                  <a href={BUSINESS_CONFIG.phone.telLink} className="text-forest font-bold hover:underline">
+                  <a
+                    href={BUSINESS_CONFIG.phone.telLink}
+                    className="text-forest font-bold hover:underline"
+                  >
                     {BUSINESS_CONFIG.phone.display}
                   </a>
                 </div>

@@ -37,9 +37,9 @@ export default function ShopCatalog({
   const subCategories = useMemo(() => {
     let pool = products;
     if (activeCategory !== 'all') {
-      pool = pool.filter((p) => p.category === activeCategory);
+      pool = pool.filter(p => p.category === activeCategory);
     }
-    const set = new Set(pool.map((p) => p.subCategory));
+    const set = new Set(pool.map(p => p.subCategory));
     return ['all', ...Array.from(set)];
   }, [products, activeCategory]);
 
@@ -49,24 +49,24 @@ export default function ShopCatalog({
 
     // 1. Category Filter
     if (activeCategory !== 'all') {
-      result = result.filter((p) => p.category === activeCategory);
+      result = result.filter(p => p.category === activeCategory);
     }
 
     // 2. SubCategory Filter
     if (selectedSubCategory !== 'all') {
-      result = result.filter((p) => p.subCategory === selectedSubCategory);
+      result = result.filter(p => p.subCategory === selectedSubCategory);
     }
 
     // 3. Search Query
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter(
-        (p) =>
+        p =>
           p.title.toLowerCase().includes(q) ||
           p.description.toLowerCase().includes(q) ||
           p.fabricDetails.toLowerCase().includes(q) ||
           p.subCategory.toLowerCase().includes(q) ||
-          p.ageOrSizeRange.toLowerCase().includes(q)
+          p.ageOrSizeRange.toLowerCase().includes(q),
       );
     }
 
@@ -92,7 +92,7 @@ export default function ShopCatalog({
               type="text"
               placeholder="Search by garment, fabric (e.g. muslin, combed cotton)..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
             />
             {searchQuery && (
@@ -109,7 +109,7 @@ export default function ShopCatalog({
             <span className="text-xs text-gray-500 font-medium">Sort:</span>
             <select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
+              onChange={e => setSortBy(e.target.value)}
               className="px-3 py-2 rounded-xl border border-border-soft bg-bg-cream text-xs font-medium focus:outline-none focus:ring-2 focus:ring-forest"
             >
               <option value="featured">Curated Order</option>
@@ -122,7 +122,7 @@ export default function ShopCatalog({
         {/* Category Pills Row */}
         <div className="border-t border-border-soft/80 pt-4 space-y-3">
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-            {categories.map((cat) => {
+            {categories.map(cat => {
               const isActive = activeCategory === cat.id;
               return (
                 <button
@@ -149,7 +149,7 @@ export default function ShopCatalog({
               <span className="text-[11px] text-gray-400 font-semibold uppercase shrink-0">
                 Filter:
               </span>
-              {subCategories.map((sub) => (
+              {subCategories.map(sub => (
                 <button
                   key={sub}
                   onClick={() => setSelectedSubCategory(sub)}
@@ -172,7 +172,8 @@ export default function ShopCatalog({
         <div className="flex items-center gap-2.5">
           <span className="w-2 h-2 rounded-full bg-whatsapp shrink-0" />
           <span className="font-semibold text-forest">
-            Prices and current stock are confirmed on WhatsApp with live photos & measuring-tape checks.
+            Prices and current stock are confirmed on WhatsApp with live photos & measuring-tape
+            checks.
           </span>
         </div>
         <a
@@ -189,7 +190,8 @@ export default function ShopCatalog({
       {/* Results Count Banner */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 px-2">
         <p className="text-xs font-semibold text-muted">
-          Showing <span className="text-forest font-bold">{filteredProducts.length}</span> representative styles
+          Showing <span className="text-forest font-bold">{filteredProducts.length}</span>{' '}
+          representative styles
           {categoryTitle ? ` in ${categoryTitle}` : ''}
         </p>
 
@@ -207,9 +209,12 @@ export default function ShopCatalog({
       {/* Product Cards Grid */}
       {filteredProducts.length === 0 ? (
         <div className="bg-white rounded-3xl border border-border-soft p-12 text-center space-y-4">
-          <p className="font-serif text-lg text-near-black">No representative styles matched your search.</p>
+          <p className="font-serif text-lg text-near-black">
+            No representative styles matched your search.
+          </p>
           <p className="text-xs text-gray-500 max-w-sm mx-auto">
-            Our Kemps Corner boutique stocks hundreds of additional designs, colors, and sizes. Message our team directly with a photo or description!
+            Our Kemps Corner boutique stocks hundreds of additional designs, colors, and sizes.
+            Message our team directly with a photo or description!
           </p>
           <a
             href={BUSINESS_CONFIG.phone.whatsappUrl}
@@ -223,7 +228,7 @@ export default function ShopCatalog({
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {filteredProducts.map((product) => (
+          {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

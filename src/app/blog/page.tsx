@@ -6,7 +6,8 @@ import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Blog & Parenting Guides',
-  description: 'Read the latest kids clothing sizing guides, fabric safety reviews, mild winter guides, and local Kemps Corner shopping tips by Warden & Sons.',
+  description:
+    'Read the latest kids clothing sizing guides, fabric safety reviews, mild winter guides, and local Kemps Corner shopping tips by Warden & Sons.',
   alternates: {
     canonical: getCanonicalUrl('/blog'),
   },
@@ -26,7 +27,8 @@ export default function BlogIndexPage() {
           Parenting & Sizing Guides
         </h1>
         <p className="text-sm md:text-base text-slate-600 max-w-xl mx-auto leading-relaxed">
-          Expert advice on dressing kids in Mumbai, understanding cotton GSM weights, baby swaddling, and school uniform guides.
+          Expert advice on dressing kids in Mumbai, understanding cotton GSM weights, baby
+          swaddling, and school uniform guides.
         </p>
       </div>
 

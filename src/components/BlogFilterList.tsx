@@ -27,7 +27,7 @@ export default function BlogFilterList({ posts }: BlogFilterListProps) {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredPosts = useMemo(() => {
-    return posts.filter((post) => {
+    return posts.filter(post => {
       const matchesSearch =
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -36,7 +36,7 @@ export default function BlogFilterList({ posts }: BlogFilterListProps) {
       const matchesCategory =
         selectedCategory === 'All' ||
         post.category.toLowerCase() === selectedCategory.toLowerCase() ||
-        post.tags.some((tag) => tag.toLowerCase() === selectedCategory.toLowerCase());
+        post.tags.some(tag => tag.toLowerCase() === selectedCategory.toLowerCase());
 
       return matchesSearch && matchesCategory;
     });
@@ -52,7 +52,7 @@ export default function BlogFilterList({ posts }: BlogFilterListProps) {
             type="text"
             placeholder="Search articles..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={e => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-3 rounded-lg border border-border-soft text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest bg-bg-cream/40 focus:bg-white"
           />
           <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-400" />
@@ -60,9 +60,11 @@ export default function BlogFilterList({ posts }: BlogFilterListProps) {
 
         {/* Category Filter Desktop view scroll bar */}
         <div className="flex items-center space-x-2 overflow-x-auto w-full pb-2 md:pb-0 scrollbar-none scroll-smooth">
-          <span className="text-xs font-bold text-gray-500 shrink-0 font-sans hidden md:inline">Filters:</span>
+          <span className="text-xs font-bold text-gray-500 shrink-0 font-sans hidden md:inline">
+            Filters:
+          </span>
           <div className="flex gap-2">
-            {categories.map((cat) => (
+            {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
@@ -82,7 +84,7 @@ export default function BlogFilterList({ posts }: BlogFilterListProps) {
       {/* Blog Cards Grid */}
       {filteredPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {filteredPosts.map((post) => (
+          {filteredPosts.map(post => (
             <article
               key={post.slug}
               className="bg-white border border-border-soft rounded-2xl overflow-hidden shadow-xs flex flex-col justify-between hover:shadow-md transition-all duration-300 hover:scale-[1.01]"
@@ -120,7 +122,9 @@ export default function BlogFilterList({ posts }: BlogFilterListProps) {
         </div>
       ) : (
         <div className="text-center py-16 bg-white border border-border-soft rounded-2xl shadow-xs">
-          <p className="text-muted text-sm font-sans">No parenting articles found matching your query.</p>
+          <p className="text-muted text-sm font-sans">
+            No parenting articles found matching your query.
+          </p>
           <button
             onClick={() => {
               setSearchQuery('');

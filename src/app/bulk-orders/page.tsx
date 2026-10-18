@@ -44,7 +44,8 @@ export default function BulkOrdersPage() {
           Custom School Uniforms & Bulk Apparel
         </h1>
         <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          Warden & Sons partners with Mumbai schools, sports academies, and educational foundations to manufacture high-grade cotton uniforms and bespoke event apparel.
+          Warden & Sons partners with Mumbai schools, sports academies, and educational foundations
+          to manufacture high-grade cotton uniforms and bespoke event apparel.
         </p>
       </div>
 
@@ -52,12 +53,10 @@ export default function BulkOrdersPage() {
         {/* Left Information Side */}
         <div className="lg:col-span-5 space-y-6">
           <div className="bg-white rounded-3xl border border-border-soft p-7 shadow-xs space-y-6">
-            <h2 className="font-serif font-bold text-xl text-forest">
-              Production Capabilities
-            </h2>
+            <h2 className="font-serif font-bold text-xl text-forest">Production Capabilities</h2>
 
             <div className="space-y-4">
-              {capabilities.map((cap) => {
+              {capabilities.map(cap => {
                 const Icon = cap.icon;
                 return (
                   <div key={cap.title} className="flex gap-3.5">

@@ -65,13 +65,14 @@ export default function HowItWorksPage() {
           How WhatsApp Catalogue Shopping Works
         </h1>
         <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          We combine the ease of digital catalogue browsing with the authentic warmth, live measuring-tape sizing, and personal care of our South Bombay boutique.
+          We combine the ease of digital catalogue browsing with the authentic warmth, live
+          measuring-tape sizing, and personal care of our South Bombay boutique.
         </p>
       </div>
 
       {/* 3 Detailed Steps */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {detailedSteps.map((s) => {
+        {detailedSteps.map(s => {
           const Icon = s.icon;
           return (
             <div
@@ -83,17 +84,13 @@ export default function HowItWorksPage() {
                   <div className="w-12 h-12 rounded-2xl bg-forest text-white flex items-center justify-center shadow-xs">
                     <Icon className="w-6 h-6 text-gold" />
                   </div>
-                  <span className="font-serif text-3xl font-bold text-gold/40">
-                    {s.step}
-                  </span>
+                  <span className="font-serif text-3xl font-bold text-gold/40">{s.step}</span>
                 </div>
 
                 <h3 className="font-serif text-xl font-bold text-near-black leading-snug">
                   {s.title}
                 </h3>
-                <p className="text-xs text-muted leading-relaxed">
-                  {s.description}
-                </p>
+                <p className="text-xs text-muted leading-relaxed">{s.description}</p>
               </div>
 
               <div className="pt-4 border-t border-border-soft space-y-2">
@@ -119,7 +116,8 @@ export default function HowItWorksPage() {
             Ready to Explore the Catalogue?
           </h2>
           <p className="text-xs sm:text-sm text-gray-200 max-w-md mx-auto leading-relaxed">
-            Browse our departments, add representative styles to your Request List, and send it over. No payment until you approve photos and sizing!
+            Browse our departments, add representative styles to your Request List, and send it
+            over. No payment until you approve photos and sizing!
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
@@ -148,9 +146,7 @@ export default function HowItWorksPage() {
           <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
             Frequently Asked Questions
           </span>
-          <h2 className="font-serif text-3xl font-bold text-forest">
-            Everything You Need to Know
-          </h2>
+          <h2 className="font-serif text-3xl font-bold text-forest">Everything You Need to Know</h2>
         </div>
         <FAQ />
       </div>

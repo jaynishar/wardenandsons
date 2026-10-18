@@ -28,7 +28,9 @@ export default function ShopPage() {
           Browse Department Offerings
         </h1>
         <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          Add representative styles to your Request List. Our team at Kemps Corner will check current live inventory, verify sizes with measuring tape dimensions, share photos of current colorways, and confirm pricing on WhatsApp.
+          Add representative styles to your Request List. Our team at Kemps Corner will check
+          current live inventory, verify sizes with measuring tape dimensions, share photos of
+          current colorways, and confirm pricing on WhatsApp.
         </p>
       </div>
 
@@ -41,7 +43,9 @@ export default function ShopPage() {
             </div>
             <div>
               <p className="font-bold text-forest">1. Pick Styles</p>
-              <p className="text-muted text-[11px]">Add representative garments to your Request List</p>
+              <p className="text-muted text-[11px]">
+                Add representative garments to your Request List
+              </p>
             </div>
           </div>
 
@@ -61,7 +65,9 @@ export default function ShopPage() {
             </div>
             <div>
               <p className="font-bold text-forest">3. Live Photos & Prices</p>
-              <p className="text-muted text-[11px]">We confirm rack stock, tape measure & pricing</p>
+              <p className="text-muted text-[11px]">
+                We confirm rack stock, tape measure & pricing
+              </p>
             </div>
           </div>
         </div>

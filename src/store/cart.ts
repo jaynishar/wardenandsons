@@ -33,7 +33,7 @@ interface CartStore {
   updateQuantity: (id: string, quantity: number) => void;
   updateItemDetails: (
     id: string,
-    details: Partial<Pick<RequestItem, 'ageGroup' | 'size' | 'preferredColor' | 'styleNotes'>>
+    details: Partial<Pick<RequestItem, 'ageGroup' | 'size' | 'preferredColor' | 'styleNotes'>>,
   ) => void;
   clearCart: () => void;
   setIsOpen: (isOpen: boolean) => void;
@@ -47,15 +47,15 @@ export const useCartStore = create<CartStore>()(
       items: [],
       isOpen: false,
 
-      addItem: (newItem) => {
-        set((state) => {
+      addItem: newItem => {
+        set(state => {
           // If identical item exists without custom notes, increment quantity
           const existingIndex = state.items.findIndex(
-            (item) =>
+            item =>
               item.productId === newItem.productId &&
               !item.size &&
               !item.preferredColor &&
-              !item.styleNotes
+              !item.styleNotes,
           );
 
           if (existingIndex > -1) {
@@ -87,9 +87,9 @@ export const useCartStore = create<CartStore>()(
         });
       },
 
-      removeItem: (id) => {
-        set((state) => ({
-          items: state.items.filter((item) => item.id !== id && item.productId !== id),
+      removeItem: id => {
+        set(state => ({
+          items: state.items.filter(item => item.id !== id && item.productId !== id),
         }));
       },
 
@@ -99,18 +99,16 @@ export const useCartStore = create<CartStore>()(
           return;
         }
 
-        set((state) => ({
-          items: state.items.map((item) =>
-            item.id === id || item.productId === id ? { ...item, quantity } : item
+        set(state => ({
+          items: state.items.map(item =>
+            item.id === id || item.productId === id ? { ...item, quantity } : item,
           ),
         }));
       },
 
       updateItemDetails: (id, details) => {
-        set((state) => ({
-          items: state.items.map((item) =>
-            item.id === id ? { ...item, ...details } : item
-          ),
+        set(state => ({
+          items: state.items.map(item => (item.id === id ? { ...item, ...details } : item)),
         }));
       },
 
@@ -119,9 +117,9 @@ export const useCartStore = create<CartStore>()(
         set({ items: [] });
       },
 
-      setIsOpen: (isOpen) => set({ isOpen }),
+      setIsOpen: isOpen => set({ isOpen }),
 
-      toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
+      toggleCart: () => set(state => ({ isOpen: !state.isOpen })),
 
       getTotalItems: () => {
         return get().items.reduce((total, item) => total + item.quantity, 0);
@@ -129,6 +127,6 @@ export const useCartStore = create<CartStore>()(
     }),
     {
       name: 'warden-request-list-storage',
-    }
-  )
+    },
+  ),
 );

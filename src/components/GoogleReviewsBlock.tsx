@@ -1,5 +1,12 @@
 import React from 'react';
-import { Star, MessageSquare, ShieldCheck, HeartHandshake, Ruler, ExternalLink } from 'lucide-react';
+import {
+  Star,
+  MessageSquare,
+  ShieldCheck,
+  HeartHandshake,
+  Ruler,
+  ExternalLink,
+} from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 interface ReviewQuote {
@@ -55,7 +62,8 @@ export default function GoogleReviewsBlock() {
               4.9 Rating Across South Mumbai Families
             </h2>
             <p className="text-xs sm:text-sm text-muted max-w-xl leading-relaxed">
-              Serving families at Kemps Corner for over three decades through genuine neighborhood recommendations, personal measuring care, and authentic cotton comfort.
+              Serving families at Kemps Corner for over three decades through genuine neighborhood
+              recommendations, personal measuring care, and authentic cotton comfort.
             </p>
           </div>
 
@@ -105,9 +113,7 @@ export default function GoogleReviewsBlock() {
 
               <div className="pt-3 border-t border-border-soft/80 flex items-center justify-between">
                 <div>
-                  <p className="font-serif font-bold text-xs text-forest">
-                    {review.author}
-                  </p>
+                  <p className="font-serif font-bold text-xs text-forest">{review.author}</p>
                   <p className="text-[10px] text-muted">
                     {review.neighborhood} • {review.relation}
                   </p>
@@ -131,7 +137,8 @@ export default function GoogleReviewsBlock() {
                 Generational Continuity
               </h3>
               <p className="text-[11px] text-muted leading-relaxed">
-                Parents who wore our jhablas as infants now bring their children to Kemps Corner. We dress each generation with pure, breathable cotton care.
+                Parents who wore our jhablas as infants now bring their children to Kemps Corner. We
+                dress each generation with pure, breathable cotton care.
               </p>
             </div>
           </div>
@@ -145,7 +152,8 @@ export default function GoogleReviewsBlock() {
                 Real Measuring Tape Checks
               </h3>
               <p className="text-[11px] text-muted leading-relaxed">
-                Every garment is measured flat with a tape before dispatch. No automated size chart guesses or return friction for busy parents.
+                Every garment is measured flat with a tape before dispatch. No automated size chart
+                guesses or return friction for busy parents.
               </p>
             </div>
           </div>
@@ -159,7 +167,8 @@ export default function GoogleReviewsBlock() {
                 Direct Family Communication
               </h3>
               <p className="text-[11px] text-muted leading-relaxed">
-                Every phone call and WhatsApp message is answered directly by our store desk at Kemps Corner, ensuring knowledgeable, neighborly care.
+                Every phone call and WhatsApp message is answered directly by our store desk at
+                Kemps Corner, ensuring knowledgeable, neighborly care.
               </p>
             </div>
           </div>

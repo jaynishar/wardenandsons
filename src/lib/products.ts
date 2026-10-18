@@ -490,7 +490,7 @@ export function getAllCategories(): CategoryInfo[] {
 }
 
 export function getCategoryBySlug(slug: string): CategoryInfo | undefined {
-  return CATEGORIES_DATA.find((c) => c.slug === slug);
+  return CATEGORIES_DATA.find(c => c.slug === slug);
 }
 
 export function getAllCatalogueItems(): CatalogueItem[] {
@@ -498,16 +498,23 @@ export function getAllCatalogueItems(): CatalogueItem[] {
 }
 
 export function getCatalogueItemsByCategory(category: CategorySlug): CatalogueItem[] {
-  return CATALOGUE_ITEMS.filter((item) => item.category === category);
+  return CATALOGUE_ITEMS.filter(item => item.category === category);
 }
 
 export function getCatalogueItemById(id: string): CatalogueItem | undefined {
-  return CATALOGUE_ITEMS.find((item) => item.id === id);
+  return CATALOGUE_ITEMS.find(item => item.id === id);
 }
 
 export function getFeaturedCatalogueItems(count = 6): CatalogueItem[] {
-  const featuredIds = ['cat-nb-01', 'cat-by-01', 'cat-gr-01', 'cat-nb-02', 'cat-by-02', 'cat-wm-01'];
-  return CATALOGUE_ITEMS.filter((item) => featuredIds.includes(item.id)).slice(0, count);
+  const featuredIds = [
+    'cat-nb-01',
+    'cat-by-01',
+    'cat-gr-01',
+    'cat-nb-02',
+    'cat-by-02',
+    'cat-wm-01',
+  ];
+  return CATALOGUE_ITEMS.filter(item => featuredIds.includes(item.id)).slice(0, count);
 }
 
 // Backward compatibility alias for any existing imports

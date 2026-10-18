@@ -68,7 +68,7 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
 
   lines.push('');
   lines.push(
-    'Please share suitable available options with photographs, and confirm current pricing and availability.'
+    'Please share suitable available options with photographs, and confirm current pricing and availability.',
   );
   lines.push('');
   lines.push('Thank you!');
@@ -78,7 +78,9 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
   // Long-list size guard to avoid URL breakage in mobile browsers
   if (fullMessage.length > MAX_SAFE_WHATSAPP_MESSAGE_LENGTH) {
     const truncatedNote = `\n\n[Note: Request truncated due to WhatsApp message size limit (${items.length} items total). Please see primary selections above.]`;
-    return fullMessage.slice(0, MAX_SAFE_WHATSAPP_MESSAGE_LENGTH - truncatedNote.length) + truncatedNote;
+    return (
+      fullMessage.slice(0, MAX_SAFE_WHATSAPP_MESSAGE_LENGTH - truncatedNote.length) + truncatedNote
+    );
   }
 
   return fullMessage;
@@ -89,7 +91,7 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
  */
 export function buildWhatsAppRequestUrl(
   message: string,
-  phoneNumber: string = BUSINESS_CONFIG.phone.raw
+  phoneNumber: string = BUSINESS_CONFIG.phone.raw,
 ): string {
   const cleanPhone = phoneNumber.replace(/[^0-9]/g, '');
   return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
