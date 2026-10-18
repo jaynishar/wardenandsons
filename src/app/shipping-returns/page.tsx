@@ -58,8 +58,8 @@ export default function ShippingReturnsPage() {
           <ul className="list-disc pl-5 space-y-2">
             <li>
               <strong>Store Pickup at Kemps Corner:</strong> You are welcome to collect your
-              verified package directly from our store during opening hours (Monday to Saturday,
-              10:30 AM – 8:30 PM).
+              verified package directly from our store during opening hours (Monday to Sunday,
+              9:00 AM – 9:00 PM).
             </li>
             <li>
               <strong>Doorstep Delivery (Mumbai & Pan-India):</strong> We coordinate delivery via

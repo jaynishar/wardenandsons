@@ -28,26 +28,43 @@ export const BUSINESS_CONFIG = {
     display: '+91 99207 51567',
     raw: '919920751567',
     telLink: 'tel:+919920751567',
+    landline: '+91 22 23684640',
     whatsappUrl: 'https://wa.me/919920751567',
   },
 
   location: {
+    shopNumber: 'Shop No. 7, Ground Floor',
+    building: 'Haji Habib Building',
+    streetAddress: '155/157 August Kranti Marg (Gowalia Tank Road)',
     neighborhood: 'Kemps Corner',
     area: 'South Mumbai',
     city: 'Mumbai',
     state: 'Maharashtra',
     postalCode: '400036',
     country: 'India',
-    fullAddress: 'Kemps Corner, South Mumbai, Mumbai, Maharashtra 400036',
-    landmarks: 'Near Pedder Road flyover, Altamount Road, Breach Candy, and Nepean Sea Road.',
-    googleMapsSearchUrl: 'https://maps.google.com/?q=Kemps+Corner+Mumbai+400036',
+    fullAddress:
+      'Shop No. 7, Ground Floor, Haji Habib Building, 155/157 August Kranti Marg, Near St. Stephen’s Church, Kemps Corner, Mumbai, Maharashtra 400036',
+    landmarks:
+      'Near St. Stephen’s Church, Pedder Road flyover, Altamount Road, Breach Candy, and Nepean Sea Road.',
+    geo: {
+      latitude: 18.9654,
+      longitude: 72.8152,
+    },
+    googleBusinessProfileUrl:
+      'https://www.google.com/search?kgmid=/g/1tvyk6ws&hl=en-IN&q=Warden+%26+Sons+Kids+Wear',
+    googleBusinessShareUrl: 'https://share.google/iwNowyZv9IlLRTv8Z',
+    googleMapsSearchUrl:
+      'https://maps.google.com/?q=Warden+%26+Sons+Kids+Wear+Shop+No+7+Haji+Habib+Building+Kemps+Corner+Mumbai+400036',
     googleReviewUrl: 'https://g.page/r/CRi_iIq4yd6gEBM/review',
   },
 
   hours: {
-    display: 'Mon – Sat: 10:30 AM – 8:30 PM',
-    sunday: 'Closed',
-    note: 'WhatsApp enquiries answered during operating hours.',
+    display: 'Mon – Sun: 9:00 AM – 9:00 PM',
+    days: 'Monday through Sunday (Open all 7 days)',
+    openTime: '09:00',
+    closeTime: '21:00',
+    sunday: '9:00 AM – 9:00 PM',
+    note: 'Open daily from 9:00 AM to 9:00 PM. WhatsApp enquiries answered during operating hours.',
   },
 
   businessModel: {

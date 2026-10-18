@@ -1,29 +1,82 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { Star, ExternalLink, MapPin } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import reviewsData from '@/data/reviews.json';
+
+interface Review {
+  id: string;
+  author: string;
+  rating: number;
+  date: string;
+  text: string;
+  source: string;
+}
 
 export default function GoogleReviewsBlock() {
+  const reviews: Review[] = reviewsData;
+
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 font-sans">
-      <div className="border-t border-border-soft pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-          <h2 className="font-serif text-lg sm:text-xl font-bold text-forest">
-            Customer Reviews
-          </h2>
-          <p className="text-xs text-muted mt-1">
-            See feedback from South Mumbai families shopping at our Kemps Corner store.
-          </p>
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 font-sans">
+      <div className="border-t border-border-soft pt-12 space-y-8">
+        {/* Header & Google Rating Summary */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-forest">
+                <Star className="w-3.5 h-3.5 fill-gold text-gold" />
+                <span>4.8 Rating on Google</span>
+              </span>
+              <span className="text-gray-300">•</span>
+              <span className="text-[11px] text-muted flex items-center gap-1">
+                <MapPin className="w-3 h-3 text-gold" />
+                Kemps Corner, South Mumbai
+              </span>
+            </div>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
+              What South Mumbai Families Say
+            </h2>
+            <p className="text-xs sm:text-sm text-muted mt-1 max-w-xl">
+              Authentic reviews from families shopping pure cotton children’s wear and school uniforms at our Kemps Corner shop.
+            </p>
+          </div>
+
+          <a
+            href={BUSINESS_CONFIG.location.googleBusinessShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="directions_click"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-forest hover:text-gold transition-colors shrink-0"
+          >
+            <span>View on Google</span>
+            <ExternalLink className="w-3.5 h-3.5 text-gold" />
+          </a>
         </div>
 
-        <a
-          href={BUSINESS_CONFIG.location.googleReviewUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-forest hover:text-forest-dark border-b border-forest/40 pb-0.5 hover:border-forest transition-all"
-        >
-          <span>Read our reviews on Google</span>
-          <ExternalLink className="w-3.5 h-3.5 text-muted" />
-        </a>
+        {/* 3 Review Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {reviews.map(review => (
+            <div
+              key={review.id}
+              className="bg-white rounded-2xl border border-border-soft p-6 shadow-2xs flex flex-col justify-between space-y-4"
+            >
+              <div className="space-y-3">
+                <div className="flex items-center gap-1 text-gold">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-gold text-gold" />
+                  ))}
+                </div>
+                <p className="text-xs text-near-black leading-relaxed">
+                  &ldquo;{review.text}&rdquo;
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-border-soft/60 flex items-center justify-between text-[11px] text-muted">
+                <span className="font-semibold text-forest">{review.author}</span>
+                <span className="text-gray-400">{review.source}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

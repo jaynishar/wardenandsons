@@ -58,8 +58,8 @@ export default function ContactPage() {
                 <div>
                   <p className="font-bold text-near-black">Store Hours</p>
                   <p>{BUSINESS_CONFIG.hours.display}</p>
-                  <p className="text-red-600 font-semibold text-xs mt-0.5">
-                    Sunday: {BUSINESS_CONFIG.hours.sunday}
+                  <p className="text-forest font-semibold text-xs mt-0.5">
+                    Open all 7 days of the week
                   </p>
                 </div>
               </div>
@@ -74,6 +74,11 @@ export default function ContactPage() {
                   >
                     {BUSINESS_CONFIG.phone.display}
                   </a>
+                  {BUSINESS_CONFIG.phone.landline && (
+                    <span className="block text-xs text-muted">
+                      Landline: {BUSINESS_CONFIG.phone.landline}
+                    </span>
+                  )}
                 </div>
               </div>
 

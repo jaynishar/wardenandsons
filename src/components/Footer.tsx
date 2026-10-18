@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, MapPin, Clock, MessageSquare, Heart } from 'lucide-react';
+import { Phone, MapPin, Clock, MessageSquare, Heart, ExternalLink } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function Footer() {
@@ -73,7 +73,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-xs text-muted leading-relaxed">
-              South Mumbai’s neighborhood boutique for breathable cotton children’s wear, school
+              South Mumbai’s neighborhood shop for breathable cotton children’s wear, school
               uniforms, and family comfort basics.
             </p>
             <div className="pt-1 flex items-center gap-1 text-[11px] text-forest font-semibold">
@@ -180,17 +180,36 @@ export default function Footer() {
                 <Clock className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-near-black">{BUSINESS_CONFIG.hours.display}</p>
-                  <p className="text-gray-400">Sunday: {BUSINESS_CONFIG.hours.sunday}</p>
+                  <p className="text-gray-400">Open all 7 days of the week</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 pt-1">
                 <Phone className="w-4 h-4 text-gold shrink-0" />
+                <div className="flex flex-col">
+                  <a
+                    href={BUSINESS_CONFIG.phone.telLink}
+                    data-track="call_click"
+                    className="font-semibold text-forest hover:underline"
+                  >
+                    {BUSINESS_CONFIG.phone.display}
+                  </a>
+                  {BUSINESS_CONFIG.phone.landline && (
+                    <span className="text-[11px] text-gray-400">
+                      Landline: {BUSINESS_CONFIG.phone.landline}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="pt-1.5">
                 <a
-                  href={BUSINESS_CONFIG.phone.telLink}
-                  data-track="call_click"
-                  className="font-semibold text-forest hover:underline"
+                  href={BUSINESS_CONFIG.location.googleBusinessShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track="directions_click"
+                  className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-forest hover:text-gold transition-colors"
                 >
-                  {BUSINESS_CONFIG.phone.display}
+                  <span>Google Business Profile (4.8 ★)</span>
+                  <ExternalLink className="w-3 h-3 text-gold" />
                 </a>
               </div>
             </div>

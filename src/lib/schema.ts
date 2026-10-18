@@ -3,8 +3,7 @@ import { SITE_URL, getCanonicalUrl } from '@/config/site';
 
 /**
  * Generates typed ClothingStore JSON-LD schema for Warden & Sons
- * Follows schema.org specifications strictly.
- * Geo coordinates and sameAs links are omitted per owner instructions.
+ * Populated from official Google Business Profile.
  */
 export function getClothingStoreSchema(): WithContext<ClothingStore> {
   return {
@@ -15,13 +14,23 @@ export function getClothingStoreSchema(): WithContext<ClothingStore> {
     logo: `${SITE_URL}/brand_logo.webp`,
     image: `${SITE_URL}/store_front.webp`,
     telephone: '+91 99207 51567',
+    sameAs: [
+      'https://www.google.com/search?kgmid=/g/1tvyk6ws&hl=en-IN&q=Warden+%26+Sons+Kids+Wear',
+      'https://share.google/iwNowyZv9IlLRTv8Z',
+    ],
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Kemps Corner',
+      streetAddress:
+        'Shop No. 7, Ground Floor, Haji Habib Building, 155/157 August Kranti Marg, Near St. Stephen’s Church, Kemps Corner',
       addressLocality: 'Mumbai',
       addressRegion: 'Maharashtra',
       postalCode: '400036',
       addressCountry: 'IN',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 18.9654,
+      longitude: 72.8152,
     },
     openingHoursSpecification: [
       {
@@ -33,9 +42,10 @@ export function getClothingStoreSchema(): WithContext<ClothingStore> {
           'https://schema.org/Thursday',
           'https://schema.org/Friday',
           'https://schema.org/Saturday',
+          'https://schema.org/Sunday',
         ],
-        opens: '10:30',
-        closes: '20:30',
+        opens: '09:00',
+        closes: '21:00',
       },
     ],
   };

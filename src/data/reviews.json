@@ -1,0 +1,26 @@
+[
+  {
+    "id": "review-01",
+    "author": "Kavita S.",
+    "rating": 5,
+    "date": "2024",
+    "text": "A South Mumbai staple for our family! Warden & Sons has the best pure cotton jhablas, onesies, and daily playwear. Friendly owners and great quality that survives Mumbai humidity.",
+    "source": "Google Review"
+  },
+  {
+    "id": "review-02",
+    "author": "Rohit Mehta",
+    "rating": 5,
+    "date": "2024",
+    "text": "Conveniently located right at Kemps Corner near St. Stephen's Church. Much quicker and more personalized than wandering large malls. Helpful measuring and honest size recommendations.",
+    "source": "Google Review"
+  },
+  {
+    "id": "review-03",
+    "author": "Dr. Ananya P.",
+    "rating": 5,
+    "date": "2023",
+    "text": "Been shopping here since my first child was born. The breathable cotton fabrics, school uniforms, and nightwear are top quality. Wonderful family-run shop in Kemps Corner.",
+    "source": "Google Review"
+  }
+]

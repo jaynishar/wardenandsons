@@ -9,7 +9,7 @@ import { getCanonicalUrl } from '@/config/site';
 export const metadata: Metadata = {
   title: 'Visit Our Store | Kemps Corner, South Mumbai',
   description:
-    'Find Warden & Sons at Kemps Corner, South Mumbai near Pedder Road. Mon-Sat 10:30 AM to 8:30 PM. Pure cotton kids clothing in store.',
+    'Find Warden & Sons at Kemps Corner near St. Stephen’s Church. Open daily 9:00 AM to 9:00 PM. Pure cotton kids clothing in store.',
   alternates: {
     canonical: getCanonicalUrl('/visit-us'),
   },
@@ -51,24 +51,37 @@ export default function VisitUsPage() {
                 <MapPin className="w-6 h-6 text-gold" />
               </div>
               <div className="space-y-1">
-                <h2 className="font-serif font-bold text-lg text-near-black">Boutique Location</h2>
+                <h2 className="font-serif font-bold text-lg text-near-black">Store Location</h2>
                 <p className="text-xs sm:text-sm text-muted leading-relaxed">
                   <strong>Warden & Sons Kids Wear</strong>
                   <br />
-                  Kemps Corner, South Mumbai
+                  {BUSINESS_CONFIG.location.shopNumber}, {BUSINESS_CONFIG.location.building}
                   <br />
-                  Mumbai, Maharashtra 400036, India
+                  {BUSINESS_CONFIG.location.streetAddress}
+                  <br />
+                  Near St. Stephen’s Church, Kemps Corner, Mumbai 400036
                 </p>
               </div>
             </div>
 
             <div className="pt-2 flex flex-wrap gap-3">
               <a
-                href={googleMapsUrl}
+                href={BUSINESS_CONFIG.location.googleBusinessShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="directions_click"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-xs transition-all"
+              >
+                <span>Google Business Profile</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="directions_click"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-forest text-forest hover:bg-bg-cream font-bold text-xs shadow-xs transition-all"
               >
                 <span>Open in Google Maps</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -98,16 +111,16 @@ export default function VisitUsPage() {
                 <h2 className="font-serif font-bold text-lg text-near-black">Opening Hours</h2>
                 <div className="space-y-1 text-xs sm:text-sm text-muted pt-1">
                   <div className="flex justify-between py-1 border-b border-border-soft/60">
-                    <span className="font-semibold text-near-black">Monday – Saturday:</span>
-                    <span className="text-forest font-bold">{BUSINESS_CONFIG.hours.display}</span>
+                    <span className="font-semibold text-near-black">Monday – Sunday:</span>
+                    <span className="text-forest font-bold">9:00 AM – 9:00 PM</span>
                   </div>
-                  <div className="flex justify-between py-1 text-red-600 font-semibold">
+                  <div className="flex justify-between py-1 text-forest font-semibold">
                     <span>Sunday:</span>
-                    <span>{BUSINESS_CONFIG.hours.sunday}</span>
+                    <span className="font-bold">Open (9:00 AM – 9:00 PM)</span>
                   </div>
                 </div>
-                <p className="text-[11px] text-gray-400 italic pt-2">
-                  *{BUSINESS_CONFIG.hours.note}
+                <p className="text-[11px] text-gray-500 pt-2">
+                  Open every day of the week. WhatsApp enquiries answered during store hours.
                 </p>
               </div>
             </div>
@@ -120,10 +133,10 @@ export default function VisitUsPage() {
               <h3 className="font-serif font-bold text-base">Landmark Proximity</h3>
             </div>
             <p className="text-xs text-muted leading-relaxed">
-              We are located in the landmark shopping district of Kemps Corner, conveniently
-              accessible from{' '}
+              We are located at <strong>Haji Habib Building near St. Stephen’s Church</strong> on August
+              Kranti Marg, Kemps Corner. Conveniently accessible from{' '}
               <strong>Pedder Road, Altamount Road, Breach Candy, Nepean Sea Road</strong>, and Grant
-              Road. If you need assistance finding parking or store access, call us directly at{' '}
+              Road. If you need assistance finding parking or store access, call us at{' '}
               <a
                 href={BUSINESS_CONFIG.phone.telLink}
                 data-track="call_click"
@@ -131,7 +144,7 @@ export default function VisitUsPage() {
               >
                 {BUSINESS_CONFIG.phone.display}
               </a>
-              .
+              {BUSINESS_CONFIG.phone.landline ? ` or ${BUSINESS_CONFIG.phone.landline}` : ''}.
             </p>
           </div>
         </div>

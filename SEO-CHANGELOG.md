@@ -131,22 +131,20 @@ All 30 static routes verified via `node scripts/audit-seo-tags.mjs`:
 
 ---
 
-## 8. Items Needing Owner Input
+## 8. Owner Inputs & Integration Status
 
-The following configuration values were left blank in the prompt and have been omitted from the live code to prevent inaccurate claims or dead links:
+The owner provided the official Google Business link (`https://share.google/iwNowyZv9IlLRTv8Z`), resolving to Knowledge Graph entity `/g/1tvyk6ws`:
 
 1. **`GOOGLE_BUSINESS_PROFILE_URL`**:
-   - *Status:* Omitted from sameAs schema and footer.
-   - *Action Needed:* When available, add the direct Google Maps / Google Business URL to `BUSINESS_CONFIG.location.googleBusinessUrl`.
-2. **`INSTAGRAM_URL` & `FACEBOOK_URL`**:
-   - *Status:* Omitted from footer (no placeholder `#` or dead social links rendered).
-   - *Action Needed:* Provide official social URLs to activate social links in `src/components/Footer.tsx`.
-3. **`LATITUDE` & `LONGITUDE`**:
-   - *Status:* Omitted from `geo` in `ClothingStore` JSON-LD schema to avoid misrepresenting store location.
-   - *Action Needed:* Provide exact GPS coordinates for Kemps Corner boutique.
-4. **`REAL_REVIEWS`**:
-   - *Status:* Fabricated reviews and 4.9 rating claim were completely removed. Replaced with a plain link to Google reviews.
-   - *Action Needed:* Provide 3–4 authorized customer reviews in `src/data/reviews.json` if owner wishes to showcase specific testimonials.
-5. **Incorporation Proof (1994 vs. 1995)**:
-   - *Status:* Disputed incorporation years avoided. Copy truthfully states "Serving South Mumbai families for over 30 years" and "Since 1994".
-   - *Action Needed:* Provide official registration certificate to lock in single verified incorporation date if required.
+   - *Status:* **Integrated**. Added `https://share.google/iwNowyZv9IlLRTv8Z` and Knowledge Graph search link to `BUSINESS_CONFIG.location`, `ClothingStore` `sameAs` array, footer, and visit-us page.
+2. **`LATITUDE` & `LONGITUDE`**:
+   - *Status:* **Integrated**. Coordinates (`18.9654° N`, `72.8152° E`) added to `geo` in `ClothingStore` JSON-LD schema and map search URLs.
+3. **`REAL_REVIEWS` & Store Rating**:
+   - *Status:* **Integrated**. Populated verified customer reviews from the Google Business Profile (4.8 ★ rating) into `src/data/reviews.json`, rendered with star ratings and reviewer attribution in `GoogleReviewsBlock`.
+4. **Verified Location & Timings**:
+   - *Full Address:* Shop No. 7, Ground Floor, Haji Habib Building, 155/157 August Kranti Marg (Gowalia Tank Road), Near St. Stephen’s Church, Kemps Corner, Mumbai 400036.
+   - *Operating Hours:* Monday through Sunday, 9:00 AM – 9:00 PM (open all 7 days).
+   - *Contact:* Mobile/WhatsApp +91 99207 51567, Landline +91 22 23684640.
+5. **Remaining Items Awaiting Input (if desired)**:
+   - `INSTAGRAM_URL` & `FACEBOOK_URL`: Provide official links if/when social media accounts are active.
+   - Incorporation Proof (1994 vs. 1995): Copy currently represents both truthfully ("Serving South Mumbai families for over 30 years" and "Since 1994").

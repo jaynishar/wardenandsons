@@ -26,7 +26,7 @@ const faqs: FAQItem[] = [
   {
     question: 'Can I visit the physical shop at Kemps Corner in person?',
     answer:
-      'Yes, absolutely! We love welcoming families into our shop. We are located at Kemps Corner, South Mumbai (near the Pedder Road flyover). Store hours are Monday to Saturday from 10:30 AM to 8:30 PM (Sunday closed).',
+      'Yes, absolutely! We love welcoming families into our shop. We are located at Shop No. 7, Haji Habib Building near St. Stephen’s Church, Kemps Corner. Store hours are Monday to Sunday from 9:00 AM to 9:00 PM (open every day).',
   },
   {
     question: 'How do exchanges work if a size doesn’t fit?',

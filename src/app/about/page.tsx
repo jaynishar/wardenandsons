@@ -160,11 +160,11 @@ export default function AboutPage() {
       {/* Visit Store Callout */}
       <section className="bg-bg-cream rounded-3xl border border-border-soft p-8 sm:p-10 text-center space-y-4 max-w-3xl mx-auto">
         <h3 className="font-serif text-2xl font-bold text-forest">
-          Experience Our Boutique in Person
+          Visit Our Kemps Corner Shop
         </h3>
         <p className="text-xs sm:text-sm text-muted leading-relaxed max-w-lg mx-auto">
-          We are located at Kemps Corner, near Pedder Road Flyover. Drop in between 10:30 AM and
-          8:30 PM (Mon–Sat) to feel our fabric quality firsthand.
+          We are located at Haji Habib Building near St. Stephen’s Church, Kemps Corner. Drop in between 9:00 AM and
+          9:00 PM (Monday–Sunday) to feel our cotton quality firsthand.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link
