@@ -1,0 +1,27 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./out",
+      "numberOfRuns": 1,
+      "url": [
+        "http://localhost/index.html",
+        "http://localhost/shop/index.html",
+        "http://localhost/about/index.html",
+        "http://localhost/bulk-orders/index.html",
+        "http://localhost/visit-us/index.html"
+      ]
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["warn", { "minScore": 0.85 }],
+        "categories:accessibility": ["warn", { "minScore": 0.9 }],
+        "categories:best-practices": ["warn", { "minScore": 0.9 }],
+        "categories:seo": ["warn", { "minScore": 0.9 }]
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "./.lighthouseci"
+    }
+  }
+}

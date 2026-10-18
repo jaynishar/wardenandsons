@@ -7,7 +7,8 @@ import BottomNav from '@/components/BottomNav';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
 import Analytics from '@/components/Analytics';
-import { BUSINESS_CONFIG } from '@/config/business';
+import { GoogleTagManager } from '@next/third-parties/google';
+import { getClothingStoreSchema } from '@/lib/schema';
 import { SITE_URL, SITE_CONFIG, getCanonicalUrl } from '@/config/site';
 
 const inter = Inter({
@@ -76,47 +77,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Factual ClothingStore JSON-LD derived directly from owner-verified location and business config
-  const localBusinessSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ClothingStore',
-    name: BUSINESS_CONFIG.name,
-    image: `${SITE_URL}/brand_logo.jpg`,
-    url: getCanonicalUrl('/'),
-    telephone: BUSINESS_CONFIG.phone.display,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: BUSINESS_CONFIG.location.neighborhood,
-      addressLocality: BUSINESS_CONFIG.location.city,
-      addressRegion: BUSINESS_CONFIG.location.state,
-      postalCode: BUSINESS_CONFIG.location.postalCode,
-      addressCountry: 'IN',
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '10:30',
-        closes: '20:30',
-      },
-    ],
-  };
+  const localBusinessSchema = getClothingStoreSchema();
 
   return (
     <html lang="en-IN" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
-        {/* Google Tag Manager */}
-        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PK75ST2X');`,
-          }}
-        />
-        {/* End Google Tag Manager */}
+        <GoogleTagManager gtmId="GTM-PK75ST2X" />
         {/* High-priority LCP hero image preload for instant discovery */}
         <link
           rel="preload"
@@ -142,16 +108,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <Analytics />
       </head>
       <body className="min-h-full flex flex-col bg-bg-cream text-near-black selection:bg-gold/30 selection:text-forest">
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PK75ST2X"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-        {/* End Google Tag Manager (noscript) */}
         <Header />
         <CartDrawer />
         <main className="flex-grow pb-20 md:pb-0">{children}</main>

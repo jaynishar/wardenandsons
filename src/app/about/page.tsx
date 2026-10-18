@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldCheck, Heart, Sparkles, MessageSquare, Phone, ArrowRight } from 'lucide-react';
 import GoogleReviewsBlock from '@/components/GoogleReviewsBlock';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
@@ -40,6 +41,12 @@ export default function AboutPage() {
 
   return (
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 md:space-y-16 font-sans">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: getCanonicalUrl('/') },
+          { name: 'Our Heritage', url: getCanonicalUrl('/about') },
+        ]}
+      />
       {/* Intro Heading */}
       <section className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">

@@ -3,14 +3,16 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ClipboardList, MessageSquare, Truck, ArrowRight, ShieldCheck } from 'lucide-react';
 import FAQ from '@/components/FAQ';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'How It Works | WhatsApp Request Guide',
   description:
     'Learn how WhatsApp catalogue requests work at Warden & Sons Kids Wear Kemps Corner. Browse representative samples, build your request list, and get personal guidance from our family store team.',
   alternates: {
-    canonical: '/how-it-works',
+    canonical: getCanonicalUrl('/how-it-works'),
   },
 };
 
@@ -56,6 +58,12 @@ export default function HowItWorksPage() {
 
   return (
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 md:space-y-16 font-sans">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: getCanonicalUrl('/') },
+          { name: 'How It Works', url: getCanonicalUrl('/how-it-works') },
+        ]}
+      />
       {/* Editorial Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">

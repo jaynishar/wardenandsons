@@ -1,5 +1,6 @@
 import React from 'react';
 import BulkOrderForm from '@/components/BulkOrderForm';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import { GraduationCap, Trophy, Gift, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -35,6 +36,12 @@ export default function BulkOrdersPage() {
 
   return (
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: getCanonicalUrl('/') },
+          { name: 'Custom Uniforms & Bulk Orders', url: getCanonicalUrl('/bulk-orders') },
+        ]}
+      />
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">

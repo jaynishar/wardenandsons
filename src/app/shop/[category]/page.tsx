@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getCatalogueItemsByCategory, CategorySlug } from '@/lib/products';
 import ShopCatalog from '@/components/ShopCatalog';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
 import { getCanonicalUrl } from '@/config/site';
 
@@ -67,6 +68,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: getCanonicalUrl('/') },
+          { name: 'Shop Catalogue', url: getCanonicalUrl('/shop') },
+          { name: displayName, url: getCanonicalUrl(`/shop/${category}`) },
+        ]}
+      />
       {/* Editorial Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">

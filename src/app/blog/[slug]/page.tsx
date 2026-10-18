@@ -5,6 +5,7 @@ import { getBlogPostBySlug, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { marked } from 'marked';
 import { Calendar, User, Clock, ArrowLeft, MessageSquare } from 'lucide-react';
 import type { Metadata } from 'next';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 import { SITE_URL, getCanonicalUrl } from '@/config/site';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -104,6 +105,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: getCanonicalUrl('/') },
+          { name: 'Parenting & Sizing Guides', url: getCanonicalUrl('/blog') },
+          { name: post.title, url: getCanonicalUrl(`/blog/${post.slug}`) },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
