@@ -39,22 +39,58 @@ function checkHtmlFile(filePath, relUrl) {
   // Wardenandsons.com check
   const hasDotCom = /wardenandsons\.com/i.test(content);
 
+  // JSON-LD Schemas check
+  const jsonLdScripts = content.match(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi) || [];
+  let schemasFound = [];
+  jsonLdScripts.forEach(scriptTag => {
+    const raw = scriptTag.replace(/<script[^>]*>/i, '').replace(/<\/script>/i, '').trim();
+    try {
+      const obj = JSON.parse(raw);
+      if (Array.isArray(obj)) {
+        obj.forEach(o => schemasFound.push(o['@type']));
+      } else {
+        schemasFound.push(obj['@type']);
+      }
+    } catch (e) {
+      issues.push(`${relUrl}: Invalid JSON in ld+json script (${e.message})`);
+    }
+  });
+
   console.log(`\nURL: ${relUrl || '/'}`);
   console.log(`  Title (${title.length} chars): ${title}`);
   console.log(`  Description (${desc.length} chars): ${desc}`);
   console.log(`  H1 count: ${h1Matches.length} ${h1Matches.length > 0 ? '-> ' + h1Matches[0].replace(/<[^>]+>/g, '').trim() : ''}`);
   console.log(`  Canonical: ${canonical}`);
   console.log(`  Lang: ${lang}`);
+  console.log(`  Structured Data: [${schemasFound.join(', ')}]`);
 
-  if (!title) issues.push(`${relUrl}: Missing title`);
-  if (title.length < 40 || title.length > 65) issues.push(`${relUrl}: Title length (${title.length}) outside recommended ~50-60 chars`);
-  if (!desc) issues.push(`${relUrl}: Missing description`);
-  if (desc.length < 80 || desc.length > 150) issues.push(`${relUrl}: Description length (${desc.length}) outside recommended ~100-130 chars`);
-  if (h1Matches.length !== 1) issues.push(`${relUrl}: Found ${h1Matches.length} H1 tags (expected exactly 1)`);
-  if (!canonical.startsWith('https://wardenandsons.in')) issues.push(`${relUrl}: Invalid canonical (${canonical})`);
-  if (lang !== 'en-IN') issues.push(`${relUrl}: Lang is '${lang}' (expected 'en-IN')`);
-  if (hasNoindex) issues.push(`${relUrl}: Found 'noindex'`);
-  if (hasDotCom) issues.push(`${relUrl}: Found 'wardenandsons.com'`);
+  if (relUrl === '' || relUrl === '/') {
+    if (!schemasFound.includes('ClothingStore') || !schemasFound.includes('WebSite')) {
+      issues.push(`Homepage missing ClothingStore or WebSite schema (found: ${schemasFound.join(', ')})`);
+    }
+  } else if (relUrl !== '/404') {
+    if (!schemasFound.includes('BreadcrumbList')) {
+      issues.push(`${relUrl}: Missing BreadcrumbList schema (found: ${schemasFound.join(', ')})`);
+    }
+  }
+
+  // Strictly forbidden schemas
+  if (schemasFound.includes('FAQPage')) issues.push(`${relUrl}: Contains forbidden FAQPage schema`);
+  if (schemasFound.includes('Review') || schemasFound.includes('AggregateRating')) {
+    issues.push(`${relUrl}: Contains forbidden Review/Rating schema`);
+  }
+
+  if (relUrl !== '/404') {
+    if (!title) issues.push(`${relUrl}: Missing title`);
+    if (title.length < 40 || title.length > 65) issues.push(`${relUrl}: Title length (${title.length}) outside recommended ~50-60 chars`);
+    if (!desc) issues.push(`${relUrl}: Missing description`);
+    if (desc.length < 80 || desc.length > 150) issues.push(`${relUrl}: Description length (${desc.length}) outside recommended ~100-130 chars`);
+    if (h1Matches.length !== 1) issues.push(`${relUrl}: Found ${h1Matches.length} H1 tags (expected exactly 1)`);
+    if (!canonical.startsWith('https://wardenandsons.in')) issues.push(`${relUrl}: Invalid canonical (${canonical})`);
+    if (lang !== 'en-IN') issues.push(`${relUrl}: Lang is '${lang}' (expected 'en-IN')`);
+    if (hasNoindex) issues.push(`${relUrl}: Found 'noindex'`);
+    if (hasDotCom) issues.push(`${relUrl}: Found 'wardenandsons.com'`);
+  }
 }
 
 function traverse(dir, prefix = '') {

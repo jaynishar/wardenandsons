@@ -6,9 +6,7 @@ import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
-import Analytics from '@/components/Analytics';
 import { GoogleTagManager } from '@next/third-parties/google';
-import { getClothingStoreSchema } from '@/lib/schema';
 import { SITE_URL, SITE_CONFIG, getCanonicalUrl } from '@/config/site';
 
 const inter = Inter({
@@ -77,8 +75,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const localBusinessSchema = getClothingStoreSchema();
-
   return (
     <html lang="en-IN" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
@@ -91,21 +87,12 @@ export default function RootLayout({
           type="image/webp"
           fetchPriority="high"
         />
-        {/* JSON-LD Schemas */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessSchema),
-          }}
-        />
         {/* Favicon & Web App Icons */}
         <link rel="icon" href="/favicon.ico?v=5" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=5" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=5" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=5" />
         <link rel="manifest" href="/site.webmanifest" />
-        {/* Additional Analytics */}
-        <Analytics />
       </head>
       <body className="min-h-full flex flex-col bg-bg-cream text-near-black selection:bg-gold/30 selection:text-forest">
         <Header />

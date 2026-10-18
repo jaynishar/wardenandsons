@@ -1,7 +1,6 @@
 import React from 'react';
 import { ChevronDown, HelpCircle, MessageSquare } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getFAQPageSchema } from '@/lib/schema';
 
 interface FAQItem {
   question: string;
@@ -42,15 +41,8 @@ const faqs: FAQItem[] = [
 ];
 
 export default function FAQ() {
-  const faqSchema = getFAQPageSchema(faqs);
-
   return (
     <div className="space-y-4 max-w-3xl mx-auto font-sans">
-      {/* FAQPage JSON-LD Rich Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
 
       {faqs.map(faq => (
         <details

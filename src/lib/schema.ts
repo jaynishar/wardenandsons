@@ -1,56 +1,28 @@
-import type { ClothingStore, BreadcrumbList, FAQPage, WithContext } from 'schema-dts';
-import { BUSINESS_CONFIG } from '@/config/business';
+import type { ClothingStore, BreadcrumbList, WebSite, WithContext } from 'schema-dts';
 import { SITE_URL, getCanonicalUrl } from '@/config/site';
 
 /**
  * Generates typed ClothingStore JSON-LD schema for Warden & Sons
- * Complies with schema.org and Google Merchant / Local Business specifications.
+ * Follows schema.org specifications strictly.
+ * Geo coordinates and sameAs links are omitted per owner instructions.
  */
 export function getClothingStoreSchema(): WithContext<ClothingStore> {
   return {
     '@context': 'https://schema.org',
     '@type': 'ClothingStore',
-    '@id': `${SITE_URL}/#store`,
-    name: BUSINESS_CONFIG.name,
-    legalName: BUSINESS_CONFIG.legalName,
-    description:
-      'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Serving families for over 30 years with breathable cotton newborn essentials, boys & girls playwear, nightsuits, and custom school uniforms.',
-    image: `${SITE_URL}/brand_logo.webp`,
-    logo: `${SITE_URL}/brand_logo.webp`,
+    name: 'Warden & Sons Kids Wear',
     url: getCanonicalUrl('/'),
-    telephone: BUSINESS_CONFIG.phone.display,
-    priceRange: '₹₹',
-    currenciesAccepted: 'INR',
-    paymentAccepted: 'Cash, Credit Card, Debit Card, UPI, Net Banking',
-    areaServed: [
-      'Kemps Corner',
-      'South Mumbai',
-      'Altamount Road',
-      'Breach Candy',
-      'Pedder Road',
-      'Nepean Sea Road',
-      'Mumbai',
-      'India',
-    ],
+    logo: `${SITE_URL}/brand_logo.webp`,
+    image: `${SITE_URL}/store_front.webp`,
+    telephone: '+91 99207 51567',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: `${BUSINESS_CONFIG.location.neighborhood}, near Pedder Road Flyover`,
-      addressLocality: BUSINESS_CONFIG.location.city,
-      addressRegion: BUSINESS_CONFIG.location.state,
-      postalCode: BUSINESS_CONFIG.location.postalCode,
+      streetAddress: 'Kemps Corner',
+      addressLocality: 'Mumbai',
+      addressRegion: 'Maharashtra',
+      postalCode: '400036',
       addressCountry: 'IN',
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 18.9633,
-      longitude: 72.8055,
-    },
-    hasMap: BUSINESS_CONFIG.location.googleMapsSearchUrl,
-    sameAs: [
-      BUSINESS_CONFIG.location.googleReviewUrl,
-      'https://g.page/r/CRi_iIq4yd6gEBM',
-      BUSINESS_CONFIG.phone.whatsappUrl,
-    ],
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -70,7 +42,19 @@ export function getClothingStoreSchema(): WithContext<ClothingStore> {
 }
 
 /**
- * Generates typed BreadcrumbList JSON-LD schema for any inner page.
+ * Generates typed WebSite JSON-LD schema for Homepage.
+ */
+export function getWebSiteSchema(): WithContext<WebSite> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Warden & Sons Kids Wear',
+    url: getCanonicalUrl('/'),
+  };
+}
+
+/**
+ * Generates typed BreadcrumbList JSON-LD schema for inner pages.
  */
 export function getBreadcrumbSchema(
   items: Array<{ name: string; url: string }>,
@@ -83,26 +67,6 @@ export function getBreadcrumbSchema(
       position: index + 1,
       name: item.name,
       item: item.url,
-    })),
-  };
-}
-
-/**
- * Generates typed FAQPage JSON-LD schema.
- */
-export function getFAQPageSchema(
-  faqs: Array<{ question: string; answer: string }>,
-): WithContext<FAQPage> {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map(faq => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
     })),
   };
 }

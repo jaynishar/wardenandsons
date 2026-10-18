@@ -4,6 +4,7 @@ import ContactForm from '@/components/ContactForm';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Contact Our Kemps Corner Store in Mumbai',
@@ -17,6 +18,12 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: getCanonicalUrl('/') },
+          { name: 'Contact', url: getCanonicalUrl('/contact') },
+        ]}
+      />
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">

@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { getCanonicalUrl } from '@/config/site';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Customer Data Protection',
@@ -14,6 +15,12 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <div className="py-12 md:py-16 font-sans max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: getCanonicalUrl('/') },
+          { name: 'Privacy Policy', url: getCanonicalUrl('/privacy-policy') },
+        ]}
+      />
       <div className="max-w-3xl mx-auto space-y-6">
         <h1 className="font-serif text-3xl md:text-4xl font-bold text-forest mb-2">
           Privacy Policy

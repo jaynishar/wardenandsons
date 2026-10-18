@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { MessageSquare, MapPin } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Delivery, Store Pickup & Size Exchanges',
@@ -16,6 +17,12 @@ export const metadata: Metadata = {
 export default function ShippingReturnsPage() {
   return (
     <div className="py-12 md:py-20 font-sans max-w-3xl mx-auto px-4 sm:px-6">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: getCanonicalUrl('/') },
+          { name: 'Delivery & Exchanges', url: getCanonicalUrl('/shipping-returns') },
+        ]}
+      />
       <div className="space-y-3 mb-8">
         <span className="text-xs font-bold uppercase tracking-widest text-gold bg-bg-cream px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
           Store Policies & Fulfillment

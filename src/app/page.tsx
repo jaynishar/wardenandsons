@@ -10,12 +10,17 @@ import GoogleReviewsBlock from '@/components/GoogleReviewsBlock';
 import Reveal from '@/components/motion/Reveal';
 import { getFeaturedCatalogueItems } from '@/lib/products';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getClothingStoreSchema, getWebSiteSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 export default function HomePage() {
   const featuredProducts = getFeaturedCatalogueItems(6);
+  const storeSchema = getClothingStoreSchema();
+  const websiteSchema = getWebSiteSchema();
 
   return (
     <div className="space-y-12 md:space-y-16 font-sans">
+      <JsonLd schema={[storeSchema, websiteSchema]} />
       {/* 1. Hero with Announcement */}
       <Hero />
 
