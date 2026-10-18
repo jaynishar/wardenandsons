@@ -9,9 +9,9 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Our Heritage | Kemps Corner, South Mumbai',
+  title: 'About Our Shop | 30 Years at Kemps Corner',
   description:
-    'The story of Warden & Sons Kids Wear, serving South Mumbai families at Kemps Corner for over 30 years. Read about our breathable cotton philosophy and neighborhood roots.',
+    'Serving South Mumbai families at Kemps Corner since 1994 with pure cotton children’s clothing, honest sizing, and personal care.',
   alternates: {
     canonical: getCanonicalUrl('/about'),
   },
@@ -32,7 +32,7 @@ export default function AboutPage() {
       icon: Heart,
     },
     {
-      title: 'Bespoke WhatsApp Attention',
+      title: 'Personal WhatsApp Attention',
       description:
         'No automated bot replies. Every customer chat and size measurement is personally checked with a physical tape by our shop team.',
       icon: Sparkles,

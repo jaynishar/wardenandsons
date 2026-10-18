@@ -26,10 +26,10 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: {
     default: 'Warden & Sons Kids Wear | Kemps Corner, South Mumbai',
-    template: '%s | Warden & Sons Kids Wear',
+    template: '%s | Warden & Sons',
   },
   description:
-    'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Serving families for over 30 years with breathable cotton newborn essentials, boys & girls playwear, nightsuits, and custom school uniforms via WhatsApp.',
+    'Kids clothing in Kemps Corner, South Mumbai since 1994. Pure cotton newborn sets, playwear, nightsuits & uniforms on WhatsApp.',
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: getCanonicalUrl('/'),

@@ -3,9 +3,9 @@ import type { Metadata } from 'next';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service',
+  title: 'Terms of Service | Shop Policies & Orders',
   description:
-    'Read the terms of service of Warden & Sons Kids Wear. Learn about our retail pricing, ordering, custom uniform production, and exchange guidelines.',
+    'Read the terms of service of Warden & Sons Kids Wear Kemps Corner. Guidelines on retail requests, pricing, and size exchanges.',
   alternates: {
     canonical: getCanonicalUrl('/terms'),
   },

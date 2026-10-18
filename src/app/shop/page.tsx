@@ -7,9 +7,9 @@ import { getCanonicalUrl } from '@/config/site';
 import { ClipboardList, MessageSquare, Camera } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'All Categories & Representative Catalogue',
+  title: 'Shop Pure Cotton Kids Clothes by Age',
   description:
-    'Browse our breathable cotton representative catalogue for newborns, boys, girls, men, women, and school uniforms. Add items to your request list and enquire directly via WhatsApp from Warden & Sons, Kemps Corner.',
+    'Browse pure cotton children’s clothing by age: newborn essentials, boys playwear, girls dresses, nightsuits, and school uniforms.',
   alternates: {
     canonical: getCanonicalUrl('/shop'),
   },
@@ -23,46 +23,41 @@ export default function ShopPage() {
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: getCanonicalUrl('/') },
-          { name: 'Shop Catalogue', url: getCanonicalUrl('/shop') },
+          { name: 'Shop by Age', url: getCanonicalUrl('/shop') },
         ]}
       />
-      {/* Editorial Header */}
-      <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
-          Kemps Corner Catalogue
-        </span>
+
+      {/* Header */}
+      <div className="space-y-3 max-w-3xl">
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
-          Browse Department Offerings
+          Shop Pure Cotton Clothes by Age
         </h1>
-        <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          Add representative styles to your Request List. Our team at Kemps Corner will check
-          current live inventory, verify sizes with measuring tape dimensions, share photos of
-          current colorways, and confirm pricing on WhatsApp.
+        <p className="text-sm sm:text-base text-muted leading-relaxed">
+          Select items for your Request List. Send us your list on WhatsApp to confirm live colors,
+          sizes measured with a tape, and daily pricing directly from our Kemps Corner shop.
         </p>
       </div>
 
       {/* 3-Step WhatsApp Request Explainer */}
-      <div className="bg-bg-cream border border-border-soft rounded-2xl p-4 sm:p-5">
+      <div className="bg-white border border-border-soft rounded-2xl p-4 sm:p-5">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-near-black">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-forest text-white flex items-center justify-center shrink-0">
               <ClipboardList className="w-4 h-4 text-gold" />
             </div>
             <div>
-              <p className="font-bold text-forest">1. Pick Styles</p>
-              <p className="text-muted text-[11px]">
-                Add representative garments to your Request List
-              </p>
+              <p className="font-bold text-forest">1. Add to Request</p>
+              <p className="text-muted text-[11px]">Choose items, sizes and preferred colors</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-forest text-white flex items-center justify-center shrink-0">
-              <MessageSquare className="w-4 h-4 text-whatsapp" />
+              <MessageSquare className="w-4 h-4 text-gold" />
             </div>
             <div>
-              <p className="font-bold text-forest">2. Send on WhatsApp</p>
-              <p className="text-muted text-[11px]">Include your age, size, or fit preferences</p>
+              <p className="font-bold text-forest">2. Send List on WhatsApp</p>
+              <p className="text-muted text-[11px]">Opens WhatsApp with your prefilled list</p>
             </div>
           </div>
 
@@ -71,17 +66,15 @@ export default function ShopPage() {
               <Camera className="w-4 h-4 text-gold" />
             </div>
             <div>
-              <p className="font-bold text-forest">3. Live Photos & Prices</p>
-              <p className="text-muted text-[11px]">
-                We confirm rack stock, tape measure & pricing
-              </p>
+              <p className="font-bold text-forest">3. Photos & Dimensions</p>
+              <p className="text-muted text-[11px]">We confirm measurements with flat tape</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Interactive Catalog */}
-      <ShopCatalog products={products} initialCategory="all" />
+      <ShopCatalog products={products} categoryTitle="All Clothes" />
     </div>
   );
 }

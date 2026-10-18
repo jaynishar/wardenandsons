@@ -17,24 +17,96 @@ export async function generateStaticParams() {
   }));
 }
 
-function getCategoryDisplayName(cat: string): string {
-  switch (cat) {
-    case 'newborn':
-      return 'Newborns & Infants (0-24M)';
-    case 'boys':
-      return 'Boys Playwear & Sports (0-16Y)';
-    case 'girls':
-      return 'Girls Clothing & Sleepwear (0-16Y)';
-    case 'men':
-      return 'Men’s Basics & Loungewear';
-    case 'women':
-      return 'Women’s Muslin Sleepwear & Basics';
-    case 'bulk':
-      return 'School Uniforms & Bulk Apparel';
-    default:
-      return 'Shop Category';
-  }
+interface CategoryEditorial {
+  titleTag: string;
+  metaDesc: string;
+  heading: string;
+  subheading: string;
+  fabricText: string;
+  ageText: string;
+  sizingText: string;
 }
+
+const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
+  newborn: {
+    titleTag: 'Newborn & Baby Clothes (0-24M) in Mumbai',
+    metaDesc:
+      'Pure combed cotton jhablas, onesies, muslin swaddles, and rompers for babies (0-24M). Send list on WhatsApp to Warden & Sons.',
+    heading: 'Newborn & Infant Clothes (0–24 Months)',
+    subheading: 'Pure cotton basics, muslin swaddles, and everyday comfort for babies.',
+    fabricText:
+      'Crafted from 100% combed cotton and double-layer open-weave muslin. All garments use azo-free dyes that prevent skin irritation and prickly heat in Mumbai’s humid coastal weather. Seams are stitched flat and care tags are placed away from sensitive newborn skin.',
+    ageText:
+      'Sized carefully for infants from birth up to 24 months across 0-3M, 3-6M, 6-12M, 12-18M, and 18-24M stages. Generous diaper-rise room is built into all onesies and rompers.',
+    sizingText:
+      'Babies grow quickly during the first six months. We suggest taking one size larger for sleepsuits to allow comfortable layering over cloth nappies. On WhatsApp, simply mention your baby’s age or approximate weight, and our shop team will verify dimensions with a physical measuring tape before packing.',
+  },
+  boys: {
+    titleTag: 'Boys Playwear, T-Shirts & Shorts (0-16Y)',
+    metaDesc:
+      'Everyday cotton playwear, t-shirts, and hosiery nightsuits for boys (0-16Y). Send list on WhatsApp to Warden & Sons Kemps Corner.',
+    heading: 'Boys Playwear & Clothes (0–16 Years)',
+    subheading: 'Breathable cotton t-shirts, shorts, track pants, and nightsuits.',
+    fabricText:
+      'High-durability 180 to 220 GSM single-jersey cotton for t-shirts, reinforced cotton twill for cargo shorts, and 100% combed hosiery cotton for nightwear. Built without synthetic polyester blends so boys stay cool while playing outdoors.',
+    ageText:
+      'Full coverage from toddlers (0-2Y), junior boys (2-8Y), to older boys and teenagers (8-16Y). All garments feature reinforced collar ribbing and double-needle hems.',
+    sizingText:
+      'Active boys need room through the shoulders and chest. For shorts and joggers, our waistbands feature soft ribbed elastic with functional drawstrings. When sending your Request List on WhatsApp, tell us your boy’s age and approximate height, and we will measure flat chest and length dimensions for you.',
+  },
+  girls: {
+    titleTag: 'Girls Cotton Dresses & Nightwear (0-16Y)',
+    metaDesc:
+      'Soft cotton dresses, tops, leggings, and notched-collar nightsuits for girls (0-16Y). Send list on WhatsApp to Warden & Sons.',
+    heading: 'Girls Clothing & Sleepwear (0–16 Years)',
+    subheading: 'Airy cotton dresses, comfortable nightsuits, tops, and leggings.',
+    fabricText:
+      'Woven from fine combed cotton poplins, breezy cambric, and soft knit ribbing. Pre-washed fabrics stay soft after repeat laundering and keep cool in warm weather. Party and casual dresses include full cotton linings with zero scratching tulle touching the skin.',
+    ageText:
+      'Available across toddler (0-2Y), young girls (2-7Y), pre-teens (8-12Y), and teenage girls (13-16Y). Clean silhouettes with practical pockets and durable button closures.',
+    sizingText:
+      'For dresses, check shoulder-to-knee length. Our nightsuits are cut with a comfortable, relaxed fit for sleeping. Share your daughter’s height and chest measurement on WhatsApp, and our Kemps Corner store desk will confirm flat measurements directly.',
+  },
+  men: {
+    titleTag: 'Men’s Pure Cotton Loungewear & Basics',
+    metaDesc:
+      'Breathable combed cotton t-shirts, lounge shorts, and pajama sets for men. Send list on WhatsApp to Warden & Sons Kemps Corner.',
+    heading: 'Men’s Cotton Loungewear & Basics',
+    subheading: 'Combed cotton t-shirts, boxer shorts, and classic pajama sets.',
+    fabricText:
+      'Constructed with 100% combed long-staple cotton jerseys and woven poplins. Pre-shrunk to prevent size loss in standard machine washing, ensuring airflow and all-day comfort in tropical temperatures.',
+    ageText:
+      'Available in adult sizes from Small to 3XL across solid crewneck t-shirts, relaxed lounge shorts, and traditional button-down pajama sets.',
+    sizingText:
+      'Cut with a comfortable, straight drape rather than slim tailoring. If you prefer extra ease for lounging at home, select your usual collar or chest size. Our store team will gladly measure chest and waist dimensions on our counter tape.',
+  },
+  women: {
+    titleTag: 'Women’s Muslin Sleepwear & Cotton Sets',
+    metaDesc:
+      'Lightweight muslin sleepwear, lounge sets, and everyday tops for women. Send list on WhatsApp to Warden & Sons Kemps Corner.',
+    heading: 'Women’s Muslin Sleepwear & Basics',
+    subheading: 'Airy double-gauze muslin pajama sets, nightdresses, and cotton tops.',
+    fabricText:
+      'Soft double-gauze breathable cotton muslin and combed cotton knits. Extremely gentle on the skin, highly absorbent, and designed for comfortable sleep and daily home wear.',
+    ageText:
+      'Offered in sizes XS through XXL across coordinated pajama sets, buttoned sleep shirts, and lightweight cotton casuals.',
+    sizingText:
+      'Muslin fabrics have a natural, relaxed drape that softens with every wash. Let us know on WhatsApp whether you prefer a loose or standard fit, and our team will measure armhole, chest, and pant outseam lengths for you.',
+  },
+  bulk: {
+    titleTag: 'School Uniforms & Bulk Cotton Apparel',
+    metaDesc:
+      'Custom school uniforms, sports kits, and bulk cotton children’s garments. Direct WhatsApp quotes from Warden & Sons Kemps Corner.',
+    heading: 'School Uniforms & Bulk Orders',
+    subheading: 'Custom school uniforms, sports house t-shirts, and group garments.',
+    fabricText:
+      'Heavy-duty colorfast cotton drills, breathable pique knits for sports polos, and pre-shrunk twills engineered for daily school use and institutional laundering without fading.',
+    ageText:
+      'Complete sizing ranges from nursery and primary grades through secondary classes (sizes 20 to 42). We supply shirts, skirts, shorts, pinafores, and sports sets.',
+    sizingText:
+      'We supply size sample sets and clear measurement charts for schools, parent groups, and sports teams. Send your design, fabric, and quantity requirements on WhatsApp for direct quotes and production timelines.',
+  },
+};
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { category } = await params;
@@ -45,11 +117,11 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     };
   }
 
-  const name = getCategoryDisplayName(category);
+  const editorial = CATEGORY_EDITORIALS[category as CategorySlug];
 
   return {
-    title: `${name} | Catalogue Preview`,
-    description: `Explore representative offerings of ${name}. Add items to your request list and enquire directly on WhatsApp with Warden & Sons, Kemps Corner.`,
+    title: editorial.titleTag,
+    description: editorial.metaDesc,
     alternates: {
       canonical: getCanonicalUrl(`/shop/${category}`),
     },
@@ -63,35 +135,53 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     return notFound();
   }
 
+  const editorial = CATEGORY_EDITORIALS[category as CategorySlug];
   const products = getCatalogueItemsByCategory(category as CategorySlug);
-  const displayName = getCategoryDisplayName(category);
 
   return (
-    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
+    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 font-sans">
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: getCanonicalUrl('/') },
-          { name: 'Shop Catalogue', url: getCanonicalUrl('/shop') },
-          { name: displayName, url: getCanonicalUrl(`/shop/${category}`) },
+          { name: 'Shop by Age', url: getCanonicalUrl('/shop') },
+          { name: editorial.heading, url: getCanonicalUrl(`/shop/${category}`) },
         ]}
       />
-      {/* Editorial Header */}
-      <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
-          Department Collection
-        </span>
+
+      {/* Zara-Style Editorial Header */}
+      <div className="space-y-4 max-w-3xl">
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
-          {displayName}
+          {editorial.heading}
         </h1>
-        <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          Pre-washed, azo-free cotton garments crafted for sensitive skin. Select items for your
-          Request List, then send your enquiry on WhatsApp to confirm live colors, sizes, and
-          pricing.
+        <p className="text-sm sm:text-base text-muted leading-relaxed">
+          {editorial.subheading}
         </p>
       </div>
 
+      {/* Helpful Fabric, Age & Sizing Copy (150-250 words) */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-cream/50 p-6 md:p-8 rounded-2xl border border-border-soft text-xs sm:text-sm text-muted leading-relaxed">
+        <div className="space-y-2">
+          <h2 className="font-bold text-near-black text-sm uppercase tracking-wider font-mono">
+            Fabric & Comfort
+          </h2>
+          <p>{editorial.fabricText}</p>
+        </div>
+        <div className="space-y-2">
+          <h2 className="font-bold text-near-black text-sm uppercase tracking-wider font-mono">
+            Age & Fit Range
+          </h2>
+          <p>{editorial.ageText}</p>
+        </div>
+        <div className="space-y-2">
+          <h2 className="font-bold text-near-black text-sm uppercase tracking-wider font-mono">
+            Sizing & WhatsApp Check
+          </h2>
+          <p>{editorial.sizingText}</p>
+        </div>
+      </div>
+
       {/* Main Interactive Catalog */}
-      <ShopCatalog products={products} initialCategory={category} categoryTitle={displayName} />
+      <ShopCatalog products={products} initialCategory={category} categoryTitle={editorial.heading} />
     </div>
   );
 }

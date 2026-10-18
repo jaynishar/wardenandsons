@@ -6,9 +6,9 @@ import type { Metadata } from 'next';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Blog & Parenting Guides',
+  title: 'Parent Guides & Kids Clothing Articles',
   description:
-    'Read the latest kids clothing sizing guides, fabric safety reviews, mild winter guides, and local Kemps Corner shopping tips by Warden & Sons.',
+    'Parent guides on pure cotton babywear, kids clothing sizing charts, fabric care, and local Kemps Corner shopping in South Mumbai.',
   alternates: {
     canonical: getCanonicalUrl('/blog'),
   },

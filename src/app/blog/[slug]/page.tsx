@@ -33,15 +33,20 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   const postCanonical = getCanonicalUrl(`/blog/${post.slug}`);
 
+  const postTitle = post.metaTitle || post.title;
+  const postDesc = post.metaDescription || post.excerpt;
+
   return {
-    title: post.metaTitle || post.title,
-    description: post.metaDescription || post.excerpt,
+    title: {
+      absolute: postTitle,
+    },
+    description: postDesc,
     alternates: {
       canonical: postCanonical,
     },
     openGraph: {
-      title: post.metaTitle || post.title,
-      description: post.metaDescription || post.excerpt,
+      title: postTitle,
+      description: postDesc,
       url: postCanonical,
       type: 'article',
       publishedTime: post.date,

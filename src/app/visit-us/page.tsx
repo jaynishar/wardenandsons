@@ -7,9 +7,9 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Visit Us | Kemps Corner Store Locator',
+  title: 'Visit Our Store | Kemps Corner, South Mumbai',
   description:
-    'Find Warden & Sons Kids Wear boutique at Kemps Corner, South Mumbai. Operating hours, location directions near Pedder Road flyover, and Google Maps link.',
+    'Find Warden & Sons at Kemps Corner, South Mumbai near Pedder Road. Mon-Sat 10:30 AM to 8:30 PM. Pure cotton kids clothing in store.',
   alternates: {
     canonical: getCanonicalUrl('/visit-us'),
   },

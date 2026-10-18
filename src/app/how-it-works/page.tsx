@@ -8,9 +8,9 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'How It Works | WhatsApp Request Guide',
+  title: 'How to Buy on WhatsApp | Simple 3-Step Guide',
   description:
-    'Learn how WhatsApp catalogue requests work at Warden & Sons Kids Wear Kemps Corner. Browse representative samples, build your request list, and get personal guidance from our family store team.',
+    'Select children’s clothing items for your Request List, then send them to our Kemps Corner store on WhatsApp for sizes and photos.',
   alternates: {
     canonical: getCanonicalUrl('/how-it-works'),
   },

@@ -6,9 +6,9 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Contact Store Desk',
+  title: 'Contact Our Kemps Corner Store in Mumbai',
   description:
-    'Get in touch with Warden & Sons Kids Wear Kemps Corner. Send sizing questions, newborn gift queries, or visit us in South Mumbai.',
+    'Get in touch with Warden & Sons Kids Wear at Kemps Corner, South Mumbai. Send sizing queries, newborn questions, or visit our shop.',
   alternates: {
     canonical: getCanonicalUrl('/contact'),
   },
@@ -35,7 +35,7 @@ export default function ContactPage() {
         {/* Contact Information Column */}
         <div className="lg:col-span-5 space-y-6">
           <div className="bg-white rounded-3xl border border-border-soft p-7 shadow-xs space-y-6">
-            <h2 className="font-serif font-bold text-xl text-forest">Kemps Corner Atelier</h2>
+            <h2 className="font-serif font-bold text-xl text-forest">Kemps Corner Store</h2>
 
             <div className="space-y-4 text-xs sm:text-sm text-muted">
               <div className="flex items-start gap-3">

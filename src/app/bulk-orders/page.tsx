@@ -7,9 +7,9 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Custom School Uniforms & Bulk Enquiries',
+  title: 'School Uniforms & Bulk Orders',
   description:
-    'Custom school uniforms, cricket whites, sports academy jerseys, and institutional clothing in Mumbai. Bespoke tailoring by Warden & Sons, Kemps Corner.',
+    'Custom school uniforms, sports kits, and bulk cotton children’s apparel in South Mumbai. Quality fabric and direct WhatsApp quotes.',
   alternates: {
     canonical: getCanonicalUrl('/bulk-orders'),
   },

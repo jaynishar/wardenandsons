@@ -4,9 +4,7 @@
  * robots, sitemap, and Open Graph settings.
  */
 
-const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://wardenandsons.in';
-// Clean up any extraneous trailing slash for consistent base joining
-export const SITE_URL = rawSiteUrl.replace(/\/+$/, '');
+export const SITE_URL = 'https://wardenandsons.in';
 
 /**
  * Returns an absolute canonical URL respecting Next.js trailingSlash: true convention.

@@ -5,9 +5,9 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Delivery, Pickup & Exchanges',
+  title: 'Delivery, Store Pickup & Size Exchanges',
   description:
-    'Learn how delivery, store pickup at Kemps Corner, and size exchanges are coordinated directly with Warden & Sons Kids Wear.',
+    'Mumbai doorstep delivery, store pickup at Kemps Corner, and straightforward size exchanges handled directly on WhatsApp.',
   alternates: {
     canonical: getCanonicalUrl('/shipping-returns'),
   },
