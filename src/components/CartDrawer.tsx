@@ -240,7 +240,8 @@ export default function CartDrawer() {
                       const hasRealImage = Boolean(
                         item.image &&
                         item.image !== '/store_front.jpg' &&
-                        item.image !== '/brand_logo.jpg',
+                        item.image !== '/brand_logo.jpg' &&
+                        item.image !== '/brand_logo.webp',
                       );
 
                       return (

@@ -100,6 +100,8 @@ export default function Hero() {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   priority
+                  loading="eager"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 

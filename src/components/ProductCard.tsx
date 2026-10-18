@@ -37,7 +37,10 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   // Check if item has an authentic garment photo (never reuse storefront or logo as garment photo)
   const hasRealProductImage = Boolean(
-    product.image && product.image !== '/store_front.jpg' && product.image !== '/brand_logo.jpg',
+    product.image &&
+    product.image !== '/store_front.jpg' &&
+    product.image !== '/brand_logo.jpg' &&
+    product.image !== '/brand_logo.webp',
   );
 
   const prefersReduced = useReducedMotion();

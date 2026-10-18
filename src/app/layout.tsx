@@ -117,8 +117,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         {/* End Google Tag Manager */}
-        {/* Preconnect for WhatsApp links */}
-        <link rel="preconnect" href="https://wa.me" />
+        {/* High-priority LCP hero image preload for instant discovery */}
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-editorial.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
         {/* JSON-LD Schemas */}
         <script
           type="application/ld+json"

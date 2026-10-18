@@ -53,7 +53,7 @@ export default function Footer() {
               {/* Authentic Unclipped Logo Container */}
               <div className="relative w-14 h-10 rounded-md overflow-hidden bg-white border border-gold/40 shrink-0 p-0.5 shadow-2xs">
                 <Image
-                  src="/brand_logo.jpg"
+                  src="/brand_logo.webp"
                   alt="Warden & Sons Official Crest"
                   fill
                   className="object-contain"

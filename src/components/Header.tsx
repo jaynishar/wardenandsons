@@ -40,7 +40,7 @@ export default function Header() {
               {/* Authentic Unclipped Logo Artwork Container */}
               <div className="relative w-14 h-11 rounded-md overflow-hidden bg-white border border-gold/40 shadow-xs shrink-0 p-0.5">
                 <Image
-                  src="/brand_logo.jpg"
+                  src="/brand_logo.webp"
                   alt="Warden & Sons Kids Wear Official Logo"
                   fill
                   className="object-contain"
