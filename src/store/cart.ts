@@ -1,5 +1,49 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage, type StateStorage } from 'zustand/middleware';
+
+/**
+ * Deferred storage engine for fast, non-blocking INP.
+ * State updates respond instantly in UI; persistent writes to localStorage
+ * are deferred to idle browser frames using requestIdleCallback or setTimeout fallback.
+ */
+const deferredStorage: StateStorage = {
+  getItem: (name: string): string | null => {
+    if (typeof window === 'undefined') return null;
+    try {
+      return localStorage.getItem(name);
+    } catch {
+      return null;
+    }
+  },
+  setItem: (name: string, value: string): void => {
+    if (typeof window === 'undefined') return;
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(() => {
+        try {
+          localStorage.setItem(name, value);
+        } catch {
+          // ignore storage errors
+        }
+      });
+    } else {
+      setTimeout(() => {
+        try {
+          localStorage.setItem(name, value);
+        } catch {
+          // ignore storage errors
+        }
+      }, 0);
+    }
+  },
+  removeItem: (name: string): void => {
+    if (typeof window === 'undefined') return;
+    try {
+      localStorage.removeItem(name);
+    } catch {
+      // ignore
+    }
+  },
+};
 
 export interface RequestItem {
   id: string;
@@ -127,6 +171,7 @@ export const useCartStore = create<CartStore>()(
     }),
     {
       name: 'warden-request-list-storage',
+      storage: createJSONStorage(() => deferredStorage),
     },
   ),
 );
