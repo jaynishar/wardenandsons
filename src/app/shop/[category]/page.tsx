@@ -1,16 +1,17 @@
-import { notFound } from 'next/navigation'; // next/navigation
-import { getProductsByCategory } from '@/lib/products';
-import CategoryFilterList from '@/components/CategoryFilterList';
+import { notFound } from 'next/navigation';
+import { getCatalogueItemsByCategory, CategorySlug } from '@/lib/products';
+import ShopCatalog from '@/components/ShopCatalog';
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/config/site';
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
 }
 
-const validCategories = ['newborn', 'boys', 'girls', 'men', 'women'];
+const validCategories: CategorySlug[] = ['newborn', 'boys', 'girls', 'men', 'women', 'bulk'];
 
 export async function generateStaticParams() {
-  return validCategories.map((cat) => ({
+  return validCategories.map(cat => ({
     category: cat,
   }));
 }
@@ -20,22 +21,24 @@ function getCategoryDisplayName(cat: string): string {
     case 'newborn':
       return 'Newborns & Infants (0-24M)';
     case 'boys':
-      return 'Boys Clothing (0-16Y)';
+      return 'Boys Playwear & Sports (0-16Y)';
     case 'girls':
-      return 'Girls Clothing (0-16Y)';
+      return 'Girls Clothing & Sleepwear (0-16Y)';
     case 'men':
-      return 'Men\'s Basics & Comfort';
+      return 'Men’s Basics & Loungewear';
     case 'women':
-      return 'Women\'s Basics & Comfort';
+      return 'Women’s Muslin Sleepwear & Basics';
+    case 'bulk':
+      return 'School Uniforms & Bulk Apparel';
     default:
-      return 'Shop';
+      return 'Shop Category';
   }
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { category } = await params;
-  
-  if (!validCategories.includes(category)) {
+
+  if (!validCategories.includes(category as CategorySlug)) {
     return {
       title: 'Category Not Found',
     };
@@ -44,10 +47,10 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const name = getCategoryDisplayName(category);
 
   return {
-    title: `${name} | Warden & Sons Kids Wear`,
-    description: `Shop our premium, weather-breathable collection of ${name}. Buy cotton swaddles, t-shirts, nightwear, and activewear at Warden & Sons, Kemps Corner.`,
+    title: `${name} | Catalogue Preview`,
+    description: `Explore representative offerings of ${name}. Add items to your request list and enquire directly on WhatsApp with Warden & Sons, Kemps Corner.`,
     alternates: {
-      canonical: `/shop/${category}`,
+      canonical: getCanonicalUrl(`/shop/${category}`),
     },
   };
 }
@@ -55,30 +58,32 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category } = await params;
 
-  if (!validCategories.includes(category)) {
+  if (!validCategories.includes(category as CategorySlug)) {
     return notFound();
   }
 
-  const products = getProductsByCategory(category as any);
+  const products = getCatalogueItemsByCategory(category as CategorySlug);
   const displayName = getCategoryDisplayName(category);
 
   return (
-    <div className="py-12 md:py-20 font-sans max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      {/* Header */}
-      <div className="text-center space-y-4">
-        <span className="inline-flex items-center gap-1 bg-primary-100 text-primary-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider font-sans">
-          🛍️ Category Catalog
+    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-sans">
+      {/* Editorial Header */}
+      <div className="text-center space-y-3 max-w-3xl mx-auto">
+        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
+          Department Collection
         </span>
-        <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-primary-800 leading-tight">
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
           {displayName}
         </h1>
-        <p className="text-sm md:text-base text-slate-600 max-w-xl mx-auto leading-relaxed">
-          Below is our current stock listing. Since our shelves rotate daily, contact us on WhatsApp or book a video call to see the newest prints and confirm fits.
+        <p className="text-xs sm:text-sm text-muted leading-relaxed">
+          Pre-washed, azo-free cotton garments crafted for sensitive skin. Select items for your
+          Request List, then send your enquiry on WhatsApp to confirm live colors, sizes, and
+          pricing.
         </p>
       </div>
 
-      {/* Interactive Products Grid with filters */}
-      <CategoryFilterList products={products} category={category} />
+      {/* Main Interactive Catalog */}
+      <ShopCatalog products={products} initialCategory={category} categoryTitle={displayName} />
     </div>
   );
 }

@@ -3,296 +3,169 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown, Phone, Video } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
-
-const shopCategories = [
-  { name: 'Newborns / Infants (0-24M)', href: '/shop/newborn' },
-  { name: 'Boys (0-16Y)', href: '/shop/boys' },
-  { name: 'Girls (0-16Y)', href: '/shop/girls' },
-  { name: 'Men\'s Basics', href: '/shop/men' },
-  { name: 'Women\'s Basics', href: '/shop/women' },
-];
-
-const mainNavLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Our Story', href: '/about' },
-  { name: 'Shop Categories', href: '/shop', hasDropdown: true },
-  { name: 'WhatsApp Shopping', href: '/whatsapp-shopping' },
-  { name: 'Video Shopping', href: '/video-shopping' },
-  { name: 'Bulk Orders', href: '/bulk-orders' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Visit Us', href: '/visit-us' },
-];
+import { ClipboardList, MessageSquare, Menu, X, Phone } from 'lucide-react';
+import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion } from 'motion/react';
+import { useCartStore } from '@/store/cart';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
-  const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { toggleCart, getTotalItems } = useCartStore();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    setMounted(true);
   }, []);
 
-  // Close mobile drawer on route change
-  useEffect(() => {
-    setIsOpen(false);
-    setShopDropdownOpen(false);
-  }, [pathname]);
+  const totalItems = mounted ? getTotalItems() : 0;
+
+  const navLinks = [
+    { name: 'Catalogue', href: '/shop' },
+    { name: 'How It Works', href: '/how-it-works' },
+    { name: 'Our Heritage', href: '/about' },
+    { name: 'Bulk & Uniforms', href: '/bulk-orders' },
+    { name: 'Visit Store', href: '/visit-us' },
+  ];
+
+  const prefersReduced = useReducedMotion();
+  const shouldReduceMotion = Boolean(prefersReduced);
 
   return (
-    <>
-      <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-warm-bg/95 backdrop-blur-md border-b border-primary-100 shadow-md'
-            : 'bg-warm-bg/60 backdrop-blur-sm border-b border-primary-50'
-        }`}
-      >
-        {/* Top Info Bar (Desktop only) */}
-        <div className="hidden md:block bg-primary-800 text-white text-xs py-2 px-6">
-          <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <span className="font-sans">📍 Kemps Corner, South Bombay’s Trusted Kidswear Store Since 1994</span>
-            <div className="flex items-center space-x-4">
-              <a
-                href="tel:+919920751567"
-                className="flex items-center hover:text-accent-200 transition-colors font-semibold"
-              >
-                <Phone className="w-3.5 h-3.5 mr-1" /> Call: +91 99207 51567
-              </a>
-              <Link
-                href="/video-shopping"
-                className="flex items-center hover:text-accent-200 transition-colors font-semibold bg-accent-500 px-2 py-0.5 rounded text-[11px]"
-              >
-                <Video className="w-3 h-3 mr-1" /> Free Video Call Shopping
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Navbar */}
+    <LazyMotion features={domAnimation}>
+      <header className="sticky top-0 z-40 bg-bg-cream/95 backdrop-blur-md border-b border-border-soft">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="flex items-center gap-3">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo & Brand Name */}
+            <Link href="/" className="flex items-center gap-3 group">
+              {/* Authentic Unclipped Logo Artwork Container */}
+              <div className="relative w-14 h-11 rounded-md overflow-hidden bg-white border border-gold/40 shadow-xs shrink-0 p-0.5">
                 <Image
                   src="/brand_logo.jpg"
-                  alt="Warden & Sons Kids Wear Logo"
-                  width={48}
-                  height={48}
-                  className="rounded-full border-2 border-primary-800 object-cover w-12 h-12"
+                  alt="Warden & Sons Kids Wear Official Logo"
+                  fill
+                  className="object-contain"
+                  sizes="56px"
                   priority
                 />
-                <div className="flex flex-col">
-                  <span className="font-heading font-bold text-lg md:text-xl text-primary-800 leading-none">
-                    Warden & Sons
-                  </span>
-                  <span className="font-sans text-[10px] md:text-xs text-accent-500 uppercase tracking-widest font-semibold mt-0.5">
-                    Kids Wear • Kemps Corner
-                  </span>
-                </div>
-              </Link>
-            </div>
+              </div>
+              <div>
+                <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-forest block leading-none">
+                  Warden & Sons
+                </span>
+                <span className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-gold font-semibold mt-1 block">
+                  {BUSINESS_CONFIG.establishment.badgeText}
+                </span>
+              </div>
+            </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden xl:flex items-center space-x-6">
-              {mainNavLinks.map((link) => {
-                if (link.hasDropdown) {
-                  return (
-                    <div
-                      key={link.name}
-                      className="relative group"
-                      onMouseEnter={() => setShopDropdownOpen(true)}
-                      onMouseLeave={() => setShopDropdownOpen(false)}
-                    >
-                      <button
-                        className={`flex items-center text-sm font-semibold transition-colors py-2 px-1 rounded-md min-h-[44px] cursor-pointer ${
-                          pathname.startsWith('/shop')
-                            ? 'text-accent-500'
-                            : 'text-primary-800 hover:text-accent-500'
-                        }`}
-                        aria-expanded={shopDropdownOpen}
-                      >
-                        {link.name}
-                        <ChevronDown className="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" />
-                      </button>
-                      
-                      {/* Mega Menu Dropdown */}
-                      <AnimatePresence>
-                        {shopDropdownOpen && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute left-0 mt-0 w-64 bg-white border border-primary-100 rounded-lg shadow-xl py-2 z-50"
-                          >
-                            <Link
-                              href="/shop"
-                              className="block px-4 py-2 text-sm font-bold text-primary-800 hover:bg-primary-50 hover:text-accent-500 border-b border-primary-50"
-                            >
-                              Browse All Catalog
-                            </Link>
-                            {shopCategories.map((cat) => (
-                              <Link
-                                key={cat.name}
-                                href={cat.href}
-                                className="block px-4 py-2 text-sm text-slate-dark hover:bg-primary-50 hover:text-primary-800 transition-colors"
-                              >
-                                {cat.name}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                }
-
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={`text-sm font-semibold transition-colors py-2 px-1 min-h-[44px] flex items-center ${
-                      isActive
-                        ? 'text-accent-500 border-b-2 border-accent-500'
-                        : 'text-primary-800 hover:text-accent-500'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
+            {/* Desktop Nav Links */}
+            <nav className="hidden md:flex items-center space-x-7">
+              {navLinks.map(link => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm font-medium text-near-black hover:text-forest transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-forest hover:after:w-full after:transition-all"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </nav>
 
-            {/* Desktop Action Buttons */}
-            <div className="hidden xl:flex items-center space-x-3">
+            {/* Right Action Icons */}
+            <div className="flex items-center gap-3">
+              {/* WhatsApp Quick Link */}
               <a
-                href="https://wa.me/919920751567"
+                href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-600 hover:bg-green-500 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-md transition-colors flex items-center gap-1.5"
+                aria-label="Chat on WhatsApp"
+                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full bg-forest text-white hover:bg-forest-dark transition-all shadow-xs active:scale-[0.98]"
               >
-                💬 WhatsApp Order
+                <MessageSquare className="w-4 h-4 text-whatsapp" />
+                <span>WhatsApp Us</span>
               </a>
-              <Link
-                href="/video-shopping"
-                className="bg-accent-500 hover:bg-accent-600 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-md transition-all duration-300 hover:scale-105 flex items-center gap-1.5"
-              >
-                📹 Book Video Call
-              </Link>
-            </div>
 
-            {/* Mobile / Tablet Menu Button */}
-            <div className="flex xl:hidden items-center space-x-2">
-              <Link
-                href="/video-shopping"
-                className="md:flex hidden bg-accent-500 hover:bg-accent-600 text-white text-xs font-semibold px-3 py-2 rounded-lg items-center gap-1 min-h-[40px]"
-              >
-                <Video className="w-3.5 h-3.5" /> Book Free Video Call
-              </Link>
+              {/* Request List Button */}
               <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-lg text-primary-800 hover:text-accent-500 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 min-w-[44px] min-h-[44px] cursor-pointer"
-                aria-controls="mobile-menu"
-                aria-expanded={isOpen}
+                onClick={toggleCart}
+                aria-label="Request List"
+                title="View Request List"
+                className="relative p-2.5 rounded-full bg-white border border-border-soft text-forest hover:bg-bg-cream transition-all shadow-xs cursor-pointer flex items-center justify-center active:scale-[0.98]"
               >
-                <span className="sr-only">Open main menu</span>
-                {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
+                <ClipboardList className="w-5 h-5" />
+                <AnimatePresence>
+                  {totalItems > 0 && (
+                    <m.span
+                      key={totalItems}
+                      initial={shouldReduceMotion ? false : { scale: 0.5, opacity: 0 }}
+                      animate={{ scale: [1.35, 1], opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      transition={{ type: 'spring', stiffness: 500, damping: 25 }}
+                      className="absolute -top-1 -right-1 bg-forest text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-bg-cream pointer-events-none"
+                    >
+                      {totalItems}
+                    </m.span>
+                  )}
+                </AnimatePresence>
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2.5 rounded-full bg-white border border-border-soft text-near-black hover:bg-bg-cream cursor-pointer active:scale-[0.98]"
+                aria-label="Toggle Navigation Menu"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Drawer Menu with AnimatePresence */}
         <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              id="mobile-menu"
-              initial={{ opacity: 0, height: 0 }}
+          {mobileMenuOpen && (
+            <m.div
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="xl:hidden border-t border-primary-100 bg-white shadow-inner overflow-hidden"
+              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="md:hidden bg-bg-cream border-b border-border-soft px-6 py-6 space-y-4 shadow-lg overflow-hidden"
             >
-              <div className="px-4 pt-2 pb-6 space-y-2">
-                {mainNavLinks.map((link) => {
-                  if (link.hasDropdown) {
-                    return (
-                      <div key={link.name} className="py-1">
-                        <div className="font-semibold text-primary-800 px-3 py-2 text-sm border-b border-primary-50">
-                          {link.name}
-                        </div>
-                        <div className="pl-4 mt-1 space-y-1">
-                          <Link
-                            href="/shop"
-                            className="block px-3 py-2 rounded-md text-xs text-accent-500 font-bold hover:bg-primary-50"
-                          >
-                            All Categories
-                          </Link>
-                          {shopCategories.map((subLink) => (
-                            <Link
-                              key={subLink.name}
-                              href={subLink.href}
-                              className="block px-3 py-2 rounded-md text-xs text-slate-dark hover:bg-primary-50"
-                            >
-                              {subLink.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  }
-
-                  const isActive = pathname === link.href;
-                  return (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      className={`block px-3 py-2.5 rounded-lg text-base font-semibold min-h-[44px] flex items-center transition-colors ${
-                        isActive
-                          ? 'bg-primary-50 text-accent-500 font-bold'
-                          : 'text-primary-800 hover:bg-primary-50'
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  );
-                })}
-
-                <div className="pt-4 border-t border-primary-100 grid grid-cols-2 gap-3">
-                  <a
-                    href="tel:+919920751567"
-                    className="flex items-center justify-center gap-1.5 bg-primary-100 text-primary-800 text-sm font-bold py-3 px-4 rounded-lg min-h-[44px]"
+              <nav className="flex flex-col space-y-3">
+                {navLinks.map(link => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-base font-semibold text-near-black hover:text-forest py-2 border-b border-border-soft/60"
                   >
-                    📞 Call Shop
-                  </a>
-                  <a
-                    href="https://wa.me/message/NBG6MFUV3EXYG1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-1.5 bg-green-600 text-white text-sm font-bold py-3 px-4 rounded-lg min-h-[44px]"
-                  >
-                    💬 WhatsApp Buy
-                  </a>
-                </div>
+                    {link.name}
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="pt-2 flex flex-col gap-2.5">
+                <a
+                  href={BUSINESS_CONFIG.phone.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-forest text-white font-semibold text-sm shadow-xs active:scale-[0.98]"
+                >
+                  <MessageSquare className="w-4 h-4 text-whatsapp" />
+                  WhatsApp Store Desk ({BUSINESS_CONFIG.phone.display})
+                </a>
+                <a
+                  href={BUSINESS_CONFIG.phone.telLink}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-border-soft bg-white text-near-black text-xs font-semibold active:scale-[0.98]"
+                >
+                  <Phone className="w-3.5 h-3.5 text-forest" />
+                  Call Store Directly
+                </a>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </header>
-    </>
+    </LazyMotion>
   );
 }

@@ -1,108 +1,180 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight, Box, Video } from 'lucide-react';
-
-export const revalidate = 3600;
+import { ArrowRight, MessageSquare, MapPin, Clock, Phone } from 'lucide-react';
+import Hero from '@/components/Hero';
+import HowItWorks from '@/components/HowItWorks';
+import CategoryGrid from '@/components/CategoryGrid';
+import ProductCard from '@/components/ProductCard';
+import FAQ from '@/components/FAQ';
+import GoogleReviewsBlock from '@/components/GoogleReviewsBlock';
+import Reveal from '@/components/motion/Reveal';
+import { getFeaturedCatalogueItems } from '@/lib/products';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function HomePage() {
-  return (
-    <div className="flex flex-col w-full bg-white text-black uppercase font-sans tracking-tight pb-16 md:pb-0 overflow-x-hidden border-x border-black max-w-[1600px] mx-auto">
-      
-      {/* 1. Brutalist Marquee Banner */}
-      <div className="marquee-container text-[10px] sm:text-xs font-mono font-bold tracking-widest bg-black text-white py-2">
-        <div className="marquee-content">
-          <span>WARDEN & SONS — SOUTH BOMBAY'S PREMIER KIDSWEAR EST. 1994 • PREMIUM 180 GSM COTTON • CUSTOM B2B UNIFORMS • </span>
-          <span>WARDEN & SONS — SOUTH BOMBAY'S PREMIER KIDSWEAR EST. 1994 • PREMIUM 180 GSM COTTON • CUSTOM B2B UNIFORMS • </span>
-          <span>WARDEN & SONS — SOUTH BOMBAY'S PREMIER KIDSWEAR EST. 1994 • PREMIUM 180 GSM COTTON • CUSTOM B2B UNIFORMS • </span>
-        </div>
-      </div>
+  const featuredProducts = getFeaturedCatalogueItems(6);
 
-      {/* 2. Hero Section - Spreadsheet Grid Style */}
-      <section className="grid grid-cols-1 md:grid-cols-2 border-b border-black">
-        <div className="relative h-[60vh] md:h-[85vh] border-r border-black p-4 flex flex-col justify-between group">
-          <div className="absolute inset-0 z-0 p-4 pb-16">
-            <div className="relative w-full h-full bg-gray-200 overflow-hidden">
-               <Image src="/store_front.jpg" alt="Collection" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300" priority />
+  return (
+    <div className="space-y-12 md:space-y-16 font-sans">
+      {/* 1. Hero with Announcement */}
+      <Hero />
+
+      {/* 2. How It Works (High-priority on mobile) */}
+      <Reveal>
+        <HowItWorks />
+      </Reveal>
+
+      {/* 3. Category Grid (Curated Departments) */}
+      <Reveal>
+        <CategoryGrid />
+      </Reveal>
+
+      {/* 4. Featured Representative Products */}
+      <Reveal>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <span className="editorial-label text-gold bg-white px-3 py-1 rounded-full border border-gold/30 inline-block mb-2">
+                Representative Offerings
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-forest">
+                Featured Atelier Basics
+              </h2>
+              <p className="text-xs sm:text-sm text-muted mt-1 max-w-lg">
+                A curated preview of our everyday essentials. Actual store inventory carries
+                hundreds more prints, colors, and sizes.
+              </p>
             </div>
-          </div>
-          <div className="relative z-10 flex justify-between w-full font-mono text-xs font-bold">
-            <span>[001]</span>
-            <span>INVENTORY</span>
-          </div>
-          <div className="relative z-10">
-            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none mb-4">THE<br/>COTTON<br/>EDIT.</h1>
-            <Link href="/shop" className="inline-flex items-center justify-between w-full border border-black bg-white px-4 py-3 hover:bg-black hover:text-white transition-colors text-sm font-bold">
-              <span>SHOP COLLECTION</span>
+
+            <Link
+              href="/shop"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-forest hover:text-gold transition-colors active:scale-[0.98]"
+            >
+              <span>View Full Catalogue</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-        </div>
 
-        {/* Right side sub-grid */}
-        <div className="grid grid-rows-2 h-[60vh] md:h-[85vh]">
-          <div className="border-b border-black p-4 flex flex-col justify-between group relative">
-             <div className="absolute inset-0 z-0 p-4 pb-12">
-               <div className="relative w-full h-full overflow-hidden">
-                 <Image src="/brand_logo.jpg" alt="Newborn" fill className="object-cover" />
-               </div>
-             </div>
-             <div className="relative z-10 flex justify-between font-mono text-xs font-bold">
-               <span>[002]</span>
-               <span>NEWBORN (0-24M)</span>
-             </div>
-             <Link href="/shop/newborn" className="relative z-10 inline-flex items-center justify-between w-full border border-black bg-white px-4 py-3 hover:bg-black hover:text-white transition-colors text-sm font-bold mt-auto">
-                <span>VIEW NEWBORN</span>
-                <ArrowRight className="w-4 h-4" />
-             </Link>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+            {featuredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
-          
-          <div className="grid grid-cols-2">
-            <div className="border-r border-black p-4 flex flex-col justify-between">
-              <span className="font-mono text-xs font-bold mb-4">[003] BOYS</span>
-              <p className="text-sm leading-tight mb-4 lowercase normal-case tracking-normal">Premium essentials designed for everyday durability. Ages 2-16.</p>
-              <Link href="/shop/boys" className="mt-auto border-b-2 border-black inline-block w-fit text-sm font-bold pb-1 hover:text-gray-500">EXPLORE BOYS ↗</Link>
-            </div>
-            <div className="p-4 flex flex-col justify-between bg-gray-100">
-              <span className="font-mono text-xs font-bold mb-4">[004] GIRLS</span>
-              <p className="text-sm leading-tight mb-4 lowercase normal-case tracking-normal">Comfortable playwear and premium dresses. Ages 2-16.</p>
-              <Link href="/shop/girls" className="mt-auto border-b-2 border-black inline-block w-fit text-sm font-bold pb-1 hover:text-gray-500">EXPLORE GIRLS ↗</Link>
+        </section>
+      </Reveal>
+
+      {/* 5. WhatsApp Direct CTA Banner */}
+      <Reveal>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+          <div className="bg-forest text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-forest-dark relative overflow-hidden">
+            <div className="relative z-10 max-w-2xl space-y-4 text-center sm:text-left">
+              <span className="editorial-label text-gold bg-forest-dark px-3.5 py-1.5 rounded-full inline-block">
+                💬 Direct Concierge Shopping
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold leading-tight">
+                Looking for a Specific Size, Print, or Gift Set?
+              </h2>
+              <p className="text-xs sm:text-sm text-gray-200 leading-relaxed">
+                Don’t spend hours searching through filters. Text our Kemps Corner store desk with
+                your requirements. We’ll immediately check live racks and share photos with accurate
+                dimensions.
+              </p>
+
+              <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                <a
+                  href={BUSINESS_CONFIG.phone.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all active:scale-[0.98] cursor-pointer"
+                >
+                  <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
+                  <span>Chat on WhatsApp ({BUSINESS_CONFIG.phone.display})</span>
+                </a>
+
+                <Link
+                  href="/visit-us"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all active:scale-[0.98]"
+                >
+                  <MapPin className="w-4 h-4 text-gold" />
+                  <span>Directions to Store</span>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Reveal>
 
-      {/* 3. Tech/Utilitarian Info Section */}
-      <section className="grid grid-cols-1 md:grid-cols-3 border-b border-black divide-y md:divide-y-0 md:divide-x divide-black text-center text-sm font-mono font-bold">
-        <div className="p-6 uppercase">100% Breathable Cotton</div>
-        <div className="p-6 uppercase bg-black text-white">Free Shipping Over ₹2000</div>
-        <div className="p-6 uppercase">Est. 1994 — Kemps Corner</div>
-      </section>
+      {/* 6. Social Proof & Google Reviews */}
+      <Reveal>
+        <GoogleReviewsBlock />
+      </Reveal>
 
-      {/* 4. Live Video Shopping - Brutalist Block */}
-      <section className="grid grid-cols-1 md:grid-cols-2 border-b border-black">
-        <div className="p-8 md:p-16 flex flex-col justify-center border-b md:border-b-0 md:border-r border-black">
-          <span className="font-mono text-xs font-bold mb-8 block">[005] PERSONAL SHOPPER</span>
-          <h2 className="text-5xl font-bold tracking-tighter leading-[0.9] mb-6">VIRTUAL<br/>SHOWROOM.</h2>
-          <p className="text-sm mb-8 max-w-sm lowercase normal-case tracking-normal">Book a private video walkthrough of our boutique. Expert sizing advice from our staff, tailored directly to your requirements.</p>
-          <Link href="/video-shopping" className="flex items-center gap-3 border border-black bg-black text-white px-6 py-4 text-sm font-bold hover:bg-white hover:text-black transition-colors w-fit">
-            <Video className="w-4 h-4" /> BOOK APPOINTMENT
-          </Link>
-        </div>
-        <div className="relative min-h-[40vh] md:min-h-0 bg-gray-200">
-          <Image src="/store_front.jpg" alt="Showroom" fill className="object-cover mix-blend-multiply opacity-80" />
-        </div>
-      </section>
+      {/* 7. Frequently Asked Questions */}
+      <Reveal>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <div className="text-center space-y-3 mb-8">
+            <span className="editorial-label text-gold bg-white px-3 py-1 rounded-full border border-gold/30 inline-block">
+              Clear & Transparent
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-forest">
+              Questions Parents Often Ask
+            </h2>
+          </div>
+          <FAQ />
+        </section>
+      </Reveal>
 
-      {/* 5. B2B / Custom Orders */}
-      <section className="p-8 md:p-16 flex flex-col items-center text-center bg-gray-100 border-b border-black">
-        <Box className="w-12 h-12 mb-6" />
-        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">BEYOND RETAIL.</h2>
-        <p className="text-sm mb-8 max-w-md mx-auto lowercase normal-case tracking-normal">We manufacture premium custom school uniforms and corporate kits using our signature quality fabrics. Minimum order 50 pieces.</p>
-        <Link href="/b2b" className="border border-black px-8 py-4 text-sm font-bold bg-white hover:bg-black hover:text-white transition-colors uppercase">
-          SUBMIT B2B INQUIRY
-        </Link>
-      </section>
+      {/* 7. Store Info & Hours */}
+      <Reveal>
+        <section className="bg-white border-t border-border-soft py-12 md:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              {/* Address */}
+              <div className="flex gap-4 p-6 bg-bg-cream rounded-2xl border border-border-soft">
+                <div className="w-12 h-12 rounded-xl bg-forest text-white flex items-center justify-center shrink-0">
+                  <MapPin className="w-6 h-6 text-gold" />
+                </div>
+                <div className="space-y-1 text-xs">
+                  <h3 className="font-serif font-bold text-base text-near-black">
+                    Kemps Corner Store
+                  </h3>
+                  <p className="text-muted">{BUSINESS_CONFIG.location.fullAddress}</p>
+                  <p className="text-gray-400">Near Pedder Road Flyover</p>
+                </div>
+              </div>
+
+              {/* Operating Hours */}
+              <div className="flex gap-4 p-6 bg-bg-cream rounded-2xl border border-border-soft">
+                <div className="w-12 h-12 rounded-xl bg-forest text-white flex items-center justify-center shrink-0">
+                  <Clock className="w-6 h-6 text-gold" />
+                </div>
+                <div className="space-y-1 text-xs">
+                  <h3 className="font-serif font-bold text-base text-near-black">Opening Hours</h3>
+                  <p className="text-near-black font-semibold">{BUSINESS_CONFIG.hours.display}</p>
+                  <p className="text-red-600 font-medium">Sunday: {BUSINESS_CONFIG.hours.sunday}</p>
+                  <p className="text-gray-400">WhatsApp enquiries answered during store hours</p>
+                </div>
+              </div>
+
+              {/* Direct Phone / WhatsApp */}
+              <div className="flex gap-4 p-6 bg-bg-cream rounded-2xl border border-border-soft">
+                <div className="w-12 h-12 rounded-xl bg-forest text-white flex items-center justify-center shrink-0">
+                  <Phone className="w-6 h-6 text-gold" />
+                </div>
+                <div className="space-y-1 text-xs">
+                  <h3 className="font-serif font-bold text-base text-near-black">Get in Touch</h3>
+                  <p className="text-near-black font-bold">
+                    <a href={BUSINESS_CONFIG.phone.telLink} className="hover:text-forest">
+                      {BUSINESS_CONFIG.phone.display}
+                    </a>
+                  </p>
+                  <p className="text-muted">Call or text for immediate size assistance</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Reveal>
     </div>
   );
 }

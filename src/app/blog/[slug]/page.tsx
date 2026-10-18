@@ -6,13 +6,16 @@ import { marked } from 'marked';
 import { Calendar, User, Clock, ArrowLeft, MessageSquare } from 'lucide-react';
 import type { Metadata } from 'next';
 
+import { SITE_URL, getCanonicalUrl } from '@/config/site';
+import { BUSINESS_CONFIG } from '@/config/business';
+
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
-  return posts.map((post) => ({
+  return posts.map(post => ({
     slug: post.slug,
   }));
 }
@@ -20,29 +23,31 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
-  
+
   if (!post) {
     return {
       title: 'Post Not Found',
     };
   }
 
+  const postCanonical = getCanonicalUrl(`/blog/${post.slug}`);
+
   return {
     title: post.metaTitle || post.title,
     description: post.metaDescription || post.excerpt,
     alternates: {
-      canonical: `/blog/${post.slug}`,
+      canonical: postCanonical,
     },
     openGraph: {
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
-      url: `https://wardenandsons.com/blog/${post.slug}`,
+      url: postCanonical,
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
       images: [
         {
-          url: '/brand_logo.jpg', // Default OG image
+          url: `${SITE_URL}/brand_logo.jpg`,
           alt: post.title,
         },
       ],
@@ -51,7 +56,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       card: 'summary_large_image',
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
-      images: ['/brand_logo.jpg'],
+      images: [`${SITE_URL}/brand_logo.jpg`],
     },
   };
 }
@@ -76,24 +81,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
-    image: 'https://wardenandsons.com/brand_logo.jpg',
+    image: `${SITE_URL}/brand_logo.jpg`,
     datePublished: post.date,
     author: {
       '@type': 'Organization',
-      name: 'Warden & Sons Kids Wear',
-      url: 'https://wardenandsons.com',
+      name: BUSINESS_CONFIG.name,
+      url: getCanonicalUrl('/'),
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Warden & Sons Kids Wear',
+      name: BUSINESS_CONFIG.name,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://wardenandsons.com/brand_logo.jpg',
+        url: `${SITE_URL}/brand_logo.jpg`,
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://wardenandsons.com/blog/${post.slug}`,
+      '@id': getCanonicalUrl(`/blog/${post.slug}`),
     },
   };
 
@@ -103,7 +108,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />
-      
+
       <div className="py-12 md:py-20 font-sans">
         <article className="max-w-3xl mx-auto px-4 sm:px-6">
           {/* Back button */}
@@ -111,7 +116,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             href="/blog"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-800 hover:text-accent-500 transition-colors mb-8 group"
           >
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> Back to blog
+            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> Back
+            to blog
           </Link>
 
           {/* Post Header */}
@@ -144,11 +150,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* WhatsApp Support footer band inside article */}
           <div className="bg-primary-50 border border-primary-100 p-6 rounded-2xl shadow-sm mt-12 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="text-center sm:text-left">
-              <h4 className="font-heading font-bold text-sm text-primary-800">Like something mentioned in this guide?</h4>
-              <p className="text-[11px] text-slate-500 font-sans">Chat on WhatsApp to request sizes or home delivery details.</p>
+              <h4 className="font-heading font-bold text-sm text-primary-800">
+                Like something mentioned in this guide?
+              </h4>
+              <p className="text-[11px] text-slate-500 font-sans">
+                Chat on WhatsApp to request sizes or home delivery details.
+              </p>
             </div>
             <a
-              href="https://wa.me/message/NBG6MFUV3EXYG1"
+              href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-600 hover:bg-green-500 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-sm flex items-center gap-1.5 shrink-0"
@@ -162,17 +172,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {relatedPosts.length > 0 && (
           <section className="bg-warm-neutral border-t border-primary-50 py-16 mt-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto space-y-10">
-              <h2 className="font-heading text-2xl font-bold text-primary-800 text-center">Related Parenting Guides</h2>
-              
+              <h2 className="font-heading text-2xl font-bold text-primary-800 text-center">
+                Related Parenting Guides
+              </h2>
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {relatedPosts.map((rPost) => (
-                  <article key={rPost.slug} className="bg-white border border-primary-50 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+                {relatedPosts.map(rPost => (
+                  <article
+                    key={rPost.slug}
+                    className="bg-white border border-primary-50 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300"
+                  >
                     <div className="p-6 space-y-3">
-                      <span className="text-[10px] text-accent-500 font-bold uppercase tracking-wider">{rPost.category}</span>
+                      <span className="text-[10px] text-accent-500 font-bold uppercase tracking-wider">
+                        {rPost.category}
+                      </span>
                       <h3 className="font-heading font-bold text-base text-primary-800 line-clamp-2 hover:text-accent-500">
                         <Link href={`/blog/${rPost.slug}`}>{rPost.title}</Link>
                       </h3>
-                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed font-sans">{rPost.excerpt}</p>
+                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed font-sans">
+                        {rPost.excerpt}
+                      </p>
                     </div>
                     <div className="px-6 pb-6 pt-2 border-t border-primary-50">
                       <Link
