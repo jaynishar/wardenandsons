@@ -276,3 +276,24 @@ Lighthouse mobile audit collected via `@lhci/cli` against pre-rendered static ou
 4. **Items Flagged for Owner Input (Non-blocking):**
    - **Size-to-Age Exact Chart:** The size guide maps 0–24M, 2–16Y (XS to XL), and standard chest-measurement numbered sizes (Size 20–36) based on existing repository content and Indian boutique sizing conventions. If the Kemps Corner shop uses any proprietary brand-specific size label for select school uniforms, the owner may provide those exact measurements to fine-tune the table.
    - **Social Profiles:** `INSTAGRAM_URL` and `FACEBOOK_URL` remain open for future integration once active accounts exist.
+
+
+---
+
+## 5. Google Tag (gtag.js) Direct Installation
+
+- **Google Tag ID:** `G-FNQNXJJVQ3`
+- **Location:** Embedded in `src/app/layout.tsx` inside `<head>`, pre-rendering in the static HTML of every page of the website immediately following the opening `<head>` element:
+  ```html
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNQNXJJVQ3"></script>
+  <script id="google-tag-init">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FNQNXJJVQ3');
+  </script>
+  ```
+- **Single-Tag Guarantee:** Removed duplicate tag invocations so exactly one Google tag exists across every static HTML export route (`out/*.html`).
+- **Build Status:** Verified with `npm run build` with 0 warnings, 0 errors across all 38 prerendered pages.
