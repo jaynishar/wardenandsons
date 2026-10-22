@@ -297,3 +297,22 @@ Lighthouse mobile audit collected via `@lhci/cli` against pre-rendered static ou
   ```
 - **Single-Tag Guarantee:** Removed duplicate tag invocations so exactly one Google tag exists across every static HTML export route (`out/*.html`).
 - **Build Status:** Verified with `npm run build` with 0 warnings, 0 errors across all 38 prerendered pages.
+
+---
+
+## 6. Phase 0 — Baseline State Verification (October 22, 2026)
+
+Verified against the freshly exported production static HTML build (`out/`):
+
+| Route | Title | Meta Description | H1 | Word Count |
+| :--- | :--- | :--- | :--- | :---: |
+| `/` (Home) | `Kids Clothing Store in South Mumbai \| Warden & Sons` | `Kids clothing in Kemps Corner, South Mumbai since 1994. Pure cotton newborn sets, playwear, nightsuits & uniforms on WhatsApp.` | `Breathable Cotton Comfort, Since 1994.` | 1,444 |
+| `/about/` | `About Our Shop: 30 Years in Kemps Corner \| Warden & Sons` | `Serving South Mumbai families at Kemps Corner since 1994 with pure cotton children’s clothing, honest sizing, and personal care.` | `Dressing South Mumbai’s Children For Generations` | 634 |
+| `/visit-us/` | `Visit Our Kemps Corner Store in Mumbai \| Warden & Sons` | `Find Warden & Sons at Kemps Corner near St. Stephen’s Church. Open daily 9:00 AM to 9:00 PM. Pure cotton kids clothing in store.` | `Visit Our Kemps Corner Store` | 387 |
+| `/shop/boys/` | `Boys' Cotton Playwear & Nightsuits \| Warden & Sons` | `Durable 100% cotton boys' tees, shorts, and hosiery nightwear built for active play. Send your list for counter tape measurements.` | `Boys Playwear & Clothes (0–16 Years)` | 635 |
+| `/how-it-works/` | `How WhatsApp Catalogue Ordering Works \| Warden & Sons` | `Select children’s clothing items for your Request List, then send them to our Kemps Corner store on WhatsApp for sizes and photos.` | `How WhatsApp Catalogue Shopping Works` | 829 |
+| `/blog/kids-clothing-size-chart-guide/` | `Kids Clothing Size Chart: Sizing Guide by Warden & Sons` | `Struggling to find the right clothing size for your child? Read our simple kids clothing size chart and measurement tips.` | `How to Pick the Right Size: A Parent's Kids' Clothing Size Chart Guide` | 1,014 |
+
+### Invariant Checks & Directives:
+- **Homepage (`/`) and `/about/` Title & Meta Description Invariant:** Confirmed byte-for-byte preservation. These routes convert at 7.7% and 5.6% CTR in Search Console and will not be altered.
+- **Commit Target:** Complete Phase 0 baseline verification before modifying code.
