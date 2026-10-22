@@ -316,3 +316,31 @@ Verified against the freshly exported production static HTML build (`out/`):
 ### Invariant Checks & Directives:
 - **Homepage (`/`) and `/about/` Title & Meta Description Invariant:** Confirmed byte-for-byte preservation. These routes convert at 7.7% and 5.6% CTR in Search Console and will not be altered.
 - **Commit Target:** Complete Phase 0 baseline verification before modifying code.
+
+---
+
+## 7. Phase 1 — Dedicated Size Guide & Sizing Architecture Resolution
+
+- **Problem Addressed:** The prior blog post at `/blog/kids-clothing-size-chart-guide/` ranked at position ~51.8 despite real search demand for "kids clothes size chart by age", "m size for which age", and "s size age". Crawlers and searchers encountered narrative blog paragraphs rather than immediate, crawlable structured tables and direct answer cards.
+- **Architectural Decision (Blog vs. Dedicated Hub):**
+  - **Decision:** Maintained `/size-guide/` as the primary, crawlable, canonical reference hub and kept `/blog/kids-clothing-size-chart-guide/` as an evergreen editorial fitting advice article with differentiated metadata and top-of-article referral links.
+  - **Reasoning:** In Next.js static export (`output: 'export'`), server-level redirects do not operate natively. Keeping the blog post live prevents 404s, passes contextual link equity to `/size-guide/`, and avoids duplicate content by differentiating the metadata:
+    - `/size-guide/` Title: `Kids Clothes Size Chart by Age (0-16Y) | Warden & Sons` (53 chars)
+    - `/blog/kids-clothing-size-chart-guide/` Title: `How to Measure Kids for Clothes: Fitting Guide | Warden & Sons` (61 chars)
+    - `/size-guide/` Meta Description: `Accurate kids clothing size chart by age, chest, and height. Find what size for age 2-16 or ask our desk for counter measurements.` (127 chars)
+    - `/blog/...` Meta Description: `Practical guide on measuring kids for cotton clothes, avoiding shrinkage mistakes, and shopping sizes with counter tape support.` (125 chars)
+- **Direct-Answer Query Target Cards Added on `/size-guide/`:**
+  - *What Size for Age 4 or 5?* &rarr; Size XS / India Numbered Size 22–24 (Chest: 22–24 in, Height: 38–43 in).
+  - *S Size Age for Kids?* &rarr; 6 to 7 Years / India Numbered Size 26 (Chest: 24–26 in, Height: 43–48 in).
+  - *M Size for Which Age?* &rarr; 8 to 9 Years / India Numbered Size 28–30 (Chest: 26–28 in, Height: 48–53 in).
+  - *L & XL Size for Which Age?* &rarr; Size L (10–12Y, Chest: 28–30 in, Size 32) and Size XL (13–16Y, Chest: 30–32 in, Size 34–36).
+- **Structured Data & Sizing Verification:**
+  - Standard HTML table rendered for 2–16 Years and 0–24 Months.
+  - Sizing labels pulled strictly from `src/content/blog/` and `src/lib/products.ts` (0-3M, 3-6M, 6-12M, 12-18M, 18-24M, Toddler/2-3Y, XS/4-5Y, S/6-7Y, M/8-9Y, L/10-12Y, XL/13-16Y; Indian numbered sizes 20, 22-24, 26, 28-30, 32, 34-36). Zero invented data.
+  - `BreadcrumbJsonLd` schema integrated with Home &rarr; Size Guide hierarchy.
+- **Internal Links Connected:**
+  - Main navigation (`src/components/Header.tsx`) &rarr; prominent `Size Guide` link.
+  - Category pages (`src/app/shop/[category]/page.tsx`) &rarr; inline contextual link *"Not sure of the size? See our Size Guide"*.
+  - Main catalogue (`src/app/shop/page.tsx`) &rarr; prominent link pill *"Need measurement help? View our Kids Clothes Size Guide"*.
+  - Global footer (`src/components/Footer.tsx`) &rarr; added *"Kids Size Guide & Chart"* under Store Information.
+  - Blog post (`src/content/blog/kids-clothing-size-chart-guide.mdx`) &rarr; high-visibility blockquote referral banner at the top and text links throughout.

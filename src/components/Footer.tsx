@@ -131,6 +131,11 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2 text-xs text-muted">
               <li>
+                <Link href="/size-guide" className="hover:text-forest transition-colors font-medium text-forest">
+                  Kids Size Guide &amp; Chart
+                </Link>
+              </li>
+              <li>
                 <Link href="/how-it-works" className="hover:text-forest transition-colors">
                   How WhatsApp Requests Work
                 </Link>

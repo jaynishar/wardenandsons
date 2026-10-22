@@ -43,43 +43,44 @@ export default function SizeGuidePage() {
       </div>
 
       {/* Direct Quick-Answer Q&A Cards (Targeting Top GSC Queries) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-2xl p-6 border border-border-soft shadow-xs space-y-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="bg-white rounded-2xl p-5 border border-border-soft shadow-xs space-y-2">
           <div className="flex items-center gap-2 text-forest font-serif font-bold text-base">
             <HelpCircle className="w-4 h-4 text-gold shrink-0" />
-            <h3>M Size for Which Age?</h3>
+            <h3>What Size for Age 4 or 5?</h3>
           </div>
-          <p className="text-xs sm:text-sm text-muted leading-relaxed">
-            In kids’ clothing, <strong className="text-forest">Size M (Medium)</strong> typically
-            fits children aged <strong className="text-forest">8 to 9 Years</strong> (Chest: 26–28
-            in, Height: 48–53 in). For teenagers (13–16Y) or adult basics, M corresponds to a 38–40
-            inch chest.
+          <p className="text-xs text-muted leading-relaxed">
+            For children aged <strong className="text-forest">4 to 5 Years</strong>, the standard fit is <strong className="text-forest">Size XS</strong> or numbered <strong className="text-forest">Size 22–24</strong> (Chest: 22–24 in, Height: 38–43 in).
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-border-soft shadow-xs space-y-2">
+        <div className="bg-white rounded-2xl p-5 border border-border-soft shadow-xs space-y-2">
           <div className="flex items-center gap-2 text-forest font-serif font-bold text-base">
             <HelpCircle className="w-4 h-4 text-gold shrink-0" />
             <h3>S Size Age for Kids?</h3>
           </div>
-          <p className="text-xs sm:text-sm text-muted leading-relaxed">
-            In children’s apparel, <strong className="text-forest">Size S (Small)</strong> generally
-            corresponds to <strong className="text-forest">6 to 7 Years</strong> (Chest: 24–26 in,
-            Height: 43–48 in). For toddler boys and girls (4–5Y), an Extra-Small (XS) or size 22–24
-            is recommended.
+          <p className="text-xs text-muted leading-relaxed">
+            In children’s clothing, <strong className="text-forest">Size S (Small)</strong> matches <strong className="text-forest">6 to 7 Years</strong> or numbered <strong className="text-forest">Size 26</strong> (Chest: 24–26 in, Height: 43–48 in).
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-border-soft shadow-xs space-y-2">
+        <div className="bg-white rounded-2xl p-5 border border-border-soft shadow-xs space-y-2">
           <div className="flex items-center gap-2 text-forest font-serif font-bold text-base">
             <HelpCircle className="w-4 h-4 text-gold shrink-0" />
-            <h3>L & XL Size for Which Age?</h3>
+            <h3>M Size for Which Age?</h3>
           </div>
-          <p className="text-xs sm:text-sm text-muted leading-relaxed">
-            In youth clothing, <strong className="text-forest">Size L (Large)</strong> is suited for{' '}
-            <strong className="text-forest">10 to 12 Years</strong> (Chest: 28–30 in), while{' '}
-            <strong className="text-forest">Size XL</strong> fits older children aged{' '}
-            <strong className="text-forest">13 to 16 Years</strong> (Chest: 30–32 in).
+          <p className="text-xs text-muted leading-relaxed">
+            In kids’ wear, <strong className="text-forest">Size M (Medium)</strong> fits children aged <strong className="text-forest">8 to 9 Years</strong> or numbered <strong className="text-forest">Size 28–30</strong> (Chest: 26–28 in, Height: 48–53 in).
+          </p>
+        </div>
+
+        <div className="bg-white rounded-2xl p-5 border border-border-soft shadow-xs space-y-2">
+          <div className="flex items-center gap-2 text-forest font-serif font-bold text-base">
+            <HelpCircle className="w-4 h-4 text-gold shrink-0" />
+            <h3>L &amp; XL Size for Which Age?</h3>
+          </div>
+          <p className="text-xs text-muted leading-relaxed">
+            In youth sizing, <strong className="text-forest">Size L</strong> fits <strong className="text-forest">10 to 12 Years</strong> (Chest: 28–30 in, Size 32), while <strong className="text-forest">Size XL</strong> fits <strong className="text-forest">13 to 16 Years</strong> (Chest: 30–32 in, Size 34–36).
           </p>
         </div>
       </div>
