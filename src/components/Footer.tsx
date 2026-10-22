@@ -155,6 +155,11 @@ export default function Footer() {
                   Delivery & Exchange Information
                 </Link>
               </li>
+              <li>
+                <Link href="/blog" className="hover:text-forest transition-colors">
+                  Parenting & Sizing Guides
+                </Link>
+              </li>
             </ul>
           </div>
 

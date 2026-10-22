@@ -23,7 +23,14 @@ export default function Header() {
     { name: 'Catalogue', href: '/shop' },
     { name: 'How It Works', href: '/how-it-works' },
     { name: 'Our Heritage', href: '/about' },
-    { name: 'Bulk & Uniforms', href: '/bulk-orders' },
+    {
+      name: 'Bulk & Uniforms',
+      href: '/bulk-orders',
+    },
+    {
+      name: 'Guides',
+      href: '/blog',
+    },
     { name: 'Visit Store', href: '/visit-us' },
   ];
 

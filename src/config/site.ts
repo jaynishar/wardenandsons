@@ -38,6 +38,6 @@ export const SITE_CONFIG = {
  * Single source of truth for GA4 & GTM. Replace placeholders with verified production IDs.
  */
 export const ANALYTICS_CONFIG = {
-  gaMeasurementId: process.env.NEXT_PUBLIC_GA_ID || '',
+  gaMeasurementId: process.env.NEXT_PUBLIC_GA_ID || 'G-FNQNXJJVQ3',
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PK75ST2X',
 };
