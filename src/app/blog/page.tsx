@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Parent Guides & Kids Clothing Articles',
+  title: { absolute: 'Parenting Guides & Cotton Care Advice | Warden & Sons' },
   description:
     'Parent guides on pure cotton babywear, kids clothing sizing charts, fabric care, and local Kemps Corner shopping in South Mumbai.',
   alternates: {

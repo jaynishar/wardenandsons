@@ -31,9 +31,9 @@ interface CategoryEditorial {
 
 const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
   newborn: {
-    titleTag: 'Newborn & Baby Clothes (0-24M) in Mumbai',
+    titleTag: 'Newborn Baby Clothes & Swaddles Mumbai | Warden & Sons',
     metaDesc:
-      'Pure combed cotton jhablas, onesies, muslin swaddles, and rompers for babies (0-24M). Send list on WhatsApp to Warden & Sons.',
+      'Breathable combed cotton jhablas, onesies, and muslin swaddles for babies 0-24M. Request live photos from our Kemps Corner racks.',
     heading: 'Newborn & Infant Clothes (0–24 Months)',
     subheading: 'Pure cotton basics, muslin swaddles, and everyday comfort for babies.',
     fabricText:
@@ -44,9 +44,9 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Babies grow quickly during the first six months. We suggest taking one size larger for sleepsuits to allow comfortable layering over cloth nappies. On WhatsApp, simply mention your baby’s age or approximate weight, and our shop team will verify dimensions with a physical measuring tape before packing.',
   },
   boys: {
-    titleTag: 'Boys Playwear, T-Shirts & Shorts (0-16Y)',
+    titleTag: "Boys' Cotton Playwear & Nightsuits | Warden & Sons",
     metaDesc:
-      'Everyday cotton playwear, t-shirts, and hosiery nightsuits for boys (0-16Y). Send list on WhatsApp to Warden & Sons Kemps Corner.',
+      "Durable 100% cotton boys' tees, shorts, and hosiery nightwear built for active play. Send your list for counter tape measurements.",
     heading: 'Boys Playwear & Clothes (0–16 Years)',
     subheading: 'Breathable cotton t-shirts, shorts, track pants, and nightsuits.',
     fabricText:
@@ -57,9 +57,9 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Active boys need room through the shoulders and chest. For shorts and joggers, our waistbands feature soft ribbed elastic with functional drawstrings. When sending your Request List on WhatsApp, tell us your boy’s age and approximate height, and we will measure flat chest and length dimensions for you.',
   },
   girls: {
-    titleTag: 'Girls Cotton Dresses & Nightwear (0-16Y)',
+    titleTag: 'Girls Cotton Dresses & Sleepwear (0-16Y) | Warden & Sons',
     metaDesc:
-      'Soft cotton dresses, tops, leggings, and notched-collar nightsuits for girls (0-16Y). Send list on WhatsApp to Warden & Sons.',
+      'Soft cotton frocks, daily tops, and notched-collar nightsuits for girls. Check current prints and sizes directly on WhatsApp.',
     heading: 'Girls Clothing & Sleepwear (0–16 Years)',
     subheading: 'Airy cotton dresses, comfortable nightsuits, tops, and leggings.',
     fabricText:
@@ -70,9 +70,9 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'For dresses, check shoulder-to-knee length. Our nightsuits are cut with a comfortable, relaxed fit for sleeping. Share your daughter’s height and chest measurement on WhatsApp, and our Kemps Corner store desk will confirm flat measurements directly.',
   },
   men: {
-    titleTag: 'Men’s Pure Cotton Loungewear & Basics',
+    titleTag: "Men's Pure Cotton Loungewear & Basics | Warden & Sons",
     metaDesc:
-      'Breathable combed cotton t-shirts, lounge shorts, and pajama sets for men. Send list on WhatsApp to Warden & Sons Kemps Corner.',
+      'Breathable combed cotton crewneck t-shirts, lounge shorts, and pajama sets. Confirm your size with our Kemps Corner store desk.',
     heading: 'Men’s Cotton Loungewear & Basics',
     subheading: 'Combed cotton t-shirts, boxer shorts, and classic pajama sets.',
     fabricText:
@@ -83,9 +83,9 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Cut with a comfortable, straight drape rather than slim tailoring. If you prefer extra ease for lounging at home, select your usual collar or chest size. Our store team will gladly measure chest and waist dimensions on our counter tape.',
   },
   women: {
-    titleTag: 'Women’s Muslin Sleepwear & Cotton Sets',
+    titleTag: "Women's Muslin Sleepwear & Loungewear | Warden & Sons",
     metaDesc:
-      'Lightweight muslin sleepwear, lounge sets, and everyday tops for women. Send list on WhatsApp to Warden & Sons Kemps Corner.',
+      'Double-gauze muslin night suits, everyday tops, and cotton leggings for women. Message our shop desk for live availability.',
     heading: 'Women’s Muslin Sleepwear & Basics',
     subheading: 'Airy double-gauze muslin pajama sets, nightdresses, and cotton tops.',
     fabricText:
@@ -96,9 +96,9 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Muslin fabrics have a natural, relaxed drape that softens with every wash. Let us know on WhatsApp whether you prefer a loose or standard fit, and our team will measure armhole, chest, and pant outseam lengths for you.',
   },
   bulk: {
-    titleTag: 'School Uniforms & Bulk Cotton Apparel',
+    titleTag: 'School Uniforms & Bulk Cotton Apparel | Warden & Sons',
     metaDesc:
-      'Custom school uniforms, sports kits, and bulk cotton children’s garments. Direct WhatsApp quotes from Warden & Sons Kemps Corner.',
+      "Custom school uniforms, sports jerseys, and bulk cotton children's wear. Request direct WhatsApp quotes and fabric trial swatches.",
     heading: 'School Uniforms & Bulk Orders',
     subheading: 'Custom school uniforms, sports house t-shirts, and group garments.',
     fabricText:
@@ -122,7 +122,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const editorial = CATEGORY_EDITORIALS[category as CategorySlug];
 
   return {
-    title: editorial.titleTag,
+    title: { absolute: editorial.titleTag },
     description: editorial.metaDesc,
     alternates: {
       canonical: getCanonicalUrl(`/shop/${category}`),

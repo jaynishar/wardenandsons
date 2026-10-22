@@ -7,9 +7,9 @@ import { getCanonicalUrl } from '@/config/site';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 export const metadata: Metadata = {
-  title: 'Kids Clothes Size Chart by Age (0-16Y)',
+  title: { absolute: 'Kids Clothes Size Chart by Age (0-16Y) | Warden & Sons' },
   description:
-    'Find the right kids clothing size by age with our South Mumbai size chart. Check chest, height, and age guidelines or get WhatsApp measurements.',
+    'Accurate kids clothing size chart by age, chest, and height. Find what size for age 2-16 or ask our desk for counter measurements.',
   alternates: {
     canonical: getCanonicalUrl('/size-guide'),
   },

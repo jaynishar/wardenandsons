@@ -4,7 +4,7 @@ import { getCanonicalUrl } from '@/config/site';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Customer Data Protection',
+  title: { absolute: 'Customer Privacy Policy & WhatsApp Care | Warden & Sons' },
   description:
     'Read the privacy policy of Warden & Sons Kids Wear. How we protect your details, phone number, and WhatsApp enquiry privacy.',
   alternates: {

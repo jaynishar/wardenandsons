@@ -24,7 +24,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Warden & Sons Kids Wear | Kemps Corner, South Mumbai',
+    default: 'Kids Clothing Store in South Mumbai | Warden & Sons',
     template: '%s | Warden & Sons',
   },
   description:

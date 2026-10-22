@@ -4,7 +4,7 @@ import { getCanonicalUrl } from '@/config/site';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Shop Policies & Orders',
+  title: { absolute: 'Shop Policies & WhatsApp Order Terms | Warden & Sons' },
   description:
     'Read the terms of service of Warden & Sons Kids Wear Kemps Corner. Guidelines on retail requests, pricing, and size exchanges.',
   alternates: {

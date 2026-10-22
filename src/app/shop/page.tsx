@@ -8,9 +8,9 @@ import { ClipboardList, MessageSquare, Camera, Ruler } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Shop Pure Cotton Kids Clothes by Age',
+  title: { absolute: 'Kids Clothes by Age: South Mumbai Shop | Warden & Sons' },
   description:
-    'Browse pure cotton children’s clothing by age: newborn essentials, boys playwear, girls dresses, nightsuits, and school uniforms.',
+    "Explore combed cotton children's clothing organized by age group. Pick favorites for your Request List and verify fit on WhatsApp.",
   alternates: {
     canonical: getCanonicalUrl('/shop'),
   },

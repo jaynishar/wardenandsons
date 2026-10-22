@@ -6,7 +6,7 @@ import { getCanonicalUrl } from '@/config/site';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Delivery, Store Pickup & Size Exchanges',
+  title: { absolute: 'Delivery, Store Pickup & Size Exchanges | Warden & Sons' },
   description:
     'Mumbai doorstep delivery, store pickup at Kemps Corner, and straightforward size exchanges handled directly on WhatsApp.',
   alternates: {

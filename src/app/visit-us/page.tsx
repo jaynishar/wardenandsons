@@ -7,7 +7,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Visit Our Store | Kemps Corner, South Mumbai',
+  title: { absolute: 'Visit Our Kemps Corner Store in Mumbai | Warden & Sons' },
   description:
     'Find Warden & Sons at Kemps Corner near St. Stephen’s Church. Open daily 9:00 AM to 9:00 PM. Pure cotton kids clothing in store.',
   alternates: {

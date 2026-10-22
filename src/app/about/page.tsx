@@ -9,7 +9,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'About Our Shop | 30 Years at Kemps Corner',
+  title: { absolute: 'About Our Shop: 30 Years in Kemps Corner | Warden & Sons' },
   description:
     'Serving South Mumbai families at Kemps Corner since 1994 with pure cotton children’s clothing, honest sizing, and personal care.',
   alternates: {

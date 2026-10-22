@@ -8,7 +8,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'How to Buy on WhatsApp | Simple 3-Step Guide',
+  title: { absolute: 'How WhatsApp Catalogue Ordering Works | Warden & Sons' },
   description:
     'Select children’s clothing items for your Request List, then send them to our Kemps Corner store on WhatsApp for sizes and photos.',
   alternates: {

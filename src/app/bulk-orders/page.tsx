@@ -7,7 +7,7 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'School Uniforms & Bulk Orders',
+  title: { absolute: 'Custom School Uniforms & Bulk Apparel | Warden & Sons' },
   description:
     'Custom school uniforms, sports kits, and bulk cotton children’s apparel in South Mumbai. Quality fabric and direct WhatsApp quotes.',
   alternates: {

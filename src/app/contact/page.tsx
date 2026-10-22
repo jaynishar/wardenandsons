@@ -7,7 +7,7 @@ import { getCanonicalUrl } from '@/config/site';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Contact Our Kemps Corner Store in Mumbai',
+  title: { absolute: 'Contact Our Kemps Corner Store Desk | Warden & Sons' },
   description:
     'Get in touch with Warden & Sons Kids Wear at Kemps Corner, South Mumbai. Send sizing queries, newborn questions, or visit our shop.',
   alternates: {
