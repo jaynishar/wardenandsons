@@ -8,9 +8,9 @@ import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: { absolute: 'How WhatsApp Catalogue Ordering Works | Warden & Sons' },
+  title: { absolute: 'How to Order Kids Clothes on WhatsApp | Warden & Sons' },
   description:
-    'Select children’s clothing items for your Request List, then send them to our Kemps Corner store on WhatsApp for sizes and photos.',
+    'Build a Request List online, get live rack photos on WhatsApp, and confirm tape sizing before paying. See the 3 simple steps.',
   alternates: {
     canonical: getCanonicalUrl('/how-it-works'),
   },
@@ -22,36 +22,36 @@ export default function HowItWorksPage() {
       step: '01',
       title: 'Browse Catalogue & Build Request List',
       description:
-        'Explore our digital catalogue of pure combed cotton and muslin kidswear. Choose your preferred categories and items. Adding items to your Request List stores them safely on your device.',
+        'Explore our digital catalogue of pure combed cotton and muslin kidswear. Select your preferred categories, styles, and age ranges. Adding items to your Request List stores them safely on your device without requiring an account or sign-in.',
       icon: ClipboardList,
       details: [
-        'Explore Newborn (0-24M), Boys (0-16Y), Girls (0-16Y), Men & Women basics',
-        'Add items without creating an account or providing sensitive data',
-        'Specify optional age, size, and colour preferences per item',
+        'Explore collections across Newborns (0–24M), Boys (0–16Y), Girls (0–16Y), and family basics.',
+        'Add items freely to your list without entering passwords or creating an account.',
+        'Specify preferred age brackets, sizing, and colour notes for each clothing piece.',
       ],
     },
     {
       step: '02',
       title: 'Review & Send Request on WhatsApp',
       description:
-        'Click "Send Enquiry on WhatsApp" from your Request List. A clear, itemized message is generated for you to review and send directly to our Kemps Corner store desk.',
+        'Click "Send Enquiry on WhatsApp" directly from your Request List. A clear, itemized message is generated for you to review and send to our Kemps Corner shop counter in South Mumbai.',
       icon: MessageSquare,
       details: [
-        `Direct link opens WhatsApp with our official business number (${BUSINESS_CONFIG.phone.display})`,
-        'No online payment gateway or credit card required',
-        'Convenient "Copy Enquiry Text" fallback included',
+        `Direct link opens WhatsApp with our official store desk (+91 99207 51567).`,
+        'No credit card details or online checkout payment gateways are required.',
+        'A convenient "Copy Enquiry Text" fallback allows pasting into any messaging app.',
       ],
     },
     {
       step: '03',
       title: 'Live Photos, Sizing & Confirmation',
       description:
-        'Our shop team checks real-time racks, sends you photographs of currently available prints, and confirms measurements with a measuring tape. Once approved, the shop completes payment and fulfills delivery or store pickup directly.',
+        'Our shop team checks real-time racks, sends you photographs of currently available prints, and confirms measurements with a physical measuring tape. Once approved, you complete payment and arrange delivery or store pickup.',
       icon: Truck,
       details: [
-        'Precise chest & length dimensions verified by physical tape',
-        'Direct UPI QR or bank payment options confirmed with the shop',
-        'Doorstep delivery across Mumbai & pan-India or pickup at Kemps Corner',
+        'Precise chest, waist, and length dimensions are verified flat with a measuring tape.',
+        'Convenient direct UPI QR or bank transfer options are confirmed directly with our shop desk.',
+        'Doorstep courier delivery across Mumbai & pan-India or convenient pickup at Kemps Corner.',
       ],
     },
   ];
@@ -113,6 +113,50 @@ export default function HowItWorksPage() {
           );
         })}
       </div>
+
+      {/* In-Depth Explanation & Contextual Authority Section */}
+      <section className="bg-white rounded-3xl p-6 sm:p-10 border border-border-soft shadow-xs space-y-6 text-near-black">
+        <div className="space-y-2 border-b border-border-soft pb-4">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-gold block">
+            Personal Care • Zero Friction
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
+            Why Our WhatsApp Shopping Flow Protects Parents
+          </h2>
+          <p className="text-xs sm:text-sm text-muted leading-relaxed max-w-3xl">
+            Buying children’s clothing online from generic marketplaces often leads to ill-fitting garments, stiff synthetic blends, and frustrating return processes. Here is how our 30-year Kemps Corner store desk personalizes every order.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm leading-relaxed">
+          <div className="space-y-2.5">
+            <h3 className="font-serif font-bold text-base text-forest">
+              1. Live Rack Checks &amp; Photos
+            </h3>
+            <p className="text-muted">
+              Because our physical inventory rotates constantly with fresh cotton prints and seasonal styles, our shop team pulls real items directly from the boutique racks. We photograph currently available patterns and colorways in natural light so you know exactly what you are purchasing.
+            </p>
+          </div>
+
+          <div className="space-y-2.5">
+            <h3 className="font-serif font-bold text-base text-forest">
+              2. Measuring Tape Accuracy
+            </h3>
+            <p className="text-muted">
+              Children of the same age often have different heights and chest builds. Before anything is packed, our staff lays each garment flat and measures chest width, shoulder seams, and outseam lengths with a tape. You can cross-reference these numbers with our <Link href="/size-guide" className="font-bold text-forest underline hover:text-gold">Kids Clothes Size Guide</Link> to ensure a comfortable fit.
+            </p>
+          </div>
+
+          <div className="space-y-2.5">
+            <h3 className="font-serif font-bold text-base text-forest">
+              3. Flexible Pickup or Delivery
+            </h3>
+            <p className="text-muted">
+              After confirming sizes and pricing on WhatsApp, choose between fast Mumbai doorstep courier delivery or in-person pickup at our <Link href="/visit-us" className="font-bold text-forest underline hover:text-gold">Kemps Corner store near St. Stephen’s Church</Link>. Looking specifically for boys&apos; playwear, cargo shorts, or cricket academy whites? Explore our <Link href="/shop/boys" className="font-bold text-forest underline hover:text-gold">Boys’ Wear Collection (0–16 Years)</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* WhatsApp CTA Card */}
       <div className="bg-forest text-white rounded-3xl p-8 sm:p-12 text-center space-y-5 max-w-4xl mx-auto shadow-xl">

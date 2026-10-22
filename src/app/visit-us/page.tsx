@@ -1,15 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
-import { MapPin, Clock, MessageSquare, Compass, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
+import { MapPin, Clock, MessageSquare, Compass, ExternalLink, Car, Ruler, ArrowRight } from 'lucide-react';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Visit Our Kemps Corner Store in Mumbai | Warden & Sons' },
+  title: { absolute: 'Visit Kids Clothing Shop at Kemps Corner | Warden & Sons' },
   description:
-    'Find Warden & Sons at Kemps Corner near St. Stephen’s Church. Open daily 9:00 AM to 9:00 PM. Pure cotton kids clothing in store.',
+    'Find cotton kids clothes near Pedder Road flyover & St. Stephen’s. Open daily 9am–9pm. In-store fitting & WhatsApp delivery.',
   alternates: {
     canonical: getCanonicalUrl('/visit-us'),
   },
@@ -126,26 +127,23 @@ export default function VisitUsPage() {
             </div>
           </div>
 
-          {/* Landmarks & Accessibility */}
-          <div className="bg-bg-cream rounded-3xl border border-border-soft p-7 space-y-3">
+          {/* Landmarks, Directions & Parking Notes */}
+          <div className="bg-bg-cream rounded-3xl border border-border-soft p-7 space-y-4">
             <div className="flex items-center gap-2 text-forest">
               <Compass className="w-5 h-5 text-gold" />
-              <h3 className="font-serif font-bold text-base">Landmark Proximity</h3>
+              <h3 className="font-serif font-bold text-base">Landmark Proximity &amp; Directions</h3>
             </div>
             <p className="text-xs text-muted leading-relaxed">
-              We are located at <strong>Haji Habib Building near St. Stephen’s Church</strong> on August
-              Kranti Marg, Kemps Corner. Conveniently accessible from{' '}
-              <strong>Pedder Road, Altamount Road, Breach Candy, Nepean Sea Road</strong>, and Grant
-              Road. If you need assistance finding parking or store access, call us at{' '}
-              <a
-                href={BUSINESS_CONFIG.phone.telLink}
-                data-track="call_click"
-                className="font-bold text-forest underline"
-              >
-                {BUSINESS_CONFIG.phone.display}
-              </a>
-              {BUSINESS_CONFIG.phone.landline ? ` or ${BUSINESS_CONFIG.phone.landline}` : ''}.
+              Our boutique is located on the ground floor of <strong>Haji Habib Building, 155/157 August Kranti Marg</strong>, directly opposite St. Stephen’s Church and right next to the Pedder Road Flyover junction. We are within 5 to 10 minutes from{' '}
+              <strong>Pedder Road, Altamount Road, Carmichael Road, Malabar Hill, Breach Candy, Nepean Sea Road</strong>, and Tardeo.
             </p>
+            <div className="pt-2 border-t border-border-soft/60 flex items-start gap-3 text-xs text-muted">
+              <Car className="w-4 h-4 text-forest shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-near-black block">Parking &amp; Transit Guidance:</strong>
+                <span>Quick car drop-off is straightforward right in front of the store on August Kranti Marg. Curb-side short-stay parking is generally accessible during morning and early afternoon hours. For train commuters, Grant Road railway station is approximately 1.5 km away (a 5–7 minute taxi ride).</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -165,23 +163,97 @@ export default function VisitUsPage() {
           <div className="bg-white rounded-3xl border border-border-soft p-6 shadow-xs space-y-3 text-center">
             <h3 className="font-serif font-bold text-lg text-forest">Can’t Make It In Person?</h3>
             <p className="text-xs text-muted leading-relaxed">
-              Shop via our WhatsApp catalogue! We will show you current racks live and arrange
-              delivery across Mumbai.
+              Order through our WhatsApp service! We pull live items from the rack, verify measurements with a tape, and arrange delivery across Mumbai.
             </p>
-            <a
-              href={BUSINESS_CONFIG.phone.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="whatsapp_click"
-              data-track-location="page"
-              className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all"
-            >
-              <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
-              <span>Start WhatsApp Shopping</span>
-            </a>
+            <div className="space-y-2 pt-1">
+              <a
+                href={BUSINESS_CONFIG.phone.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="whatsapp_click"
+                data-track-location="page"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all active:scale-[0.98]"
+              >
+                <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
+                <span>Start WhatsApp Shopping</span>
+              </a>
+              <Link
+                href="/how-it-works"
+                className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-semibold text-forest hover:text-gold transition-colors"
+              >
+                <span>Read how WhatsApp ordering works</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* In-Store Departments & Contextual Authority Links */}
+      <section className="bg-white rounded-3xl p-6 sm:p-10 border border-border-soft shadow-xs space-y-6 text-near-black">
+        <div className="space-y-2 border-b border-border-soft pb-4">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-gold block">
+            What You Will Find In-Store
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
+            Explore Physical Collections at Our Kemps Corner Boutique
+          </h2>
+          <p className="text-xs sm:text-sm text-muted leading-relaxed max-w-3xl">
+            When you visit our store in person, you have access to hundreds of rotated cotton prints, school accessories, and everyday essentials not always visible online.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-xs sm:text-sm leading-relaxed">
+          <div className="bg-bg-cream/40 rounded-2xl p-5 border border-border-soft space-y-2.5">
+            <h3 className="font-serif font-bold text-base text-forest">
+              Boys’ Cotton Playwear &amp; Sports
+            </h3>
+            <p className="text-muted">
+              Browse breathable 180 GSM combed cotton t-shirts, cricket coaching academy whites, dryfit sports coordinate sets, and hosiery nightwear.
+            </p>
+            <Link
+              href="/shop/boys"
+              className="inline-flex items-center gap-1 font-bold text-forest hover:text-gold transition-colors underline pt-1"
+            >
+              <span>Explore Boys’ Wear (0–16Y)</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="bg-bg-cream/40 rounded-2xl p-5 border border-border-soft space-y-2.5">
+            <h3 className="font-serif font-bold text-base text-forest">
+              Newborn Sets &amp; Muslin Swaddles
+            </h3>
+            <p className="text-muted">
+              Delicate combed cotton jhablas, open-weave double-gauze swaddles, hospital take-home sets, and baby shower gift packages.
+            </p>
+            <Link
+              href="/shop/newborn"
+              className="inline-flex items-center gap-1 font-bold text-forest hover:text-gold transition-colors underline pt-1"
+            >
+              <span>Explore Newborn Collection</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="bg-bg-cream/40 rounded-2xl p-5 border border-border-soft space-y-2.5">
+            <h3 className="font-serif font-bold text-base text-forest">
+              Live Sizing &amp; Fitting Checks
+            </h3>
+            <p className="text-muted">
+              Bring your child or their favorite well-fitting garment. Our counter team measures dimensions live to ensure total comfort.
+            </p>
+            <Link
+              href="/size-guide"
+              className="inline-flex items-center gap-1 font-bold text-forest hover:text-gold transition-colors underline pt-1"
+            >
+              <Ruler className="w-3.5 h-3.5 text-gold" />
+              <span>View Kids Clothes Size Guide</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

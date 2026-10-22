@@ -344,3 +344,48 @@ Verified against the freshly exported production static HTML build (`out/`):
   - Main catalogue (`src/app/shop/page.tsx`) &rarr; prominent link pill *"Need measurement help? View our Kids Clothes Size Guide"*.
   - Global footer (`src/components/Footer.tsx`) &rarr; added *"Kids Size Guide & Chart"* under Store Information.
   - Blog post (`src/content/blog/kids-clothing-size-chart-guide.mdx`) &rarr; high-visibility blockquote referral banner at the top and text links throughout.
+
+---
+
+## 8. Phase 2 — Page-1 Borderline Push & Internal Authority Amplification
+
+- **Targeted Borderline Routes:**
+  1. `/shop/boys/` (Prior GSC Position: 9.2)
+  2. `/how-it-works/` (Prior GSC Position: 9.5)
+  3. `/visit-us/` (Prior GSC Position: 8.4)
+
+### 1. Snippet Optimization (Titles & Descriptions)
+
+All three titles and meta descriptions rewritten to feature concrete, true value propositions without generic restatements or manipulative hype:
+
+| Route | Old Title (chars) &rarr; New Title (chars) | Old Meta Description (chars) &rarr; New Meta Description (chars) | Concrete Signals Incorporated |
+| :--- | :--- | :--- | :--- |
+| `/shop/boys/` | `Boys' Cotton Playwear & Nightsuits \| Warden & Sons` (50) &rarr; `Boys Cotton Clothes (0-16Y) \| Kemps Corner \| Warden & Sons` (57) | `Durable 100% cotton boys' tees, shorts, and hosiery nightwear built for active play. Send your list for counter tape measurements.` (130) &rarr; `Durable 100% cotton boys' tees, cricket whites & nightsuits (0-16Y). WhatsApp our Kemps Corner store for tape measurements.` (123) | Age range (0–16Y), cricket whites, Kemps Corner store, WhatsApp tape measurements |
+| `/how-it-works/` | `How WhatsApp Catalogue Ordering Works \| Warden & Sons` (54) &rarr; `How to Order Kids Clothes on WhatsApp \| Warden & Sons` (52) | `Select children’s clothing items for your Request List, then send them to our Kemps Corner store on WhatsApp for sizes and photos.` (130) &rarr; `Build a Request List online, get live rack photos on WhatsApp, and confirm tape sizing before paying. See the 3 simple steps.` (125) | 3 simple steps, live rack photos on WhatsApp, zero payment until tape sizing confirmed |
+| `/visit-us/` | `Visit Our Kemps Corner Store in Mumbai \| Warden & Sons` (54) &rarr; `Visit Kids Clothing Shop at Kemps Corner \| Warden & Sons` (56) | `Find Warden & Sons at Kemps Corner near St. Stephen’s Church. Open daily 9:00 AM to 9:00 PM. Pure cotton kids clothing in store.` (129) &rarr; `Find cotton kids clothes near Pedder Road flyover & St. Stephen’s. Open daily 9am–9pm. In-store fitting & WhatsApp delivery.` (124) | Pedder Road flyover, St. Stephen's Church, Open daily 9am–9pm, in-store fitting |
+
+### 2. Content Depth & Word Count Expansion
+
+| Route | Baseline Words | Post-Phase 2 Words | Net Increase | Substantive Content Added |
+| :--- | :---: | :---: | :---: | :--- |
+| `/shop/boys/` | 635 | 930 | **+295 words (+46.5%)** | Added detailed Age & Sizing guide table/list for boys (Toddlers 2–3Y / Size 20 through Teenagers 13–16Y / Sizes 34–36), fabric specifications (180–220 GSM combed cotton, reinforced cotton twill cargo shorts, poly-cotton cricket match whites), and store fitting advice. |
+| `/how-it-works/` | 829 | 1,066 | **+237 words (+28.6%)** | Expanded numbered step summaries into full descriptive sentences. Added dedicated 3-pillar breakdown on why WhatsApp shopping protects parents: Live Rack Checks in natural light, Measuring Tape Accuracy flat across garments, and Mumbai doorstep delivery vs. store pickup. |
+| `/visit-us/` | 387 | 570 | **+183 words (+47.3%)** | Expanded directions and landmark proximity (Haji Habib Building ground floor, St. Stephen’s Church, Pedder Road Flyover junction, Malabar Hill, Altamount Rd, Grant Road station 1.5 km). Added transit & curbside parking guidance, plus in-store department spotlights for boys playwear, newborn sets, and counter tape sizing. |
+
+### 3. Contextual Internal Linking Matrix
+
+Cross-linked the three borderline pages and the homepage to create a tight topical authority cluster:
+
+1. **To `/shop/boys/`:**
+   - From Homepage (`src/components/HowItWorks.tsx`): Linked in Step 1 text (*"Browse our shop by age including our boys playwear & nightsuits (0–16Y)"*).
+   - From `/visit-us/`: Department spotlight link (*"Explore Boys’ Wear (0–16Y)"*).
+   - From `/how-it-works/`: In delivery & category overview (*"Explore our Boys’ Wear Collection (0–16 Years)"*).
+2. **To `/how-it-works/`:**
+   - From Homepage (`src/components/HowItWorks.tsx`): Header link (*"Read our full guide on how WhatsApp catalogue ordering works"*).
+   - From `/shop/boys/`: In-store & remote advice card (*"how WhatsApp catalogue ordering works with flat tape measurements verified before you confirm"*).
+   - From `/visit-us/`: Can't make it in person card (*"Read how WhatsApp ordering works"*).
+3. **To `/visit-us/`:**
+   - From Homepage (`src/components/HowItWorks.tsx`): Header link (*"or visit our Kemps Corner store"*).
+   - From Homepage (`src/app/page.tsx`): Store address card (*"Store directions, hours & parking &rarr;"*).
+   - From `/shop/boys/`: In-store fittings card (*"Kemps Corner store near Pedder Road flyover to inspect fabrics, check sizes, or pick up custom school uniforms"*).
+   - From `/how-it-works/`: In Step 3 (*"pickup at our Kemps Corner store near St. Stephen’s Church"*).

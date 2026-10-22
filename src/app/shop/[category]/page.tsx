@@ -44,15 +44,15 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Babies grow quickly during the first six months. We suggest taking one size larger for sleepsuits to allow comfortable layering over cloth nappies. On WhatsApp, simply mention your baby’s age or approximate weight, and our shop team will verify dimensions with a physical measuring tape before packing.',
   },
   boys: {
-    titleTag: "Boys' Cotton Playwear & Nightsuits | Warden & Sons",
+    titleTag: 'Boys Cotton Clothes (0-16Y) | Kemps Corner | Warden & Sons',
     metaDesc:
-      "Durable 100% cotton boys' tees, shorts, and hosiery nightwear built for active play. Send your list for counter tape measurements.",
+      "Durable 100% cotton boys' tees, cricket whites & nightsuits (0-16Y). WhatsApp our Kemps Corner store for tape measurements.",
     heading: 'Boys Playwear & Clothes (0–16 Years)',
     subheading: 'Breathable cotton t-shirts, shorts, track pants, and nightsuits.',
     fabricText:
-      'High-durability 180 to 220 GSM single-jersey cotton for t-shirts, reinforced cotton twill for cargo shorts, and 100% combed hosiery cotton for nightwear. Built without synthetic polyester blends so boys stay cool while playing outdoors.',
+      'High-durability 180 to 220 GSM single-jersey cotton for t-shirts, reinforced cotton twill for cargo shorts, and 100% combed hosiery cotton for nightwear. Built without synthetic polyester blends so boys stay cool while playing outdoors in Mumbai’s heat.',
     ageText:
-      'Full coverage from toddlers (0-2Y), junior boys (2-8Y), to older boys and teenagers (8-16Y). All garments feature reinforced collar ribbing and double-needle hems.',
+      'Full coverage from toddlers (0-2Y), junior boys (2-8Y), to older boys and teenagers (8-16Y). Available across standard Indian numbered sizes 20, 22-24, 26, 28-30, 32, and 34-36. All garments feature reinforced collar ribbing and double-needle hems.',
     sizingText:
       'Active boys need room through the shoulders and chest. For shorts and joggers, our waistbands feature soft ribbed elastic with functional drawstrings. When sending your Request List on WhatsApp, tell us your boy’s age and approximate height, and we will measure flat chest and length dimensions for you.',
   },
@@ -196,6 +196,72 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         initialCategory={category}
         categoryTitle={editorial.heading}
       />
+
+      {/* Category-Specific In-Depth Contextual Section for Boys */}
+      {category === 'boys' && (
+        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-border-soft shadow-xs space-y-6 text-near-black">
+          <div className="space-y-2 border-b border-border-soft pb-4">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-gold block">
+              Boutique Sizing & Fabrics • Kemps Corner
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
+              Boys’ Cotton Clothing, Sizing &amp; Fabrics
+            </h2>
+            <p className="text-xs sm:text-sm text-muted leading-relaxed">
+              Serving South Mumbai families since 1994, Warden &amp; Sons stocks genuine, durable cotton basics for boys from toddlers through teenagers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm leading-relaxed">
+            <div className="space-y-3">
+              <h3 className="font-serif font-bold text-base text-forest">
+                Age Brackets &amp; Numbered Sizes Carried
+              </h3>
+              <ul className="space-y-2 text-muted">
+                <li>
+                  <strong className="text-near-black">Toddler Boys (2 – 3 Years):</strong> Sized as Toddler / 2-3Y or Indian Size 20 (Chest: ~21 in). Designed with roomy elastic pull-on waists and soft necklines for easy dressing.
+                </li>
+                <li>
+                  <strong className="text-near-black">Young Boys (4 – 7 Years):</strong> Sized as XS (4-5Y, Size 22–24) and S (6-7Y, Size 26, Chest: 23–25 in). Built for active daily kindergarten and primary school play.
+                </li>
+                <li>
+                  <strong className="text-near-black">Juniors (8 – 12 Years):</strong> Sized as M (8-9Y, Size 28–30) and L (10-12Y, Size 32, Chest: 27–29 in). Includes coaching cricket whites, sports coordinate sets, and school uniform drill shorts.
+                </li>
+                <li>
+                  <strong className="text-near-black">Teenagers (13 – 16 Years):</strong> Sized as XL (13-16Y, Size 34–36, Chest: 30–32 in). Features durable cotton track pants, crew-neck tees, and relaxed sleepwear.
+                </li>
+              </ul>
+              <div className="pt-2">
+                <Link
+                  href="/size-guide"
+                  className="font-bold text-forest hover:text-gold transition-colors inline-flex items-center gap-1.5 underline"
+                >
+                  <Ruler className="w-3.5 h-3.5 text-gold" />
+                  <span>Compare complete chest &amp; height dimensions in our Size Guide</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="font-serif font-bold text-base text-forest">
+                Authentic Fabrics Built for Mumbai Climate
+              </h3>
+              <p className="text-muted">
+                Every garment in our boys’ department is selected for durability and breathability. Our everyday t-shirts use heavyweight 180–220 GSM combed cotton that withstands regular washing without losing collar shape. For sports and turf play, moisture-wicking dryfit microfibers keep boys cool, while cricket academy kits use specialized poly-cotton twill designed for morning training at Oval, Azad, and Shivaji Park maidaans.
+              </p>
+              <div className="bg-bg-cream/60 rounded-2xl p-4 border border-border-soft space-y-2">
+                <h4 className="font-serif font-bold text-sm text-forest">
+                  In-Store Fittings &amp; WhatsApp Home Service
+                </h4>
+                <p className="text-muted text-xs">
+                  Prefer in-person fitting? Stop by our <Link href="/visit-us" className="font-bold text-forest underline hover:text-gold">Kemps Corner store near Pedder Road flyover</Link> to inspect fabrics, check sizes, or pick up custom school uniforms. Ordering remotely? See <Link href="/how-it-works" className="font-bold text-forest underline hover:text-gold">how WhatsApp catalogue ordering works</Link> with flat tape measurements verified before you confirm.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

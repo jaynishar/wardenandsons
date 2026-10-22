@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { MessageSquare, ArrowRight } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
 
@@ -6,8 +7,15 @@ export default function HowItWorks() {
   const steps = [
     {
       title: '1. Add to Request',
-      description:
-        'Browse our shop by age. Add items to your Request List without creating an account.',
+      description: (
+        <>
+          Browse our shop by age including our{' '}
+          <Link href="/shop/boys" className="underline font-semibold text-forest hover:text-gold">
+            boys playwear &amp; nightsuits (0–16Y)
+          </Link>
+          . Add items to your Request List without creating an account.
+        </>
+      ),
     },
     {
       title: '2. Send on WhatsApp',
@@ -34,8 +42,15 @@ export default function HowItWorks() {
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-muted max-w-md">
-            Our South Mumbai shop has operated by phone and counter since 1994. We verify every
-            measurement before confirming your order.
+            Our South Mumbai shop has operated by phone and counter since 1994. Read our full guide on{' '}
+            <Link href="/how-it-works" className="font-semibold text-forest underline hover:text-gold">
+              how WhatsApp catalogue ordering works
+            </Link>{' '}
+            or visit our{' '}
+            <Link href="/visit-us" className="font-semibold text-forest underline hover:text-gold">
+              Kemps Corner store
+            </Link>
+            .
           </p>
         </div>
 

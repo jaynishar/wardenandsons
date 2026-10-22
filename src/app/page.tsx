@@ -131,7 +131,13 @@ export default function HomePage() {
                   Kemps Corner Store
                 </h3>
                 <p className="text-muted">{BUSINESS_CONFIG.location.fullAddress}</p>
-                <p className="text-gray-400">Near St. Stephen’s Church</p>
+                <p className="text-gray-400">Near St. Stephen’s Church &amp; Pedder Road Flyover</p>
+                <Link
+                  href="/visit-us"
+                  className="font-bold text-forest hover:text-gold transition-colors underline pt-1 block"
+                >
+                  Store directions, hours &amp; parking &rarr;
+                </Link>
               </div>
             </div>
 
