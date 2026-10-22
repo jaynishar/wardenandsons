@@ -148,3 +148,22 @@ The owner provided the official Google Business link (`https://share.google/iwNo
 5. **Remaining Items Awaiting Input (if desired)**:
    - `INSTAGRAM_URL` & `FACEBOOK_URL`: Provide official links if/when social media accounts are active.
    - Incorporation Proof (1994 vs. 1995): Copy currently represents both truthfully ("Serving South Mumbai families for over 30 years" and "Since 1994").
+
+
+---
+
+## 9. Comprehensive Search Console & CTR Overhaul (October 22, 2026)
+
+### Phase 0 — Verification of Prior Work
+
+| Verification Check | Target | Actual Built HTML Result | Status |
+| :--- | :--- | :--- | :---: |
+| **npm run build** | Exit code 0, 37 static routes | Exit code 0, 37/37 static routes generated | **PASS** |
+| **Home Canonical** | `https://wardenandsons.in/` | `https://wardenandsons.in/` | **PASS** |
+| **Shop Canonical** | `https://wardenandsons.in/shop/` | `https://wardenandsons.in/shop/` | **PASS** |
+| **Newborn Canonical** | `https://wardenandsons.in/shop/newborn/` | `https://wardenandsons.in/shop/newborn/` | **PASS** |
+| **Boys Canonical** | `https://wardenandsons.in/shop/boys/` | `https://wardenandsons.in/shop/boys/` | **PASS** |
+| **HTML Lang Tag** | `lang="en-IN"` on all routes | Present on all HTML documents | **PASS** |
+| **Noindex Check** | 0 instances in source / headers | 0 instances found | **PASS** |
+| **Unique Titles & Descs** | Unique title and description per route | Verified unique across all static routes | **PASS** |
+| **Global .com Grep** | 0 occurrences in `src/` and `out/` | 0 occurrences found | **PASS** |

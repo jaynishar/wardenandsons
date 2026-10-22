@@ -7,7 +7,7 @@ import BottomNav from '@/components/BottomNav';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
 import TrackingProvider from '@/components/TrackingProvider';
-import { GoogleTagManager } from '@next/third-parties/google';
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import { SITE_URL, SITE_CONFIG, getCanonicalUrl } from '@/config/site';
 
 const inter = Inter({
@@ -79,19 +79,8 @@ export default function RootLayout({
   return (
     <html lang="en-IN" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNQNXJJVQ3" />
-        <script
-          id="google-tag-init"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-FNQNXJJVQ3');
-            `,
-          }}
-        />
+        {/* Google Analytics & Google Tag Manager */}
+        <GoogleAnalytics gaId="G-FNQNXJJVQ3" />
         <GoogleTagManager gtmId="GTM-PK75ST2X" />
         {/* High-priority LCP hero image preload for instant discovery */}
         <link
