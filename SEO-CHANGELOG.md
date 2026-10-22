@@ -212,3 +212,26 @@ The owner provided the official Google Business link (`https://share.google/iwNo
 | `/blog/` | *Parent Guides & Kids Clothing Articles | Warden & Sons*<br>&rarr; **Parenting Guides & Cotton Care Advice | Warden & Sons** | *Parent guides on pure cotton babywear, kids clothing sizing charts...*<br>&rarr; **Practical guides on kids' cotton fabric weights, newborn essentials, and Mumbai seasonal sizing from our Kemps Corner store team.** | T: 53<br>D: 129 |
 
 - **Uniqueness & CTR Verification:** 0 duplicate titles, 0 duplicate descriptions across all 30 HTML routes. All titles strictly within 50–60 characters; all descriptions strictly within 100–130 characters.
+
+### Phase 3 — SERP Trust & Rich Display Verification
+
+1. **Favicon & Web App Icon Resolution:**
+   - `/favicon.ico` (16x16, 32x32, 48x48 multi-res) &rarr; **PASS (HTTP 200, 10,131 bytes)**
+   - `/favicon-32x32.png` (32x32) &rarr; **PASS (HTTP 200, 3,054 bytes)**
+   - `/icon-192.png` (192x192 PWA icon) &rarr; **PASS (HTTP 200, 58,732 bytes)**
+   - `/apple-touch-icon.png` (180x180 iOS icon) &rarr; **PASS (HTTP 200, 52,993 bytes)**
+2. **ClothingStore Schema Validation:**
+   - Verified in `out/index.html` via strict Rich Results schema requirements:
+     - `name`: "Warden & Sons Kids Wear"
+     - `url`: "https://wardenandsons.in/"
+     - `logo`: "https://wardenandsons.in/brand_logo.webp"
+     - `image`: "https://wardenandsons.in/store_front.webp"
+     - `telephone`: "+91 99207 51567"
+     - `address`: Full PostalAddress with streetAddress, addressLocality ("Mumbai"), postalCode ("400036"), addressCountry ("IN")
+     - `openingHoursSpecification`: Monday through Sunday 09:00–21:00
+     - `geo`: Latitude 18.9654, Longitude 72.8152
+     - `sameAs`: Official Google Business Profile and Knowledge Graph entity
+   - **Zero Policy Risks:** No `FAQPage` schema and no disputed `Review` / `AggregateRating` schema.
+3. **Open Graph & Twitter Card Image Dimensions:**
+   - Generated standard 1200x630 high-resolution social share image: `public/og-image.jpg`.
+   - Updated `openGraph.images` and `twitter.images` in `src/app/layout.tsx` and `src/config/site.ts` to point to `https://wardenandsons.in/og-image.jpg` with exact 1200x630 dimensions matching the file on disk.

@@ -29,7 +29,7 @@ export const SITE_CONFIG = {
   canonicalBase: SITE_URL,
   locale: 'en_IN',
   themeColor: '#FAF8F5',
-  ogImage: `${SITE_URL}/brand_logo.jpg`,
+  ogImage: `${SITE_URL}/og-image.jpg`,
   storefrontImage: `${SITE_URL}/store_front.webp`,
 };
 
