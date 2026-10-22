@@ -29,6 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map(path => ({
     url: getCanonicalUrl(path),
+    lastModified: '2026-10-22',
   }));
 
   // Dynamic Blog entries with factual publication dates from MDX frontmatter

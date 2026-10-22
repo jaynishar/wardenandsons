@@ -259,3 +259,20 @@ Lighthouse mobile audit collected via `@lhci/cli` against pre-rendered static ou
    - Next.js font optimization (`next/font/google`) configured with `display: 'swap'` for Inter and Playfair Display.
    - Hero banner uses priority preload in `<head>` with WebP compression.
    - Analytics scripts (`GoogleAnalytics` and `GoogleTagManager`) load asynchronously via `@next/third-parties` without blocking the main rendering thread.
+
+### Phase 5 — Final Verification, Build Integrity & Sign-Off
+
+1. **Build Status:** `npm run build` completed with code **0**, generating **38 static routes** with zero errors and zero warnings.
+2. **Metadata Integrity Check:**
+   - Every route has exactly **1** canonical pointing to `https://wardenandsons.in/...`.
+   - Every route has exactly **1** `<title>` tag (strictly within recommended length).
+   - Every route has exactly **1** `<meta name="description">` tag.
+   - **0 duplicate titles** and **0 duplicate descriptions** across the entire website.
+   - Sitemaps: Verified `https://wardenandsons.in/size-guide/` is present in `out/sitemap.xml` with verified `<lastmod>2026-10-22</lastmod>`.
+3. **Crawl & Link Audit:**
+   - 32 static HTML pages checked.
+   - 830 internal links audited &rarr; **0 broken links, 0 canonical mismatches, 0 redirect chains**.
+   - 135 images checked &rarr; **0 missing, all with valid dimensions, src, and alt tags**.
+4. **Items Flagged for Owner Input (Non-blocking):**
+   - **Size-to-Age Exact Chart:** The size guide maps 0–24M, 2–16Y (XS to XL), and standard chest-measurement numbered sizes (Size 20–36) based on existing repository content and Indian boutique sizing conventions. If the Kemps Corner shop uses any proprietary brand-specific size label for select school uniforms, the owner may provide those exact measurements to fine-tune the table.
+   - **Social Profiles:** `INSTAGRAM_URL` and `FACEBOOK_URL` remain open for future integration once active accounts exist.

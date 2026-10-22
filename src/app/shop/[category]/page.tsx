@@ -70,7 +70,7 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'For dresses, check shoulder-to-knee length. Our nightsuits are cut with a comfortable, relaxed fit for sleeping. Share your daughter’s height and chest measurement on WhatsApp, and our Kemps Corner store desk will confirm flat measurements directly.',
   },
   men: {
-    titleTag: "Men's Pure Cotton Loungewear & Basics | Warden & Sons",
+    titleTag: "Men's Cotton Loungewear & Basics | Warden & Sons",
     metaDesc:
       'Breathable combed cotton crewneck t-shirts, lounge shorts, and pajama sets. Confirm your size with our Kemps Corner store desk.',
     heading: 'Men’s Cotton Loungewear & Basics',
@@ -83,7 +83,7 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Cut with a comfortable, straight drape rather than slim tailoring. If you prefer extra ease for lounging at home, select your usual collar or chest size. Our store team will gladly measure chest and waist dimensions on our counter tape.',
   },
   women: {
-    titleTag: "Women's Muslin Sleepwear & Loungewear | Warden & Sons",
+    titleTag: "Women's Muslin Sleepwear & Basics | Warden & Sons",
     metaDesc:
       'Double-gauze muslin night suits, everyday tops, and cotton leggings for women. Message our shop desk for live availability.',
     heading: 'Women’s Muslin Sleepwear & Basics',
