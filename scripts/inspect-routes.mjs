@@ -7,6 +7,7 @@ const routes = [
   { name: 'Visit Us (/visit-us/)', file: 'visit-us/index.html' },
   { name: 'Boys Shop (/shop/boys/)', file: 'shop/boys/index.html' },
   { name: 'How It Works (/how-it-works/)', file: 'how-it-works/index.html' },
+  { name: 'Dedicated Size Guide (/size-guide/)', file: 'size-guide/index.html' },
   { name: 'Size Chart Blog (/blog/kids-clothing-size-chart-guide/)', file: 'blog/kids-clothing-size-chart-guide/index.html' },
 ];
 

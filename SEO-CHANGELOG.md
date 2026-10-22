@@ -389,3 +389,66 @@ Cross-linked the three borderline pages and the homepage to create a tight topic
    - From Homepage (`src/app/page.tsx`): Store address card (*"Store directions, hours & parking &rarr;"*).
    - From `/shop/boys/`: In-store fittings card (*"Kemps Corner store near Pedder Road flyover to inspect fabrics, check sizes, or pick up custom school uniforms"*).
    - From `/how-it-works/`: In Step 3 (*"pickup at our Kemps Corner store near St. Stephen’s Church"*).
+
+---
+
+## 9. Phase 3 — Final Verification & Reporting
+
+### 1. Build & Technical Verification
+- **Build Status:** `npm run build` completed with **Exit Code 0** (0 errors, 0 warnings across all 38 statically exported routes).
+- **Sitemap Inclusion:** Verified `https://wardenandsons.in/size-guide/` in `out/sitemap.xml` with active `<lastmod>2026-10-22</lastmod>`.
+- **Homepage & `/about/` Immutability Check:**
+  - Homepage (`/`) Title: `Kids Clothing Store in South Mumbai | Warden & Sons` (Byte-for-byte preserved)
+  - Homepage (`/`) Meta Description: `Kids clothing in Kemps Corner, South Mumbai since 1994. Pure cotton newborn sets, playwear, nightsuits & uniforms on WhatsApp.` (Byte-for-byte preserved)
+  - `/about/` Title: `About Our Shop: 30 Years in Kemps Corner | Warden & Sons` (Byte-for-byte preserved)
+  - `/about/` Meta Description: `Serving South Mumbai families at Kemps Corner since 1994 with pure cotton children’s clothing, honest sizing, and personal care.` (Byte-for-byte preserved)
+
+### 2. Old Blog Post vs. Dedicated Size Guide (Non-Duplicate Resolution)
+- **Where the Size Guide Content Ended Up:**
+  - Dedicated canonical reference hub: `/size-guide/` (`src/app/size-guide/page.tsx`).
+  - Rendered in real HTML tables (no images) covering 0–24 Months (infant sets, jhablas, swaddles, rompers) and 2–16 Years (Toddler/2-3Y through Teen/13-16Y; Indian numbered sizes 20 to 36).
+  - Includes prominent direct-answer cards answering GSC search queries (*"What Size for Age 4 or 5?"*, *"S Size Age for Kids?"*, *"M Size for Which Age?"*, *"L & XL Size for Which Age?"*).
+  - Linked in main navigation (`Header.tsx`), all category pages (`/shop/[category]`), main shop catalogue (`/shop`), and global footer (`Footer.tsx`).
+- **Old Blog Post (`/blog/kids-clothing-size-chart-guide/`):**
+  - Retained live to preserve search equity and inbound links without duplicating metadata.
+  - Rewritten Title: `How to Measure Kids for Clothes: Fitting Guide | Warden & Sons` (61 chars)
+  - Rewritten Meta Description: `Practical guide on measuring kids for cotton clothes, avoiding shrinkage mistakes, and shopping sizes with counter tape support.` (125 chars)
+  - Top-of-article referral callout banner prominently directs searchers seeking the full reference table to `/size-guide/`.
+
+### 3. Before / After Comparison for the Three Pushed Borderline Pages
+
+| Page | Metric | Before (Phase 0) | After (Phase 3) | Impact / Differentiation |
+| :--- | :--- | :--- | :--- | :--- |
+| **`/shop/boys/`** | **Title** | `Boys' Cotton Playwear & Nightsuits \| Warden & Sons` (50 chars) | `Boys Cotton Clothes (0-16Y) \| Kemps Corner \| Warden & Sons` (57 chars) | Adds age range (0–16Y) & Kemps Corner locality signal |
+| | **Meta Description** | `Durable 100% cotton boys' tees, shorts, and hosiery nightwear built for active play. Send your list for counter tape measurements.` (130 chars) | `Durable 100% cotton boys' tees, cricket whites & nightsuits (0-16Y). WhatsApp our Kemps Corner store for tape measurements.` (123 chars) | Highlights cricket whites & WhatsApp tape measurement service |
+| | **Word Count** | 635 words | **930 words (+295 words, +46.5%)** | Comprehensive sizing guide for boys (Toddlers to Teens), GSM fabric weights, and care notes |
+| **`/how-it-works/`** | **Title** | `How WhatsApp Catalogue Ordering Works \| Warden & Sons` (54 chars) | `How to Order Kids Clothes on WhatsApp \| Warden & Sons` (52 chars) | Clearer user intent query match |
+| | **Meta Description** | `Select children’s clothing items for your Request List, then send them to our Kemps Corner store on WhatsApp for sizes and photos.` (130 chars) | `Build a Request List online, get live rack photos on WhatsApp, and confirm tape sizing before paying. See the 3 simple steps.` (125 chars) | Outlines concrete steps: live rack photos and tape sizing before paying |
+| | **Word Count** | 829 words | **1,066 words (+237 words, +28.6%)** | Full sentence step breakdowns and 3-pillar protection breakdown for parents |
+| **`/visit-us/`** | **Title** | `Visit Our Kemps Corner Store in Mumbai \| Warden & Sons` (54 chars) | `Visit Kids Clothing Shop at Kemps Corner \| Warden & Sons` (56 chars) | Stronger local transactional store discovery query phrasing |
+| | **Meta Description** | `Find Warden & Sons at Kemps Corner near St. Stephen’s Church. Open daily 9:00 AM to 9:00 PM. Pure cotton kids clothing in store.` (129 chars) | `Find cotton kids clothes near Pedder Road flyover & St. Stephen’s. Open daily 9am–9pm. In-store fitting & WhatsApp delivery.` (124 chars) | Adds Pedder Road flyover landmark & in-store fitting cue |
+| | **Word Count** | 387 words | **570 words (+183 words, +47.3%)** | Full landmark routing (Pedder Rd, Altamount Rd, Malabar Hill, Grant Rd station), parking advice, and in-store department spotlights |
+
+### 4. Age-to-Size Data Confirmation Status
+- **Confirmed from Repo:**
+  - 0–24M: 0-3M, 3-6M, 6-12M, 12-18M, 18-24M with height (20" to 34"), weight (3 to 14 kg), and chest (16" to 20") dimensions.
+  - 2–16Y: Toddler / 2-3Y (Size 20, chest 21"), XS / 4-5Y (Size 22–24, chest 23"), S / 6-7Y (Size 26, chest 25"), M / 8-9Y (Size 28–30, chest 27"), L / 10-12Y (Size 32, chest 29"), XL / 13-16Y (Size 34–36, chest 31").
+  - Matching catalogue product lines: 180–220 GSM combed cotton t-shirts, cricket match whites, interlock cotton lounge shorts, and heavyweight cotton drill school uniforms.
+- **Flagged for Owner Input (Non-blocking):**
+  - No unconfirmed data was fabricated. If the shop stocks proprietary sizing tags for specialized private academy sports kits or institutional school uniforms beyond standard numbered sizes 20–36, the owner can share those exact garment tags to augment the tables.
+
+### 5. Contextual Internal Links Added
+1. **Homepage (`/`) &rarr; `/visit-us/`:** Added directions & parking guidance link in store information block.
+2. **Homepage (`/`) &rarr; `/how-it-works/`:** Added inline guide link in the "How to Buy" editorial overview.
+3. **Homepage (`/`) &rarr; `/shop/boys/`:** Added contextual anchor text in Step 1 of "How to Buy".
+4. **`/shop/boys/` &rarr; `/visit-us/`:** Added store try-on link near Pedder Road flyover.
+5. **`/shop/boys/` &rarr; `/how-it-works/`:** Added remote ordering & WhatsApp tape verification link.
+6. **`/shop/boys/` &rarr; `/size-guide/`:** Added boys' chest and height measurement link.
+7. **`/how-it-works/` &rarr; `/shop/boys/`:** Added boys' wear collection link in the ordering walkthrough.
+8. **`/how-it-works/` &rarr; `/visit-us/`:** Added Kemps Corner store pickup link.
+9. **`/how-it-works/` &rarr; `/size-guide/`:** Added size chart link in the tape measurement section.
+10. **`/visit-us/` &rarr; `/shop/boys/`:** Added in-store boys' department link.
+11. **`/visit-us/` &rarr; `/how-it-works/`:** Added remote WhatsApp shopping link.
+12. **`/visit-us/` &rarr; `/size-guide/`:** Added live sizing link.
+13. **`/blog/kids-clothing-size-chart-guide/` &rarr; `/size-guide/`:** Added high-visibility banner and contextual links pointing directly to the dedicated hub.
+14. **Global Footer (`Footer.tsx`) &rarr; `/size-guide/`:** Added *"Kids Size Guide & Chart"* to store information links.
