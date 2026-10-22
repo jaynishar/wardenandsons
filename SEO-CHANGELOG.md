@@ -167,3 +167,23 @@ The owner provided the official Google Business link (`https://share.google/iwNo
 | **Noindex Check** | 0 instances in source / headers | 0 instances found | **PASS** |
 | **Unique Titles & Descs** | Unique title and description per route | Verified unique across all static routes | **PASS** |
 | **Global .com Grep** | 0 occurrences in `src/` and `out/` | 0 occurrences found | **PASS** |
+
+### Phase 1 — Fix the Size Guide Gap (Demand-Driven Sizing Page)
+
+1. **Dedicated Page Created:** `/size-guide/` (`src/app/size-guide/page.tsx`).
+2. **Direct Intent Matching & Crawlable HTML Table:**
+   - Addressed position 7–85 query demand directly in real HTML text:
+     - **"Kids clothes size chart by age"**: Comprehensive table covering 0–3M through 13–16Y with Chest (in), Height (in), Weight (kg), and Numbered Size (20–36).
+     - **"M size for which age?"**: Explicit Q&A card stating Size M corresponds to 8–9 Years (Chest 26–28 in, Height 48–53 in), and 38–40 in for adult basics.
+     - **"S size age for kids?"**: Explicit Q&A card stating Size S corresponds to 6–7 Years (Chest 24–26 in, Height 43–48 in).
+     - **"What size for age 4?"**: Explicit guidance for 4–5Y (XS / Size 22–24).
+   - Zero-guesswork counter tape verification callout for WhatsApp orders (+91 99207 51567).
+3. **Structured Data:** Reused `BreadcrumbJsonLd` with Schema.org `BreadcrumbList` (Home -> Size Guide).
+4. **Internal Linking Integration:**
+   - **Header Nav:** Added "Size Guide" to primary navigation links.
+   - **Footer:** Added "Kids Clothes Size Guide" under Store Information links.
+   - **Shop Overview (`/shop/`):** Added prominent measurement pill banner pointing to `/size-guide/`.
+   - **All Category Pages (`/shop/[category]/`):** Added contextual "Not sure of the size? See our Size Guide" link with ruler icon directly inside the Sizing editorial block.
+5. **Sitemap Integration:** Added `https://wardenandsons.in/size-guide/` to `src/app/sitemap.ts` with real `lastModified: '2026-10-22'`.
+6. **Data Source Audit Note:**
+   - Age-to-measurement ranges pulled directly from existing repository content in `src/content/blog/kids-clothing-size-chart-guide.mdx` and `src/lib/products.ts`. No fabricated measurements.

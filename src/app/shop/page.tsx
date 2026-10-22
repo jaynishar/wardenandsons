@@ -4,7 +4,8 @@ import { getAllCatalogueItems } from '@/lib/products';
 import ShopCatalog from '@/components/ShopCatalog';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import { getCanonicalUrl } from '@/config/site';
-import { ClipboardList, MessageSquare, Camera } from 'lucide-react';
+import { ClipboardList, MessageSquare, Camera, Ruler } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Shop Pure Cotton Kids Clothes by Age',
@@ -36,6 +37,16 @@ export default function ShopPage() {
           Select items for your Request List. Send us your list on WhatsApp to confirm live colors,
           sizes measured with a tape, and daily pricing directly from our Kemps Corner shop.
         </p>
+        <div className="pt-1">
+          <Link
+            href="/size-guide"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-forest/5 hover:bg-forest/10 border border-forest/15 text-forest font-semibold text-xs transition-colors"
+          >
+            <Ruler className="w-3.5 h-3.5 text-gold" />
+            <span>Need measurement help? View our Kids Clothes Size Guide</span>
+            <span className="underline ml-0.5">Explore chart &rarr;</span>
+          </Link>
+        </div>
       </div>
 
       {/* 3-Step WhatsApp Request Explainer */}

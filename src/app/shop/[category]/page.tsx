@@ -1,4 +1,6 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { ArrowRight, Ruler } from 'lucide-react';
 import { getCatalogueItemsByCategory, CategorySlug } from '@/lib/products';
 import ShopCatalog from '@/components/ShopCatalog';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
@@ -153,9 +155,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
           {editorial.heading}
         </h1>
-        <p className="text-sm sm:text-base text-muted leading-relaxed">
-          {editorial.subheading}
-        </p>
+        <p className="text-sm sm:text-base text-muted leading-relaxed">{editorial.subheading}</p>
       </div>
 
       {/* Helpful Fabric, Age & Sizing Copy (150-250 words) */}
@@ -177,11 +177,25 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             Sizing & WhatsApp Check
           </h2>
           <p>{editorial.sizingText}</p>
+          <div className="pt-2">
+            <Link
+              href="/size-guide"
+              className="inline-flex items-center gap-1.5 font-bold text-forest hover:text-gold transition-colors text-xs underline"
+            >
+              <Ruler className="w-3.5 h-3.5 text-gold" />
+              <span>Not sure of the size? See our Size Guide</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Main Interactive Catalog */}
-      <ShopCatalog products={products} initialCategory={category} categoryTitle={editorial.heading} />
+      <ShopCatalog
+        products={products}
+        initialCategory={category}
+        categoryTitle={editorial.heading}
+      />
     </div>
   );
 }

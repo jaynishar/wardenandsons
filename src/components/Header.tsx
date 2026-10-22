@@ -21,6 +21,7 @@ export default function Header() {
 
   const navLinks = [
     { name: 'Catalogue', href: '/shop' },
+    { name: 'Size Guide', href: '/size-guide' },
     { name: 'How It Works', href: '/how-it-works' },
     { name: 'Our Heritage', href: '/about' },
     {
