@@ -366,3 +366,16 @@ Automated audit scripts executed against static build `out/`:
 - Set homepage H1 to "Kids Clothes in Kemps Corner, South Mumbai" with "Breathable Cotton Comfort, Since 1994." kept as the line directly below.
 - Verified exactly 1 H1 per page across all 29 pages.
 - Ran `npm run lint` and `npm run build`: both passed cleanly with 0 errors.
+
+
+---
+
+## Step 3: Links, Navigation, Breadcrumbs
+- Confirmed "Blog" is in both desktop header navigation, mobile drawer, and footer.
+- Confirmed "Privacy Policy" and "Terms of Service" are in footer links and bottom strip.
+- Verified small visible breadcrumbs (`<nav aria-label="Breadcrumb">`) on all inner pages (`Home > Shop > Newborn`, `Home > Blog > Post title`, etc.).
+- Verified 2-3 natural contextual in-text links per blog post to related posts and to the matching `/shop/` category.
+- Cleaned up copy in blog posts removing banned words (`curated`, `seamless`) in accordance with shopkeeper voice.
+- Verified 100% trailing slash compliance repository-wide (0 missing trailing slashes).
+- Inbound link verification confirmed every page has &ge; 4 inbound internal links (well above the minimum threshold of 2).
+- Ran `npm run lint` and `npm run build`: both passed cleanly.
