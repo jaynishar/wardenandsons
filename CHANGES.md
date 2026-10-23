@@ -344,3 +344,15 @@ Automated audit scripts executed against static build `out/`:
 - Mapped framework, build/dev/lint commands, and core architectural paths in `REPO_MAP.md`.
 - Added `AGENT_CONTEXT.md` with business context and step rules.
 - Baseline verification: `npm run build` passed (37 static pages generated) and `npm run lint` passed.
+
+
+---
+
+## Step 1: Crawl Integrity
+- Fixed `/how-it-works/` and verified zero occurrences of `wardenandsons.com` across the codebase.
+- Configured single shared helper `buildPageMetadata` in `src/config/site.ts` ensuring canonical and `og:url` match with trailing slashes, along with matching `og:title` and `og:description`.
+- Corrected `og:image` to `brand_logo.jpg` with accurate pixel dimensions (`800x399`).
+- Confirmed removal and 301 redirect of duplicate `/shop/bulk/` to `/bulk-orders/`.
+- Updated `src/app/sitemap.ts` to attach real `lastmod` dates from git logs and MDX frontmatter.
+- Confirmed `html lang="en-IN"` in `src/app/layout.tsx`.
+- Ran `npm run lint` and `npm run build`: both passed with 0 errors.

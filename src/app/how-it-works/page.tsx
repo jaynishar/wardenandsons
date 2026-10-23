@@ -12,7 +12,6 @@ export const metadata: Metadata = buildPageMetadata({
   title: { absolute: 'How to Order Kids Clothes on WhatsApp | Warden & Sons' },
   description:
     'Build a Request List online, get live rack photos on WhatsApp, and confirm tape sizing before paying. See the 3 simple steps.',
-  image: 'https://wardenandsons.in/og-image.jpg',
   imageAlt: 'How WhatsApp Catalogue Shopping Works | Warden & Sons',
 });
 

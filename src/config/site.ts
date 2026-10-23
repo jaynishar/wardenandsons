@@ -31,7 +31,7 @@ export const SITE_CONFIG = {
   canonicalBase: SITE_URL,
   locale: 'en_IN',
   themeColor: '#FAF8F5',
-  ogImage: `${SITE_URL}/og-image.jpg`,
+  ogImage: `${SITE_URL}/brand_logo.jpg`,
   storefrontImage: `${SITE_URL}/store_front.webp`,
 };
 
@@ -51,14 +51,15 @@ export interface PageMetadataInput {
  * Single shared helper to construct BOTH canonical and og:url together.
  * Guarantees:
  * 1. canonical and og:url always match each page's own URL, derived from the same path with trailing slash.
- * 2. og:title, og:description, og:url, and og:image are always provided.
+ * 2. og:title, og:description, og:url, and og:image are always provided and match page metadata.
  * 3. No page ever defaults or falls back to the homepage URL as its og:url.
+ * 4. og:image dimensions match real pixel size (brand_logo: 800x399).
  */
 export function buildPageMetadata({
   path,
   title,
   description,
-  image = `${SITE_URL}/og-image.jpg`,
+  image = `${SITE_URL}/brand_logo.jpg`,
   imageAlt,
   type = 'website',
   publishedTime,
@@ -77,6 +78,10 @@ export function buildPageMetadata({
             : SITE_CONFIG.name
         : SITE_CONFIG.name;
 
+  const isBrandLogo = image.includes('brand_logo');
+  const imageWidth = isBrandLogo ? 800 : 1200;
+  const imageHeight = isBrandLogo ? 399 : 630;
+
   return {
     title,
     description,
@@ -93,8 +98,8 @@ export function buildPageMetadata({
       images: [
         {
           url: image,
-          width: 1200,
-          height: 630,
+          width: imageWidth,
+          height: imageHeight,
           alt: imageAlt || `${titleString} | Warden & Sons`,
         },
       ],

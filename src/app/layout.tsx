@@ -42,9 +42,9 @@ export const metadata: Metadata = {
       'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Serving families for over 30 years with quality cotton newborn essentials, playwear, and custom uniforms via WhatsApp.',
     images: [
       {
-        url: `${SITE_URL}/og-image.jpg`,
-        width: 1200,
-        height: 630,
+        url: `${SITE_URL}/brand_logo.jpg`,
+        width: 800,
+        height: 399,
         alt: 'Warden & Sons Kids Wear Official Logo',
       },
     ],
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: 'Kids Clothing Store in South Mumbai | Warden & Sons',
     description:
       'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Quality cotton newborn essentials, boys & girls playwear, and custom uniforms.',
-    images: [`${SITE_URL}/og-image.jpg`],
+    images: [`${SITE_URL}/brand_logo.jpg`],
   },
   icons: {
     icon: [
