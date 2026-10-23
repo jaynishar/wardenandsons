@@ -4,7 +4,6 @@ out
 build
 dist
 .git
-.agents
 public
 package-lock.json
 *.tsbuildinfo
