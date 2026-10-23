@@ -10,7 +10,7 @@ export default function HowItWorks() {
       description: (
         <>
           Browse our shop by age including our{' '}
-          <Link href="/shop/boys" className="underline font-semibold text-forest hover:text-gold">
+          <Link href="/shop/boys/" className="underline font-semibold text-forest hover:text-gold">
             boys playwear &amp; nightsuits (0–16Y)
           </Link>
           . Add items to your Request List without creating an account.
@@ -43,11 +43,11 @@ export default function HowItWorks() {
           </div>
           <p className="text-xs sm:text-sm text-muted max-w-md">
             Our South Mumbai shop has operated by phone and counter since 1994. Read our full guide on{' '}
-            <Link href="/how-it-works" className="font-semibold text-forest underline hover:text-gold">
+            <Link href="/how-it-works/" className="font-semibold text-forest underline hover:text-gold">
               how WhatsApp catalogue ordering works
             </Link>{' '}
             or visit our{' '}
-            <Link href="/visit-us" className="font-semibold text-forest underline hover:text-gold">
+            <Link href="/visit-us/" className="font-semibold text-forest underline hover:text-gold">
               Kemps Corner store
             </Link>
             .

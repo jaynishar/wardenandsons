@@ -3,16 +3,14 @@ import { getBlogPosts } from '@/lib/blog';
 import BlogFilterList from '@/components/BlogFilterList';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/blog',
   title: { absolute: 'Parenting Guides & Cotton Care Advice | Warden & Sons' },
   description:
     'Parent guides on pure cotton babywear, kids clothing sizing charts, fabric care, and local Kemps Corner shopping in South Mumbai.',
-  alternates: {
-    canonical: getCanonicalUrl('/blog'),
-  },
-};
+});
 
 export default function BlogIndexPage() {
   const posts = getBlogPosts();
@@ -22,7 +20,7 @@ export default function BlogIndexPage() {
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: getCanonicalUrl('/') },
-          { name: 'Parenting & Sizing Guides', url: getCanonicalUrl('/blog') },
+          { name: 'Blog', url: getCanonicalUrl('/blog') },
         ]}
       />
       {/* Header */}

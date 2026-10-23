@@ -5,16 +5,16 @@ import { ClipboardList, MessageSquare, Truck, ArrowRight, ShieldCheck } from 'lu
 import FAQ from '@/components/FAQ';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/how-it-works',
   title: { absolute: 'How to Order Kids Clothes on WhatsApp | Warden & Sons' },
   description:
     'Build a Request List online, get live rack photos on WhatsApp, and confirm tape sizing before paying. See the 3 simple steps.',
-  alternates: {
-    canonical: getCanonicalUrl('/how-it-works'),
-  },
-};
+  image: 'https://wardenandsons.in/og-image.jpg',
+  imageAlt: 'How WhatsApp Catalogue Shopping Works | Warden & Sons',
+});
 
 export default function HowItWorksPage() {
   const detailedSteps = [
@@ -143,7 +143,7 @@ export default function HowItWorksPage() {
               2. Measuring Tape Accuracy
             </h3>
             <p className="text-muted">
-              Children of the same age often have different heights and chest builds. Before anything is packed, our staff lays each garment flat and measures chest width, shoulder seams, and outseam lengths with a tape. You can cross-reference these numbers with our <Link href="/size-guide" className="font-bold text-forest underline hover:text-gold">Kids Clothes Size Guide</Link> to ensure a comfortable fit.
+              Children of the same age often have different heights and chest builds. Before anything is packed, our staff lays each garment flat and measures chest width, shoulder seams, and outseam lengths with a tape. You can cross-reference these numbers with our <Link href="/size-guide/" className="font-bold text-forest underline hover:text-gold">Kids Clothes Size Guide</Link> to ensure a comfortable fit.
             </p>
           </div>
 
@@ -152,7 +152,7 @@ export default function HowItWorksPage() {
               3. Flexible Pickup or Delivery
             </h3>
             <p className="text-muted">
-              After confirming sizes and pricing on WhatsApp, choose between fast Mumbai doorstep courier delivery or in-person pickup at our <Link href="/visit-us" className="font-bold text-forest underline hover:text-gold">Kemps Corner store near St. Stephen’s Church</Link>. Looking specifically for boys&apos; playwear, cargo shorts, or cricket academy whites? Explore our <Link href="/shop/boys" className="font-bold text-forest underline hover:text-gold">Boys’ Wear Collection (0–16 Years)</Link>.
+              After confirming sizes and pricing on WhatsApp, choose between fast Mumbai doorstep courier delivery or in-person pickup at our <Link href="/visit-us/" className="font-bold text-forest underline hover:text-gold">Kemps Corner store near St. Stephen’s Church</Link>. Looking specifically for boys&apos; playwear, cargo shorts, or cricket academy whites? Explore our <Link href="/shop/boys/" className="font-bold text-forest underline hover:text-gold">Boys’ Wear Collection (0–16 Years)</Link>.
             </p>
           </div>
         </div>
@@ -174,7 +174,7 @@ export default function HowItWorksPage() {
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link
-            href="/shop"
+            href="/shop/"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-forest hover:bg-bg-cream font-bold text-xs shadow-md transition-all hover:scale-102"
           >
             <span>Explore Catalogue</span>

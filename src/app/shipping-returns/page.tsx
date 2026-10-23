@@ -2,17 +2,15 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { MessageSquare, MapPin } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/shipping-returns',
   title: { absolute: 'Delivery, Store Pickup & Size Exchanges | Warden & Sons' },
   description:
     'Mumbai doorstep delivery, store pickup at Kemps Corner, and straightforward size exchanges handled directly on WhatsApp.',
-  alternates: {
-    canonical: getCanonicalUrl('/shipping-returns'),
-  },
-};
+});
 
 export default function ShippingReturnsPage() {
   return (

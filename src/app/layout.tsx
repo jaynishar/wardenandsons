@@ -36,7 +36,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: SITE_CONFIG.locale,
-    url: getCanonicalUrl('/'),
     siteName: SITE_CONFIG.name,
     title: 'Kids Clothing Store in South Mumbai | Warden & Sons',
     description:

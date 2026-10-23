@@ -3,17 +3,15 @@ import { Phone, MapPin, Clock, MessageSquare } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/contact',
   title: { absolute: 'Contact Our Kemps Corner Store Desk | Warden & Sons' },
   description:
     'Get in touch with Warden & Sons Kids Wear at Kemps Corner, South Mumbai. Send sizing queries, newborn questions, or visit our shop.',
-  alternates: {
-    canonical: getCanonicalUrl('/contact'),
-  },
-};
+});
 
 export default function ContactPage() {
   return (

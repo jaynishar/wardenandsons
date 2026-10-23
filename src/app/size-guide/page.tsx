@@ -3,17 +3,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Ruler, MessageSquare, ArrowRight, HelpCircle } from 'lucide-react';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 import { BUSINESS_CONFIG } from '@/config/business';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/size-guide',
   title: { absolute: 'Kids Clothes Size Chart by Age (0-16Y) | Warden & Sons' },
   description:
     'Accurate kids clothing size chart by age, chest, and height. Find what size for age 2-16 or ask our desk for counter measurements.',
-  alternates: {
-    canonical: getCanonicalUrl('/size-guide'),
-  },
-};
+});
 
 export default function SizeGuidePage() {
   return (
@@ -319,7 +317,7 @@ export default function SizeGuidePage() {
             </a>
 
             <Link
-              href="/shop"
+              href="/shop/"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all active:scale-[0.98]"
             >
               <span>Explore Catalogue</span>

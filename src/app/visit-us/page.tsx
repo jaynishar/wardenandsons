@@ -5,16 +5,14 @@ import { MapPin, Clock, MessageSquare, Compass, ExternalLink, Car, Ruler, ArrowR
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/visit-us',
   title: { absolute: 'Visit Kids Clothing Shop at Kemps Corner | Warden & Sons' },
   description:
     'Find cotton kids clothes near Pedder Road flyover & St. Stephen’s. Open daily 9am–9pm. In-store fitting & WhatsApp delivery.',
-  alternates: {
-    canonical: getCanonicalUrl('/visit-us'),
-  },
-};
+});
 
 export default function VisitUsPage() {
   const googleMapsUrl = BUSINESS_CONFIG.location.googleMapsSearchUrl;
@@ -178,7 +176,7 @@ export default function VisitUsPage() {
                 <span>Start WhatsApp Shopping</span>
               </a>
               <Link
-                href="/how-it-works"
+                href="/how-it-works/"
                 className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-semibold text-forest hover:text-gold transition-colors"
               >
                 <span>Read how WhatsApp ordering works</span>
@@ -212,7 +210,7 @@ export default function VisitUsPage() {
               Browse breathable 180 GSM combed cotton t-shirts, cricket coaching academy whites, dryfit sports coordinate sets, and hosiery nightwear.
             </p>
             <Link
-              href="/shop/boys"
+              href="/shop/boys/"
               className="inline-flex items-center gap-1 font-bold text-forest hover:text-gold transition-colors underline pt-1"
             >
               <span>Explore Boys’ Wear (0–16Y)</span>
@@ -228,7 +226,7 @@ export default function VisitUsPage() {
               Delicate combed cotton jhablas, open-weave double-gauze swaddles, hospital take-home sets, and baby shower gift packages.
             </p>
             <Link
-              href="/shop/newborn"
+              href="/shop/newborn/"
               className="inline-flex items-center gap-1 font-bold text-forest hover:text-gold transition-colors underline pt-1"
             >
               <span>Explore Newborn Collection</span>
@@ -244,7 +242,7 @@ export default function VisitUsPage() {
               Bring your child or their favorite well-fitting garment. Our counter team measures dimensions live to ensure total comfort.
             </p>
             <Link
-              href="/size-guide"
+              href="/size-guide/"
               className="inline-flex items-center gap-1 font-bold text-forest hover:text-gold transition-colors underline pt-1"
             >
               <Ruler className="w-3.5 h-3.5 text-gold" />

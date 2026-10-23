@@ -6,16 +6,14 @@ import GoogleReviewsBlock from '@/components/GoogleReviewsBlock';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/about',
   title: { absolute: 'About Our Shop: 30 Years in Kemps Corner | Warden & Sons' },
   description:
     'Serving South Mumbai families at Kemps Corner since 1994 with pure cotton children’s clothing, honest sizing, and personal care.',
-  alternates: {
-    canonical: getCanonicalUrl('/about'),
-  },
-};
+});
 
 export default function AboutPage() {
   const values = [
@@ -105,7 +103,7 @@ export default function AboutPage() {
 
           <div className="pt-2 flex flex-wrap gap-3">
             <Link
-              href="/shop"
+              href="/shop/"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-xs"
             >
               <span>Browse Catalogue</span>
@@ -168,7 +166,7 @@ export default function AboutPage() {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link
-            href="/visit-us"
+            href="/visit-us/"
             className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-forest text-white text-xs font-bold shadow-xs hover:bg-forest-dark"
           >
             <span>View Map & Directions</span>

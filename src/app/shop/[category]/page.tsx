@@ -5,13 +5,13 @@ import { getCatalogueItemsByCategory, CategorySlug } from '@/lib/products';
 import ShopCatalog from '@/components/ShopCatalog';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
 }
 
-const validCategories: CategorySlug[] = ['newborn', 'boys', 'girls', 'men', 'women', 'bulk'];
+const validCategories: CategorySlug[] = ['newborn', 'boys', 'girls', 'men', 'women'];
 
 export async function generateStaticParams() {
   return validCategories.map(cat => ({
@@ -110,6 +110,14 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
   },
 };
 
+const categoryDisplayNames: Record<string, string> = {
+  newborn: 'Newborn',
+  boys: 'Boys',
+  girls: 'Girls',
+  men: 'Men',
+  women: 'Women',
+};
+
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { category } = await params;
 
@@ -121,13 +129,11 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
   const editorial = CATEGORY_EDITORIALS[category as CategorySlug];
 
-  return {
+  return buildPageMetadata({
+    path: `/shop/${category}`,
     title: { absolute: editorial.titleTag },
     description: editorial.metaDesc,
-    alternates: {
-      canonical: getCanonicalUrl(`/shop/${category}`),
-    },
-  };
+  });
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -139,14 +145,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   const editorial = CATEGORY_EDITORIALS[category as CategorySlug];
   const products = getCatalogueItemsByCategory(category as CategorySlug);
+  const displayName = categoryDisplayNames[category] || (category.charAt(0).toUpperCase() + category.slice(1));
 
   return (
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 font-sans">
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: getCanonicalUrl('/') },
-          { name: 'Shop by Age', url: getCanonicalUrl('/shop') },
-          { name: editorial.heading, url: getCanonicalUrl(`/shop/${category}`) },
+          { name: 'Shop', url: getCanonicalUrl('/shop') },
+          { name: displayName, url: getCanonicalUrl(`/shop/${category}`) },
         ]}
       />
 
@@ -179,7 +186,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           <p>{editorial.sizingText}</p>
           <div className="pt-2">
             <Link
-              href="/size-guide"
+              href="/size-guide/"
               className="inline-flex items-center gap-1.5 font-bold text-forest hover:text-gold transition-colors text-xs underline"
             >
               <Ruler className="w-3.5 h-3.5 text-gold" />
@@ -233,7 +240,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               </ul>
               <div className="pt-2">
                 <Link
-                  href="/size-guide"
+                  href="/size-guide/"
                   className="font-bold text-forest hover:text-gold transition-colors inline-flex items-center gap-1.5 underline"
                 >
                   <Ruler className="w-3.5 h-3.5 text-gold" />
@@ -255,7 +262,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   In-Store Fittings &amp; WhatsApp Home Service
                 </h4>
                 <p className="text-muted text-xs">
-                  Prefer in-person fitting? Stop by our <Link href="/visit-us" className="font-bold text-forest underline hover:text-gold">Kemps Corner store near Pedder Road flyover</Link> to inspect fabrics, check sizes, or pick up custom school uniforms. Ordering remotely? See <Link href="/how-it-works" className="font-bold text-forest underline hover:text-gold">how WhatsApp catalogue ordering works</Link> with flat tape measurements verified before you confirm.
+                  Prefer in-person fitting? Stop by our <Link href="/visit-us/" className="font-bold text-forest underline hover:text-gold">Kemps Corner store near Pedder Road flyover</Link> to inspect fabrics, check sizes, or pick up custom school uniforms. Ordering remotely? See <Link href="/how-it-works/" className="font-bold text-forest underline hover:text-gold">how WhatsApp catalogue ordering works</Link> with flat tape measurements verified before you confirm.
                 </p>
               </div>
             </div>

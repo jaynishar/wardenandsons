@@ -31,7 +31,7 @@ export default function Hero() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
               <Link
-                href="/shop"
+                href="/shop/"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-7 py-3 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-sm shadow-md transition-all active:scale-[0.98]"
               >
                 <span>Browse Catalogue</span>

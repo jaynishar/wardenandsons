@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { notFound } from 'next/navigation'; // In Next 15, notFound is imported from next/navigation
+import { notFound } from 'next/navigation';
 import { getBlogPostBySlug, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { marked } from 'marked';
 import { Calendar, User, Clock, ArrowLeft, MessageSquare } from 'lucide-react';
 import type { Metadata } from 'next';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
-import { SITE_URL, getCanonicalUrl } from '@/config/site';
+import { SITE_URL, getCanonicalUrl, buildPageMetadata } from '@/config/site';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 interface BlogPostPageProps {
@@ -31,40 +31,17 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  const postCanonical = getCanonicalUrl(`/blog/${post.slug}`);
-
   const postTitle = post.metaTitle || post.title;
   const postDesc = post.metaDescription || post.excerpt;
 
-  return {
-    title: {
-      absolute: postTitle,
-    },
+  return buildPageMetadata({
+    path: `/blog/${post.slug}`,
+    title: { absolute: postTitle },
     description: postDesc,
-    alternates: {
-      canonical: postCanonical,
-    },
-    openGraph: {
-      title: postTitle,
-      description: postDesc,
-      url: postCanonical,
-      type: 'article',
-      publishedTime: post.date,
-      authors: [post.author],
-      images: [
-        {
-          url: `${SITE_URL}/brand_logo.jpg`,
-          alt: post.title,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.metaTitle || post.title,
-      description: post.metaDescription || post.excerpt,
-      images: [`${SITE_URL}/brand_logo.jpg`],
-    },
-  };
+    type: 'article',
+    publishedTime: post.date,
+    authors: [post.author],
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -72,7 +49,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post = getBlogPostBySlug(slug);
 
   if (!post) {
-    // Return Next.js not found page
     return notFound();
   }
 
@@ -113,7 +89,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: getCanonicalUrl('/') },
-          { name: 'Parenting & Sizing Guides', url: getCanonicalUrl('/blog') },
+          { name: 'Blog', url: getCanonicalUrl('/blog') },
           { name: post.title, url: getCanonicalUrl(`/blog/${post.slug}`) },
         ]}
       />
@@ -126,7 +102,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <article className="max-w-3xl mx-auto px-4 sm:px-6">
           {/* Back button */}
           <Link
-            href="/blog"
+            href="/blog/"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-800 hover:text-accent-500 transition-colors mb-8 group"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> Back
@@ -200,7 +176,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         {rPost.category}
                       </span>
                       <h3 className="font-heading font-bold text-base text-primary-800 line-clamp-2 hover:text-accent-500">
-                        <Link href={`/blog/${rPost.slug}`}>{rPost.title}</Link>
+                        <Link href={`/blog/${rPost.slug}/`}>{rPost.title}</Link>
                       </h3>
                       <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed font-sans">
                         {rPost.excerpt}
@@ -208,7 +184,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </div>
                     <div className="px-6 pb-6 pt-2 border-t border-primary-50">
                       <Link
-                        href={`/blog/${rPost.slug}`}
+                        href={`/blog/${rPost.slug}/`}
                         className="text-xs font-bold text-primary-800 hover:text-accent-500 inline-flex items-center gap-1"
                       >
                         Read Full Guide <span className="text-xs">→</span>

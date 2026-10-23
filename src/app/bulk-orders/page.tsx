@@ -4,16 +4,14 @@ import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import { GraduationCap, Trophy, Gift, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/bulk-orders',
   title: { absolute: 'Custom School Uniforms & Bulk Apparel | Warden & Sons' },
   description:
     'Custom school uniforms, sports kits, and bulk cotton children’s apparel in South Mumbai. Quality fabric and direct WhatsApp quotes.',
-  alternates: {
-    canonical: getCanonicalUrl('/bulk-orders'),
-  },
-};
+});
 
 export default function BulkOrdersPage() {
   const capabilities = [
@@ -39,7 +37,7 @@ export default function BulkOrdersPage() {
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: getCanonicalUrl('/') },
-          { name: 'Custom Uniforms & Bulk Orders', url: getCanonicalUrl('/bulk-orders') },
+          { name: 'Bulk Orders', url: getCanonicalUrl('/bulk-orders') },
         ]}
       />
       {/* Header */}

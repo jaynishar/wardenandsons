@@ -23,8 +23,8 @@ export default function BottomNav() {
 
   const links = [
     { label: 'Home', href: '/', icon: Home },
-    { label: 'Catalogue', href: '/shop', icon: Grid },
-    { label: 'How It Works', href: '/how-it-works', icon: Layers },
+    { label: 'Catalogue', href: '/shop/', icon: Grid },
+    { label: 'How It Works', href: '/how-it-works/', icon: Layers },
   ];
 
   return (

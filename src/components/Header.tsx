@@ -20,19 +20,19 @@ export default function Header() {
   const totalItems = mounted ? getTotalItems() : 0;
 
   const navLinks = [
-    { name: 'Catalogue', href: '/shop' },
-    { name: 'Size Guide', href: '/size-guide' },
-    { name: 'How It Works', href: '/how-it-works' },
-    { name: 'Our Heritage', href: '/about' },
+    { name: 'Catalogue', href: '/shop/' },
+    { name: 'Size Guide', href: '/size-guide/' },
+    { name: 'How It Works', href: '/how-it-works/' },
+    { name: 'Our Heritage', href: '/about/' },
     {
       name: 'Bulk & Uniforms',
-      href: '/bulk-orders',
+      href: '/bulk-orders/',
     },
     {
-      name: 'Guides',
-      href: '/blog',
+      name: 'Blog',
+      href: '/blog/',
     },
-    { name: 'Visit Store', href: '/visit-us' },
+    { name: 'Visit Store', href: '/visit-us/' },
   ];
 
   const prefersReduced = useReducedMotion();

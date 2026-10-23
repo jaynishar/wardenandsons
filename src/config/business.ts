@@ -50,9 +50,8 @@ export const BUSINESS_CONFIG = {
       latitude: 18.9654,
       longitude: 72.8152,
     },
-    googleBusinessProfileUrl:
-      'https://www.google.com/search?kgmid=/g/1tvyk6ws&hl=en-IN&q=Warden+%26+Sons+Kids+Wear',
-    googleBusinessShareUrl: 'https://share.google/iwNowyZv9IlLRTv8Z',
+    googleBusinessProfileUrl: 'https://www.google.com/search?q=warden+and+sons+kids+wear',
+    googleBusinessShareUrl: 'https://www.google.com/search?q=warden+and+sons+kids+wear',
     googleMapsSearchUrl:
       'https://maps.google.com/?q=Warden+%26+Sons+Kids+Wear+Shop+No+7+Haji+Habib+Building+Kemps+Corner+Mumbai+400036',
     googleReviewUrl: 'https://g.page/r/CRi_iIq4yd6gEBM/review',

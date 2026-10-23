@@ -26,7 +26,7 @@ export default function CategoryGrid() {
         {CATEGORIES_DATA.map(cat => {
           const itemCount = getCatalogueItemsByCategory(cat.slug).length;
           const displayCount = itemCount > 0 ? `${itemCount} Styles` : 'View Styles';
-          const href = cat.slug === 'bulk' ? '/bulk-orders' : `/shop/${cat.slug}`;
+          const href = cat.slug === 'bulk' ? '/bulk-orders/' : `/shop/${cat.slug}/`;
 
           return (
             <Link

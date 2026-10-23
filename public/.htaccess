@@ -8,15 +8,20 @@ ErrorDocument 404 /404.html
   RewriteEngine On
   RewriteBase /
 
-  # 1. Force HTTPS and canonical non-www domain (wardenandsons.in)
-  RewriteCond %{HTTPS} off [OR]
+  # 1. Canonical 301 Redirect: www.wardenandsons.in -> https://wardenandsons.in/
   RewriteCond %{HTTP_HOST} ^www\.wardenandsons\.in$ [NC]
   RewriteRule ^(.*)$ https://wardenandsons.in/$1 [L,R=301]
 
-  # 2. Redirect legacy / obsolete routes to eliminate 404s in Search Console
+  # 2. Canonical 301 Redirect: http -> https
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://wardenandsons.in/$1 [L,R=301]
+
+  # 3. 301 Redirect legacy and obsolete routes
   RewriteRule ^whatsapp-shopping/?$ /how-it-works/ [L,R=301]
   RewriteRule ^video-shopping/?$ /how-it-works/ [L,R=301]
   RewriteRule ^reviews/?$ / [L,R=301]
+  RewriteRule ^shop/bulk/?$ /bulk-orders/ [L,R=301]
 
   # Serve existing files and directories directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]

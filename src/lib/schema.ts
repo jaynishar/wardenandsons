@@ -15,8 +15,7 @@ export function getClothingStoreSchema(): WithContext<ClothingStore> {
     image: `${SITE_URL}/store_front.webp`,
     telephone: '+91 99207 51567',
     sameAs: [
-      'https://www.google.com/search?kgmid=/g/1tvyk6ws&hl=en-IN&q=Warden+%26+Sons+Kids+Wear',
-      'https://share.google/iwNowyZv9IlLRTv8Z',
+      'https://www.google.com/search?q=warden+and+sons+kids+wear',
     ],
     address: {
       '@type': 'PostalAddress',

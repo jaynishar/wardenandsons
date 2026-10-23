@@ -1,16 +1,14 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/terms',
   title: { absolute: 'Shop Policies & WhatsApp Order Terms | Warden & Sons' },
   description:
     'Read the terms of service of Warden & Sons Kids Wear Kemps Corner. Guidelines on retail requests, pricing, and size exchanges.',
-  alternates: {
-    canonical: getCanonicalUrl('/terms'),
-  },
-};
+});
 
 export default function TermsOfServicePage() {
   return (

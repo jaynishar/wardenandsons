@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, MessageSquare, MapPin, Clock, Phone } from 'lucide-react';
 import Hero from '@/components/Hero';
@@ -11,6 +12,16 @@ import { getFeaturedCatalogueItems } from '@/lib/products';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { getClothingStoreSchema, getWebSiteSchema } from '@/lib/schema';
 import JsonLd from '@/components/JsonLd';
+import { buildPageMetadata } from '@/config/site';
+
+export const metadata: Metadata = buildPageMetadata({
+  path: '/',
+  title: {
+    absolute: 'Kids Clothing Store in South Mumbai | Warden & Sons',
+  },
+  description:
+    'Kids clothing in Kemps Corner, South Mumbai since 1994. Pure cotton newborn sets, playwear, nightsuits & uniforms on WhatsApp.',
+});
 
 export default function HomePage() {
   const featuredProducts = getFeaturedCatalogueItems(6);
@@ -46,7 +57,7 @@ export default function HomePage() {
           </div>
 
           <Link
-            href="/shop"
+            href="/shop/"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-forest hover:text-gold transition-colors active:scale-[0.98]"
           >
             <span>View Full Catalogue</span>
@@ -90,7 +101,7 @@ export default function HomePage() {
               </a>
 
               <Link
-                href="/visit-us"
+                href="/visit-us/"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all active:scale-[0.98]"
               >
                 <MapPin className="w-4 h-4 text-gold" />
@@ -133,7 +144,7 @@ export default function HomePage() {
                 <p className="text-muted">{BUSINESS_CONFIG.location.fullAddress}</p>
                 <p className="text-gray-400">Near St. Stephen’s Church &amp; Pedder Road Flyover</p>
                 <Link
-                  href="/visit-us"
+                  href="/visit-us/"
                   className="font-bold text-forest hover:text-gold transition-colors underline pt-1 block"
                 >
                   Store directions, hours &amp; parking &rarr;

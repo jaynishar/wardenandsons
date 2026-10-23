@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 /**
  * Warden & Sons Kids Wear — Central Site & SEO Configuration
  * Single source of truth for canonical URL, metadata defaults,
@@ -32,6 +34,82 @@ export const SITE_CONFIG = {
   ogImage: `${SITE_URL}/og-image.jpg`,
   storefrontImage: `${SITE_URL}/store_front.webp`,
 };
+
+export interface PageMetadataInput {
+  path: string;
+  title: NonNullable<Metadata['title']>;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  authors?: string[];
+  noindex?: boolean;
+}
+
+/**
+ * Single shared helper to construct BOTH canonical and og:url together.
+ * Guarantees:
+ * 1. canonical and og:url always match each page's own URL, derived from the same path with trailing slash.
+ * 2. og:title, og:description, og:url, and og:image are always provided.
+ * 3. No page ever defaults or falls back to the homepage URL as its og:url.
+ */
+export function buildPageMetadata({
+  path,
+  title,
+  description,
+  image = `${SITE_URL}/og-image.jpg`,
+  imageAlt,
+  type = 'website',
+  publishedTime,
+  authors,
+  noindex,
+}: PageMetadataInput): Metadata {
+  const pageUrl = getCanonicalUrl(path);
+  const titleString =
+    typeof title === 'string'
+      ? title
+      : typeof title === 'object' && title !== null
+        ? 'absolute' in title
+          ? title.absolute
+          : 'default' in title
+            ? title.default
+            : SITE_CONFIG.name
+        : SITE_CONFIG.name;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: pageUrl,
+    },
+    openGraph: {
+      type,
+      locale: SITE_CONFIG.locale,
+      url: pageUrl,
+      siteName: SITE_CONFIG.name,
+      title: titleString,
+      description,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: imageAlt || `${titleString} | Warden & Sons`,
+        },
+      ],
+      ...(publishedTime ? { publishedTime } : {}),
+      ...(authors ? { authors } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titleString,
+      description,
+      images: [image],
+    },
+    ...(noindex ? { robots: { index: false, follow: false } } : {}),
+  };
+}
 
 /**
  * Analytics & Measurement Configuration

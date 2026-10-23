@@ -1,16 +1,14 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/privacy-policy',
   title: { absolute: 'Customer Privacy Policy & WhatsApp Care | Warden & Sons' },
   description:
     'Read the privacy policy of Warden & Sons Kids Wear. How we protect your details, phone number, and WhatsApp enquiry privacy.',
-  alternates: {
-    canonical: getCanonicalUrl('/privacy-policy'),
-  },
-};
+});
 
 export default function PrivacyPolicyPage() {
   return (

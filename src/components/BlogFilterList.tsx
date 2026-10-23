@@ -95,7 +95,7 @@ export default function BlogFilterList({ posts }: BlogFilterListProps) {
                   <span>{post.readTime}</span>
                 </div>
                 <h3 className="font-serif font-bold text-lg text-forest line-clamp-2 hover:text-gold transition-colors">
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                  <Link href={`/blog/${post.slug}/`}>{post.title}</Link>
                 </h3>
                 <p className="text-xs text-muted line-clamp-3 leading-relaxed font-sans">
                   {post.excerpt}
@@ -111,7 +111,7 @@ export default function BlogFilterList({ posts }: BlogFilterListProps) {
               </div>
               <div className="px-6 pb-6 pt-3 border-t border-border-soft">
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={`/blog/${post.slug}/`}
                   className="text-xs font-bold text-forest hover:text-gold inline-flex items-center gap-1 transition-colors"
                 >
                   Read Full Guide <ArrowRight className="w-3.5 h-3.5" />

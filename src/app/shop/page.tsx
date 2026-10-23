@@ -3,18 +3,16 @@ import type { Metadata } from 'next';
 import { getAllCatalogueItems } from '@/lib/products';
 import ShopCatalog from '@/components/ShopCatalog';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
-import { getCanonicalUrl } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 import { ClipboardList, MessageSquare, Camera, Ruler } from 'lucide-react';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/shop',
   title: { absolute: 'Kids Clothes by Age: South Mumbai Shop | Warden & Sons' },
   description:
     "Explore combed cotton children's clothing organized by age group. Pick favorites for your Request List and verify fit on WhatsApp.",
-  alternates: {
-    canonical: getCanonicalUrl('/shop'),
-  },
-};
+});
 
 export default function ShopPage() {
   const products = getAllCatalogueItems();
@@ -24,7 +22,7 @@ export default function ShopPage() {
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: getCanonicalUrl('/') },
-          { name: 'Shop by Age', url: getCanonicalUrl('/shop') },
+          { name: 'Shop', url: getCanonicalUrl('/shop') },
         ]}
       />
 
@@ -39,7 +37,7 @@ export default function ShopPage() {
         </p>
         <div className="pt-1">
           <Link
-            href="/size-guide"
+            href="/size-guide/"
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-forest/5 hover:bg-forest/10 border border-forest/15 text-forest font-semibold text-xs transition-colors"
           >
             <Ruler className="w-3.5 h-3.5 text-gold" />

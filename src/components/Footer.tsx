@@ -89,33 +89,33 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2 text-xs text-muted">
               <li>
-                <Link href="/shop/newborn" className="hover:text-forest transition-colors">
+                <Link href="/shop/newborn/" className="hover:text-forest transition-colors">
                   Newborn & Infants (0-24M)
                 </Link>
               </li>
               <li>
-                <Link href="/shop/boys" className="hover:text-forest transition-colors">
+                <Link href="/shop/boys/" className="hover:text-forest transition-colors">
                   Boys Playwear & Sports (0-16Y)
                 </Link>
               </li>
               <li>
-                <Link href="/shop/girls" className="hover:text-forest transition-colors">
+                <Link href="/shop/girls/" className="hover:text-forest transition-colors">
                   Girls Dresses & Sleepwear (0-16Y)
                 </Link>
               </li>
               <li>
-                <Link href="/shop/men" className="hover:text-forest transition-colors">
+                <Link href="/shop/men/" className="hover:text-forest transition-colors">
                   Men’s Basics & Lounge
                 </Link>
               </li>
               <li>
-                <Link href="/shop/women" className="hover:text-forest transition-colors">
+                <Link href="/shop/women/" className="hover:text-forest transition-colors">
                   Women’s Muslin Sleepwear & Basics
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/bulk-orders"
+                  href="/bulk-orders/"
                   className="hover:text-forest transition-colors text-gold font-bold"
                 >
                   Custom School Uniforms & Bulk Enquiries
@@ -131,38 +131,48 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2 text-xs text-muted">
               <li>
-                <Link href="/size-guide" className="hover:text-forest transition-colors font-medium text-forest">
+                <Link href="/size-guide/" className="hover:text-forest transition-colors font-medium text-forest">
                   Kids Size Guide &amp; Chart
                 </Link>
               </li>
               <li>
-                <Link href="/how-it-works" className="hover:text-forest transition-colors">
+                <Link href="/how-it-works/" className="hover:text-forest transition-colors">
                   How WhatsApp Requests Work
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-forest transition-colors">
+                <Link href="/about/" className="hover:text-forest transition-colors">
                   Our Shop Heritage (Est. 1994)
                 </Link>
               </li>
               <li>
-                <Link href="/visit-us" className="hover:text-forest transition-colors">
+                <Link href="/visit-us/" className="hover:text-forest transition-colors">
                   Kemps Corner Store & Directions
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-forest transition-colors">
+                <Link href="/contact/" className="hover:text-forest transition-colors">
                   Contact Store Desk
                 </Link>
               </li>
               <li>
-                <Link href="/shipping-returns" className="hover:text-forest transition-colors">
+                <Link href="/shipping-returns/" className="hover:text-forest transition-colors">
                   Delivery & Exchange Information
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-forest transition-colors">
-                  Parenting & Sizing Guides
+                <Link href="/blog/" className="hover:text-forest transition-colors">
+                  Blog &amp; Sizing Guides
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy/" className="hover:text-forest transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms/" className="hover:text-forest transition-colors">
+                  Terms of Service
                 </Link>
               </li>
             </ul>
@@ -229,9 +239,17 @@ export default function Footer() {
         {/* Bottom Strip */}
         <div className="mt-12 pt-8 border-t border-border-soft flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
           <p>© {currentYear} Warden & Sons Kids Wear. All rights reserved.</p>
-          <p className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-xs">
+            <Link href="/privacy-policy/" className="hover:text-forest transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-gray-300">•</span>
+            <Link href="/terms/" className="hover:text-forest transition-colors">
+              Terms of Service
+            </Link>
+            <span className="text-gray-300">•</span>
             <span>Kemps Corner, South Mumbai</span>
-          </p>
+          </div>
         </div>
       </div>
     </footer>
