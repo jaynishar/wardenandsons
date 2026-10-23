@@ -25,7 +25,14 @@
   - Restyled Breadcrumbs to DM Sans 14px while preserving JSON-LD schema output.
   - Added Skip to content link and verified semantic landmarks across layout shell.
   - Verified keyboard navigation, captured 390x844 & 1280x800 screenshots of `/` and `/shop/`, and confirmed CLS 0 / 0.005 via Lighthouse.
-- [ ] **R3: My List store & WhatsApp message builder**
+- [x] **R3: Catalogue data and image pipeline**
+  - Created `src/data/catalogue.ts` with complete category & sub-category tree (34 subcategories), types, customer search terms, and helper functions (`getCategory`, `getSub`, `subsOf`, `stylesOf`, `allSubcategories`, `ageOptionsFor`, `isReady`).
+  - Preserved approved SEO text from `shop/[category]/page.tsx` within category data structures without wording alterations.
+  - Mapped all 28 authentic styles in `products.ts` (25 mapped to `/shop/` subcategories, 3 documented in `docs/redesign/unmapped-styles.md`).
+  - Built `scripts/build-images.mjs` image pipeline supporting AVIF, WebP, and 16px blurred base64 placeholders.
+  - Added npm scripts `"images"` and `"prebuild"`, created `assets/photos/.gitkeep`, `assets/photos/README.md`, and generated `PHOTO_SHOTLIST.md`.
+  - Extended `Photo` component to support `imageKey` with picture element, responsive sources, and blur placeholder.
+  - Added comprehensive Vitest tests in `src/data/catalogue.test.ts` (all 8 tests passing).
 - [ ] **R4: Header, mobile bottom bar & navigation**
 - [ ] **R5: Homepage storefront**
 - [ ] **R6: Shop category & sub-category pages**

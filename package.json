@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run images",
+    "images": "node scripts/build-images.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
