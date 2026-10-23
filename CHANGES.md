@@ -488,3 +488,13 @@ Automated audit scripts executed against static build `out/`:
 ### Needs the owner
 - `/blog/kids-clothing-size-chart-guide/`: Owner to add one real example from the shop where indicated by `"TODO: owner adds one real example from the shop"`.
 - `authorName` and `authorBio` in `src/data/owner-inputs.json`: Owner to optionally provide author name and short biography to display the author box under blog posts.
+- `/our-shops/` & `src/data/shops.ts`: Owner to provide verified details for Twinkle Collection and Warden Collection (what they sell, address, Google Maps links) before publishing.
+- `/visit-us/`: Owner to confirm any additional neighbourhoods served beyond the currently listed South Mumbai localities.
+
+---
+
+## Step 8: Local Section and Family Page
+- **"Getting here" Section on `/visit-us/`:** Added dedicated "Getting here" section featuring nearest landmarks (St. Stephen’s Church, Pedder Road flyover junction), direct Google Maps directions link (`Get directions on Google Maps`), and a line listing nearby areas served (`Kemps Corner, Pedder Road, Altamount Road, Carmichael Road, Malabar Hill, Breach Candy, Nepean Sea Road, Tardeo, South Mumbai, and Grant Road`) using only area names already present on the page, with a TODO placeholder for owner verification of additional neighbourhoods. Zero separate neighbourhood pages created.
+- **Family Page (`/our-shops/`):** Created `/our-shops/` route titled "Our family of shops at Kemps Corner". Sourced from single data file `src/data/shops.ts` containing top comment `"// Do not publish until the owner has filled in verified details."`. Populated authentic details for Warden & Sons Kids Wear and added entries for Twinkle Collection and Warden Collection with fields set to `TODO`.
+- **Search Engine & Navigation Isolation:** Configured `noindex: true` (`<meta name="robots" content="noindex, nofollow"/>`), left completely out of `sitemap.xml`, and verified 0 inbound navigation links.
+- Static export build passed with 38/38 pages generated.

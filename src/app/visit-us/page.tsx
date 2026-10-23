@@ -129,16 +129,34 @@ export default function VisitUsPage() {
             </div>
           </div>
 
-          {/* Landmarks, Directions & Parking Notes */}
+          {/* Getting here Section */}
           <div className="bg-bg-cream rounded-3xl border border-border-soft p-7 space-y-4">
             <div className="flex items-center gap-2 text-forest">
               <Compass className="w-5 h-5 text-gold" />
-              <h3 className="font-serif font-bold text-base">Landmark Proximity &amp; Directions</h3>
+              <h2 className="font-serif font-bold text-lg text-near-black">Getting here</h2>
             </div>
-            <p className="text-xs text-muted leading-relaxed">
-              Our boutique is located on the ground floor of <strong>Haji Habib Building, 155/157 August Kranti Marg</strong>, directly opposite St. Stephen’s Church and right next to the Pedder Road Flyover junction. We are within 5 to 10 minutes from{' '}
-              <strong>Pedder Road, Altamount Road, Carmichael Road, Malabar Hill, Breach Candy, Nepean Sea Road</strong>, and Tardeo.
-            </p>
+            <div className="space-y-3 text-xs sm:text-sm text-muted leading-relaxed">
+              <p>
+                <strong>Nearest landmarks:</strong> St. Stephen’s Church (directly opposite) and the Pedder Road flyover junction. Our boutique is on the ground floor of Haji Habib Building, 155/157 August Kranti Marg, Kemps Corner.
+              </p>
+              <div className="pt-1">
+                <a
+                  href="https://www.google.com/maps/dir/?api=1&destination=Shop+No.+7,+Ground+Floor,+Haji+Habib+Building,+155/157+August+Kranti+Marg,+Kemps+Corner,+Mumbai,+Maharashtra+400036"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track="directions_click"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-xs transition-all"
+                >
+                  <span>Get directions on Google Maps</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+              <div className="pt-2 border-t border-border-soft/60">
+                <p>
+                  <strong>Nearby areas we serve:</strong> Kemps Corner, Pedder Road, Altamount Road, Carmichael Road, Malabar Hill, Breach Candy, Nepean Sea Road, Tardeo, South Mumbai, and Grant Road. (TODO: owner confirms additional neighbourhoods served).
+                </p>
+              </div>
+            </div>
             <div className="pt-2 border-t border-border-soft/60 flex items-start gap-3 text-xs text-muted">
               <Car className="w-4 h-4 text-forest shrink-0 mt-0.5" />
               <div>
