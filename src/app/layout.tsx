@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Fraunces, DM_Sans } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -11,15 +11,17 @@ import ConsentBanner from '@/components/ConsentBanner';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/config/site';
 
-const inter = Inter({
-  variable: '--font-inter',
+const fraunces = Fraunces({
+  variable: '--font-display',
   subsets: ['latin'],
+  weight: ['500', '600'],
   display: 'swap',
 });
 
-const playfair = Playfair_Display({
-  variable: '--font-playfair',
+const dmSans = DM_Sans({
+  variable: '--font-body',
   subsets: ['latin'],
+  weight: ['400', '500', '700'],
   display: 'swap',
 });
 
@@ -83,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
+    <html lang="en-IN" className={`${fraunces.variable} ${dmSans.variable} h-full antialiased`}>
       <head>
         {/* Google Consent Mode v2 & DataLayer Initialization */}
         <script
@@ -130,7 +132,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=5" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className="min-h-full flex flex-col bg-bg-cream text-near-black selection:bg-gold/30 selection:text-forest">
+      <body className="min-h-full flex flex-col bg-ivory text-ink selection:bg-paper selection:text-ink">
         <TrackingProvider />
         <Header />
         <CartDrawer />

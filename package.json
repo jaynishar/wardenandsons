@@ -14,6 +14,7 @@
     "audit:unlighthouse": "unlighthouse --site https://wardenandsons.in",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "audit:contrast": "node scripts/check-contrast.mjs",
     "test:e2e": "playwright test",
     "lighthouse": "lighthouse http://localhost:3000 --view",
     "check": "npm run lint && npm run typecheck && npm run build"

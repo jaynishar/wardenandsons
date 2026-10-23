@@ -1,43 +1,78 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-bg-cream: #faf8f5;
-  --color-cream: #faf8f5;
-  --color-forest: #1b4332;
-  --color-forest-dark: #143527;
-  --color-forest-light: #2d6a4f;
-  --color-gold: #d4a574;
-  --color-gold-hover: #c59663;
-  --color-gold-light: #f7eedf;
-  --color-near-black: #1a1a1a;
-  --color-muted: #666666;
-  --color-border-soft: #ebe7df;
-  --color-whatsapp: #25d366;
+  --color-ivory: #FBF7F0;
+  --color-paper: #F3EDE2;
+  --color-line: #E3DAC9;
+  --color-ink: #16233F;
+  --color-ink-soft: #4A5470;
+  --color-blue: #2F5FA7;
+  --color-red: #D8402F;
+  --color-yellow: #F1B434;
+  --color-wa: #0F7B4F;
 
-  --font-serif: var(--font-playfair), Georgia, serif;
-  --font-display: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), Fraunces, Georgia, serif;
+  --font-body: var(--font-body), 'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* Backwards-compatibility aliases for existing components before later redesign steps */
+  --color-bg-cream: #FBF7F0;
+  --color-cream: #FBF7F0;
+  --color-forest: #16233F;
+  --color-forest-dark: #16233F;
+  --color-forest-light: #2F5FA7;
+  --color-gold: #F1B434;
+  --color-gold-hover: #D8402F;
+  --color-gold-light: #F3EDE2;
+  --color-near-black: #16233F;
+  --color-muted: #4A5470;
+  --color-border-soft: #E3DAC9;
+  --color-whatsapp: #0F7B4F;
+
+  --font-serif: var(--font-display), Fraunces, Georgia, serif;
+  --font-sans: var(--font-body), 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-playfair: var(--font-display);
+  --font-inter: var(--font-body);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 :root {
-  background-color: #faf8f5;
-  color: #1a1a1a;
+  --ivory: #FBF7F0;
+  --paper: #F3EDE2;
+  --line: #E3DAC9;
+  --ink: #16233F;
+  --ink-soft: #4A5470;
+  --blue: #2F5FA7;
+  --red: #D8402F;
+  --yellow: #F1B434;
+  --wa: #0F7B4F;
+
+  /* Safe-area insets */
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+
+  background-color: var(--ivory);
+  color: var(--ink);
 }
 
-.editorial-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--ivory);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: var(--font-inter), system-ui, sans-serif;
-  background-color: #faf8f5;
-  color: #1a1a1a;
+  font-family: var(--font-body), 'DM Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--ivory);
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -47,25 +82,91 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Marquee Animation */
-.marquee-container {
-  overflow: hidden;
-  white-space: nowrap;
+/* Images: max-width 100% and height auto */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  max-width: 100%;
+  height: auto;
 }
-.marquee-content {
-  display: inline-block;
-  animation: marquee 25s linear infinite;
+
+/* Visible focus ring in --blue */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
 }
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
+
+/* Selection colour */
+::selection {
+  background-color: rgba(47, 95, 167, 0.18);
+  color: var(--ink);
+}
+
+/* Typography scale from design rules */
+h1,
+.h1 {
+  font-family: var(--font-display), Fraunces, Georgia, serif;
+  font-size: clamp(34px, 8vw, 56px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h2,
+.h2 {
+  font-family: var(--font-display), Fraunces, Georgia, serif;
+  font-size: clamp(24px, 5vw, 36px);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+h3,
+.h3 {
+  font-family: var(--font-display), Fraunces, Georgia, serif;
+  font-size: clamp(20px, 4vw, 26px);
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.label-upper {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.editorial-label {
+  font-family: var(--font-body), 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Prefers-reduced-motion block */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Clean Custom Scrollbar */
+/* Custom Scrollbar */
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -82,13 +183,16 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4cfc5;
+  background: var(--line);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b5afa3;
+  background: var(--ink-soft);
 }
 
 .pb-safe {
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: var(--sab);
+}
+.pt-safe {
+  padding-top: var(--sat);
 }

@@ -7,7 +7,15 @@
   - Installed dependencies: `zustand`, `motion`, `minisearch`, `@radix-ui/react-dialog`, `sharp`, `vitest`.
   - Added `"test": "vitest run"` to `package.json`.
   - Established build baseline in `docs/redesign/baseline.md` and saved baseline screenshots in `docs/redesign/baseline-shots/`.
-- [ ] **R1: Design tokens, fonts, icons & base CSS**
+- [x] **R1: Design tokens, fonts, icons & base CSS**
+  - Brand logo asset colors sampled and tokens documented in `docs/redesign/tokens.md`.
+  - Loaded Fraunces (500, 600) and DM Sans (400, 500, 700) via `next/font/google`, exposed as `--font-display` and `--font-body` in `src/app/layout.tsx`.
+  - Applied global styles in `src/app/globals.css`: ivory background, ink text, type scale, focus visible in `--blue`, safe-area insets, image sizing, and reduced-motion block.
+  - Implemented 11 inline SVG icons in `src/components/icons.tsx` (24px, 1.5px stroke, currentColor, aria-hidden).
+  - Built core UI primitives in `src/components/ui/`: `Container`, `Button`, `Chip`, `Marker`, `SectionHeading`, `Photo`.
+  - Created and ran `scripts/check-contrast.mjs` (all 6 pairs pass WCAG AA >= 4.5:1).
+  - Built review page `src/app/design-system/page.tsx` (noindex) and verified visual appearance at 390x844 and 1280x800 in `docs/redesign/shots/`.
+  - Configured Vitest and verified `npm test`, `npm run lint`, and `npm run build` pass cleanly.
 - [ ] **R2: Information architecture & data mapping**
 - [ ] **R3: My List store & WhatsApp message builder**
 - [ ] **R4: Header, mobile bottom bar & navigation**
