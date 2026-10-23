@@ -6,8 +6,10 @@ import { marked } from 'marked';
 import { Calendar, User, Clock, ArrowLeft, MessageSquare } from 'lucide-react';
 import type { Metadata } from 'next';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
+import JsonLd from '@/components/JsonLd';
+import { getBlogPostingSchema } from '@/lib/schema';
 
-import { SITE_URL, getCanonicalUrl, buildPageMetadata } from '@/config/site';
+import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 interface BlogPostPageProps {
@@ -57,32 +59,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const relatedPosts = getRelatedPosts(post.slug, post.category, 3);
 
-  // Compile BlogPosting Schema dynamically
-  const blogSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.excerpt,
-    image: `${SITE_URL}/brand_logo.jpg`,
-    datePublished: post.date,
-    author: {
-      '@type': 'Organization',
-      name: BUSINESS_CONFIG.name,
-      url: getCanonicalUrl('/'),
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: BUSINESS_CONFIG.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE_URL}/brand_logo.jpg`,
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': getCanonicalUrl(`/blog/${post.slug}`),
-    },
-  };
+  const blogSchema = getBlogPostingSchema(post);
 
   return (
     <>
@@ -93,10 +70,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           { name: post.title, url: getCanonicalUrl(`/blog/${post.slug}`) },
         ]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
-      />
+      <JsonLd schema={blogSchema} />
 
       <div className="py-12 md:py-20 font-sans">
         <article className="max-w-3xl mx-auto px-4 sm:px-6">

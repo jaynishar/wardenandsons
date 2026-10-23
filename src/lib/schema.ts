@@ -1,21 +1,22 @@
-import type { ClothingStore, BreadcrumbList, WebSite, WithContext } from 'schema-dts';
+import type { ClothingStore, BreadcrumbList, WebSite, BlogPosting, WithContext } from 'schema-dts';
 import { SITE_URL, getCanonicalUrl } from '@/config/site';
 
 /**
  * Generates typed ClothingStore JSON-LD schema for Warden & Sons
- * Populated from official Google Business Profile.
+ * Populated from official business profile details.
  */
-export function getClothingStoreSchema(): WithContext<ClothingStore> {
+export function getClothingStoreSchema(pagePath = '/'): WithContext<ClothingStore> {
   return {
     '@context': 'https://schema.org',
     '@type': 'ClothingStore',
     name: 'Warden & Sons Kids Wear',
-    url: getCanonicalUrl('/'),
+    url: getCanonicalUrl(pagePath),
     logo: `${SITE_URL}/brand_logo.webp`,
     image: `${SITE_URL}/store_front.webp`,
     telephone: '+91 99207 51567',
     sameAs: [
-      'https://www.google.com/search?q=warden+and+sons+kids+wear',
+      'https://share.google/iwNowyZv9IlLRTv8Z',
+      'https://www.instagram.com/wardenandsonskidswear/',
     ],
     address: {
       '@type': 'PostalAddress',
@@ -59,6 +60,43 @@ export function getWebSiteSchema(): WithContext<WebSite> {
     '@type': 'WebSite',
     name: 'Warden & Sons Kids Wear',
     url: getCanonicalUrl('/'),
+  };
+}
+
+/**
+ * Generates typed BlogPosting JSON-LD schema for blog articles.
+ */
+export function getBlogPostingSchema(post: {
+  title: string;
+  slug: string;
+  date: string;
+  excerpt?: string;
+}): WithContext<BlogPosting> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Organization',
+      name: 'The Warden & Sons Team',
+      url: SITE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Warden & Sons Kids Wear',
+      url: SITE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/brand_logo.jpg`,
+      },
+    },
+    image: `${SITE_URL}/brand_logo.jpg`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': getCanonicalUrl(`/blog/${post.slug}`),
+    },
   };
 }
 

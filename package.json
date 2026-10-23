@@ -11,7 +11,11 @@
     "format:check": "prettier --check .",
     "audit:crawl": "node scripts/crawl-audit.mjs",
     "audit:lhci": "lhci autorun",
-    "audit:unlighthouse": "unlighthouse --site https://wardenandsons.in"
+    "audit:unlighthouse": "unlighthouse --site https://wardenandsons.in",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "lighthouse": "lighthouse http://localhost:3000 --view",
+    "check": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -33,7 +37,9 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.64.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^22.20.5",
     "@types/react": "^19.3.0",

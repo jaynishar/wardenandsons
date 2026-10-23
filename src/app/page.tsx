@@ -10,7 +10,7 @@ import FAQ from '@/components/FAQ';
 import GoogleReviewsBlock from '@/components/GoogleReviewsBlock';
 import { getFeaturedCatalogueItems } from '@/lib/products';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { getClothingStoreSchema, getWebSiteSchema } from '@/lib/schema';
+import { getClothingStoreSchema } from '@/lib/schema';
 import JsonLd from '@/components/JsonLd';
 import { buildPageMetadata } from '@/config/site';
 
@@ -25,12 +25,11 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function HomePage() {
   const featuredProducts = getFeaturedCatalogueItems(6);
-  const storeSchema = getClothingStoreSchema();
-  const websiteSchema = getWebSiteSchema();
+  const storeSchema = getClothingStoreSchema('/');
 
   return (
     <div className="space-y-12 md:space-y-16 font-sans">
-      <JsonLd schema={[storeSchema, websiteSchema]} />
+      <JsonLd schema={storeSchema} />
       {/* 1. Hero with Announcement */}
       <Hero />
 

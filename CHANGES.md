@@ -379,3 +379,13 @@ Automated audit scripts executed against static build `out/`:
 - Verified 100% trailing slash compliance repository-wide (0 missing trailing slashes).
 - Inbound link verification confirmed every page has &ge; 4 inbound internal links (well above the minimum threshold of 2).
 - Ran `npm run lint` and `npm run build`: both passed cleanly.
+
+---
+
+## Step 4: Structured Data
+- Homepage (`/`) and `/visit-us/`: Configured single `ClothingStore` JSON-LD schema with `name`, `url`, `telephone`, `address` (`PostalAddress`, country `IN`), `openingHoursSpecification` (all 7 days, 09:00 to 21:00), `image`, `sameAs` (`https://share.google/iwNowyZv9IlLRTv8Z`, `https://www.instagram.com/wardenandsonskidswear/`), and existing `geo` coordinates. Excluded rating and review fields.
+- Inner pages: Generated `BreadcrumbList` JSON-LD schema matching the visible breadcrumbs from Step 3.
+- Blog post pages: Updated `BlogPosting` JSON-LD schema with `headline`, `datePublished`, `dateModified`, `author` (`The Warden & Sons Team`), and `publisher`.
+- Verified 0 occurrences of forbidden schema types (`FAQPage`, `Product`, `Offer`, `AggregateOffer`, `Review`).
+- Validated every rendered HTML page by parsing each `<script type="application/ld+json">` block as JSON; 0 parse errors across all pages.
+- Ran `npm run lint` and `npm run build`: both passed cleanly.

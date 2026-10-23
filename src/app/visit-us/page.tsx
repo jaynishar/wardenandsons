@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin, Clock, MessageSquare, Compass, ExternalLink, Car, Ruler, ArrowRight } from 'lucide-react';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
+import JsonLd from '@/components/JsonLd';
+import { getClothingStoreSchema } from '@/lib/schema';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
@@ -15,9 +17,11 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function VisitUsPage() {
   const googleMapsUrl = BUSINESS_CONFIG.location.googleMapsSearchUrl;
+  const storeSchema = getClothingStoreSchema('/visit-us');
 
   return (
     <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <JsonLd schema={storeSchema} />
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: getCanonicalUrl('/') },
