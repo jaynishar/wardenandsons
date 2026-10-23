@@ -12,6 +12,7 @@ import { getFeaturedCatalogueItems } from '@/lib/products';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { buildVideoCallUrl } from '@/lib/whatsapp';
 import ReplyPromise from '@/components/ReplyPromise';
+import SchoolsServedSection from '@/components/SchoolsServedSection';
 import { getClothingStoreSchema } from '@/lib/schema';
 import JsonLd from '@/components/JsonLd';
 import { buildPageMetadata } from '@/config/site';
@@ -22,7 +23,7 @@ export const metadata: Metadata = buildPageMetadata({
     absolute: 'Kids Clothes in Kemps Corner, South Mumbai | Warden & Sons',
   },
   description:
-    'Buy pure cotton kids clothes in Kemps Corner, South Mumbai since 1994. Browse newborn sets, daily playwear, nightsuits and uniforms on WhatsApp.',
+    'Buy cotton and muslin kids clothes in Kemps Corner, South Mumbai since 1994. Browse newborn sets, daily playwear, nightsuits and uniforms on WhatsApp.',
 });
 
 export default function HomePage() {
@@ -130,6 +131,9 @@ export default function HomePage() {
 
       {/* 6. Social Proof & Google Reviews */}
       <GoogleReviewsBlock />
+
+      {/* Institutional Customers / Schools Served */}
+      <SchoolsServedSection />
 
       {/* 7. Frequently Asked Questions */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">

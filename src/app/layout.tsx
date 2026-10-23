@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: '%s | Warden & Sons',
   },
   description:
-    'Kids clothing in Kemps Corner, South Mumbai since 1994. Pure cotton newborn sets, playwear, nightsuits & uniforms on WhatsApp.',
+    'Kids clothing in Kemps Corner, South Mumbai since 1994. Cotton newborn sets, playwear, nightsuits & uniforms on WhatsApp.',
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: getCanonicalUrl('/'),

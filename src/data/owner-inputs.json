@@ -1,3 +1,13 @@
 {
-  "replyPromise": ""
+  "replyPromise": "",
+  "schoolsServed": [],
+  "categoryPriceFrom": {
+    "newborn": null,
+    "boys": null,
+    "girls": null,
+    "men": null,
+    "women": null,
+    "bulk": null
+  },
+  "productPriceFrom": {}
 }

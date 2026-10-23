@@ -404,3 +404,74 @@ Automated audit scripts executed against static build `out/`:
 ### Needs the owner
 - `replyPromise` in `src/data/owner-inputs.json`: Owner to provide reply time promise (e.g. "We reply within 10 minutes during store hours") to display near WhatsApp buttons. Currently empty.
 - `NEXT_PUBLIC_GTM_ID`: Owner to provide Google Tag Manager container ID in `.env` if GTM is desired; left inactive pending configuration with in-code TODO.
+- `priceFrom` in `src/data/owner-inputs.json`: Store owner to fill starting prices for departments or product lines if desired.
+- `schoolsServed` in `src/data/owner-inputs.json`: Store owner to confirm list of schools and sports academies supplied.
+- Customer reviews in `src/data/reviews.json`: Store owner to confirm testimonials are verbatim Google reviews.
+
+---
+
+## Step 6: Prices, Trust, Claims
+- **Prices (`priceFrom`):** Added `priceFrom` field (set to `null`) for each category and product line in `src/lib/products.ts` and `src/data/owner-inputs.json`. Configured `ProductCard` and `CategoryGrid` to show `"From ₹X"` with subtext `"Final price confirmed on WhatsApp"` only when a non-null price is filled; shows nothing when `null`. Zero numbers invented.
+- **Institutions (`schoolsServed`):** Added `schoolsServed: []` to `src/data/owner-inputs.json`. Created `SchoolsServedSection` component displaying "Schools and academies we have supplied" on `/bulk-orders/` and the homepage only when non-empty; shows nothing when empty with in-code TODO.
+- **Fabric & Health Claims Softening:** Removed blanket "pure cotton" and "all garments" claims where the catalogue includes polyester blends and sportswear. Softened unverified health-type claims ("azo-free", "chemical-free", "prevents skin irritation", "prickly heat", "hypoallergenic") to plain comfort language.
+- **Homepage Testimonials:** Preserved testimonial text verbatim. Added TODO for store owner verification and enhanced the visible "View all reviews on Google" link prominently in `GoogleReviewsBlock`.
+- Built and verified static compilation passing.
+
+### Needs the owner: confirm and restore if true
+1. **`src/app/about/page.tsx`**
+   - **Old:** `"We select breathable cottons and airy muslins. Pre-shrunk and chemical-free, crafted specially for Mumbai’s tropical humidity."`
+   - **New:** `"We select breathable cottons and airy muslins. Pre-shrunk and soft on skin, crafted specially for Mumbai’s tropical humidity."`
+2. **`src/app/about/page.tsx`**
+   - **Old:** `"Dressing South Mumbai families at Kemps Corner since 1994. Learn about our pure cotton fabrics, honest measuring tape sizing, and family service."`
+   - **New:** `"Dressing South Mumbai families at Kemps Corner since 1994. Learn about our breathable cotton fabrics, honest measuring tape sizing, and family service."`
+3. **`src/app/shop/[category]/page.tsx`**
+   - **Old:** `"Crafted from 100% combed cotton and double-layer open-weave muslin. All garments use azo-free dyes that prevent skin irritation and prickly heat in Mumbai’s humid coastal weather. Seams are stitched flat and care tags are placed away from sensitive newborn skin."`
+   - **New:** `"Crafted from combed cotton and double-layer open-weave muslin. Soft fabrics suited for Mumbai’s humid coastal weather. Seams are stitched flat and care tags are placed away from sensitive newborn skin."`
+4. **`src/app/shop/[category]/page.tsx`**
+   - **Old:** `"subheading: 'Pure cotton basics, muslin swaddles, and everyday comfort for babies.',"`
+   - **New:** `"subheading: 'Cotton basics, muslin swaddles, and everyday comfort for babies.',"`
+5. **`src/app/shop/[category]/page.tsx`**
+   - **Old:** `"High-durability 180 to 220 GSM single-jersey cotton for t-shirts, reinforced cotton twill for cargo shorts, and 100% combed hosiery cotton for nightwear. Built without synthetic polyester blends so boys stay cool while playing outdoors in Mumbai’s heat."`
+   - **New:** `"High-durability 180 to 220 GSM single-jersey cotton for t-shirts, reinforced cotton twill for cargo shorts, and 100% combed hosiery cotton for nightwear. Breathable everyday fabrics keep boys cool while playing outdoors in Mumbai’s heat."`
+6. **`src/app/shop/[category]/page.tsx`**
+   - **Old:** `"All garments feature reinforced collar ribbing and double-needle hems."`
+   - **New:** `"Tops feature reinforced collar ribbing and double-needle hems."`
+7. **`src/app/shop/page.tsx`**
+   - **Old:** `"Shop Pure Cotton Clothes by Age"`
+   - **New:** `"Shop Kids Clothes by Age"`
+8. **`src/app/shop/page.tsx`**
+   - **Old:** `"Browse pure cotton children's clothing organized by age group. Select everyday playwear, sleepwear, and infant essentials to order on WhatsApp."`
+   - **New:** `"Browse cotton and muslin children's clothing by age group. Select everyday playwear, sleepwear, and infant essentials to order on WhatsApp."`
+9. **`src/components/CategoryGrid.tsx`**
+   - **Old:** `"Pure cotton clothing, comfortable nightsuits, and school uniforms. Select an age group to explore styles and build your Request List."`
+   - **New:** `"Cotton and muslin everyday wear, comfortable nightsuits, and school uniforms. Select an age group to explore styles and build your Request List."`
+10. **`src/components/GoogleReviewsBlock.tsx`**
+    - **Old:** `"Authentic reviews from families shopping pure cotton children’s wear and school uniforms at our Kemps Corner shop."`
+    - **New:** `"Authentic reviews from families shopping children’s everyday wear and school uniforms at our Kemps Corner shop."`
+11. **`src/app/size-guide/page.tsx`**
+    - **Old:** `"and sizing varies between Indian and international brands. Use our pure cotton kids clothing size by age guide below, or message our Kemps Corner store desk for live measuring tape verification."`
+    - **New:** `"and sizing varies between Indian and international brands. Use our kids clothing size by age guide below, or message our Kemps Corner store desk for live measuring tape verification."`
+12. **`src/app/layout.tsx`**
+    - **Old:** `"Kids clothing in Kemps Corner, South Mumbai since 1994. Pure cotton newborn sets, playwear, nightsuits & uniforms on WhatsApp."`
+    - **New:** `"Kids clothing in Kemps Corner, South Mumbai since 1994. Cotton newborn sets, playwear, nightsuits & uniforms on WhatsApp."`
+13. **`src/app/page.tsx`**
+    - **Old:** `"Buy pure cotton kids clothes in Kemps Corner, South Mumbai since 1994. Browse newborn sets, daily playwear, nightsuits and uniforms on WhatsApp."`
+    - **New:** `"Buy cotton and muslin kids clothes in Kemps Corner, South Mumbai since 1994. Browse newborn sets, daily playwear, nightsuits and uniforms on WhatsApp."`
+14. **`src/content/blog/baby-swaddling-blankets-bathrobes.mdx`**
+    - **Old:** `"Our muslin swaddles are made from organic, chemical-free cotton yarn that is extra-gentle on newborn skin."`
+    - **New:** `"Our muslin swaddles are made from soft cotton yarn that is extra-gentle on newborn skin."`
+15. **`src/content/blog/boys-vs-girls-nightwear-fabrics.mdx`**
+    - **Old:** `"In a warm, humid coastal city like Mumbai, kids can easily overheat during the night, leading to restless sleep, tossing and turning, and skin irritation."`
+    - **New:** `"In a warm, humid coastal city like Mumbai, kids can easily overheat during the night, leading to restless sleep, tossing and turning, and discomfort."`
+16. **`src/content/blog/kids-winterwear-guide-mumbai.mdx`**
+    - **Old:** `"| **Polyester Blends** | Avoid | Traps sweat and can cause skin irritation. |"`
+    - **New:** `"| **Polyester Blends** | Avoid | Traps sweat and can feel uncomfortable in humidity. |"`
+17. **`src/content/blog/newborn-clothing-essentials-mumbai.mdx`**
+    - **Old:** `"- **Avoid Synthetics:** Polyester and nylon blends trap heat and sweat, leading to painful heat rashes (prickly heat) on delicate newborn skin."`
+    - **New:** `"- **Avoid Synthetics:** Polyester and nylon blends trap heat and sweat, causing discomfort and sweat rashes on delicate newborn skin."`
+18. **`src/content/blog/newborn-clothing-essentials-mumbai.mdx`**
+    - **Old:** `"Our collection features premium, pre-washed, chemical-free 100% cotton garments that withstand the frequent washing that baby clothes require."`
+    - **New:** `"Our collection features soft, pre-washed cotton garments that withstand the frequent washing that baby clothes require."`
+19. **`src/content/blog/best-sportswear-kids-guide.mdx`**
+    - **Old:** `"- **Advantages:** Hypoallergenic, extremely soft, and comfortable."`
+    - **New:** `"- **Advantages:** Gentle on skin, extremely soft, and comfortable."`

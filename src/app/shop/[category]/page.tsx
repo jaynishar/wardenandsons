@@ -35,9 +35,9 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
     metaDesc:
       "Breathable combed cotton jhablas, onesies, rompers, and muslin swaddles for babies 0-24M. Request live photos from our Kemps Corner store racks.",
     heading: 'Newborn & Infant Clothes (0–24 Months)',
-    subheading: 'Pure cotton basics, muslin swaddles, and everyday comfort for babies.',
+    subheading: 'Cotton basics, muslin swaddles, and everyday comfort for babies.',
     fabricText:
-      'Crafted from 100% combed cotton and double-layer open-weave muslin. All garments use azo-free dyes that prevent skin irritation and prickly heat in Mumbai’s humid coastal weather. Seams are stitched flat and care tags are placed away from sensitive newborn skin.',
+      'Crafted from combed cotton and double-layer open-weave muslin. Soft fabrics suited for Mumbai’s humid coastal weather. Seams are stitched flat and care tags are placed away from sensitive newborn skin.',
     ageText:
       'Sized carefully for infants from birth up to 24 months across 0-3M, 3-6M, 6-12M, 12-18M, and 18-24M stages. Generous diaper-rise room is built into all onesies and rompers.',
     sizingText:
@@ -50,9 +50,9 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
     heading: 'Boys Playwear & Clothes (0–16 Years)',
     subheading: 'Breathable cotton t-shirts, shorts, track pants, and nightsuits.',
     fabricText:
-      'High-durability 180 to 220 GSM single-jersey cotton for t-shirts, reinforced cotton twill for cargo shorts, and 100% combed hosiery cotton for nightwear. Built without synthetic polyester blends so boys stay cool while playing outdoors in Mumbai’s heat.',
+      'High-durability 180 to 220 GSM single-jersey cotton for t-shirts, reinforced cotton twill for cargo shorts, and 100% combed hosiery cotton for nightwear. Breathable everyday fabrics keep boys cool while playing outdoors in Mumbai’s heat.',
     ageText:
-      'Full coverage from toddlers (0-2Y), junior boys (2-8Y), to older boys and teenagers (8-16Y). Available across standard Indian numbered sizes 20, 22-24, 26, 28-30, 32, and 34-36. All garments feature reinforced collar ribbing and double-needle hems.',
+      'Full coverage from toddlers (0-2Y), junior boys (2-8Y), to older boys and teenagers (8-16Y). Available across standard Indian numbered sizes 20, 22-24, 26, 28-30, 32, and 34-36. Tops feature reinforced collar ribbing and double-needle hems.',
     sizingText:
       'Active boys need room through the shoulders and chest. For shorts and joggers, our waistbands feature soft ribbed elastic with functional drawstrings. When sending your Request List on WhatsApp, tell us your boy’s age and approximate height, and we will measure flat chest and length dimensions for you.',
   },

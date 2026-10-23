@@ -11,7 +11,7 @@ import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 export const metadata: Metadata = buildPageMetadata({
   path: '/about',
   title: { absolute: "About Our Shop: 30 Years in Kemps Corner | Warden & Sons" },
-  description: "Dressing South Mumbai families at Kemps Corner since 1994. Learn about our pure cotton fabrics, honest measuring tape sizing, and family service.",
+  description: "Dressing South Mumbai families at Kemps Corner since 1994. Learn about our breathable cotton fabrics, honest measuring tape sizing, and family service.",
 });
 
 export default function AboutPage() {
@@ -19,7 +19,7 @@ export default function AboutPage() {
     {
       title: 'Breathable Natural Cotton',
       description:
-        'We select breathable cottons and airy muslins. Pre-shrunk and chemical-free, crafted specially for Mumbai’s tropical humidity.',
+        'We select breathable cottons and airy muslins. Pre-shrunk and soft on skin, crafted specially for Mumbai’s tropical humidity.',
       icon: ShieldCheck,
     },
     {

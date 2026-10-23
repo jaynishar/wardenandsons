@@ -13,6 +13,7 @@ interface Review {
 }
 
 export default function GoogleReviewsBlock() {
+  // TODO: Store owner to confirm that customer reviews in src/data/reviews.json are verbatim Google reviews
   const reviews: Review[] = reviewsData;
 
   return (
@@ -36,7 +37,7 @@ export default function GoogleReviewsBlock() {
               What South Mumbai Families Say
             </h2>
             <p className="text-xs sm:text-sm text-muted mt-1 max-w-xl">
-              Authentic reviews from families shopping pure cotton children’s wear and school uniforms at our Kemps Corner shop.
+              Authentic reviews from families shopping children’s everyday wear and school uniforms at our Kemps Corner shop.
             </p>
           </div>
 
@@ -47,7 +48,7 @@ export default function GoogleReviewsBlock() {
             data-track="directions_click"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-forest hover:text-gold transition-colors shrink-0"
           >
-            <span>View on Google</span>
+            <span>View all reviews on Google</span>
             <ExternalLink className="w-3.5 h-3.5 text-gold" />
           </a>
         </div>
@@ -76,6 +77,21 @@ export default function GoogleReviewsBlock() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Prominent Link to All Google Reviews */}
+        <div className="pt-2 text-center">
+          <a
+            href={BUSINESS_CONFIG.location.googleBusinessShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="directions_click"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border-soft bg-white hover:bg-bg-cream text-forest font-bold text-xs shadow-2xs transition-all hover:scale-[1.01]"
+          >
+            <Star className="w-3.5 h-3.5 fill-gold text-gold" />
+            <span>View all reviews on Google (4.8 ★)</span>
+            <ExternalLink className="w-3.5 h-3.5 text-gold" />
+          </a>
         </div>
       </div>
     </section>

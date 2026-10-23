@@ -1,6 +1,7 @@
 import React from 'react';
 import BulkOrderForm from '@/components/BulkOrderForm';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
+import SchoolsServedSection from '@/components/SchoolsServedSection';
 import { GraduationCap, Trophy, Gift, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -111,6 +112,9 @@ export default function BulkOrdersPage() {
           <BulkOrderForm />
         </div>
       </div>
+
+      {/* Schools & Academies Supplied */}
+      <SchoolsServedSection />
     </div>
   );
 }

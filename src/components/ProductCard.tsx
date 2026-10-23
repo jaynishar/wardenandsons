@@ -7,6 +7,7 @@ import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion } from '
 import { CatalogueItem } from '@/lib/products';
 import { useCartStore } from '@/store/cart';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getProductPriceFrom } from '@/lib/owner-inputs';
 
 interface ProductCardProps {
   product: CatalogueItem;
@@ -14,6 +15,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCartStore();
+  const priceFrom = product.priceFrom ?? getProductPriceFrom(product.id);
   const [justAdded, setJustAdded] = useState(false);
 
   const handleAddToRequest = () => {
@@ -120,6 +122,12 @@ export default function ProductCard({ product }: ProductCardProps) {
               <span>•</span>
               <span>{product.ageOrSizeRange}</span>
             </div>
+            {priceFrom != null && (
+              <div className="pt-1.5 text-xs">
+                <span className="font-bold text-forest text-sm">From ₹{priceFrom}</span>
+                <span className="text-[10px] text-muted block">Final price confirmed on WhatsApp</span>
+              </div>
+            )}
           </div>
 
           <div className="pt-3 border-t border-border-soft">

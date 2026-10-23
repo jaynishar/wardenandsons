@@ -10,7 +10,7 @@ import Link from 'next/link';
 export const metadata: Metadata = buildPageMetadata({
   path: '/shop',
   title: { absolute: "Shop Kids Clothes by Age, Mumbai | Warden & Sons" },
-  description: "Browse pure cotton children's clothing organized by age group. Select everyday playwear, sleepwear, and infant essentials to order on WhatsApp.",
+  description: "Browse cotton and muslin children's clothing by age group. Select everyday playwear, sleepwear, and infant essentials to order on WhatsApp.",
 });
 
 export default function ShopPage() {
@@ -28,7 +28,7 @@ export default function ShopPage() {
       {/* Header */}
       <div className="space-y-3 max-w-3xl">
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
-          Shop Pure Cotton Clothes by Age
+          Shop Kids Clothes by Age
         </h1>
         <p className="text-sm sm:text-base text-muted leading-relaxed">
           Select items for your Request List. Send us your list on WhatsApp to confirm live colors,

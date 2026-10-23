@@ -22,6 +22,7 @@ export interface CategoryInfo {
   summary: string;
   typicalItems: string[];
   image: string;
+  priceFrom?: number | null;
 }
 
 export interface CatalogueItem {
@@ -34,6 +35,7 @@ export interface CatalogueItem {
   description: string;
   image: string;
   isRepresentativeSample: true;
+  priceFrom?: number | null;
 }
 
 export const CATEGORIES_DATA: CategoryInfo[] = [

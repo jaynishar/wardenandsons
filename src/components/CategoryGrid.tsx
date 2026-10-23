@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { CATEGORIES_DATA, getCatalogueItemsByCategory } from '@/lib/products';
+import { getCategoryPriceFrom } from '@/lib/owner-inputs';
 
 export default function CategoryGrid() {
   return (
@@ -17,7 +18,7 @@ export default function CategoryGrid() {
           </h2>
         </div>
         <p className="text-xs sm:text-sm text-muted max-w-md">
-          Pure cotton clothing, comfortable nightsuits, and school uniforms. Select an age group to
+          Cotton and muslin everyday wear, comfortable nightsuits, and school uniforms. Select an age group to
           explore styles and build your Request List.
         </p>
       </div>
@@ -26,6 +27,7 @@ export default function CategoryGrid() {
         {CATEGORIES_DATA.map(cat => {
           const itemCount = getCatalogueItemsByCategory(cat.slug).length;
           const displayCount = itemCount > 0 ? `${itemCount} Styles` : 'View Styles';
+          const priceFrom = cat.priceFrom ?? getCategoryPriceFrom(cat.slug);
           const href = cat.slug === 'bulk' ? '/bulk-orders/' : `/shop/${cat.slug}/`;
 
           return (
@@ -60,6 +62,12 @@ export default function CategoryGrid() {
 
               {/* Bottom Content */}
               <div className="relative z-10 space-y-3 pt-12">
+                {priceFrom != null && (
+                  <div className="bg-near-black/70 backdrop-blur-xs p-2.5 rounded-xl border border-white/20">
+                    <span className="font-bold text-gold text-sm block">From ₹{priceFrom}</span>
+                    <span className="text-[10px] text-gray-300 block">Final price confirmed on WhatsApp</span>
+                  </div>
+                )}
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white group-hover:text-gold transition-colors">
                   {cat.name}
                 </h3>

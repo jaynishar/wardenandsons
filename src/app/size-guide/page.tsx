@@ -33,8 +33,7 @@ export default function SizeGuidePage() {
         </h1>
         <p className="text-sm sm:text-base text-muted leading-relaxed">
           Wondering what size for age 4 or which age matches size S, M, or L? Children grow fast,
-          and sizing varies between Indian and international brands. Use our pure cotton kids
-          clothing size by age guide below, or message our Kemps Corner store desk for live
+          and sizing varies between Indian and international brands. Use our kids clothing size by age guide below, or message our Kemps Corner store desk for live
           measuring tape verification.
         </p>
       </div>
