@@ -16,7 +16,15 @@
   - Created and ran `scripts/check-contrast.mjs` (all 6 pairs pass WCAG AA >= 4.5:1).
   - Built review page `src/app/design-system/page.tsx` (noindex) and verified visual appearance at 390x844 and 1280x800 in `docs/redesign/shots/`.
   - Configured Vitest and verified `npm test`, `npm run lint`, and `npm run build` pass cleanly.
-- [ ] **R2: Information architecture & data mapping**
+- [x] **R2: Layout shell**
+  - Built sticky 64px Desktop Header with authentic logo asset, centre department links, "More" dropdown, search trigger, and "My list" badge button.
+  - Implemented 56px Mobile Top Bar and fixed 64px Mobile Bottom Bar with active ink underline.
+  - Implemented Radix Dialog sliding `MenuSheet` with Kids, Family, Bulk, and Boutique navigation groups + tracked WhatsApp action.
+  - Replaced and deleted legacy `StickyMobileBar.tsx`, `WhatsAppFloat.tsx`, and old BottomNav/Header/Footer code.
+  - Slimmed Footer with store info, business links, non-orphan exploration links, and safe-area clearance.
+  - Restyled Breadcrumbs to DM Sans 14px while preserving JSON-LD schema output.
+  - Added Skip to content link and verified semantic landmarks across layout shell.
+  - Verified keyboard navigation, captured 390x844 & 1280x800 screenshots of `/` and `/shop/`, and confirmed CLS 0 / 0.005 via Lighthouse.
 - [ ] **R3: My List store & WhatsApp message builder**
 - [ ] **R4: Header, mobile bottom bar & navigation**
 - [ ] **R5: Homepage storefront**

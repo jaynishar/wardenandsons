@@ -4,7 +4,6 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
-import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
 import TrackingProvider from '@/components/TrackingProvider';
 import ConsentBanner from '@/components/ConsentBanner';
@@ -133,13 +132,21 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="min-h-full flex flex-col bg-ivory text-ink selection:bg-paper selection:text-ink">
+        {/* Accessible skip link for keyboard users */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--ink)] focus:text-[var(--ivory)] focus:rounded-[4px] focus:outline-2 focus:outline-[var(--blue)] font-medium text-sm shadow-md"
+        >
+          Skip to content
+        </a>
         <TrackingProvider />
         <Header />
         <CartDrawer />
-        <main className="flex-grow pb-20 md:pb-0">{children}</main>
+        <main id="main-content" className="flex-grow pb-[calc(4.5rem+var(--sab))] md:pb-0">
+          {children}
+        </main>
         <Footer />
         <BottomNav />
-        <WhatsAppFloat />
         <ConsentBanner />
       </body>
     </html>

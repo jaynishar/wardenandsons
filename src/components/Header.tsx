@@ -1,188 +1,254 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ClipboardList, MessageSquare, Menu, X, Phone } from 'lucide-react';
-import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion } from 'motion/react';
+import {
+  IconSearch,
+  IconList,
+  IconMenu,
+  IconChevron,
+} from '@/components/icons';
+import { MenuSheet } from '@/components/MenuSheet';
 import { useCartStore } from '@/store/cart';
-import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
   const { toggleCart, getTotalItems } = useCartStore();
 
   useEffect(() => {
     setMounted(true);
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMoreOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const totalItems = mounted ? getTotalItems() : 0;
 
-  const navLinks = [
-    { name: 'Catalogue', href: '/shop/' },
-    { name: 'Size Guide', href: '/size-guide/' },
-    { name: 'How It Works', href: '/how-it-works/' },
-    { name: 'Our Heritage', href: '/about/' },
-    {
-      name: 'Bulk & Uniforms',
-      href: '/bulk-orders/',
-    },
-    {
-      name: 'Blog',
-      href: '/blog/',
-    },
-    { name: 'Visit Store', href: '/visit-us/' },
+  const moreLinks = [
+    { label: 'How it works', href: '/how-it-works/' },
+    { label: 'About', href: '/about/' },
+    { label: 'Visit us', href: '/visit-us/' },
+    { label: 'Blog', href: '/blog/' },
+    { label: 'Contact', href: '/contact/' },
   ];
 
-  const prefersReduced = useReducedMotion();
-  const shouldReduceMotion = Boolean(prefersReduced);
-
   return (
-    <LazyMotion features={domAnimation}>
-      <header className="sticky top-0 z-40 bg-bg-cream/95 backdrop-blur-md border-b border-border-soft">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo & Brand Name */}
-            <Link href="/" className="flex items-center gap-3 group">
-              {/* Authentic Unclipped Logo Artwork Container */}
-              <div className="relative w-14 h-11 rounded-md overflow-hidden bg-white border border-gold/40 shadow-xs shrink-0 p-0.5">
-                <Image
-                  src="/brand_logo.webp"
-                  alt="Warden & Sons Kids Wear Official Logo"
-                  fill
-                  className="object-contain"
-                  sizes="56px"
-                  priority
-                />
-              </div>
-              <div>
-                <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-forest block leading-none">
-                  Warden &amp; Sons
-                </span>
-                <span className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-gold font-semibold mt-1 block">
-                  {BUSINESS_CONFIG.establishment.badgeText}
-                </span>
-              </div>
+    <>
+      {/* =========================================================================
+          DESKTOP HEADER (768px and wider): sticky, 64px high
+         ========================================================================= */}
+      <header className="hidden md:block sticky top-0 z-40 h-16 bg-[var(--ivory)] border-b border-[var(--line)]">
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+          {/* Logo on Left */}
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-[var(--blue)] shrink-0"
+          >
+            <div className="relative w-11 h-8 rounded-[3px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden">
+              <img
+                src="/brand_logo.webp"
+                alt="Warden & Sons Kids Wear Official Logo"
+                width={44}
+                height={32}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="flex flex-col leading-tight">
+              <span className="font-display font-semibold text-base tracking-tight text-[var(--ink)]">
+                Warden &amp; Sons
+              </span>
+              <span className="text-[10px] label-upper text-[var(--ink-soft)] tracking-wider">
+                Kemps Corner · 1994
+              </span>
+            </div>
+          </Link>
+
+          {/* Centre Navigation Links */}
+          <nav aria-label="Main catalogue navigation" className="flex items-center space-x-6 text-sm font-medium">
+            <Link
+              href="/shop/newborn/"
+              className="text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1"
+            >
+              Newborn
+            </Link>
+            <Link
+              href="/shop/boys/"
+              className="text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1"
+            >
+              Boys
+            </Link>
+            <Link
+              href="/shop/girls/"
+              className="text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1"
+            >
+              Girls
+            </Link>
+            <Link
+              href="/shop/men/"
+              className="text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1"
+            >
+              Men
+            </Link>
+            <Link
+              href="/shop/women/"
+              className="text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1"
+            >
+              Women
+            </Link>
+            <Link
+              href="/bulk-orders/"
+              className="text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1"
+            >
+              Uniforms &amp; Bulk
             </Link>
 
-            {/* Desktop Nav Links */}
-            <nav className="hidden md:flex items-center space-x-7">
-              {navLinks.map(link => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-near-black hover:text-forest transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-forest hover:after:w-full after:transition-all"
+            {/* "More" Dropdown */}
+            <div className="relative" ref={moreRef}>
+              <button
+                type="button"
+                onClick={() => setMoreOpen(!moreOpen)}
+                aria-expanded={moreOpen}
+                aria-haspopup="true"
+                className="inline-flex items-center gap-1 text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1 cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)] rounded-[2px]"
+              >
+                <span>More</span>
+                <IconChevron direction={moreOpen ? 'up' : 'down'} size={14} />
+              </button>
+
+              {moreOpen && (
+                <div
+                  role="menu"
+                  aria-label="More boutique links"
+                  className="absolute right-0 top-full mt-2 w-48 bg-[var(--paper)] border border-[var(--line)] rounded-[4px] shadow-md py-1.5 z-50 animate-in fade-in duration-100"
                 >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Right Action Icons */}
-            <div className="flex items-center gap-3">
-              {/* WhatsApp Quick Link */}
-              <a
-                href={BUSINESS_CONFIG.phone.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp Us: Chat on WhatsApp"
-                data-track="whatsapp_click"
-                data-track-location="header"
-                data-track-category="header"
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full bg-forest text-white hover:bg-forest-dark transition-all shadow-xs active:scale-[0.98]"
-              >
-                <MessageSquare className="w-4 h-4 text-whatsapp" />
-                <span>WhatsApp Us</span>
-              </a>
-
-              {/* Request List Button */}
-              <button
-                type="button"
-                onClick={toggleCart}
-                aria-label="Request List"
-                title="View Request List"
-                className="relative p-2.5 rounded-full bg-white border border-border-soft text-forest hover:bg-bg-cream transition-all shadow-xs cursor-pointer flex items-center justify-center active:scale-[0.98]"
-              >
-                <ClipboardList className="w-5 h-5" />
-                <AnimatePresence>
-                  {totalItems > 0 && (
-                    <m.span
-                      key={totalItems}
-                      initial={shouldReduceMotion ? false : { scale: 0.5, opacity: 0 }}
-                      animate={{ scale: [1.35, 1], opacity: 1 }}
-                      exit={{ scale: 0, opacity: 0 }}
-                      transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-                      className="absolute -top-1 -right-1 bg-forest text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-bg-cream pointer-events-none"
+                  {moreLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      role="menuitem"
+                      onClick={() => setMoreOpen(false)}
+                      className="block px-4 py-2 text-sm text-[var(--ink)] hover:bg-[var(--line)] hover:text-[var(--ink)] transition-colors"
                     >
-                      {totalItems}
-                    </m.span>
-                  )}
-                </AnimatePresence>
-              </button>
-
-              {/* Mobile Menu Button */}
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2.5 rounded-full bg-white border border-border-soft text-near-black hover:bg-bg-cream cursor-pointer active:scale-[0.98]"
-                aria-label="Toggle Navigation Menu"
-              >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
+          </nav>
+
+          {/* Right Action Buttons */}
+          <div className="flex items-center gap-2">
+            {/* Search Button (wires in R8) */}
+            <button
+              type="button"
+              aria-label="Search catalogue"
+              className="inline-flex items-center gap-1.5 h-10 px-3 rounded-[4px] text-sm font-medium text-[var(--ink)] hover:bg-[var(--paper)] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+            >
+              <IconSearch size={18} />
+              <span className="hidden lg:inline">Search</span>
+            </button>
+
+            {/* My List Button */}
+            <button
+              type="button"
+              onClick={toggleCart}
+              aria-label={`My list with ${totalItems} items`}
+              className="inline-flex items-center gap-2 h-10 px-3.5 rounded-[4px] bg-[var(--ink)] text-[var(--ivory)] hover:bg-[#203155] transition-colors cursor-pointer text-sm font-medium focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+            >
+              <IconList size={18} />
+              <span>My list</span>
+              <span className="min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--ivory)] text-[var(--ink)] text-[11px] font-bold inline-flex items-center justify-center leading-none">
+                {totalItems}
+              </span>
+            </button>
           </div>
         </div>
-
-        {/* Mobile Drawer Menu with AnimatePresence */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <m.div
-              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="md:hidden bg-bg-cream border-b border-border-soft px-6 py-6 space-y-4 shadow-lg overflow-hidden"
-            >
-              <nav className="flex flex-col space-y-3">
-                {navLinks.map(link => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-semibold text-near-black hover:text-forest py-2 border-b border-border-soft/60"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </nav>
-
-              <div className="pt-2 flex flex-col gap-2.5">
-                <a
-                  href={BUSINESS_CONFIG.phone.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-track="whatsapp_click"
-                  data-track-location="header"
-                  data-track-category="header"
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-forest text-white font-semibold text-sm shadow-xs active:scale-[0.98]"
-                >
-                  <MessageSquare className="w-4 h-4 text-whatsapp" />
-                  WhatsApp Store Desk ({BUSINESS_CONFIG.phone.display})
-                </a>
-                <a
-                  href={BUSINESS_CONFIG.phone.telLink}
-                  data-track="call_click"
-                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-border-soft bg-white text-near-black text-xs font-semibold active:scale-[0.98]"
-                >
-                  <Phone className="w-3.5 h-3.5 text-forest" />
-                  Call Store Directly
-                </a>
-              </div>
-            </m.div>
-          )}
-        </AnimatePresence>
       </header>
-    </LazyMotion>
+
+      {/* =========================================================================
+          MOBILE TOP BAR (under 768px): 56px high, NOT sticky
+         ========================================================================= */}
+      <header className="md:hidden relative h-14 bg-[var(--ivory)] border-b border-[var(--line)]">
+        <div className="px-4 h-full flex items-center justify-between">
+          {/* Menu Button on Left */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open navigation menu"
+            className="p-2 -ml-2 text-[var(--ink)] hover:text-[var(--ink-soft)] rounded-[4px] cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+          >
+            <IconMenu size={22} />
+          </button>
+
+          {/* Logo Centre */}
+          <Link
+            href="/"
+            className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+          >
+            <div className="w-8 h-6 rounded-[2px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden">
+              <img
+                src="/brand_logo.webp"
+                alt="Warden & Sons"
+                width={32}
+                height={24}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="font-display font-semibold text-base text-[var(--ink)] leading-none">
+              Warden &amp; Sons
+            </span>
+          </Link>
+
+          {/* Search & My List on Right */}
+          <div className="flex items-center gap-1 -mr-1">
+            <button
+              type="button"
+              aria-label="Search catalogue"
+              className="p-2 text-[var(--ink)] hover:text-[var(--ink-soft)] rounded-[4px] cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+            >
+              <IconSearch size={20} />
+            </button>
+
+            <button
+              type="button"
+              onClick={toggleCart}
+              aria-label={`My list, ${totalItems} items`}
+              className="p-2 text-[var(--ink)] hover:text-[var(--ink-soft)] rounded-[4px] cursor-pointer relative focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+            >
+              <IconList size={20} />
+              {totalItems > 0 && (
+                <span className="absolute top-1 right-1 min-w-[15px] h-[15px] px-0.5 rounded-full bg-[var(--ink)] text-[var(--ivory)] text-[9px] font-bold flex items-center justify-center leading-none">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Drawer Sheet */}
+      <MenuSheet open={menuOpen} onOpenChange={setMenuOpen} />
+    </>
   );
 }

@@ -4,7 +4,6 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Search, MessageSquare } from 'lucide-react';
 import { CatalogueItem } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
-import StickyMobileBar from '@/components/StickyMobileBar';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { trackViewItemList, trackSearch } from '@/lib/analytics';
 
@@ -252,9 +251,6 @@ export default function ShopCatalog({
           ))}
         </div>
       )}
-
-      {/* Sticky Mobile "Add to Request" Bar on scroll */}
-      <StickyMobileBar />
     </div>
   );
 }
