@@ -335,3 +335,12 @@ Automated audit scripts executed against static build `out/`:
   `https://www.google.com/search?q=warden+and+sons+kids+wear`
 - **Result:** Clicking the Google Business Profile link in the footer, review blocks, store locator, or schema now directly loads Google Search with `"warden and sons kids wear"` prominently displayed in the search box, surfacing the verified Kemps Corner local business panel.
 
+
+
+---
+
+## Step 0: Context Files
+- Created and checked out branch `seo-growth`.
+- Mapped framework, build/dev/lint commands, and core architectural paths in `REPO_MAP.md`.
+- Added `AGENT_CONTEXT.md` with business context and step rules.
+- Baseline verification: `npm run build` passed (37 static pages generated) and `npm run lint` passed.
