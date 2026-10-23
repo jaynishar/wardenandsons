@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Plus, Check, MessageSquare, Sparkles } from 'lucide-react';
 import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion } from 'motion/react';
@@ -8,6 +8,8 @@ import { CatalogueItem } from '@/lib/products';
 import { useCartStore } from '@/store/cart';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { getProductPriceFrom } from '@/lib/owner-inputs';
+import { trackAddToCart } from '@/lib/analytics';
+import { getWhatsAppAttributionLabel } from '@/lib/attribution';
 
 interface ProductCardProps {
   product: CatalogueItem;
@@ -28,6 +30,13 @@ export default function ProductCard({ product }: ProductCardProps) {
       ageGroup: product.ageOrSizeRange,
     });
 
+    trackAddToCart({
+      id: product.id,
+      name: product.title,
+      category: product.category,
+      quantity: 1,
+    });
+
     setJustAdded(true);
     setTimeout(() => {
       setJustAdded(false);
@@ -41,13 +50,20 @@ export default function ProductCard({ product }: ProductCardProps) {
     men: "men's basics page",
     women: "women's basics page",
   };
-  const sourceLabel =
-    typeof window !== 'undefined' && window.location.pathname === '/'
-      ? 'home page'
-      : categorySourceMap[product.category] || `${product.category} page`;
+  const sourceLabel = categorySourceMap[product.category] || `${product.category} page`;
 
-  const directInquiryMessage = `Hello Warden & Sons! I am inquiring about "${product.title}" (${product.subCategory}, ${product.ageOrSizeRange}). Could you please share available colors, prints, and confirm current pricing?\n\n(Sent from the website, ${sourceLabel})`;
-  const directInquiryUrl = BUSINESS_CONFIG.whatsappUrl(directInquiryMessage);
+  // Deterministic SSR & initial hydration value (prevents React 19 hydration mismatch)
+  const [inquiryUrl, setInquiryUrl] = useState(() => {
+    const msg = `Hello Warden & Sons! I am inquiring about "${product.title}" (${product.subCategory}, ${product.ageOrSizeRange}). Could you please share available colors, prints, and confirm current pricing?\n\n(Sent from the website, ${sourceLabel})`;
+    return BUSINESS_CONFIG.whatsappUrl(msg);
+  });
+
+  useEffect(() => {
+    const pageLabel = window.location.pathname === '/' ? 'home page' : sourceLabel;
+    const attribution = getWhatsAppAttributionLabel(pageLabel);
+    const msg = `Hello Warden & Sons! I am inquiring about "${product.title}" (${product.subCategory}, ${product.ageOrSizeRange}). Could you please share available colors, prints, and confirm current pricing?\n\n(Sent from the website, ${attribution})`;
+    setInquiryUrl(BUSINESS_CONFIG.whatsappUrl(msg));
+  }, [product.title, product.subCategory, product.ageOrSizeRange, sourceLabel]);
 
   // Check if item has an authentic garment photo (never reuse storefront or logo as garment photo)
   const hasRealProductImage = Boolean(
@@ -94,12 +110,14 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {/* Quick Inquire Direct Anchor (Min 44x44px touch target) */}
           <a
-            href={directInquiryUrl}
+            href={inquiryUrl}
             target="_blank"
             rel="noopener noreferrer"
             data-track="whatsapp_click"
             data-track-location="product"
             data-track-category={product.category}
+            data-track-product-id={product.id}
+            data-track-product-name={product.title}
             className="absolute top-3 right-3 min-w-[44px] min-h-[44px] rounded-full bg-white/95 backdrop-blur-xs text-whatsapp hover:bg-whatsapp hover:text-white transition-all shadow-xs flex items-center justify-center cursor-pointer active:scale-[0.98]"
             title="Inquire directly on WhatsApp"
             aria-label={`Inquire about ${product.title} on WhatsApp`}

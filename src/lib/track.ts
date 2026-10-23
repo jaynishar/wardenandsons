@@ -1,104 +1,61 @@
 /**
- * Warden & Sons Kids Wear — Analytics Event Tracking System
- * Safely pushes typed analytics events to GTM dataLayer using declarative HTML data-attributes.
- * Never logs PII (Personal Identifiable Information) such as phone numbers, customer names, or message text.
+ * Warden & Sons Kids Wear — Legacy Track Bridge & Declarative Event Listener
+ * Backwards-compatible bridge forwarding to the central typed analytics module.
+ * Never logs PII (Personal Identifiable Information).
  */
 
-export type ButtonLocation =
-  | 'header'
-  | 'hero'
-  | 'product'
-  | 'request_list'
-  | 'footer'
-  | 'sticky_bar'
-  | 'video_call';
+import {
+  normalizeButtonLocation,
+  trackWhatsAppClick as coreTrackWhatsAppClick,
+  trackDirectionsClick,
+  trackPhoneClick,
+  trackAddToCart,
+  sendAnalyticsEvent,
+  type ButtonLocation,
+  VALID_BUTTON_LOCATIONS,
+} from './analytics';
 
-export const VALID_BUTTON_LOCATIONS: ButtonLocation[] = [
-  'header',
-  'hero',
-  'product',
-  'request_list',
-  'footer',
-  'sticky_bar',
-  'video_call',
-];
-
-declare global {
-  interface Window {
-    dataLayer?: Record<string, unknown>[];
-  }
-}
-
-export function normalizeButtonLocation(
-  rawLocation?: string | null,
-  fallback: ButtonLocation = 'footer',
-): ButtonLocation {
-  if (!rawLocation) return fallback;
-  const loc = rawLocation.toLowerCase().trim();
-  if (VALID_BUTTON_LOCATIONS.includes(loc as ButtonLocation)) {
-    return loc as ButtonLocation;
-  }
-  if (loc.includes('head') || loc.includes('nav_top')) return 'header';
-  if (loc.includes('hero')) return 'hero';
-  if (loc.includes('product') || loc.includes('catalog') || loc.includes('size')) return 'product';
-  if (loc.includes('request') || loc.includes('cart')) return 'request_list';
-  if (loc.includes('sticky') || loc.includes('bottom') || loc.includes('float')) return 'sticky_bar';
-  if (loc.includes('video')) return 'video_call';
-  if (loc.includes('foot')) return 'footer';
-  return fallback;
-}
+export { normalizeButtonLocation, VALID_BUTTON_LOCATIONS, type ButtonLocation };
 
 export function trackWhatsAppClick(params: {
   button_location?: string | null;
   category?: string | null;
   page_path?: string | null;
+  product_id?: string | null;
+  product_name?: string | null;
 }): void {
-  if (typeof window === 'undefined') return;
-
-  const page_path = params.page_path || window.location.pathname || '/';
-  const button_location = normalizeButtonLocation(params.button_location);
-  const category = params.category || '';
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'whatsapp_click',
-    page_path,
-    button_location,
-    category,
-  });
-
-  if (process.env.NODE_ENV === 'development') {
-    console.log('[Track WhatsApp]', { page_path, button_location, category });
-  }
+  coreTrackWhatsAppClick(params);
 }
 
 export function track(event: string, params: Record<string, unknown> = {}): void {
-  if (typeof window === 'undefined') return;
-
   if (event === 'whatsapp_click') {
-    trackWhatsAppClick({
+    coreTrackWhatsAppClick({
       button_location: (params.button_location || params.location) as string,
       category: params.category as string,
       page_path: params.page_path as string,
+      product_id: params.product_id as string,
+      product_name: params.product_name as string,
     });
     return;
   }
 
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event,
-    ...params,
-  });
-
-  if (process.env.NODE_ENV === 'development') {
-    console.log('[Track]', event, params);
+  if (event === 'directions_click' || event === 'get_directions') {
+    trackDirectionsClick({ location: (params.location || params.placement) as string });
+    return;
   }
+
+  if (event === 'call_click' || event === 'phone_click') {
+    trackPhoneClick({ location: (params.location || params.placement) as string });
+    return;
+  }
+
+  sendAnalyticsEvent(event, params);
 }
 
 /**
  * Initializes global event delegation for declarative tracking.
- * Listens for click events on elements with data-track and data-track-* attributes,
- * and automatically captures any clicks on WhatsApp (wa.me) links.
+ * Listens for click events on elements with data-track attributes,
+ * and automatically captures clicks on WhatsApp (wa.me), Google Maps, and telephone links.
  */
 export function initGlobalTracking(): () => void {
   if (typeof window === 'undefined') return () => {};
@@ -120,11 +77,54 @@ export function initGlobalTracking(): () => void {
           trackEl.getAttribute('data-track-category') ||
           trackEl.dataset.trackCategory ||
           trackEl.dataset.category;
-        trackWhatsAppClick({
+        const productId = trackEl.dataset.trackProductId;
+        const productName = trackEl.dataset.trackProductName;
+        const itemsCount = trackEl.dataset.trackItemsCount
+          ? parseInt(trackEl.dataset.trackItemsCount, 10)
+          : undefined;
+
+        coreTrackWhatsAppClick({
           button_location: rawLoc,
           category: cat,
+          product_id: productId,
+          product_name: productName,
           page_path: window.location.pathname,
+          items_count: itemsCount,
         });
+        return;
+      }
+
+      if (eventName === 'directions_click') {
+        const loc =
+          trackEl.getAttribute('data-track-location') ||
+          trackEl.dataset.trackLocation ||
+          'visit_us_page';
+        trackDirectionsClick({ location: loc });
+        return;
+      }
+
+      if (eventName === 'call_click') {
+        const loc =
+          trackEl.getAttribute('data-track-location') ||
+          trackEl.dataset.trackLocation ||
+          'store_header';
+        trackPhoneClick({ location: loc });
+        return;
+      }
+
+      if (eventName === 'add_to_request') {
+        const cat = trackEl.getAttribute('data-track-category') || '';
+        const itemName = trackEl.getAttribute('data-track-item') || '';
+        trackAddToCart({
+          id: itemName,
+          name: itemName,
+          category: cat,
+        });
+        return;
+      }
+
+      // Ignore generic form submit attribute on clicks (handled safely by onSubmit)
+      if (eventName === 'bulk_form_submit' || eventName === 'contact_form_submit') {
         return;
       }
 
@@ -165,7 +165,7 @@ export function initGlobalTracking(): () => void {
         waLink.dataset.trackCategory ||
         waLink.dataset.category;
 
-      trackWhatsAppClick({
+      coreTrackWhatsAppClick({
         button_location: rawLoc,
         category: cat,
         page_path: window.location.pathname,
@@ -173,39 +173,26 @@ export function initGlobalTracking(): () => void {
       return;
     }
 
-    // 3. Automatic tel: link detection
+    // 3. Automatic directions / Google Maps link detection
+    const mapsLink = target.closest<HTMLAnchorElement>(
+      'a[href*="maps.google"], a[href*="goo.gl/maps"], a[href*="maps.app.goo.gl"]',
+    );
+    if (mapsLink && !mapsLink.hasAttribute('data-track')) {
+      trackDirectionsClick({ location: 'maps_external_link' });
+      return;
+    }
+
+    // 4. Automatic tel: link detection
     const telLink = target.closest<HTMLAnchorElement>('a[href^="tel:"]');
     if (telLink && !telLink.hasAttribute('data-track')) {
-      track('call_click', { location: 'telephone_link' });
+      trackPhoneClick({ location: 'telephone_link' });
       return;
     }
   };
 
-  const handleSubmit = (e: Event) => {
-    const target = e.target as HTMLFormElement | null;
-    if (!target) return;
-    const trackEvent = target.getAttribute('data-track');
-    if (trackEvent) {
-      const params: Record<string, unknown> = {};
-      for (const key of Object.keys(target.dataset)) {
-        if (key.startsWith('track') && key !== 'track') {
-          const cleanKey = key
-            .replace(/^track/, '')
-            .replace(/^[A-Z]/, c => c.toLowerCase())
-            .replace(/([A-Z])/g, '_$1')
-            .toLowerCase();
-          params[cleanKey] = target.dataset[key];
-        }
-      }
-      track(trackEvent, params);
-    }
-  };
-
   document.addEventListener('click', handleClick, { passive: true });
-  document.addEventListener('submit', handleSubmit, { passive: true });
 
   return () => {
     document.removeEventListener('click', handleClick);
-    document.removeEventListener('submit', handleSubmit);
   };
 }

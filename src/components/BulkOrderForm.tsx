@@ -15,6 +15,8 @@ import {
   AlertCircle,
 } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { trackFormSubmit, trackWhatsAppClick } from '@/lib/analytics';
+import { getWhatsAppAttributionLabel } from '@/lib/attribution';
 
 const bulkSchema = z.object({
   organization: z.string().min(2, { message: 'School or organization name required.' }),
@@ -52,6 +54,7 @@ export default function BulkOrderForm() {
   });
 
   const buildMessage = (data: BulkFormValues): string => {
+    const attribution = getWhatsAppAttributionLabel('bulk order form');
     const lines = [
       'Hello Warden & Sons! I have a bulk/institutional enquiry:',
       '',
@@ -71,11 +74,21 @@ export default function BulkOrderForm() {
     lines.push('Please let us know availability, fabric swatches, and quotation details.');
     lines.push('');
     lines.push('Thank you!');
+    lines.push('');
+    lines.push(`(Sent from the website, ${attribution})`);
 
     return lines.join('\n');
   };
 
   const onSubmit = (data: BulkFormValues) => {
+    // 1. Fire verified form submission and qualified lead event (Zero PII passed)
+    trackFormSubmit('bulk_order', data.category);
+    trackWhatsAppClick({
+      button_location: 'product',
+      category: data.category,
+      enquiry_type: 'bulk',
+    });
+
     const message = buildMessage(data);
     setGeneratedMessage(message);
 
@@ -120,26 +133,23 @@ export default function BulkOrderForm() {
             <MessageSquare className="w-7 h-7" />
           </div>
 
-          <div className="text-center space-y-2">
-            <h3 className="font-serif text-2xl font-bold text-forest">
-              Bulk Enquiry Ready in WhatsApp
-            </h3>
-            <p className="text-xs sm:text-sm text-muted max-w-md mx-auto leading-relaxed">
-              Your bulk uniform specifications have been formatted. Please tap <strong>Send</strong>{' '}
-              in WhatsApp to deliver the enquiry directly to our store desk.
+          <div className="text-center space-y-2 max-w-md mx-auto">
+            <h3 className="font-serif font-bold text-xl text-forest">Enquiry Ready for WhatsApp</h3>
+            <p className="text-xs text-muted leading-relaxed">
+              We have generated your custom quote summary. It should open automatically on WhatsApp.
+              If it did not launch, you can copy the text below and message our store team directly.
             </p>
           </div>
 
-          {/* Fallback Copy Area */}
-          <div className="bg-bg-cream rounded-2xl border border-border-soft p-4 space-y-3 max-w-md mx-auto">
+          {/* Generated Message Box */}
+          <div className="bg-bg-cream rounded-2xl p-4 border border-border-soft space-y-3 max-w-lg mx-auto">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold text-forest uppercase tracking-wider">
-                Prefilled Message
+                Summary Preview
               </span>
               <button
-                type="button"
                 onClick={handleCopyMessage}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-forest hover:text-gold transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-forest hover:text-gold transition-colors cursor-pointer"
               >
                 {copied ? (
                   <>
@@ -154,11 +164,11 @@ export default function BulkOrderForm() {
                 )}
               </button>
             </div>
-            <pre className="text-[11px] text-muted whitespace-pre-wrap font-sans bg-white p-3 rounded-xl border border-border-soft/80 max-h-40 overflow-y-auto">
+            <pre className="text-[11px] text-muted whitespace-pre-wrap font-sans bg-white p-3 rounded-xl border border-border-soft/80 max-h-36 overflow-y-auto">
               {generatedMessage}
             </pre>
             <p className="text-[10px] text-gray-500 italic">
-              Did WhatsApp not open? Copy the message above and send directly to{' '}
+              Did WhatsApp not open? Copy the message above and send it to{' '}
               <strong>{BUSINESS_CONFIG.phone.display}</strong>.
             </p>
           </div>
@@ -168,10 +178,7 @@ export default function BulkOrderForm() {
               href={BUSINESS_CONFIG.whatsappUrl(generatedMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              data-track="whatsapp_click"
-              data-track-location="footer"
-              data-track-category="bulk_orders"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white text-xs font-bold shadow-xs transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white text-xs font-bold shadow-xs transition-all cursor-pointer"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
               <span>Re-open WhatsApp</span>
@@ -185,7 +192,7 @@ export default function BulkOrderForm() {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit(onSubmit)} data-track="bulk_form_submit" className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
               <label className="text-xs font-bold text-near-black flex items-center gap-1.5">
@@ -195,7 +202,7 @@ export default function BulkOrderForm() {
               <input
                 {...register('organization')}
                 type="text"
-                placeholder="e.g. Cathedral & John Connon / Local Academy"
+                placeholder="e.g. Activity High School / Private Trust"
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
               {errors.organization && (
@@ -208,12 +215,12 @@ export default function BulkOrderForm() {
             <div className="space-y-1">
               <label className="text-xs font-bold text-near-black flex items-center gap-1.5">
                 <User className="w-3.5 h-3.5 text-gold" />
-                Contact Person <span className="text-red-500">*</span>
+                Contact Person Name <span className="text-red-500">*</span>
               </label>
               <input
                 {...register('contactPerson')}
                 type="text"
-                placeholder="e.g. Ramesh Kothari"
+                placeholder="e.g. Ramesh Mehta"
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
               {errors.contactPerson && (
@@ -228,12 +235,12 @@ export default function BulkOrderForm() {
             <div className="space-y-1">
               <label className="text-xs font-bold text-near-black flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-gold" />
-                Phone / WhatsApp Number <span className="text-red-500">*</span>
+                WhatsApp / Phone Number <span className="text-red-500">*</span>
               </label>
               <input
                 {...register('phone')}
                 type="tel"
-                placeholder="e.g. 9920751567"
+                placeholder="e.g. 9820012345"
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
               {errors.phone && (
@@ -249,7 +256,7 @@ export default function BulkOrderForm() {
               <input
                 {...register('email')}
                 type="email"
-                placeholder="e.g. admin@school.edu"
+                placeholder="e.g. ramesh@organization.org"
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
               {errors.email && (
@@ -260,30 +267,27 @@ export default function BulkOrderForm() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-xs font-bold text-near-black block">
-                Garment Type <span className="text-red-500">*</span>
+              <label className="text-xs font-bold text-near-black">
+                Garment Category <span className="text-red-500">*</span>
               </label>
               <select
                 {...register('category')}
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               >
-                <option value="">Select garment category</option>
-                <option value="School Uniforms (Shirts, Pinafores, Skirts, Trousers)">
-                  School Uniforms (Shirts, Pinafores, Trousers)
+                <option value="">Select garment type...</option>
+                <option value="School Uniforms (Shirts/Pinafores/Skirts)">
+                  School Uniforms (Shirts / Pinafores / Skirts)
                 </option>
-                <option value="Cricket Whites & Academy Kits">Cricket Whites & Academy Kits</option>
-                <option value="Dryfit Sports Jersey & Shorts">
-                  Dryfit Sports Jerseys & Shorts
+                <option value="Sports Track Pants & Polos">Sports Track Pants &amp; Polos</option>
+                <option value="Cotton T-Shirts (Screen-Printed / Embroidered)">
+                  Cotton T-Shirts (Screen-Printed / Embroidered)
                 </option>
-                <option value="Annual Day / Sports Day Event T-Shirts">
-                  Annual Day / Sports Day Event T-Shirts
+                <option value="Lab Coats & Aprons">Lab Coats &amp; Aprons</option>
+                <option value="Annual Day / Drama Costumes">Annual Day / Drama Costumes</option>
+                <option value="Hospital Layettes / Newborn Bundles">
+                  Hospital Layettes / Newborn Bundles
                 </option>
-                <option value="Hospital / Nursery Swaddle Bundles">
-                  Hospital / Nursery Swaddle Bundles
-                </option>
-                <option value="Custom Cotton Embroidery & Other Apparel">
-                  Custom Cotton Embroidery & Other Apparel
-                </option>
+                <option value="Other Custom Apparel">Other Custom Apparel</option>
               </select>
               {errors.category && (
                 <p className="text-[11px] font-semibold text-red-500">{errors.category.message}</p>
@@ -291,13 +295,13 @@ export default function BulkOrderForm() {
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs font-bold text-near-black block">
-                Approximate Quantity <span className="text-red-500">*</span>
+              <label className="text-xs font-bold text-near-black">
+                Approximate Quantity Required <span className="text-red-500">*</span>
               </label>
               <input
                 {...register('quantity')}
                 type="text"
-                placeholder="e.g. 25 pieces, 100 sets"
+                placeholder="e.g. 50 sets, 200 t-shirts"
                 className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white"
               />
               {errors.quantity && (
@@ -307,13 +311,13 @@ export default function BulkOrderForm() {
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-bold text-near-black block">
-              Design, Colors & Fabric Specifications <span className="text-red-500">*</span>
+            <label className="text-xs font-bold text-near-black">
+              Detailed Requirements, Sizes &amp; Deadlines <span className="text-red-500">*</span>
             </label>
             <textarea
               {...register('details')}
               rows={4}
-              placeholder="Tell us about school colors, crest embroidery, fabric preference (pure cotton, poly-cotton blend, dryfit), or target delivery deadline..."
+              placeholder="Please specify size ranges (e.g. 4-12 years), fabric preferences (100% combed cotton, drill, matty), target completion date, or any specific design guidelines..."
               className="w-full px-4 py-3 rounded-xl border border-border-soft bg-bg-cream text-xs font-sans focus:outline-none focus:ring-2 focus:ring-forest focus:bg-white resize-none"
             />
             {errors.details && (
@@ -324,15 +328,15 @@ export default function BulkOrderForm() {
           <div className="bg-bg-cream p-3 rounded-xl border border-border-soft text-[11px] text-gray-600 flex items-start gap-2">
             <AlertCircle className="w-4 h-4 text-gold shrink-0 mt-0.5" />
             <span>
-              Submitting opens WhatsApp with your prefilled specifications. Our shop team will reply
-              directly with quotations and fabric sample options.
+              Submitting generates a structured quotation enquiry sent directly to our Kemps Corner
+              store manager on WhatsApp ({BUSINESS_CONFIG.phone.display}). You can review before
+              sending.
             </span>
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            data-track="bulk_form_submit"
             className="w-full min-h-[48px] bg-forest hover:bg-forest-dark text-white font-bold py-3.5 px-4 rounded-xl shadow-xs transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
           >
             <MessageSquare className="w-4 h-4 text-whatsapp" />

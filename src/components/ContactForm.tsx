@@ -4,18 +4,16 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { User, Mail, Phone, MessageSquare, Copy, Check, AlertCircle } from 'lucide-react';
+import { User, Phone, Mail, MessageSquare, Copy, Check, AlertCircle } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { trackFormSubmit, trackWhatsAppClick } from '@/lib/analytics';
+import { getWhatsAppAttributionLabel } from '@/lib/attribution';
 
 const contactSchema = z.object({
   name: z.string().min(2, { message: 'Please enter your name.' }),
   phone: z.string().optional().or(z.literal('')),
-  email: z
-    .string()
-    .email({ message: 'Please enter a valid email address.' })
-    .optional()
-    .or(z.literal('')),
-  message: z.string().min(3, { message: 'Please enter your message or question.' }),
+  email: z.string().email({ message: 'Please enter a valid email.' }).optional().or(z.literal('')),
+  message: z.string().min(5, { message: 'Please write a brief question or requirement.' }),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -41,12 +39,11 @@ export default function ContactForm() {
   });
 
   const buildMessage = (data: ContactFormValues): string => {
+    const attribution = getWhatsAppAttributionLabel('contact form');
     const lines = [
       'Hello Warden & Sons Kids Wear!',
       '',
-      'I have an enquiry from your website:',
-      '',
-      `Name: ${data.name.trim()}`,
+      `Customer Name: ${data.name.trim()}`,
     ];
 
     if (data.phone && data.phone.trim()) {
@@ -60,11 +57,21 @@ export default function ContactForm() {
     lines.push(`Message: ${data.message.trim()}`);
     lines.push('');
     lines.push('Please let me know how best to proceed. Thank you!');
+    lines.push('');
+    lines.push(`(Sent from the website, ${attribution})`);
 
     return lines.join('\n');
   };
 
   const onSubmit = (data: ContactFormValues) => {
+    // 1. Fire verified form submission and qualified lead event (Zero PII passed)
+    trackFormSubmit('contact_form', 'general_inquiry');
+    trackWhatsAppClick({
+      button_location: 'footer',
+      category: 'contact',
+      enquiry_type: 'general',
+    });
+
     const message = buildMessage(data);
     setGeneratedMessage(message);
 
@@ -109,24 +116,24 @@ export default function ContactForm() {
             <MessageSquare className="w-7 h-7" />
           </div>
 
-          <div className="text-center space-y-2">
-            <h3 className="font-serif text-2xl font-bold text-forest">WhatsApp Window Opened</h3>
-            <p className="text-xs sm:text-sm text-muted max-w-md mx-auto leading-relaxed">
-              Your enquiry has been prepared and formatted for WhatsApp. Please press{' '}
-              <strong>Send</strong> in your WhatsApp application to deliver it to our store desk.
+          <div className="text-center space-y-2 max-w-md mx-auto">
+            <h3 className="font-serif font-bold text-xl text-forest">Enquiry Ready for WhatsApp</h3>
+            <p className="text-xs text-muted leading-relaxed">
+              We have compiled your question into a direct message for our Kemps Corner store. If
+              WhatsApp did not launch automatically, you can copy the text below and send it
+              directly.
             </p>
           </div>
 
-          {/* Fallback Copy Area */}
-          <div className="bg-bg-cream rounded-2xl border border-border-soft p-4 space-y-3 max-w-md mx-auto">
+          {/* Generated Message Box */}
+          <div className="bg-bg-cream rounded-2xl p-4 border border-border-soft space-y-3 max-w-lg mx-auto">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold text-forest uppercase tracking-wider">
-                Prefilled Message Preview
+                Message Preview
               </span>
               <button
-                type="button"
                 onClick={handleCopyMessage}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-forest hover:text-gold transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-forest hover:text-gold transition-colors cursor-pointer"
               >
                 {copied ? (
                   <>
@@ -247,9 +254,6 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-track="whatsapp_click"
-            data-track-location="footer"
-            data-track-category="contact"
             className="w-full min-h-[48px] bg-forest hover:bg-forest-dark text-white font-bold py-3.5 px-4 rounded-xl shadow-xs transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
           >
             <MessageSquare className="w-4 h-4 text-whatsapp" />

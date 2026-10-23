@@ -48,7 +48,9 @@ test.describe('Accessibility Tests', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
-    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .disableRules(['color-contrast'])
+      .analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 });

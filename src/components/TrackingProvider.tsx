@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { initGlobalTracking } from '@/lib/track';
+import AnalyticsNavigationTracker from './AnalyticsNavigationTracker';
 
 export default function TrackingProvider() {
   useEffect(() => {
@@ -9,5 +10,9 @@ export default function TrackingProvider() {
     return cleanup;
   }, []);
 
-  return null;
+  return (
+    <Suspense fallback={null}>
+      <AnalyticsNavigationTracker />
+    </Suspense>
+  );
 }

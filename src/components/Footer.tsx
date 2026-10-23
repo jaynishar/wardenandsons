@@ -10,6 +10,12 @@ import { BUSINESS_CONFIG } from '@/config/business';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const handleOpenConsent = () => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('ws:open_consent_banner'));
+    }
+  };
+
   return (
     <footer className="bg-white border-t border-border-soft text-near-black font-sans pb-32 md:pb-0">
       {/* Top Boutique Contact Banner */}
@@ -68,7 +74,7 @@ export default function Footer() {
               </div>
               <div>
                 <h4 className="font-serif text-lg font-bold text-forest leading-none">
-                  Warden & Sons
+                  Warden &amp; Sons
                 </h4>
                 <span className="text-[10px] uppercase font-bold text-gold tracking-widest mt-0.5 block">
                   Kids Wear • Kemps Corner
@@ -93,27 +99,27 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-muted">
               <li>
                 <Link href="/shop/newborn/" className="hover:text-forest transition-colors">
-                  Newborn & Infants (0-24M)
+                  Newborn &amp; Infants (0-24M)
                 </Link>
               </li>
               <li>
                 <Link href="/shop/boys/" className="hover:text-forest transition-colors">
-                  Boys Playwear & Sports (0-16Y)
+                  Boys Playwear &amp; Sports (0-16Y)
                 </Link>
               </li>
               <li>
                 <Link href="/shop/girls/" className="hover:text-forest transition-colors">
-                  Girls Dresses & Sleepwear (0-16Y)
+                  Girls Dresses &amp; Sleepwear (0-16Y)
                 </Link>
               </li>
               <li>
                 <Link href="/shop/men/" className="hover:text-forest transition-colors">
-                  Men’s Basics & Lounge
+                  Men’s Basics &amp; Lounge
                 </Link>
               </li>
               <li>
                 <Link href="/shop/women/" className="hover:text-forest transition-colors">
-                  Women’s Muslin Sleepwear & Basics
+                  Women’s Muslin Sleepwear &amp; Basics
                 </Link>
               </li>
               <li>
@@ -121,7 +127,7 @@ export default function Footer() {
                   href="/bulk-orders/"
                   className="hover:text-forest transition-colors text-gold font-bold"
                 >
-                  Custom School Uniforms & Bulk Enquiries
+                  Custom School Uniforms &amp; Bulk Enquiries
                 </Link>
               </li>
             </ul>
@@ -134,33 +140,23 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2 text-xs text-muted">
               <li>
-                <Link href="/size-guide/" className="hover:text-forest transition-colors font-medium text-forest">
-                  Kids Size Guide &amp; Chart
+                <Link href="/how-it-works/" className="hover:text-forest transition-colors">
+                  How WhatsApp Ordering Works
                 </Link>
               </li>
               <li>
-                <Link href="/how-it-works/" className="hover:text-forest transition-colors">
-                  How WhatsApp Requests Work
+                <Link href="/size-guide/" className="hover:text-forest transition-colors">
+                  Measuring Tape &amp; Sizing Chart
                 </Link>
               </li>
               <li>
                 <Link href="/about/" className="hover:text-forest transition-colors">
-                  Our Shop Heritage (Est. 1994)
-                </Link>
-              </li>
-              <li>
-                <Link href="/visit-us/" className="hover:text-forest transition-colors">
-                  Kemps Corner Store & Directions
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact/" className="hover:text-forest transition-colors">
-                  Contact Store Desk
+                  Our Kemps Corner Heritage
                 </Link>
               </li>
               <li>
                 <Link href="/shipping-returns/" className="hover:text-forest transition-colors">
-                  Delivery & Exchange Information
+                  Delivery &amp; Exchange Information
                 </Link>
               </li>
               <li>
@@ -178,10 +174,19 @@ export default function Footer() {
                   Terms of Service
                 </Link>
               </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={handleOpenConsent}
+                  className="text-left hover:text-forest transition-colors cursor-pointer"
+                >
+                  Cookie Preferences
+                </button>
+              </li>
             </ul>
           </div>
 
-          {/* Store Location & Timings */}
+          {/* Kemps Corner Store Location & Timings */}
           <div className="space-y-3">
             <h5 className="font-serif font-bold text-sm text-forest uppercase tracking-wider">
               Kemps Corner Store
@@ -241,7 +246,7 @@ export default function Footer() {
 
         {/* Bottom Strip */}
         <div className="mt-12 pt-8 border-t border-border-soft flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p>© {currentYear} Warden & Sons Kids Wear. All rights reserved.</p>
+          <p>© {currentYear} Warden &amp; Sons Kids Wear. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-3 text-xs">
             <Link href="/privacy-policy/" className="hover:text-forest transition-colors">
               Privacy Policy
@@ -250,6 +255,14 @@ export default function Footer() {
             <Link href="/terms/" className="hover:text-forest transition-colors">
               Terms of Service
             </Link>
+            <span className="text-gray-300">•</span>
+            <button
+              type="button"
+              onClick={handleOpenConsent}
+              className="hover:text-forest transition-colors cursor-pointer"
+            >
+              Cookie Preferences
+            </button>
             <span className="text-gray-300">•</span>
             <span>Kemps Corner, South Mumbai</span>
           </div>

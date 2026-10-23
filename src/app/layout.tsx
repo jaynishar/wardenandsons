@@ -7,8 +7,9 @@ import BottomNav from '@/components/BottomNav';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CartDrawer from '@/components/CartDrawer';
 import TrackingProvider from '@/components/TrackingProvider';
-import { GoogleTagManager } from '@next/third-parties/google';
-import { SITE_URL, SITE_CONFIG, getCanonicalUrl } from '@/config/site';
+import ConsentBanner from '@/components/ConsentBanner';
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
+import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/config/site';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -32,6 +33,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: getCanonicalUrl('/'),
+  },
+  verification: {
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+      ANALYTICS_CONFIG.googleSiteVerification ||
+      undefined,
   },
   openGraph: {
     type: 'website',
@@ -78,18 +85,36 @@ export default function RootLayout({
   return (
     <html lang="en-IN" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
+        {/* Google Consent Mode v2 & DataLayer Initialization */}
         <script
-          id="datalayer-init"
+          id="google-consent-mode"
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];`,
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              (function() {
+                var saved = null;
+                try { saved = localStorage.getItem('ws_consent_choice'); } catch(e) {}
+                var isAll = saved === 'all';
+                gtag('consent', 'default', {
+                  'analytics_storage': isAll ? 'granted' : 'denied',
+                  'ad_storage': isAll ? 'granted' : 'denied',
+                  'ad_user_data': isAll ? 'granted' : 'denied',
+                  'ad_personalization': isAll ? 'granted' : 'denied',
+                  'wait_for_update': 500
+                });
+              })();
+            `,
           }}
         />
+
+        {/* Load Tag Manager if configured in environment, else direct GA4 */}
         {process.env.NEXT_PUBLIC_GTM_ID ? (
           <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
-        ) : (
-          /* TODO: Set NEXT_PUBLIC_GTM_ID in environment variables to activate Google Tag Manager */
-          null
-        )}
+        ) : ANALYTICS_CONFIG.gaMeasurementId ? (
+          <GoogleAnalytics gaId={ANALYTICS_CONFIG.gaMeasurementId} />
+        ) : null}
+
         {/* High-priority LCP hero image preload for instant discovery */}
         <link
           rel="preload"
@@ -113,6 +138,7 @@ export default function RootLayout({
         <Footer />
         <BottomNav />
         <WhatsAppFloat />
+        <ConsentBanner />
       </body>
     </html>
   );

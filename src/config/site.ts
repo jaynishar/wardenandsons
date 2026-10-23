@@ -123,4 +123,5 @@ export function buildPageMetadata({
 export const ANALYTICS_CONFIG = {
   gaMeasurementId: process.env.NEXT_PUBLIC_GA_ID || 'G-FNQNXJJVQ3',
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PK75ST2X',
+  googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
 };

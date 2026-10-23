@@ -9,12 +9,16 @@ export default function WhatsAppFloat() {
   const whatsappUrl = BUSINESS_CONFIG.whatsappUrl(defaultMessage);
 
   return (
-    <div className="hidden md:flex fixed bottom-8 right-8 z-40">
+    <aside
+      role="complementary"
+      aria-label="Quick WhatsApp Contact"
+      className="hidden md:flex fixed bottom-8 right-8 z-40"
+    >
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp with Kemps Corner Store"
+        aria-label="WhatsApp Desk: Chat on WhatsApp with Kemps Corner Store"
         data-track="whatsapp_click"
         data-track-location="sticky_bar"
         data-track-category="sticky_bar"
@@ -27,6 +31,6 @@ export default function WhatsAppFloat() {
         <MessageSquare className="w-5 h-5 fill-white text-whatsapp" />
         <span className="text-xs font-bold tracking-wide hidden sm:inline">WhatsApp Desk</span>
       </a>
-    </div>
+    </aside>
   );
 }

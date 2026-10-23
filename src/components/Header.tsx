@@ -58,7 +58,7 @@ export default function Header() {
               </div>
               <div>
                 <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-forest block leading-none">
-                  Warden & Sons
+                  Warden &amp; Sons
                 </span>
                 <span className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-gold font-semibold mt-1 block">
                   {BUSINESS_CONFIG.establishment.badgeText}
@@ -86,10 +86,10 @@ export default function Header() {
                 href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Chat on WhatsApp"
+                aria-label="WhatsApp Us: Chat on WhatsApp"
                 data-track="whatsapp_click"
                 data-track-location="header"
-                  data-track-category="header"
+                data-track-category="header"
                 className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full bg-forest text-white hover:bg-forest-dark transition-all shadow-xs active:scale-[0.98]"
               >
                 <MessageSquare className="w-4 h-4 text-whatsapp" />
@@ -98,6 +98,7 @@ export default function Header() {
 
               {/* Request List Button */}
               <button
+                type="button"
                 onClick={toggleCart}
                 aria-label="Request List"
                 title="View Request List"
@@ -122,6 +123,7 @@ export default function Header() {
 
               {/* Mobile Menu Button */}
               <button
+                type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="md:hidden p-2.5 rounded-full bg-white border border-border-soft text-near-black hover:bg-bg-cream cursor-pointer active:scale-[0.98]"
                 aria-label="Toggle Navigation Menu"

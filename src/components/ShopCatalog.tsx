@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, MessageSquare } from 'lucide-react';
 import { CatalogueItem } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
 import StickyMobileBar from '@/components/StickyMobileBar';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { trackViewItemList, trackSearch } from '@/lib/analytics';
 
 interface ShopCatalogProps {
   products: CatalogueItem[];
@@ -80,6 +81,15 @@ export default function ShopCatalog({
     return result;
   }, [products, activeCategory, selectedSubCategory, searchQuery, sortBy]);
 
+  // Debounced search tracking
+  useEffect(() => {
+    if (!searchQuery.trim()) return;
+    const timer = setTimeout(() => {
+      trackSearch(searchQuery.trim(), filteredProducts.length);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [searchQuery, filteredProducts.length]);
+
   return (
     <div className="space-y-8 font-sans">
       {/* Category Pills & Search Controls */}
@@ -130,6 +140,7 @@ export default function ShopCatalog({
                   onClick={() => {
                     setActiveCategory(cat.id);
                     setSelectedSubCategory('all');
+                    trackViewItemList(cat.id);
                   }}
                   className={`min-h-[40px] px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                     isActive
@@ -172,7 +183,7 @@ export default function ShopCatalog({
         <div className="flex items-center gap-2.5">
           <span className="w-2 h-2 rounded-full bg-whatsapp shrink-0" />
           <span className="font-semibold text-forest">
-            Prices and current stock are confirmed on WhatsApp with live photos & measuring-tape
+            Prices and current stock are confirmed on WhatsApp with live photos &amp; measuring-tape
             checks.
           </span>
         </div>

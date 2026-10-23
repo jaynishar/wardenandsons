@@ -6,6 +6,7 @@
 
 import { RequestItem } from '@/store/cart';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getWhatsAppAttributionLabel } from './attribution';
 
 export interface WhatsAppMessageOptions {
   items: RequestItem[];
@@ -23,7 +24,9 @@ export const VIDEO_CALL_MESSAGE =
   "Hi Warden & Sons, I'd like a video call to see options for my child (age: ). Please tell me a good time.";
 
 export function buildVideoCallUrl(phoneNumber: string = BUSINESS_CONFIG.phone.raw): string {
-  return buildWhatsAppRequestUrl(VIDEO_CALL_MESSAGE, phoneNumber);
+  const attribution = getWhatsAppAttributionLabel('video call enquiry');
+  const messageWithRef = `${VIDEO_CALL_MESSAGE}\n\n(Sent from the website, ${attribution})`;
+  return buildWhatsAppRequestUrl(messageWithRef, phoneNumber);
 }
 
 /**
@@ -31,9 +34,10 @@ export function buildVideoCallUrl(phoneNumber: string = BUSINESS_CONFIG.phone.ra
  */
 export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): string {
   const { items, customerName, notes, pickupOrDeliveryPreference } = options;
+  const attributionTag = getWhatsAppAttributionLabel('request list');
 
   if (!items || items.length === 0) {
-    return 'Hello Warden & Sons Kids Wear! I would like to enquire about your catalogue.\n\n(Sent from the website, request list)';
+    return `Hello Warden & Sons Kids Wear! I would like to enquire about your catalogue.\n\n(Sent from the website, ${attributionTag})`;
   }
 
   const lines: string[] = [
@@ -84,13 +88,13 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
   lines.push('');
   lines.push('Thank you!');
   lines.push('');
-  lines.push('(Sent from the website, request list)');
+  lines.push(`(Sent from the website, ${attributionTag})`);
 
   const fullMessage = lines.join('\n');
 
   // Long-list size guard to avoid URL breakage in mobile browsers
   if (fullMessage.length > MAX_SAFE_WHATSAPP_MESSAGE_LENGTH) {
-    const truncatedNote = `\n\n[Note: Request truncated due to WhatsApp message size limit (${items.length} items total). Please see primary selections above.]\n\n(Sent from the website, request list)`;
+    const truncatedNote = `\n\n[Note: Request truncated due to WhatsApp message size limit (${items.length} items total). Please see primary selections above.]\n\n(Sent from the website, ${attributionTag})`;
     return (
       fullMessage.slice(0, MAX_SAFE_WHATSAPP_MESSAGE_LENGTH - truncatedNote.length) + truncatedNote
     );
