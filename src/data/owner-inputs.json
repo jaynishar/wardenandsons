@@ -1,6 +1,8 @@
 {
   "replyPromise": "",
   "schoolsServed": [],
+  "authorName": null,
+  "authorBio": null,
   "categoryPriceFrom": {
     "newborn": null,
     "boys": null,

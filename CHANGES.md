@@ -475,3 +475,16 @@ Automated audit scripts executed against static build `out/`:
 19. **`src/content/blog/best-sportswear-kids-guide.mdx`**
     - **Old:** `"- **Advantages:** Hypoallergenic, extremely soft, and comfortable."`
     - **New:** `"- **Advantages:** Gentle on skin, extremely soft, and comfortable."`
+
+---
+
+## Step 7: Content
+- **Size Chart Guide Rewrite (`/blog/kids-clothing-size-chart-guide/`):** Rewritten as a practical guide strictly within 900–1,100 words (1,084 markdown tokens, 933 plain-text words). Kept existing 11-row size table and added centimetre values next to inches. Added numbered 5-step "How to measure your child at home" section, detailed why sizes vary by brand and fabric (Indian sizing, woven cotton vs knits, sports blends, washing), linked to all 5 age-group category pages (`/shop/newborn/`, `/shop/boys/`, `/shop/girls/`, `/shop/men/`, `/shop/women/`), added visible "Last reviewed: October 2026" date, ended with one WhatsApp button for sizing help (`button_location="product"`), and added placeholder `"TODO: owner adds one real example from the shop"`.
+- **Blog Byline Update:** Replaced `author: Warden Editorial` on all 12 MDX posts with `author: the Warden & Sons team, Kemps Corner`. Updated fallback in `src/lib/blog.ts`.
+- **Author Box (`owner-inputs`):** Added `authorName` and `authorBio` (both `null`) to `src/data/owner-inputs.json` and `src/lib/owner-inputs.ts`. Integrated conditional author box under each blog post in `src/app/blog/[slug]/page.tsx` (renders nothing when null/empty).
+- **Image Alt Text:** Verified and refined plain descriptive alt text across all site images (`Hero.tsx`, `CategoryGrid.tsx`, `visit-us/page.tsx`).
+- Build, lint, and static export verified passing (37/37 static pages).
+
+### Needs the owner
+- `/blog/kids-clothing-size-chart-guide/`: Owner to add one real example from the shop where indicated by `"TODO: owner adds one real example from the shop"`.
+- `authorName` and `authorBio` in `src/data/owner-inputs.json`: Owner to optionally provide author name and short biography to display the author box under blog posts.

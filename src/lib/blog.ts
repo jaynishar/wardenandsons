@@ -40,7 +40,7 @@ export function getBlogPosts(): BlogPost[] {
         metaTitle: data.metaTitle || '',
         metaDescription: data.metaDescription || '',
         date: data.date || '',
-        author: data.author || 'Warden Editorial',
+        author: data.author || 'the Warden & Sons team, Kemps Corner',
         excerpt: data.excerpt || '',
         coverImage: data.coverImage || '/images/blog/placeholder.jpg',
         category: data.category || 'General',

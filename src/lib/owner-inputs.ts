@@ -3,6 +3,8 @@ import ownerInputsData from '@/data/owner-inputs.json';
 export interface OwnerInputs {
   replyPromise: string;
   schoolsServed: string[];
+  authorName?: string | null;
+  authorBio?: string | null;
   categoryPriceFrom: Record<string, number | null>;
   productPriceFrom: Record<string, number | null>;
 }
@@ -25,4 +27,11 @@ export function getCategoryPriceFrom(categorySlug: string): number | null {
 export function getProductPriceFrom(productId: string): number | null {
   if (!ownerInputs.productPriceFrom) return null;
   return ownerInputs.productPriceFrom[productId] ?? null;
+}
+
+export function getAuthorBox(): { name: string; bio: string } | null {
+  const name = (ownerInputs.authorName || '').trim();
+  const bio = (ownerInputs.authorBio || '').trim();
+  if (!name || !bio) return null;
+  return { name, bio };
 }

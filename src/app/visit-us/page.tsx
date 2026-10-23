@@ -154,7 +154,7 @@ export default function VisitUsPage() {
           <div className="relative h-[320px] sm:h-[400px] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
             <Image
               src="/store_front.webp"
-              alt="Warden & Sons Kids Wear Boutique Storefront"
+              alt="Warden & Sons Kids Wear boutique storefront at Kemps Corner, Mumbai"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 40vw"

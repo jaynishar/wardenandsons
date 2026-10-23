@@ -11,6 +11,7 @@ import { getBlogPostingSchema } from '@/lib/schema';
 
 import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { getAuthorBox } from '@/lib/owner-inputs';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -60,6 +61,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const relatedPosts = getRelatedPosts(post.slug, post.category, 3);
 
   const blogSchema = getBlogPostingSchema(post);
+  const authorBox = getAuthorBox();
 
   return (
     <>
@@ -109,6 +111,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             className="prose text-xs sm:text-sm text-slate-700 leading-relaxed font-sans"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
+
+          {/* Optional Author Box (controlled via owner-inputs) */}
+          {authorBox && (
+            <div className="mt-10 p-6 bg-warm-neutral/60 border border-forest/15 rounded-2xl flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-forest text-white font-serif font-bold text-base flex items-center justify-center shrink-0 shadow-xs">
+                {authorBox.name.charAt(0)}
+              </div>
+              <div>
+                <h3 className="font-serif font-bold text-sm text-forest">{authorBox.name}</h3>
+                <p className="text-xs text-muted font-sans mt-1 leading-relaxed">{authorBox.bio}</p>
+              </div>
+            </div>
+          )}
 
           {/* WhatsApp Support footer band inside article */}
           <div className="bg-primary-50 border border-primary-100 p-6 rounded-2xl shadow-sm mt-12 flex flex-col sm:flex-row justify-between items-center gap-4">

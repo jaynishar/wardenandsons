@@ -103,7 +103,7 @@ export default function Hero() {
               <div className="relative h-[380px] sm:h-[460px] lg:h-[490px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <Image
                   src="/hero-editorial.webp"
-                  alt="Warden & Sons pure cotton children's clothing in Kemps Corner"
+                  alt="Children's cotton everyday clothing collection at Warden & Sons, Kemps Corner"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 42vw"
