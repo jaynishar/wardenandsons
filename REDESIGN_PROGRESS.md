@@ -33,7 +33,15 @@
   - Added npm scripts `"images"` and `"prebuild"`, created `assets/photos/.gitkeep`, `assets/photos/README.md`, and generated `PHOTO_SHOTLIST.md`.
   - Extended `Photo` component to support `imageKey` with picture element, responsive sources, and blur placeholder.
   - Added comprehensive Vitest tests in `src/data/catalogue.test.ts` (all 8 tests passing).
-- [ ] **R4: Header, mobile bottom bar & navigation**
+- [x] **R4: My list core & WhatsApp message builder**
+  - Built Zustand store in `src/lib/list-store.ts` with `persist` (`warden-list-v1`), safe localStorage wrapper resilient to quota/block exceptions, same category+sub+age merge, 30 distinct lines maximum, 1–20 quantity clamp, 140-char note clamp, and hydration-safe `useListCount()` hook.
+  - Implemented `src/lib/whatsapp-list.ts` with `buildListMessage` and `getListUrl` adhering strictly to 1,200-char cap, "+N more items, I will send them in chat" truncation, `>` separator, and `BUSINESS_CONFIG.phone.raw` (`919920751567`). Decoupled `src/lib/whatsapp.ts` from old cart store.
+  - Created Radix Dialog `AddSheet.tsx` (mobile bottom sheet / desktop centered modal) with catalogue age chips, "Not sure" chip, quantity stepper, 140-character note with helper text, `aria-live` announcement, and `useAddToList()` hook.
+  - Created Radix Dialog slide-over `ListSheet.tsx` with photo thumbnails, subcategory labels, cycling age chip editor, quantity steppers, item removal, real `<a href>` WhatsApp launch button, post-send `sentNote` guidance, `Clear list` action, and privacy-conscious tracking (`button_location: 'request_list'`, `items_count`).
+  - Rewired `Header.tsx`, `BottomNav.tsx`, `ProductCard.tsx`, and `layout.tsx` to the new list store and sheets.
+  - Deleted legacy `CartDrawer.tsx` and `src/store/cart.ts` completely (zero dead code).
+  - Added comprehensive Vitest tests in `src/lib/__tests__/list-store.test.ts` (9 tests) and `src/lib/__tests__/whatsapp-list.test.ts` (6 tests). Total 23 vitest tests passing.
+  - Verified end-to-end user flow with browser automation: added 3 items, modified quantity, verified URL encoding and message format, verified reduced motion, and captured screenshots at 1280x800 and 390x844 in `docs/redesign/shots/r4-add-sheet-*.png` and `docs/redesign/shots/r4-list-sheet-*.png`.
 - [ ] **R5: Homepage storefront**
 - [ ] **R6: Shop category & sub-category pages**
 - [ ] **R7: Client-side instant search (MiniSearch)**

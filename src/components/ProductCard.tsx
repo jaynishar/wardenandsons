@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { Plus, Check, MessageSquare, Sparkles } from 'lucide-react';
 import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion } from 'motion/react';
 import { CatalogueItem } from '@/lib/products';
-import { useCartStore } from '@/store/cart';
+import { useAddToList } from '@/lib/list-store';
+import { subByStyleId } from '@/data/catalogue';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { getProductPriceFrom } from '@/lib/owner-inputs';
 import { trackAddToCart } from '@/lib/analytics';
@@ -16,18 +17,16 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const { addItem } = useCartStore();
+  const { openAddSheet } = useAddToList();
   const priceFrom = product.priceFrom ?? getProductPriceFrom(product.id);
   const [justAdded, setJustAdded] = useState(false);
 
   const handleAddToRequest = () => {
-    addItem({
-      productId: product.id,
-      name: product.title,
-      category: product.category,
-      subCategory: product.subCategory,
-      image: product.image,
-      ageGroup: product.ageOrSizeRange,
+    const matchingSub = subByStyleId(product.id);
+    openAddSheet({
+      categorySlug: matchingSub?.categorySlug || product.category,
+      subSlug: matchingSub?.slug || product.subCategory.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      styleId: product.id,
     });
 
     trackAddToCart({

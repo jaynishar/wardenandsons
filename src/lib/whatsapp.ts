@@ -4,12 +4,27 @@
  * Never asserts unverified stock, confirmed price, delivery promises, or payments.
  */
 
-import { RequestItem } from '@/store/cart';
+import { ListLine } from './list-store';
+import { buildListMessage } from './whatsapp-list';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { getWhatsAppAttributionLabel } from './attribution';
 
+export * from './whatsapp-list';
+
+export interface LegacyCartItem {
+  id?: string;
+  name: string;
+  category?: string;
+  subCategory?: string;
+  quantity: number;
+  ageGroup?: string;
+  size?: string;
+  preferredColor?: string;
+  styleNotes?: string;
+}
+
 export interface WhatsAppMessageOptions {
-  items: RequestItem[];
+  items: (LegacyCartItem | ListLine)[];
   customerName?: string;
   notes?: string;
   pickupOrDeliveryPreference?: string;
@@ -30,16 +45,40 @@ export function buildVideoCallUrl(phoneNumber: string = BUSINESS_CONFIG.phone.ra
 }
 
 /**
- * Pure function to format an itemized enquiry message for WhatsApp.
+ * Pure function to build a properly encoded WhatsApp URL.
  */
-export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): string {
-  const { items, customerName, notes, pickupOrDeliveryPreference } = options;
+export function buildWhatsAppRequestUrl(
+  message: string,
+  phoneNumber: string = BUSINESS_CONFIG.phone.raw,
+): string {
+  const cleanPhone = phoneNumber.replace(/[^0-9]/g, '');
+  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+}
+
+/**
+ * Formats an enquiry message for WhatsApp.
+ * Supports the R4 ListLine[] structure as well as legacy options.
+ */
+export function formatWhatsAppRequestMessage(
+  optionsOrLines: WhatsAppMessageOptions | ListLine[],
+): string {
+  if (Array.isArray(optionsOrLines)) {
+    return buildListMessage(optionsOrLines as ListLine[]);
+  }
+
+  const { items, customerName, notes, pickupOrDeliveryPreference } = optionsOrLines;
   const attributionTag = getWhatsAppAttributionLabel('request list');
 
   if (!items || items.length === 0) {
-    return `Hello Warden & Sons Kids Wear! I would like to enquire about your catalogue.\n\n(Sent from the website, ${attributionTag})`;
+    return `Hello Warden & Sons Kids Wear!\n\n(Sent from the website, ${attributionTag})`;
   }
 
+  // If items are ListLines
+  if ('categorySlug' in items[0] && 'subSlug' in items[0]) {
+    return buildListMessage(items as ListLine[]);
+  }
+
+  // Legacy fallback
   const lines: string[] = [
     'Hello Warden & Sons Kids Wear!',
     '',
@@ -47,7 +86,7 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
     '',
   ];
 
-  items.forEach((item, index) => {
+  (items as LegacyCartItem[]).forEach((item, index) => {
     lines.push(`${index + 1}. ${item.name}`);
     if (item.quantity > 1) {
       lines.push(`   Quantity: ${item.quantity}`);
@@ -67,10 +106,6 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
     lines.push('');
   });
 
-  // Optional line for parent to fill in child's age/height
-  lines.push("Child's age/height: ");
-  lines.push('');
-
   if (customerName && customerName.trim()) {
     lines.push(`Customer Name: ${customerName.trim()}`);
   }
@@ -82,34 +117,7 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
   }
 
   lines.push('');
-  lines.push(
-    'Please share suitable available options with photographs, and confirm current pricing and availability.',
-  );
-  lines.push('');
-  lines.push('Thank you!');
-  lines.push('');
   lines.push(`(Sent from the website, ${attributionTag})`);
 
-  const fullMessage = lines.join('\n');
-
-  // Long-list size guard to avoid URL breakage in mobile browsers
-  if (fullMessage.length > MAX_SAFE_WHATSAPP_MESSAGE_LENGTH) {
-    const truncatedNote = `\n\n[Note: Request truncated due to WhatsApp message size limit (${items.length} items total). Please see primary selections above.]\n\n(Sent from the website, ${attributionTag})`;
-    return (
-      fullMessage.slice(0, MAX_SAFE_WHATSAPP_MESSAGE_LENGTH - truncatedNote.length) + truncatedNote
-    );
-  }
-
-  return fullMessage;
-}
-
-/**
- * Pure function to build a properly encoded WhatsApp URL.
- */
-export function buildWhatsAppRequestUrl(
-  message: string,
-  phoneNumber: string = BUSINESS_CONFIG.phone.raw,
-): string {
-  const cleanPhone = phoneNumber.replace(/[^0-9]/g, '');
-  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+  return lines.join('\n');
 }

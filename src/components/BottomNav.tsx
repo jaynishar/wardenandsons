@@ -1,21 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { IconSearch, IconList } from '@/components/icons';
-import { useCartStore } from '@/store/cart';
+import { useListStore, useListCount } from '@/lib/list-store';
 
 export default function BottomNav() {
   const pathname = usePathname();
-  const { toggleCart, getTotalItems } = useCartStore();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const totalItems = mounted ? getTotalItems() : 0;
+  const toggleList = useListStore((state) => state.toggleList);
+  const totalItems = useListCount();
 
   const isHomeActive = pathname === '/';
   const isShopActive = pathname.startsWith('/shop');
@@ -71,7 +65,7 @@ export default function BottomNav() {
         {/* 4. List */}
         <button
           type="button"
-          onClick={toggleCart}
+          onClick={toggleList}
           aria-label={`My list, ${totalItems} items`}
           className="relative flex flex-col items-center justify-center h-full min-h-[44px] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors cursor-pointer"
         >

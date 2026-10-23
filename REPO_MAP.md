@@ -59,11 +59,11 @@
 - `terms/page.tsx` (Terms of service)
 - `visit-us/page.tsx` (Kemps Corner store directions & hours)
 
-### Old Request List Architecture
-- **State Store & Hook**: `src/store/cart.ts` (`useCartStore`, `RequestItem`, persisted in localStorage key `warden-request-list-storage` with deferred non-blocking storage writes)
-- **UI Drawer**: `src/components/CartDrawer.tsx` (Slide-over drawer with item details, quantity, removal, and WhatsApp launch)
-- **Message Builder**: `src/lib/whatsapp.ts` (`formatWhatsAppRequestMessage`, `buildWhatsAppRequestUrl`, max safe length guard 1,800 chars)
-- **Triggers**: `src/components/Header.tsx` (toggle cart trigger with item count badge), `src/components/ProductCard.tsx` ("Add to Request" action button)
+### Request List Architecture (Redesigned R4)
+- **State Store & Hook**: `src/lib/list-store.ts` (`useListStore`, `useListCount`, `useAddToList`, `ListLine`, persisted in localStorage key `warden-list-v1`, fail-safe storage wrapper, max 30 lines, qty 1-20, note max 140 chars)
+- **UI Sheets**: `src/components/list/` (`AddSheet.tsx`, `ListSheet.tsx`, Radix Dialog modals)
+- **Message Builder**: `src/lib/whatsapp-list.ts` (`buildListMessage`, `getListUrl`, strict 1,200 character cap with +N truncation, `>` separators)
+- **Triggers**: `src/components/Header.tsx`, `src/components/BottomNav.tsx`, `src/components/ProductCard.tsx`
 
 ### All Components in `src/components/` (25 files)
 - `AnalyticsNavigationTracker.tsx`: Client-side route change tracking with deduplication
@@ -72,7 +72,7 @@
 - `BreadcrumbJsonLd.tsx`: Breadcrumb schema structured data
 - `Breadcrumbs.tsx`: Visual navigational breadcrumbs
 - `BulkOrderForm.tsx`: Bulk uniform enquiry form
-- `CartDrawer.tsx`: Request list sliding drawer
+- `list/`: `AddSheet.tsx`, `ListSheet.tsx`, `index.ts` (My list modal & add sheets)
 - `CategoryGrid.tsx`: Visual department category tiles
 - `ConsentBanner.tsx`: Google Consent Mode v2 user consent banner
 - `ContactForm.tsx`: General store query form

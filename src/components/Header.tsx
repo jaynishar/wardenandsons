@@ -10,18 +10,16 @@ import {
   IconChevron,
 } from '@/components/icons';
 import { MenuSheet } from '@/components/MenuSheet';
-import { useCartStore } from '@/store/cart';
+import { useListStore, useListCount } from '@/lib/list-store';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
-  const { toggleCart, getTotalItems } = useCartStore();
+  const toggleList = useListStore((state) => state.toggleList);
+  const totalItems = useListCount();
 
   useEffect(() => {
-    setMounted(true);
-
     const handleClickOutside = (e: MouseEvent) => {
       if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
         setMoreOpen(false);
@@ -41,8 +39,6 @@ export default function Header() {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
-
-  const totalItems = mounted ? getTotalItems() : 0;
 
   const moreLinks = [
     { label: 'How it works', href: '/how-it-works/' },
@@ -172,7 +168,7 @@ export default function Header() {
             {/* My List Button */}
             <button
               type="button"
-              onClick={toggleCart}
+              onClick={toggleList}
               aria-label={`My list with ${totalItems} items`}
               className="inline-flex items-center gap-2 h-10 px-3.5 rounded-[4px] bg-[var(--ink)] text-[var(--ivory)] hover:bg-[#203155] transition-colors cursor-pointer text-sm font-medium focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
             >
@@ -232,7 +228,7 @@ export default function Header() {
 
             <button
               type="button"
-              onClick={toggleCart}
+              onClick={toggleList}
               aria-label={`My list, ${totalItems} items`}
               className="p-2 text-[var(--ink)] hover:text-[var(--ink-soft)] rounded-[4px] cursor-pointer relative focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
             >

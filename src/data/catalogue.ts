@@ -989,3 +989,8 @@ export function ageOptionsFor(categorySlug: string, subSlug?: string): string[] 
 export function isReady(sub: Subcategory): boolean {
   return Boolean(sub.photo || (sub.styleIds && sub.styleIds.length > 0));
 }
+
+export function subByStyleId(styleId: string): Subcategory | undefined {
+  return SUBCATEGORIES.find((s) => s.styleIds && s.styleIds.includes(styleId));
+}
+
