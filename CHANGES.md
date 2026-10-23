@@ -498,3 +498,18 @@ Automated audit scripts executed against static build `out/`:
 - **Family Page (`/our-shops/`):** Created `/our-shops/` route titled "Our family of shops at Kemps Corner". Sourced from single data file `src/data/shops.ts` containing top comment `"// Do not publish until the owner has filled in verified details."`. Populated authentic details for Warden & Sons Kids Wear and added entries for Twinkle Collection and Warden Collection with fields set to `TODO`.
 - **Search Engine & Navigation Isolation:** Configured `noindex: true` (`<meta name="robots" content="noindex, nofollow"/>`), left completely out of `sitemap.xml`, and verified 0 inbound navigation links.
 - Static export build passed with 38/38 pages generated.
+
+---
+
+## Step 9: Final QA & Owner Action Items
+
+### Comprehensive "Needs the Owner" Action Checklist
+1. **Google Tag Manager (`NEXT_PUBLIC_GTM_ID`):** Provide GTM container ID (e.g., `GTM-XXXXXXX`) in environment variables if analytics tracking via Tag Manager is desired. Currently inactive with in-code TODO.
+2. **Price Ranges (`priceFrom`):** In `src/data/owner-inputs.json`, provide starting prices for department categories (`categoryPriceFrom`: newborn, boys, girls, men, women, bulk) or specific product lines (`productPriceFrom`). When filled, cards display "From ₹X" with subtext "Final price confirmed on WhatsApp".
+3. **Schools & Academies Served (`schoolsServed`):** In `src/data/owner-inputs.json`, list schools and sports academies supplied to activate the "Schools and academies we have supplied" section on `/bulk-orders/` and the homepage.
+4. **WhatsApp Reply Promise (`replyPromise`):** In `src/data/owner-inputs.json`, specify expected WhatsApp response time (e.g., "We reply within 10 minutes during store hours") to display near inquiry buttons.
+5. **Blog Author Box (`authorName` & `authorBio`):** In `src/data/owner-inputs.json`, optionally provide author name and short biography to display the author box under blog posts.
+6. **Customer Reviews Confirmation:** In `src/data/reviews.json`, confirm whether testimonials are verbatim Google reviews.
+7. **Softened Fabric & Health Claims to Confirm:** Review the 19 softened claims listed in Step 6 of this document (e.g., "100% pure cotton", "chemical-free", "azo-free", "prevents prickly heat") and confirm which specific garments meet these claims before restoring them.
+8. **Twinkle Collection & Warden Collection Details:** In `src/data/shops.ts`, provide verified details (what they sell, exact address, and Google Maps links) before `/our-shops/` can be indexed or linked in navigation.
+9. **Size Guide Post Shop Example:** In `/blog/kids-clothing-size-chart-guide/`, add one real sizing example from the shop counter where indicated by the TODO line.
