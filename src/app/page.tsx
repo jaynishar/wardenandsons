@@ -17,10 +17,10 @@ import { buildPageMetadata } from '@/config/site';
 export const metadata: Metadata = buildPageMetadata({
   path: '/',
   title: {
-    absolute: 'Kids Clothing Store in South Mumbai | Warden & Sons',
+    absolute: 'Kids Clothes in Kemps Corner, South Mumbai | Warden & Sons',
   },
   description:
-    'Kids clothing in Kemps Corner, South Mumbai since 1994. Pure cotton newborn sets, playwear, nightsuits & uniforms on WhatsApp.',
+    'Buy pure cotton kids clothes in Kemps Corner, South Mumbai since 1994. Browse newborn sets, daily playwear, nightsuits and uniforms on WhatsApp.',
 });
 
 export default function HomePage() {

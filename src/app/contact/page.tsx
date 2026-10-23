@@ -8,9 +8,8 @@ import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/contact',
-  title: { absolute: 'Contact Our Kemps Corner Store Desk | Warden & Sons' },
-  description:
-    'Get in touch with Warden & Sons Kids Wear at Kemps Corner, South Mumbai. Send sizing queries, newborn questions, or visit our shop.',
+  title: { absolute: "Contact Our Kemps Corner Store Desk | Warden & Sons" },
+  description: "Get in touch with our Kemps Corner store counter in South Mumbai. Ask sizing questions, check current rack stock, or message our team on WhatsApp.",
 });
 
 export default function ContactPage() {

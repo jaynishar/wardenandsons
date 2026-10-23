@@ -9,9 +9,8 @@ import Link from 'next/link';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/shop',
-  title: { absolute: 'Kids Clothes by Age: South Mumbai Shop | Warden & Sons' },
-  description:
-    "Explore combed cotton children's clothing organized by age group. Pick favorites for your Request List and verify fit on WhatsApp.",
+  title: { absolute: "Shop Kids Clothes by Age, Mumbai | Warden & Sons" },
+  description: "Browse pure cotton children's clothing organized by age group. Select everyday playwear, sleepwear, and infant essentials to order on WhatsApp.",
 });
 
 export default function ShopPage() {

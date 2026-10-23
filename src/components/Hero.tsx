@@ -19,8 +19,11 @@ export default function Hero() {
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-forest leading-[1.12]">
-              Breathable Cotton Comfort, Since 1994.
+              Kids Clothes in Kemps Corner, South Mumbai
             </h1>
+            <p className="font-serif text-xl sm:text-2xl text-forest/90 font-medium tracking-tight">
+              Breathable Cotton Comfort, Since 1994.
+            </p>
 
             <p className="text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto lg:mx-0">
               Serving generations of families from our Kemps Corner shop. Explore breathable

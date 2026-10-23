@@ -8,9 +8,8 @@ import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/bulk-orders',
-  title: { absolute: 'Custom School Uniforms & Bulk Apparel | Warden & Sons' },
-  description:
-    'Custom school uniforms, sports kits, and bulk cotton children’s apparel in South Mumbai. Quality fabric and direct WhatsApp quotes.',
+  title: { absolute: "School Uniforms & Bulk Orders, South Mumbai | Warden & Sons" },
+  description: "Custom school uniforms, sports house t-shirts, and bulk cotton children's clothing in South Mumbai. Get direct WhatsApp quotes and fabric swatches.",
 });
 
 export default function BulkOrdersPage() {

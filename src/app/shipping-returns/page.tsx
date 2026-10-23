@@ -7,9 +7,8 @@ import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/shipping-returns',
-  title: { absolute: 'Delivery, Store Pickup & Size Exchanges | Warden & Sons' },
-  description:
-    'Mumbai doorstep delivery, store pickup at Kemps Corner, and straightforward size exchanges handled directly on WhatsApp.',
+  title: { absolute: "Delivery, Store Pickup & Size Exchanges | Warden & Sons" },
+  description: "Mumbai doorstep delivery, store pickup at Kemps Corner, and straightforward size exchanges. Read our simple fulfillment terms and WhatsApp support.",
 });
 
 export default function ShippingReturnsPage() {

@@ -10,9 +10,8 @@ import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/about',
-  title: { absolute: 'About Our Shop: 30 Years in Kemps Corner | Warden & Sons' },
-  description:
-    'Serving South Mumbai families at Kemps Corner since 1994 with pure cotton children’s clothing, honest sizing, and personal care.',
+  title: { absolute: "About Our Shop: 30 Years in Kemps Corner | Warden & Sons" },
+  description: "Dressing South Mumbai families at Kemps Corner since 1994. Learn about our pure cotton fabrics, honest measuring tape sizing, and family service.",
 });
 
 export default function AboutPage() {

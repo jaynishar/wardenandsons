@@ -5,9 +5,8 @@ import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/terms',
-  title: { absolute: 'Shop Policies & WhatsApp Order Terms | Warden & Sons' },
-  description:
-    'Read the terms of service of Warden & Sons Kids Wear Kemps Corner. Guidelines on retail requests, pricing, and size exchanges.',
+  title: { absolute: "Shop Policies & WhatsApp Order Terms | Warden & Sons" },
+  description: "Read the terms of service for Warden & Sons Kids Wear in Kemps Corner. Guidelines on catalogue requests, pricing, deliveries, and size exchanges.",
 });
 
 export default function TermsOfServicePage() {

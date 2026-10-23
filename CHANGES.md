@@ -356,3 +356,13 @@ Automated audit scripts executed against static build `out/`:
 - Updated `src/app/sitemap.ts` to attach real `lastmod` dates from git logs and MDX frontmatter.
 - Confirmed `html lang="en-IN"` in `src/app/layout.tsx`.
 - Ran `npm run lint` and `npm run build`: both passed with 0 errors.
+
+
+---
+
+## Step 2: Titles, Descriptions, H1
+- Updated all 29 pages with unique titles (max 60 characters, brand last, no repeated neighbourhood words).
+- Updated all 29 pages with unique meta descriptions (strictly between 140 and 155 characters) derived from actual page content.
+- Set homepage H1 to "Kids Clothes in Kemps Corner, South Mumbai" with "Breathable Cotton Comfort, Since 1994." kept as the line directly below.
+- Verified exactly 1 H1 per page across all 29 pages.
+- Ran `npm run lint` and `npm run build`: both passed cleanly with 0 errors.

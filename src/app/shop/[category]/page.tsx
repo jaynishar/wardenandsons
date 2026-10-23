@@ -31,9 +31,9 @@ interface CategoryEditorial {
 
 const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
   newborn: {
-    titleTag: 'Newborn Baby Clothes & Swaddles Mumbai | Warden & Sons',
+    titleTag: "Newborn Baby Clothes & Swaddles Mumbai | Warden & Sons",
     metaDesc:
-      'Breathable combed cotton jhablas, onesies, and muslin swaddles for babies 0-24M. Request live photos from our Kemps Corner racks.',
+      "Breathable combed cotton jhablas, onesies, rompers, and muslin swaddles for babies 0-24M. Request live photos from our Kemps Corner store racks.",
     heading: 'Newborn & Infant Clothes (0–24 Months)',
     subheading: 'Pure cotton basics, muslin swaddles, and everyday comfort for babies.',
     fabricText:
@@ -44,9 +44,9 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Babies grow quickly during the first six months. We suggest taking one size larger for sleepsuits to allow comfortable layering over cloth nappies. On WhatsApp, simply mention your baby’s age or approximate weight, and our shop team will verify dimensions with a physical measuring tape before packing.',
   },
   boys: {
-    titleTag: 'Boys Cotton Clothes (0-16Y) | Kemps Corner | Warden & Sons',
+    titleTag: "Boys' Clothes, 0-16 Years, Mumbai | Warden & Sons",
     metaDesc:
-      "Durable 100% cotton boys' tees, cricket whites & nightsuits (0-16Y). WhatsApp our Kemps Corner store for tape measurements.",
+      'Durable combed cotton t-shirts, cargo shorts, cricket whites, and nightsuits for boys 0-16 years. Check counter tape sizing directly on WhatsApp.',
     heading: 'Boys Playwear & Clothes (0–16 Years)',
     subheading: 'Breathable cotton t-shirts, shorts, track pants, and nightsuits.',
     fabricText:
@@ -57,9 +57,9 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Active boys need room through the shoulders and chest. For shorts and joggers, our waistbands feature soft ribbed elastic with functional drawstrings. When sending your Request List on WhatsApp, tell us your boy’s age and approximate height, and we will measure flat chest and length dimensions for you.',
   },
   girls: {
-    titleTag: 'Girls Cotton Dresses & Sleepwear (0-16Y) | Warden & Sons',
+    titleTag: "Girls' Clothes, 0-16 Years, Mumbai | Warden & Sons",
     metaDesc:
-      'Soft cotton frocks, daily tops, and notched-collar nightsuits for girls. Check current prints and sizes directly on WhatsApp.',
+      'Breathable cotton frocks, daily casual tops, leggings, and notched-collar nightsuits for girls 0-16 years. View current shop racks on WhatsApp.',
     heading: 'Girls Clothing & Sleepwear (0–16 Years)',
     subheading: 'Airy cotton dresses, comfortable nightsuits, tops, and leggings.',
     fabricText:
@@ -72,7 +72,7 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
   men: {
     titleTag: "Men's Cotton Loungewear & Basics | Warden & Sons",
     metaDesc:
-      'Breathable combed cotton crewneck t-shirts, lounge shorts, and pajama sets. Confirm your size with our Kemps Corner store desk.',
+      'Comfortable combed cotton crewneck t-shirts, lounge shorts, and woven pajama sets for men. Message our Kemps Corner shop desk for measurements.',
     heading: 'Men’s Cotton Loungewear & Basics',
     subheading: 'Combed cotton t-shirts, boxer shorts, and classic pajama sets.',
     fabricText:
@@ -85,7 +85,7 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
   women: {
     titleTag: "Women's Muslin Sleepwear & Basics | Warden & Sons",
     metaDesc:
-      'Double-gauze muslin night suits, everyday tops, and cotton leggings for women. Message our shop desk for live availability.',
+      'Soft double-gauze muslin pajama sets, breathable cotton tops, and comfortable daily leggings for women. Request live availability on WhatsApp.',
     heading: 'Women’s Muslin Sleepwear & Basics',
     subheading: 'Airy double-gauze muslin pajama sets, nightdresses, and cotton tops.',
     fabricText:

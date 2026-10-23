@@ -5,9 +5,8 @@ import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/privacy-policy',
-  title: { absolute: 'Customer Privacy Policy & WhatsApp Care | Warden & Sons' },
-  description:
-    'Read the privacy policy of Warden & Sons Kids Wear. How we protect your details, phone number, and WhatsApp enquiry privacy.',
+  title: { absolute: "Customer Privacy Policy & WhatsApp Care | Warden & Sons" },
+  description: "Read the customer privacy policy of Warden & Sons Kids Wear. How we protect your personal contact details, phone numbers, and WhatsApp enquiries.",
 });
 
 export default function PrivacyPolicyPage() {

@@ -9,9 +9,8 @@ import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/how-it-works',
-  title: { absolute: 'How to Order Kids Clothes on WhatsApp | Warden & Sons' },
-  description:
-    'Build a Request List online, get live rack photos on WhatsApp, and confirm tape sizing before paying. See the 3 simple steps.',
+  title: { absolute: "How to Buy Kids Clothes on WhatsApp | Warden & Sons" },
+  description: "Build a Request List online, view live rack photos on WhatsApp, and confirm tape measurements before paying. Follow 3 easy steps for home delivery.",
   imageAlt: 'How WhatsApp Catalogue Shopping Works | Warden & Sons',
 });
 

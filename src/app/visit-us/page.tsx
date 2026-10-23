@@ -9,9 +9,8 @@ import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/visit-us',
-  title: { absolute: 'Visit Kids Clothing Shop at Kemps Corner | Warden & Sons' },
-  description:
-    'Find cotton kids clothes near Pedder Road flyover & St. Stephen’s. Open daily 9am–9pm. In-store fitting & WhatsApp delivery.',
+  title: { absolute: "Visit Our Kids Wear Store, Kemps Corner | Warden & Sons" },
+  description: "Visit our children's clothing shop at Kemps Corner, near Pedder Road flyover in South Mumbai. Open daily 9am-9pm for in-store fitting and pickup.",
 });
 
 export default function VisitUsPage() {

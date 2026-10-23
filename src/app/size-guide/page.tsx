@@ -8,9 +8,8 @@ import { BUSINESS_CONFIG } from '@/config/business';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/size-guide',
-  title: { absolute: 'Kids Clothes Size Chart by Age (0-16Y) | Warden & Sons' },
-  description:
-    'Accurate kids clothing size chart by age, chest, and height. Find what size for age 2-16 or ask our desk for counter measurements.',
+  title: { absolute: "Kids Clothes Size Chart by Age (0-16Y) | Warden & Sons" },
+  description: "Accurate children's clothing size chart by age, chest, and height (0-16Y). Compare sizes or message our Kemps Corner shop desk for counter measurements.",
 });
 
 export default function SizeGuidePage() {

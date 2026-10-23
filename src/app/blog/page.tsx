@@ -7,9 +7,8 @@ import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/blog',
-  title: { absolute: 'Parenting Guides & Cotton Care Advice | Warden & Sons' },
-  description:
-    'Parent guides on pure cotton babywear, kids clothing sizing charts, fabric care, and local Kemps Corner shopping in South Mumbai.',
+  title: { absolute: "Parenting Guides & Cotton Care Advice | Warden & Sons" },
+  description: "Practical parenting guides on pure cotton babywear, kids clothing size charts, gentle fabric care, and local shopping advice in South Mumbai.",
 });
 
 export default function BlogIndexPage() {
