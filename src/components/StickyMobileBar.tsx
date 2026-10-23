@@ -97,6 +97,9 @@ export default function StickyMobileBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Direct WhatsApp Enquiry"
+                  data-track="whatsapp_click"
+                  data-track-location="sticky_bar"
+                  data-track-category="sticky_bar"
                   className="bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-[11px] px-3 py-2 rounded-xl shadow-2xs transition-all flex items-center gap-1.5 shrink-0 active:scale-[0.98]"
                 >
                   <MessageSquare className="w-3 h-3 fill-white" />

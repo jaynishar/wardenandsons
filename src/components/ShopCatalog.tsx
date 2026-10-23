@@ -181,7 +181,8 @@ export default function ShopCatalog({
           target="_blank"
           rel="noopener noreferrer"
           data-track="whatsapp_click"
-          data-track-location="catalog_notice"
+          data-track-location="product"
+          data-track-category="catalog"
           className="text-[11px] font-bold text-forest hover:text-gold inline-flex items-center gap-1 shrink-0"
         >
           <MessageSquare className="w-3.5 h-3.5 text-whatsapp" />
@@ -201,7 +202,8 @@ export default function ShopCatalog({
           target="_blank"
           rel="noopener noreferrer"
           data-track="whatsapp_click"
-          data-track-location="catalog_help"
+          data-track-location="product"
+          data-track-category="catalog"
           className="text-xs font-bold text-forest hover:text-gold flex items-center gap-1.5"
         >
           <MessageSquare className="w-3.5 h-3.5 text-whatsapp" />
@@ -224,7 +226,8 @@ export default function ShopCatalog({
             target="_blank"
             rel="noopener noreferrer"
             data-track="whatsapp_click"
-            data-track-location="catalog_empty_state"
+            data-track-location="product"
+            data-track-category="catalog"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-forest text-white text-xs font-bold cursor-pointer hover:bg-forest-dark"
           >
             <MessageSquare className="w-4 h-4 text-whatsapp" />

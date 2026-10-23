@@ -19,6 +19,13 @@ export interface WhatsAppMessageOptions {
  */
 export const MAX_SAFE_WHATSAPP_MESSAGE_LENGTH = 1800;
 
+export const VIDEO_CALL_MESSAGE =
+  "Hi Warden & Sons, I'd like a video call to see options for my child (age: ). Please tell me a good time.";
+
+export function buildVideoCallUrl(phoneNumber: string = BUSINESS_CONFIG.phone.raw): string {
+  return buildWhatsAppRequestUrl(VIDEO_CALL_MESSAGE, phoneNumber);
+}
+
 /**
  * Pure function to format an itemized enquiry message for WhatsApp.
  */
@@ -26,7 +33,7 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
   const { items, customerName, notes, pickupOrDeliveryPreference } = options;
 
   if (!items || items.length === 0) {
-    return 'Hello Warden & Sons Kids Wear! I would like to enquire about your catalogue.';
+    return 'Hello Warden & Sons Kids Wear! I would like to enquire about your catalogue.\n\n(Sent from the website, request list)';
   }
 
   const lines: string[] = [
@@ -56,6 +63,10 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
     lines.push('');
   });
 
+  // Optional line for parent to fill in child's age/height
+  lines.push("Child's age/height: ");
+  lines.push('');
+
   if (customerName && customerName.trim()) {
     lines.push(`Customer Name: ${customerName.trim()}`);
   }
@@ -72,12 +83,14 @@ export function formatWhatsAppRequestMessage(options: WhatsAppMessageOptions): s
   );
   lines.push('');
   lines.push('Thank you!');
+  lines.push('');
+  lines.push('(Sent from the website, request list)');
 
   const fullMessage = lines.join('\n');
 
   // Long-list size guard to avoid URL breakage in mobile browsers
   if (fullMessage.length > MAX_SAFE_WHATSAPP_MESSAGE_LENGTH) {
-    const truncatedNote = `\n\n[Note: Request truncated due to WhatsApp message size limit (${items.length} items total). Please see primary selections above.]`;
+    const truncatedNote = `\n\n[Note: Request truncated due to WhatsApp message size limit (${items.length} items total). Please see primary selections above.]\n\n(Sent from the website, request list)`;
     return (
       fullMessage.slice(0, MAX_SAFE_WHATSAPP_MESSAGE_LENGTH - truncatedNote.length) + truncatedNote
     );

@@ -72,6 +72,9 @@ export default function FAQ() {
             href={BUSINESS_CONFIG.phone.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="whatsapp_click"
+            data-track-location="footer"
+            data-track-category="faq"
             className="font-bold text-forest underline hover:text-gold inline-flex items-center gap-1 ml-1"
           >
             <MessageSquare className="w-3.5 h-3.5 text-whatsapp" /> Ask on WhatsApp

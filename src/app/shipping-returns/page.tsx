@@ -104,7 +104,8 @@ export default function ShippingReturnsPage() {
               target="_blank"
               rel="noopener noreferrer"
               data-track="whatsapp_click"
-              data-track-location="shipping_returns"
+              data-track-location="footer"
+              data-track-category="shipping_returns"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-whatsapp text-white font-bold text-xs shadow-xs hover:bg-whatsapp/90"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />

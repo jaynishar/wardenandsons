@@ -308,7 +308,8 @@ export default function SizeGuidePage() {
               target="_blank"
               rel="noopener noreferrer"
               data-track="whatsapp_click"
-              data-track-location="size_guide"
+              data-track-location="product"
+              data-track-category="size_guide"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all active:scale-[0.98] cursor-pointer"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />

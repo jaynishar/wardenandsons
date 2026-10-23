@@ -389,3 +389,18 @@ Automated audit scripts executed against static build `out/`:
 - Verified 0 occurrences of forbidden schema types (`FAQPage`, `Product`, `Offer`, `AggregateOffer`, `Review`).
 - Validated every rendered HTML page by parsing each `<script type="application/ld+json">` block as JSON; 0 parse errors across all pages.
 - Ran `npm run lint` and `npm run build`: both passed cleanly.
+
+---
+
+## Step 5: WhatsApp Flow and Tracking
+- Product-specific prefilled messages: Added natural website source suffix at the end (e.g. `(Sent from the website, newborn page)` or `(Sent from the website, home page)`).
+- Request List message: Updated `formatWhatsAppRequestMessage` in `src/lib/whatsapp.ts` with itemized list, an optional line `"Child's age/height: "`, and source `(Sent from the website, request list)`.
+- Free Video Call: Added "Request a free video call" button on homepage and on `/how-it-works/` opening WhatsApp with prefilled text `"Hi Warden & Sons, I'd like a video call to see options for my child (age: ). Please tell me a good time."`
+- Analytics & GTM Tracking: Enhanced `src/lib/track.ts` to push `{event: "whatsapp_click", page_path, button_location, category}` on every WhatsApp click. Strictly normalized all `button_location` values to the 7 valid options: `header`, `hero`, `product`, `request_list`, `footer`, `sticky_bar`, `video_call`. GTM is loaded only if container ID is present in `NEXT_PUBLIC_GTM_ID`, otherwise left inactive with in-code TODO.
+- Mobile Layout Clearance: Added `pb-32 md:pb-0` to `Footer` to guarantee that fixed `BottomNav` and `StickyMobileBar` never obscure footer links or copyright content.
+- Owner Inputs: Created `src/data/owner-inputs.json` with empty `replyPromise`, integrated across CTAs via `<ReplyPromise />` (renders nothing when empty, renders reply time line when set).
+- Build and lint verified passing.
+
+### Needs the owner
+- `replyPromise` in `src/data/owner-inputs.json`: Owner to provide reply time promise (e.g. "We reply within 10 minutes during store hours") to display near WhatsApp buttons. Currently empty.
+- `NEXT_PUBLIC_GTM_ID`: Owner to provide Google Tag Manager container ID in `.env` if GTM is desired; left inactive pending configuration with in-code TODO.

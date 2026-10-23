@@ -20,6 +20,7 @@ import {
 import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useCartStore } from '@/store/cart';
 import { BUSINESS_CONFIG } from '@/config/business';
+import ReplyPromise from '@/components/ReplyPromise';
 import { formatWhatsAppRequestMessage, buildWhatsAppRequestUrl } from '@/lib/whatsapp';
 
 export default function CartDrawer() {
@@ -438,13 +439,16 @@ export default function CartDrawer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setWhatsappTriggered(true)}
-                    data-track="send_enquiry"
+                    data-track="whatsapp_click"
+                    data-track-location="request_list"
+                    data-track-category="request_list"
                     data-track-items-count={items.length}
                     className="w-full min-h-[48px] flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-sm shadow-md transition-all hover:scale-[1.01] cursor-pointer"
                   >
                     <MessageSquare className="w-5 h-5 fill-white text-whatsapp" />
                     <span>Send Enquiry on WhatsApp (+91 99207 51567)</span>
                   </a>
+                  <ReplyPromise className="pt-1 text-center" />
 
                   {/* Copy Fallback & Clear Action Buttons (min 44px height) */}
                   <div className="flex gap-2">

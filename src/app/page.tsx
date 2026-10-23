@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, MessageSquare, MapPin, Clock, Phone } from 'lucide-react';
+import { ArrowRight, MessageSquare, MapPin, Clock, Phone, Video } from 'lucide-react';
 import Hero from '@/components/Hero';
 import HowItWorks from '@/components/HowItWorks';
 import CategoryGrid from '@/components/CategoryGrid';
@@ -10,6 +10,8 @@ import FAQ from '@/components/FAQ';
 import GoogleReviewsBlock from '@/components/GoogleReviewsBlock';
 import { getFeaturedCatalogueItems } from '@/lib/products';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { buildVideoCallUrl } from '@/lib/whatsapp';
+import ReplyPromise from '@/components/ReplyPromise';
 import { getClothingStoreSchema } from '@/lib/schema';
 import JsonLd from '@/components/JsonLd';
 import { buildPageMetadata } from '@/config/site';
@@ -92,11 +94,25 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="whatsapp_click"
-                data-track-location="page"
+                data-track-location="footer"
+                data-track-category="footer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all active:scale-[0.98] cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
                 <span>Chat on WhatsApp ({BUSINESS_CONFIG.phone.display})</span>
+              </a>
+
+              <a
+                href={buildVideoCallUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="whatsapp_click"
+                data-track-location="video_call"
+                data-track-category="video_call"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-forest hover:bg-bg-cream font-bold text-xs shadow-md transition-all active:scale-[0.98] cursor-pointer"
+              >
+                <Video className="w-4 h-4 text-forest" />
+                <span>Request a free video call</span>
               </a>
 
               <Link
@@ -107,6 +123,7 @@ export default function HomePage() {
                 <span>Directions to Store</span>
               </Link>
             </div>
+            <ReplyPromise className="text-gray-300 text-xs text-center sm:text-left pt-2" />
           </div>
         </div>
       </section>

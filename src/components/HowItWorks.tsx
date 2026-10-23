@@ -76,7 +76,8 @@ export default function HowItWorks() {
             target="_blank"
             rel="noopener noreferrer"
             data-track="whatsapp_click"
-            data-track-location="page"
+            data-track-location="hero"
+            data-track-category="hero"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[46px] px-6 py-2.5 rounded-xl bg-forest hover:bg-forest-dark text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xs active:scale-[0.98]"
           >
             <MessageSquare className="w-4 h-4 text-whatsapp" />

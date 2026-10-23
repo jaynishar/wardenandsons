@@ -78,21 +78,18 @@ export default function RootLayout({
   return (
     <html lang="en-IN" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
-        {/* Google tag (gtag.js) */}
-        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNQNXJJVQ3" />
         <script
-          id="google-tag-init"
+          id="datalayer-init"
           dangerouslySetInnerHTML={{
-            __html: `
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FNQNXJJVQ3');
-            `,
+            __html: `window.dataLayer = window.dataLayer || [];`,
           }}
         />
-        <GoogleTagManager gtmId="GTM-PK75ST2X" />
+        {process.env.NEXT_PUBLIC_GTM_ID ? (
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        ) : (
+          /* TODO: Set NEXT_PUBLIC_GTM_ID in environment variables to activate Google Tag Manager */
+          null
+        )}
         {/* High-priority LCP hero image preload for instant discovery */}
         <link
           rel="preload"

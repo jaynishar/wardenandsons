@@ -89,6 +89,7 @@ export default function Header() {
                 aria-label="Chat on WhatsApp"
                 data-track="whatsapp_click"
                 data-track-location="header"
+                  data-track-category="header"
                 className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full bg-forest text-white hover:bg-forest-dark transition-all shadow-xs active:scale-[0.98]"
               >
                 <MessageSquare className="w-4 h-4 text-whatsapp" />
@@ -161,6 +162,7 @@ export default function Header() {
                   rel="noopener noreferrer"
                   data-track="whatsapp_click"
                   data-track-location="header"
+                  data-track-category="header"
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-forest text-white font-semibold text-sm shadow-xs active:scale-[0.98]"
                 >
                   <MessageSquare className="w-4 h-4 text-whatsapp" />

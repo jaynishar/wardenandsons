@@ -32,7 +32,19 @@ export default function ProductCard({ product }: ProductCardProps) {
     }, 1500);
   };
 
-  const directInquiryMessage = `Hello Warden & Sons! I am inquiring about "${product.title}" (${product.subCategory}, ${product.ageOrSizeRange}). Could you please share available colors, prints, and confirm current pricing?`;
+  const categorySourceMap: Record<string, string> = {
+    newborn: 'newborn page',
+    boys: 'boys page',
+    girls: 'girls page',
+    men: "men's basics page",
+    women: "women's basics page",
+  };
+  const sourceLabel =
+    typeof window !== 'undefined' && window.location.pathname === '/'
+      ? 'home page'
+      : categorySourceMap[product.category] || `${product.category} page`;
+
+  const directInquiryMessage = `Hello Warden & Sons! I am inquiring about "${product.title}" (${product.subCategory}, ${product.ageOrSizeRange}). Could you please share available colors, prints, and confirm current pricing?\n\n(Sent from the website, ${sourceLabel})`;
   const directInquiryUrl = BUSINESS_CONFIG.whatsappUrl(directInquiryMessage);
 
   // Check if item has an authentic garment photo (never reuse storefront or logo as garment photo)
@@ -85,6 +97,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             rel="noopener noreferrer"
             data-track="whatsapp_click"
             data-track-location="product"
+            data-track-category={product.category}
             className="absolute top-3 right-3 min-w-[44px] min-h-[44px] rounded-full bg-white/95 backdrop-blur-xs text-whatsapp hover:bg-whatsapp hover:text-white transition-all shadow-xs flex items-center justify-center cursor-pointer active:scale-[0.98]"
             title="Inquire directly on WhatsApp"
             aria-label={`Inquire about ${product.title} on WhatsApp`}

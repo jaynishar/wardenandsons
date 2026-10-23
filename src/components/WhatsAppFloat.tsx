@@ -16,7 +16,8 @@ export default function WhatsAppFloat() {
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp with Kemps Corner Store"
         data-track="whatsapp_click"
-        data-track-location="sticky"
+        data-track-location="sticky_bar"
+        data-track-category="sticky_bar"
         className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-whatsapp hover:bg-whatsapp/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group border-2 border-white cursor-pointer"
       >
         <span className="relative flex h-3 w-3">

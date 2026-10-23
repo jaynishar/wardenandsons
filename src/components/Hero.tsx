@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, MessageSquare, ShieldCheck, Heart, Sparkles } from 'lucide-react';
+import ReplyPromise from '@/components/ReplyPromise';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function Hero() {
@@ -47,11 +48,13 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 data-track="whatsapp_click"
                 data-track-location="hero"
+                data-track-category="hero"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-white border border-border-soft text-near-black hover:bg-bg-cream font-bold text-sm shadow-xs transition-all hover:border-forest active:scale-[0.98]"
               >
                 <MessageSquare className="w-4 h-4 text-whatsapp" />
                 <span>Chat with Kemps Corner Store</span>
               </a>
+              <ReplyPromise className="w-full text-center lg:text-left mt-2" />
             </div>
 
             {/* Trust Strip (3-up on mobile, clean luxury icons) */}

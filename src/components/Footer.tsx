@@ -4,13 +4,14 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, MapPin, Clock, MessageSquare, Heart, ExternalLink } from 'lucide-react';
+import ReplyPromise from '@/components/ReplyPromise';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-border-soft text-near-black font-sans">
+    <footer className="bg-white border-t border-border-soft text-near-black font-sans pb-32 md:pb-0">
       {/* Top Boutique Contact Banner */}
       <div className="bg-forest text-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -30,6 +31,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               data-track="whatsapp_click"
               data-track-location="footer"
+              data-track-category="footer"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white text-xs font-bold shadow-md transition-all cursor-pointer"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
@@ -43,6 +45,7 @@ export default function Footer() {
               <Phone className="w-4 h-4" />
               Call Store Desk
             </a>
+            <ReplyPromise className="text-gray-200 text-xs w-full text-center md:text-right" />
           </div>
         </div>
       </div>

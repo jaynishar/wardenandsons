@@ -100,6 +100,9 @@ export default function ContactPage() {
                 href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track="whatsapp_click"
+                data-track-location="footer"
+                data-track-category="contact"
                 className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />

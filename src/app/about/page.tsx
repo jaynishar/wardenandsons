@@ -112,6 +112,9 @@ export default function AboutPage() {
               href={BUSINESS_CONFIG.phone.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-track="whatsapp_click"
+              data-track-location="hero"
+              data-track-category="about"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-border-soft text-near-black hover:bg-bg-cream font-bold text-xs shadow-xs"
             >
               <MessageSquare className="w-4 h-4 text-whatsapp" />

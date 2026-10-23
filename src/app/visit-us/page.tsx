@@ -94,7 +94,8 @@ export default function VisitUsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="whatsapp_click"
-                data-track-location="page"
+                data-track-location="footer"
+                data-track-category="visit_us"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-xs transition-all"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
@@ -172,7 +173,8 @@ export default function VisitUsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="whatsapp_click"
-                data-track-location="page"
+                data-track-location="footer"
+                data-track-category="visit_us"
                 className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all active:scale-[0.98]"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />

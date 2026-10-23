@@ -168,6 +168,9 @@ export default function BulkOrderForm() {
               href={BUSINESS_CONFIG.whatsappUrl(generatedMessage)}
               target="_blank"
               rel="noopener noreferrer"
+              data-track="whatsapp_click"
+              data-track-location="footer"
+              data-track-category="bulk_orders"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white text-xs font-bold shadow-xs transition-all"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />

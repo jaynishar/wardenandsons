@@ -1,10 +1,12 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ClipboardList, MessageSquare, Truck, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ClipboardList, MessageSquare, Truck, ArrowRight, ShieldCheck, Video } from 'lucide-react';
 import FAQ from '@/components/FAQ';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { buildVideoCallUrl } from '@/lib/whatsapp';
+import ReplyPromise from '@/components/ReplyPromise';
 import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
 export const metadata: Metadata = buildPageMetadata({
@@ -183,13 +185,27 @@ export default function HowItWorksPage() {
             target="_blank"
             rel="noopener noreferrer"
             data-track="whatsapp_click"
-            data-track-location="how_it_works_cta"
+            data-track-location="footer"
+            data-track-category="footer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all hover:scale-102"
           >
             <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
             <span>Chat with Store ({BUSINESS_CONFIG.phone.display})</span>
           </a>
+          <a
+            href={buildVideoCallUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="whatsapp_click"
+            data-track-location="video_call"
+            data-track-category="video_call"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-md transition-all hover:scale-102 cursor-pointer"
+          >
+            <Video className="w-4 h-4 text-gold" />
+            <span>Request a free video call</span>
+          </a>
         </div>
+        <ReplyPromise className="text-muted text-xs text-center w-full mt-3" />
       </div>
 
       {/* FAQ Accordion Section */}
