@@ -68,7 +68,17 @@
   - Built and audited all 40 shop routes (`scripts/audit-shop-pages.mjs`) verifying 100% compliance on title lengths, description lengths, H1 counts, canonical matching, and robots/sitemap alignment.
   - Verified functional adding flows via Playwright (tile `+` button and subcategory hero age selection).
   - Saved full-page visual screenshots at 390x844 and 1280x800 in `docs/redesign/shots/r6-category-*.png` and `docs/redesign/shots/r6-subcategory-*.png`.
-- [ ] **R7: Client-side instant search (MiniSearch)**
-- [ ] **R8: Phone capture & supporting pages**
+- [x] **R7: Call-me form and phone capture**
+  - Built `src/lib/leads.ts`: phone validation (`validatePhone`) and normalisation (`normalisePhone`) to `+91XXXXXXXXXX`, `buildLeadPayload` (payload contains only phone, optional name, preferredTime, summary with category and sub labels + quantities, source, UTMs, reference code, ISO timestamp, consent=true; strictly excludes notes and ages), and `submitLead` via `fetch` POST (`Content-Type: text/plain;charset=utf-8` to bypass CORS preflight).
+  - Wired endpoint helper to `process.env.NEXT_PUBLIC_LEADS_ENDPOINT`. Verified that when unset, "Prefer a call?" button is hidden across the site.
+  - Implemented Radix Dialog `CallbackForm.tsx` reachable from `ListSheet`: copy-deck strings (`call.title`, `call.sub`, `call.consent`, `call.success`, `call.fail`), 48px `tel` input, optional name, preferred-time chips, unticked consent checkbox linking to `/privacy-policy/`, and submit button disabled until valid + consent.
+  - Added triple spam protection: hidden honeypot input, <2-second interaction speed rule, and client daily limit of 3 submissions in `localStorage`.
+  - Created `docs/leads-apps-script.gs`: Google Apps Script `doPost(e)` with JSON body parsing, secondary phone & consent validation, `LockService` concurrency handling, private row appending, and JSON response `{ok:true}` / `{ok:false}` with zero phone logging.
+  - Authored `docs/LEADS_SETUP.md`: beginner-friendly instructions covering Sheet setup, header row, script deployment as Web App, environment variable setup, testing, and deletion instructions.
+  - Updated `src/app/privacy-policy/page.tsx`: added dedicated section for callback phone numbers detailing collection, purpose, storage, deletion process, and `"TODO: owner confirms how long numbers are kept"` retention marker.
+  - Configured zero-PII analytics tracking: dispatches `generate_lead` with `lead_type: 'callback'` and `item_count` only upon confirmed `{ok:true}`.
+  - Added comprehensive Vitest tests in `src/lib/__tests__/leads.test.ts` (20 tests covering validation, normalisation, payload privacy, honeypot, speed, rate limiting, and mocked fetch paths). Total 44 project tests passing.
+  - Verified button visibility, success state, failure state with WhatsApp fallback, and captured screenshots at 390x844 and 1280x800 in `docs/redesign/shots/r7-call-form-*.png`.
+- [ ] **R8: Client-side instant search (MiniSearch) & supporting pages**
 - [ ] **R9: Performance, contrast & accessibility audits**
 - [ ] **R10: Final verification, QA & cleanup**

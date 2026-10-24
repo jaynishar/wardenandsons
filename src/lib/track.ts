@@ -10,12 +10,13 @@ import {
   trackDirectionsClick,
   trackPhoneClick,
   trackAddToCart,
+  trackCallbackLead,
   sendAnalyticsEvent,
   type ButtonLocation,
   VALID_BUTTON_LOCATIONS,
 } from './analytics';
 
-export { normalizeButtonLocation, VALID_BUTTON_LOCATIONS, type ButtonLocation };
+export { normalizeButtonLocation, VALID_BUTTON_LOCATIONS, type ButtonLocation, trackCallbackLead };
 
 export function trackWhatsAppClick(params: {
   button_location?: string | null;

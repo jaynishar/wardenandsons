@@ -10,6 +10,7 @@ import { getCategory, getSub, ageOptionsFor } from '@/data/catalogue';
 import { getListUrl } from '@/lib/whatsapp-list';
 import { trackWhatsAppClick } from '@/lib/analytics';
 import { COPY_DECK } from '@/content/copy';
+import { CallbackForm } from './CallbackForm';
 
 export function ListSheet() {
   const isListOpen = useListStore((state) => state.isListOpen);
@@ -21,7 +22,12 @@ export function ListSheet() {
   const clear = useListStore((state) => state.clear);
 
   const [hasSent, setHasSent] = useState(false);
-  const leadsEndpoint = process.env.NEXT_PUBLIC_LEADS_ENDPOINT;
+  const [callbackOpen, setCallbackOpen] = useState(false);
+  const leadsEndpoint =
+    process.env.NEXT_PUBLIC_LEADS_ENDPOINT ||
+    (typeof window !== 'undefined'
+      ? (window as unknown as { __LEADS_ENDPOINT_OVERRIDE__?: string }).__LEADS_ENDPOINT_OVERRIDE__
+      : undefined);
 
   const handleSendClick = () => {
     trackWhatsAppClick({
@@ -236,6 +242,7 @@ export function ListSheet() {
               {leadsEndpoint && (
                 <button
                   type="button"
+                  onClick={() => setCallbackOpen(true)}
                   className="w-full text-center text-xs text-[var(--ink-soft)] hover:text-[var(--ink)] underline pt-1 cursor-pointer"
                 >
                   {COPY_DECK.list.call}
@@ -245,6 +252,8 @@ export function ListSheet() {
           )}
         </Dialog.Content>
       </Dialog.Portal>
+
+      <CallbackForm open={callbackOpen} onOpenChange={setCallbackOpen} />
     </Dialog.Root>
   );
 }

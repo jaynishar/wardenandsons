@@ -513,6 +513,7 @@ Automated audit scripts executed against static build `out/`:
 7. **Softened Fabric & Health Claims to Confirm:** Review the 19 softened claims listed in Step 6 of this document (e.g., "100% pure cotton", "chemical-free", "azo-free", "prevents prickly heat") and confirm which specific garments meet these claims before restoring them.
 8. **Twinkle Collection & Warden Collection Details:** In `src/data/shops.ts`, provide verified details (what they sell, exact address, and Google Maps links) before `/our-shops/` can be indexed or linked in navigation.
 9. **Size Guide Post Shop Example:** In `/blog/kids-clothing-size-chart-guide/`, add one real sizing example from the shop counter where indicated by the TODO line.
+10. **Needs the owner: set up the Google Sheet and endpoint, confirm retention wording:** Follow `docs/LEADS_SETUP.md` to create the private Google Sheet, deploy `docs/leads-apps-script.gs` as a Web App, set `NEXT_PUBLIC_LEADS_ENDPOINT`, and confirm data retention duration on `/privacy-policy/` (where marked "TODO: owner confirms how long numbers are kept").
 
 ---
 
@@ -594,5 +595,58 @@ Automated audit scripts executed against static build `out/`:
     - `docs/redesign/shots/r6-category-1280x800.png`
     - `docs/redesign/shots/r6-subcategory-390x844.png`
     - `docs/redesign/shots/r6-subcategory-1280x800.png`
+
+---
+
+## Step R7: Call-me Form and Phone Capture
+- **Scope**: `src/lib/leads.ts`, `src/components/list/CallbackForm.tsx`, `src/components/list/ListSheet.tsx`, `docs/leads-apps-script.gs`, `docs/LEADS_SETUP.md`, `src/app/privacy-policy/page.tsx`, and `src/lib/__tests__/leads.test.ts`.
+- **Phone Validation & Normalisation (`src/lib/leads.ts`)**:
+  - `validatePhone`: Accepts valid 10-digit Indian mobile numbers starting with 6, 7, 8, or 9, with optional `+91` or `91` country code, hyphens, and spaces. Strictly rejects landlines, numbers starting with 0-5, and non-numeric inputs.
+  - `normalisePhone`: Strips spaces, hyphens, and prefixes to output strictly `+91XXXXXXXXXX`.
+- **Payload Builder (`buildLeadPayload`)**:
+  - Formulates scoped payload with `phone`, optional `name`, optional `preferredTime`, `summary` (category and sub labels with quantities only, strictly zero notes and zero child ages), `source` path, `utm_source`, `utm_medium`, `utm_campaign`, short reference code (`WS-XXXXX`), ISO timestamp, and `consent: true`.
+- **Submission Endpoint Helper (`submitLead`)**:
+  - Fetches endpoint via POST with `Content-Type: text/plain;charset=utf-8` to prevent CORS preflight OPTIONS request.
+  - Strictly requires `{ ok: true }` in JSON response to treat submission as successful; all other responses or network exceptions resolve to `{ ok: false }`.
+  - Driven by `NEXT_PUBLIC_LEADS_ENDPOINT`. When unset, the "Prefer a call?" button is completely hidden across the website.
+- **Callback Modal Dialog (`src/components/list/CallbackForm.tsx`)**:
+  - Built using Radix Dialog with accessible overlay, close button, and focus trap.
+  - Copy deck strings utilized verbatim: `call.title`, `call.sub`, `call.consent`, `call.success`, and `call.fail`.
+  - Form fields:
+    - Mobile number input (48px tall, `inputMode="tel"`, `autoComplete="tel"`).
+    - Name input (optional, 48px tall).
+    - Preferred time selection chips (`Morning`, `Afternoon`, `Evening`).
+    - Consent checkbox (`call.consent`), unchecked by default, linking directly to `/privacy-policy/`.
+    - Submit CTA button, disabled until phone is valid and consent is checked.
+  - Inline error messages for invalid phone, unchecked consent, spam violations, or server errors.
+  - Failure fallback: shows `call.fail` with direct WhatsApp alternative button.
+- **Spam Protection & Abuse Prevention**:
+  - Hidden honeypot field (`website_hp`) rejecting automated bots.
+  - Speed restriction rejecting submissions completed under 2 seconds.
+  - Client-side rate limiting enforcing a maximum of 3 callback requests per day via `localStorage` (`ws_lead_submissions_v1`).
+- **Google Apps Script Web App (`docs/leads-apps-script.gs`)**:
+  - `doPost(e)` script parsing JSON body.
+  - Re-validates consent and phone format (`^\+91[6-9]\d{9}$`).
+  - Utilizes `LockService.getScriptLock()` with 10-second timeout to safely handle concurrent submissions.
+  - Appends rows to active private sheet: `[timestamp, phone, name, preferredTime, summary, source, utm_source, utm_medium, utm_campaign, reference, status "New"]`.
+  - Returns `ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON)`.
+  - Zero PII logging in Google Cloud / Apps Script execution logs.
+- **Documentation (`docs/LEADS_SETUP.md`)**:
+  - Numbered, beginner-friendly setup guide explaining Sheet creation, header row configuration, Apps Script deployment as Web App ("Execute as Me", "Who has access: Anyone"), `.env.local` configuration, and lead row deletion for customer erasure requests.
+  - Highlighted prominent security caution that the Google Sheet must remain strictly private.
+- **Privacy Policy Update (`src/app/privacy-policy/page.tsx`)**:
+  - Added Section 3 detailing callback phone number collection, purpose, storage in a private access-controlled Google Sheet, erasure request workflow, and `"Retention: TODO: owner confirms how long numbers are kept"`.
+- **Zero-PII Analytics (`trackCallbackLead`)**:
+  - Dispatches GA4/GTM `generate_lead` event with `lead_type: 'callback'` and `item_count` only upon confirmed `{ ok: true }`. Zero phone numbers or form values are sent to analytics or logged to the console.
+- **Automated Verification & Tests**:
+  - Vitest test suite (`src/lib/__tests__/leads.test.ts`): 20 tests covering phone validation, normalisation, privacy filtering (no notes, no ages), honeypot, speed rules, daily rate limits, and mocked fetch success/failure paths. Total 44 project vitest tests passing.
+  - Verification script (`scripts/verify-r7.mjs`):
+    - Confirmed "Prefer a call?" button is hidden when endpoint is unset.
+    - Confirmed button appears when endpoint is set and opens dialog.
+    - Verified submit button disabled states, speed rule enforcement, and success state display.
+    - Verified failure state with WhatsApp fallback button.
+    - Captured screenshots at 390x844 and 1280x800 in `docs/redesign/shots/r7-call-form-*.png`.
+- **Needs the Owner**: Set up the Google Sheet and endpoint, confirm retention wording.
+
 
 

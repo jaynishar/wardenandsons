@@ -5,8 +5,9 @@ import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = buildPageMetadata({
   path: '/privacy-policy',
-  title: { absolute: "Customer Privacy Policy & WhatsApp Care | Warden & Sons" },
-  description: "Read the customer privacy policy of Warden & Sons Kids Wear. How we protect your personal contact details, phone numbers, and WhatsApp enquiries.",
+  title: { absolute: 'Customer Privacy Policy & WhatsApp Care | Warden & Sons' },
+  description:
+    'Read the customer privacy policy of Warden & Sons Kids Wear. How we protect your personal contact details, phone numbers, and WhatsApp enquiries.',
 });
 
 export default function PrivacyPolicyPage() {
@@ -22,7 +23,7 @@ export default function PrivacyPolicyPage() {
         <h1 className="font-serif text-3xl md:text-4xl font-bold text-forest mb-2">
           Privacy Policy
         </h1>
-        <p className="editorial-label text-muted mb-8">Last Updated: July 23, 2026</p>
+        <p className="editorial-label text-muted mb-8">Last Updated: October 24, 2026</p>
 
         <div className="text-xs sm:text-sm text-near-black/80 leading-relaxed space-y-6">
           <p>
@@ -75,7 +76,31 @@ export default function PrivacyPolicyPage() {
           </ul>
 
           <h2 className="font-serif font-bold text-base text-forest uppercase mt-8 mb-2">
-            3. Third-Party Sharing
+            3. Phone Callback Requests (&ldquo;Prefer a call?&rdquo;)
+          </h2>
+          <p>
+            When you use our optional website callback request form (&ldquo;Prefer a call?&rdquo;), we collect:
+          </p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>
+              <strong>What is collected:</strong> Your 10-digit mobile phone number, optional name, preferred callback window (Morning, Afternoon, or Evening), and a list summary of garment categories and sub-categories you selected. We never collect or store children&apos;s ages, notes, or personal identifiers in callback requests.
+            </li>
+            <li>
+              <strong>Why it is collected:</strong> Solely to ring you back to discuss product availability, sizing, and pricing for your specific inquiry.
+            </li>
+            <li>
+              <strong>Where it is stored:</strong> Records are transmitted securely over HTTPS to a private, access-controlled Google Sheet managed directly by the Warden &amp; Sons shop team. The sheet is not public, and numbers are never sold, rented, or shared with third-party telemarketers.
+            </li>
+            <li>
+              <strong>Retention:</strong> TODO: owner confirms how long numbers are kept
+            </li>
+            <li>
+              <strong>How to ask for deletion:</strong> You may request immediate erasure of your phone number and callback records at any time by messaging us on WhatsApp (+91 99207 51567) or visiting our Kemps Corner store desk.
+            </li>
+          </ul>
+
+          <h2 className="font-serif font-bold text-base text-forest uppercase mt-8 mb-2">
+            4. Third-Party Sharing
           </h2>
           <p>
             We do not sell, trade, or distribute your personal data. We share your information only
@@ -93,7 +118,7 @@ export default function PrivacyPolicyPage() {
           </ul>
 
           <h2 className="font-serif font-bold text-base text-forest uppercase mt-8 mb-2">
-            4. Data Security
+            5. Data Security
           </h2>
           <p>
             We store customer details on secure offline files and encrypted business devices to
@@ -102,7 +127,7 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <h2 className="font-serif font-bold text-base text-forest uppercase mt-8 mb-2">
-            5. Your Choices & Access
+            6. Your Choices & Access
           </h2>
           <p>
             You have the right to request access to the information we hold about you, request

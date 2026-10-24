@@ -137,6 +137,17 @@ export function trackWhatsAppClick(params: WhatsAppClickParams): void {
 }
 
 /**
+ * Records a confirmed callback lead submission.
+ * Strictly adheres to privacy requirements: zero PII (no phone, no name, no form values).
+ */
+export function trackCallbackLead(params: { itemCount?: number } = {}): void {
+  sendAnalyticsEvent('generate_lead', {
+    lead_type: 'callback',
+    item_count: params.itemCount ?? 0,
+  });
+}
+
+/**
  * C. Product Catalogue & Discovery Tracking
  */
 export function trackViewItemList(category: string, itemCount?: number): void {
