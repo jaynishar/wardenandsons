@@ -23,12 +23,12 @@
   - Lighthouse mobile recorded for `/`: Perf 76, LCP 6.4s, CLS 0, TBT 90ms.
   - Committed "P0: preflight and before-state".
 
-- [ ] **P1: Direction from the taste-skill**
-  - Ran `draw.mjs` with `--sector fashion --direction specimen-catalogue`.
-  - Selected sans-serif font available via `next/font/google`.
-  - Redrew/adjusted palette for authentic logo red, blue, yellow, ink navy on clean white.
-  - Accepted hero and section blueprints; documented any adjustments.
-  - Defined the idea sentence and the one live thing.
+- [x] **P1: Direction from the taste-skill**
+  - Ran `draw.mjs` with `--sector fashion --direction specimen-catalogue` (seed `13704476`).
+  - Redrew type slot to `Hanken Grotesk` (clean sans-serif available in `next/font/google`).
+  - Redrew contact section to `contact-address-display-rows` to accurately present store address and contact details.
+  - Adjusted palette to authentic logo red, blue, yellow, ink navy on pure white ground.
+  - Defined idea sentence and the one live thing (category picker + live IST store status).
   - Authored copy deck in `src/content/copy.ts`.
   - Saved direction metadata to `docs/redesign-v2/direction.md`.
   - Committed "P1: direction and copy deck".

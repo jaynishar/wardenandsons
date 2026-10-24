@@ -1,22 +1,60 @@
 /**
- * Warden & Sons Official Copy Deck
- * Strictly defined strings per REDESIGN_CONTEXT.md. Do not invent marketing copy.
+ * Warden & Sons Official Copy Deck — Redesign V2
+ * Sentence case, no eyebrows, concise shopkeeper voice.
  */
 
 export const COPY_DECK = {
   hero: {
+    h1: 'Kids Clothes in Kemps Corner, South Mumbai',
     sub: 'Since 1994. Pick what you like and send us your list on WhatsApp.',
     shop: 'Shop',
     chat: 'Chat on WhatsApp',
   },
+  categories: {
+    heading: 'Shop by category',
+    newborn: 'Newborn',
+    boys: 'Boys',
+    girls: 'Girls',
+    men: 'Men',
+    women: 'Women',
+    uniforms: 'Uniforms & Bulk',
+  },
+  showcase: {
+    heading: 'Garments on offer',
+    sub: 'Real cotton basics, cut for comfort.',
+    add: 'Add to list',
+  },
   how: {
-    line: 'Pick  ·  Send on WhatsApp  ·  We reply with photos and sizes',
+    heading: 'How it works',
+    step1Title: 'Pick',
+    step1Desc: 'Browse categories and tap plus to build your list.',
+    step2Title: 'Send on WhatsApp',
+    step2Desc: 'Share your list with us directly from your phone.',
+    step3Title: 'We reply with photos and sizes',
+    step3Desc: 'We confirm live rack photos and check tape measurements.',
+    videoChip: 'Free video call',
   },
-  video: {
-    chip: 'Free video call',
+  reviews: {
+    heading: 'Real reviews',
+    googleLink: 'View on Google',
   },
-  store: {
-    line: 'Shop 7, Haji Habib Building, Kemps Corner · Open daily 9am-9pm',
+  visit: {
+    heading: 'Visit us in Kemps Corner',
+    shopName: 'Warden & Sons Kids Wear',
+    addressLine1: 'Shop 7, Ground Floor, Haji Habib Building',
+    addressLine2: '155/157 August Kranti Marg, Kemps Corner, Mumbai 400036',
+    landmark: 'Near St. Stephen’s Church',
+    hoursDefault: 'Open daily 9am to 9pm',
+    phone: '+91 22 23684640',
+    whatsapp: '+91 99207 51567',
+    directions: 'Directions on Google Maps',
+    call: 'Call store',
+    chat: 'Message on WhatsApp',
+  },
+  footer: {
+    signoff: 'Family shop since 1994',
+    message: 'Cotton comfort for newborns, kids, and families in South Mumbai.',
+    copyright: '© 1994–2026 Warden & Sons Kids Wear. All rights reserved.',
   },
   list: {
     title: 'My list',
