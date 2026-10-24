@@ -650,7 +650,49 @@ Automated audit scripts executed against static build `out/`:
 
 ---
 
-## Step R8: Search and Age Filter
+## Step R9: Guided Chat Helper and Motion
+- **Scope**: `src/components/chat/`, `src/components/motion/`, `src/app/globals.css`, `src/app/layout.tsx`, `src/components/Header.tsx`, `src/components/BottomNav.tsx`, `src/components/ui/Button.tsx`, `src/components/CategoryTiles.tsx`, `src/components/ShopKidsTiles.tsx`, `src/components/SubcategoryTile.tsx`, `src/components/list/`, `src/components/search/`, `src/lib/analytics.ts`, and `docs/ANALYTICS_TRACKING_GUIDE.md`.
+- **Guided Chat Helper (`src/components/chat/ChatHelper.tsx`, `src/components/chat/ChatHelperContainer.tsx`)**:
+  - Defers mounting until first user interaction (`pointerdown`, `keydown`, `touchstart`, `scroll`, `click`) or 6 seconds of idle.
+  - Dynamically imported with `next/dynamic` (`ssr: false`) for 0 kB initial load overhead.
+  - Single round 48px WhatsApp green trigger button positioned bottom-right above mobile bottom bar (`bottom-[calc(4.5rem+var(--sab,0px)+8px)] right-4 md:bottom-6 md:right-6`).
+  - Strict suppression rule: trigger is completely hidden while any sheet, dialog, or cookie choices banner is open.
+  - Radix Dialog decision panel with:
+    - `chat.greeting` ("Hi! What are you shopping for?") with category chips: Newborn, Boys, Girls, Men or Women, School uniforms, Visit the store.
+    - Kids departments (Newborn, Boys, Girls): catalogue age chips with up to 4 matching subcategory links (preselecting chosen age on device) + prefilled WhatsApp button (`"Hi Warden & Sons! I am looking for {Category} clothes, age {Age}. (Sent from the website, chat helper)"`).
+    - Men or Women: subcategory links for Men and Women + prefilled WhatsApp enquiry button.
+    - School uniforms: direct link to `/bulk-orders/` + prefilled WhatsApp message.
+    - Visit the store: store address (`store.line`), Google Maps directions link (`trackDirectionsClick`), and store phone call link (`trackPhoneClick`).
+    - Pure client-side decision tree with zero AI, zero third-party chat scripts, and zero price or stock claims.
+- **Analytics & Data Privacy**:
+  - Added `'chat_helper'` to `ButtonLocation`, `VALID_BUTTON_LOCATIONS`, and `normalizeButtonLocation` in `src/lib/analytics.ts` and `docs/ANALYTICS_TRACKING_GUIDE.md`.
+  - Dispatches `whatsapp_click` with `button_location: "chat_helper"` only.
+  - Strictly client-side: never transmits children's ages, selections, or typed query text to analytics or external servers.
+- **Motion System (Added JS < 20 KB gzipped, CSS for simple transitions)**:
+  - **Image Reveal (`src/components/motion/Reveal.tsx`)**: Opacity 0 -> 1 and 12px upward translate when tiles and cards enter the viewport, once only. Uses `LazyMotion` with lazily loaded `domAnimation` features and respects `useReducedMotion()`.
+  - **List Badge Bump**: Added `@keyframes badge-bump` and `.animate-badge-bump` in `src/app/globals.css`. Triggers a short 260ms scale bump (1.35x) on desktop Header and mobile BottomNav badges when items are added.
+  - **Logo Letter Tiles Flip**: Added `@keyframes logo-flip` and `.animate-logo-flip` (550ms < 600ms total) in `src/app/globals.css`. Triggers a one-time 3D flip of the authentic brand logo container on first load of the homepage (`/`), persisted in `sessionStorage`.
+  - **Pressed States**: Added `active:scale-[0.98] transition-all duration-[80ms]` to `Button.tsx`, category tiles, subcategory tiles, and chat chips.
+  - **Smooth Sheet/Dialog Transitions**: Added `@keyframes` (`slideInFromBottom`, `slideInFromRight`, `slideInFromLeft`, `scaleIn`, `fadeIn`) and classes (`.sheet-bottom`, `.sheet-right`, `.sheet-left`, `.dialog-scale`, `.dialog-overlay`) across all site dialogs.
+  - **Reduced Motion Compliance**: Verified all animations and transitions are disabled under `@media (prefers-reduced-motion: reduce)` (`animation-duration: 0.01ms !important`).
+- **Performance Budget & Audits**:
+  - First-load JS on `/`: **134 kB** (well below 150 kB limit).
+  - First-load JS on `/shop/`: **132 kB**.
+  - First-load JS on `/shop/boys/`: **134 kB**.
+  - First-load JS on `/shop/[category]/[sub]`: **119 kB**.
+  - Shared JS: **103 kB**.
+  - Lighthouse mobile audit on `/`: **Performance 100**, **Accessibility 97**, **SEO 100**, **CLS 0.009** (<= 0.05), **LCP 1.1s**.
+  - Lighthouse mobile audit on `/shop/boys/`: **Performance 100**, **Accessibility 98**, **SEO 100**, **CLS 0.000**, **LCP 1.6s**.
+- **Automated Verification & Tests**:
+  - Vitest test suite (`src/lib/__tests__/chat-and-motion.test.ts`): 15 tests covering WhatsApp URL message encoding, analytics location dictionary, zero-PII data privacy, CSS keyframes, reduced-motion rules, interaction constraints, and component architecture. All 73 project vitest tests passing.
+  - Browser verification script (`scripts/verify-r9.mjs`):
+    - Confirmed trigger does NOT render before interaction.
+    - Confirmed trigger mounts after interaction and clears 64px mobile bottom bar (y=716 on 844px height).
+    - Confirmed trigger suppression when Search modal or List sheet is open.
+    - Confirmed dialog open, greeting text, Esc key close, Boys 6-7Y subcategory filtering, and WhatsApp link formatting.
+    - Confirmed School Uniforms path (`/bulk-orders/`) and Visit Store path (Google Maps directions & phone call).
+    - Captured screenshots at 390x844 (`docs/redesign/shots/r9-chat-mobile.png`, `docs/redesign/shots/r9-chat-mobile-results.png`) and 1280x800 (`docs/redesign/shots/r9-chat-desktop.png`).
+
 - **Scope**: `src/lib/search.ts`, `src/lib/search-store.ts`, `src/components/search/`, `src/lib/age-store.ts`, `src/components/AgeCard.tsx`, `src/components/CategoryTiles.tsx`, `src/components/ShopKidsTiles.tsx`, `src/components/SubcategoryTile.tsx`, `src/components/list/AddSheet.tsx`, `src/components/Header.tsx`, `src/components/BottomNav.tsx`, `src/app/page.tsx`, and `src/app/shop/page.tsx`.
 - **Search Overlay & Engine (`src/components/search/SearchOverlay.tsx`, `src/lib/search.ts`)**:
   - Implemented client-side search over in-memory catalogue (~40 subcategory documents) using `minisearch`.

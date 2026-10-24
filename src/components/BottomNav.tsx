@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { IconSearch, IconList } from '@/components/icons';
@@ -12,6 +12,19 @@ export default function BottomNav() {
   const toggleList = useListStore((state) => state.toggleList);
   const openSearch = useSearchStore((state) => state.openSearch);
   const totalItems = useListCount();
+  const [isBumping, setIsBumping] = useState(false);
+  const prevTotalRef = useRef(0);
+
+  // Short bump on badge when item is added
+  useEffect(() => {
+    if (totalItems > prevTotalRef.current) {
+      setIsBumping(true);
+      const timer = setTimeout(() => setIsBumping(false), 260);
+      prevTotalRef.current = totalItems;
+      return () => clearTimeout(timer);
+    }
+    prevTotalRef.current = totalItems;
+  }, [totalItems]);
 
   const isHomeActive = pathname === '/';
   const isShopActive = pathname.startsWith('/shop');
@@ -75,7 +88,7 @@ export default function BottomNav() {
           <div className="relative flex items-center justify-center">
             <IconList size={18} />
             {totalItems > 0 && (
-              <span className="absolute -top-1.5 -right-2.5 min-w-[16px] h-4 px-1 rounded-full bg-[var(--ink)] text-[var(--ivory)] text-[10px] font-bold flex items-center justify-center leading-none">
+              <span className={`absolute -top-1.5 -right-2.5 min-w-[16px] h-4 px-1 rounded-full bg-[var(--ink)] text-[var(--ivory)] text-[10px] font-bold flex items-center justify-center leading-none ${isBumping ? 'animate-badge-bump' : ''}`}>
                 {totalItems}
               </span>
             )}

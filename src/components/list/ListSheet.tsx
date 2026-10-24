@@ -48,11 +48,11 @@ export function ListSheet() {
   return (
     <Dialog.Root open={isListOpen} onOpenChange={setListOpen}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none transition-opacity" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none dialog-overlay" />
 
         <Dialog.Content
           aria-describedby="list-sheet-description"
-          className="fixed inset-y-0 right-0 z-50 w-full max-w-[420px] bg-[var(--ivory)] border-l border-[var(--line)] shadow-2xl flex flex-col justify-between focus:outline-none"
+          className="fixed inset-y-0 right-0 z-50 w-full max-w-[420px] bg-[var(--ivory)] border-l border-[var(--line)] shadow-2xl flex flex-col justify-between focus:outline-none sheet-right"
         >
           {/* Header */}
           <div className="p-6 border-b border-[var(--line)] flex items-center justify-between">

@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   IconSearch,
   IconList,
@@ -14,12 +15,44 @@ import { useListStore, useListCount } from '@/lib/list-store';
 import { useSearchStore } from '@/lib/search-store';
 
 export default function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [shouldFlipLogo, setShouldFlipLogo] = useState(false);
+  const [isBumping, setIsBumping] = useState(false);
+  const prevTotalRef = useRef(0);
   const moreRef = useRef<HTMLDivElement>(null);
   const toggleList = useListStore((state) => state.toggleList);
   const openSearch = useSearchStore((state) => state.openSearch);
   const totalItems = useListCount();
+
+  // One-time logo flip on first load of the homepage (keep under 600ms total: 550ms)
+  useEffect(() => {
+    if (pathname === '/') {
+      try {
+        const flipped = sessionStorage.getItem('warden_logo_flip');
+        if (!flipped) {
+          setShouldFlipLogo(true);
+          sessionStorage.setItem('warden_logo_flip', 'true');
+          const timer = setTimeout(() => setShouldFlipLogo(false), 550);
+          return () => clearTimeout(timer);
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }, [pathname]);
+
+  // Short bump animation when an item is added to the list
+  useEffect(() => {
+    if (totalItems > prevTotalRef.current) {
+      setIsBumping(true);
+      const timer = setTimeout(() => setIsBumping(false), 260);
+      prevTotalRef.current = totalItems;
+      return () => clearTimeout(timer);
+    }
+    prevTotalRef.current = totalItems;
+  }, [totalItems]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -62,7 +95,7 @@ export default function Header() {
             href="/"
             className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-[var(--blue)] shrink-0"
           >
-            <div className="relative w-11 h-8 rounded-[3px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden">
+            <div className={`relative w-11 h-8 rounded-[3px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden ${shouldFlipLogo ? 'animate-logo-flip' : ''}`}>
               <img
                 src="/brand_logo.webp"
                 alt="Warden & Sons Kids Wear Official Logo"
@@ -173,11 +206,11 @@ export default function Header() {
               type="button"
               onClick={toggleList}
               aria-label={`My list with ${totalItems} items`}
-              className="inline-flex items-center gap-2 h-10 px-3.5 rounded-[4px] bg-[var(--ink)] text-[var(--ivory)] hover:bg-[#203155] transition-colors cursor-pointer text-sm font-medium focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+              className="inline-flex items-center gap-2 h-10 px-3.5 rounded-[4px] bg-[var(--ink)] text-[var(--ivory)] hover:bg-[#203155] active:scale-[0.98] transition-all duration-[80ms] cursor-pointer text-sm font-medium focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
             >
               <IconList size={18} />
               <span>My list</span>
-              <span className="min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--ivory)] text-[var(--ink)] text-[11px] font-bold inline-flex items-center justify-center leading-none">
+              <span className={`min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--ivory)] text-[var(--ink)] text-[11px] font-bold inline-flex items-center justify-center leading-none ${isBumping ? 'animate-badge-bump' : ''}`}>
                 {totalItems}
               </span>
             </button>
@@ -205,7 +238,7 @@ export default function Header() {
             href="/"
             className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
           >
-            <div className="w-8 h-6 rounded-[2px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden">
+            <div className={`w-8 h-6 rounded-[2px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden ${shouldFlipLogo ? 'animate-logo-flip' : ''}`}>
               <img
                 src="/brand_logo.webp"
                 alt="Warden & Sons"
@@ -238,7 +271,7 @@ export default function Header() {
             >
               <IconList size={20} />
               {totalItems > 0 && (
-                <span className="absolute top-1 right-1 min-w-[15px] h-[15px] px-0.5 rounded-full bg-[var(--ink)] text-[var(--ivory)] text-[9px] font-bold flex items-center justify-center leading-none">
+                <span className={`absolute top-1 right-1 min-w-[15px] h-[15px] px-0.5 rounded-full bg-[var(--ink)] text-[var(--ivory)] text-[9px] font-bold flex items-center justify-center leading-none ${isBumping ? 'animate-badge-bump' : ''}`}>
                   {totalItems}
                 </span>
               )}

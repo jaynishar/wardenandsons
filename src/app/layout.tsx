@@ -8,6 +8,7 @@ import { ListSheet, AddSheet } from '@/components/list';
 import { SearchContainer } from '@/components/search';
 import TrackingProvider from '@/components/TrackingProvider';
 import ConsentBanner from '@/components/ConsentBanner';
+import ChatHelperContainer from '@/components/chat/ChatHelperContainer';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/config/site';
 
@@ -151,6 +152,7 @@ export default function RootLayout({
         <Footer />
         <BottomNav />
         <ConsentBanner />
+        <ChatHelperContainer />
       </body>
     </html>
   );

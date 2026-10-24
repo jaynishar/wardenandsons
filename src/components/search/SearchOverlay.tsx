@@ -94,11 +94,11 @@ export function SearchOverlay() {
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && closeSearch()}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none transition-opacity" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none dialog-overlay" />
 
         <Dialog.Content
           aria-describedby="search-overlay-description"
-          className="fixed inset-0 z-50 bg-[var(--ivory)] flex flex-col focus:outline-none md:inset-auto md:top-12 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-2xl md:rounded-[8px] md:border md:border-[var(--line)] md:shadow-2xl md:max-h-[80vh]"
+          className="fixed inset-0 z-50 bg-[var(--ivory)] flex flex-col focus:outline-none dialog-fade md:dialog-scale md:inset-auto md:top-12 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-2xl md:rounded-[8px] md:border md:border-[var(--line)] md:shadow-2xl md:max-h-[80vh]"
         >
           {/* Search Header Bar */}
           <div className="p-4 sm:p-5 border-b border-[var(--line)] bg-[var(--paper)] flex items-center gap-3">

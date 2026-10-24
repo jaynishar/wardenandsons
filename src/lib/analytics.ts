@@ -11,7 +11,8 @@ export type ButtonLocation =
   | 'request_list'
   | 'footer'
   | 'sticky_bar'
-  | 'video_call';
+  | 'video_call'
+  | 'chat_helper';
 
 export const VALID_BUTTON_LOCATIONS: ButtonLocation[] = [
   'header',
@@ -21,6 +22,7 @@ export const VALID_BUTTON_LOCATIONS: ButtonLocation[] = [
   'footer',
   'sticky_bar',
   'video_call',
+  'chat_helper',
 ];
 
 export function normalizeButtonLocation(
@@ -32,6 +34,7 @@ export function normalizeButtonLocation(
   if (VALID_BUTTON_LOCATIONS.includes(loc as ButtonLocation)) {
     return loc as ButtonLocation;
   }
+  if (loc.includes('chat') || loc.includes('helper')) return 'chat_helper';
   if (loc.includes('head') || loc.includes('nav_top')) return 'header';
   if (loc.includes('hero')) return 'hero';
   if (loc.includes('product') || loc.includes('catalog') || loc.includes('size')) return 'product';

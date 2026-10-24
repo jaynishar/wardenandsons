@@ -92,5 +92,20 @@
   - Verified bundle budget: first-load JS is **117 kB** on `/`, **116 kB** on `/shop/`, and **119 kB** on subcategory routes (well below 150 kB limit).
   - Added comprehensive Vitest tests in `src/lib/__tests__/search-and-age.test.ts` (14 tests covering "jhabla", "night suit", "cricket whites" queries, age store persistence, badge coverage, and tile reordering). Total 58 project vitest tests passing.
   - Verified end-to-end browser flows (search queries, keyboard navigation, homepage age card selection, reload persistence, subcategory tile badges, and AddSheet preselection) and saved screenshots in `docs/redesign/shots/r8-*.png`.
-- [ ] **R9: Performance, contrast & accessibility audits**
+- [x] **R9: Guided chat helper and motion**
+  - Built `src/components/chat/ChatHelper.tsx` and `ChatHelperContainer.tsx`: deferred mounting after first interaction or 6s idle; single round 48px WhatsApp green trigger button positioned above 64px mobile bottom bar; hidden while any dialog, sheet, or cookie banner is open.
+  - Implemented Radix Dialog decision panel with `chat.greeting`, category chips (Newborn, Boys, Girls, Men or Women, School uniforms, Visit the store), age selection, up to 4 matching subcategory links (with age preselected in local store), and prefilled WhatsApp buttons (`"Hi Warden & Sons! I am looking for {Category} clothes, age {Age}. (Sent from the website, chat helper)"`).
+  - Implemented School Uniforms path (links to `/bulk-orders/` + WhatsApp) and Visit Store path (`store.line`, Google Maps directions, and telephone call link). Purely client-side with zero third-party scripts, zero AI services, zero price/stock claims, and zero child age/answer analytics tracking.
+  - Added `'chat_helper'` to `ButtonLocation` in `src/lib/analytics.ts` and `docs/ANALYTICS_TRACKING_GUIDE.md`.
+  - Implemented motion system:
+    - Image reveal (`src/components/motion/Reveal.tsx`): opacity 0 -> 1 and 12px upward translate when tiles/cards enter viewport once, powered by `LazyMotion` with dynamic `domAnimation` and `useReducedMotion()`.
+    - List badge bump: `@keyframes badge-bump` (260ms, scale 1.35x) on desktop header and mobile bottom bar badges when items are added.
+    - One-time homepage logo flip: `@keyframes logo-flip` (550ms < 600ms) on first visit to `/`, tracked via `sessionStorage`.
+    - Button and tile pressed states: `active:scale-[0.98]` (80ms).
+    - Smooth sheet and dialog transitions (`slideInFromBottom`, `slideInFromRight`, `slideInFromLeft`, `scaleIn`, `fadeIn`).
+    - Prefers-reduced-motion: Verified all animations and transitions are disabled under `@media (prefers-reduced-motion: reduce)`.
+  - First-load JS budget strictly maintained: **134 kB** on `/`, **132 kB** on `/shop/`, **134 kB** on `/shop/boys/`, **119 kB** on subcategories (all <= 150 kB limit).
+  - Mobile Lighthouse audit: **Performance 100**, **Accessibility 97**, **SEO 100**, **CLS 0.009** on `/`; **Performance 100**, **Accessibility 98**, **SEO 100**, **CLS 0.000** on `/shop/boys/`.
+  - Added comprehensive Vitest tests in `src/lib/__tests__/chat-and-motion.test.ts` (15 tests covering message encoding, analytics location dictionary, zero-PII data privacy, CSS keyframes, reduced-motion rules, and interaction constraints). All 73 project vitest tests passing.
+  - Verified browser flows via Playwright and saved screenshots at 390x844 and 1280x800 in `docs/redesign/shots/r9-chat-*.png`.
 - [ ] **R10: Final verification, QA & cleanup**

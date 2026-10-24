@@ -133,11 +133,11 @@ export function CallbackForm({ open, onOpenChange }: CallbackFormProps) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none transition-opacity" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none dialog-overlay" />
 
         <Dialog.Content
           aria-describedby="callback-dialog-description"
-          className="fixed inset-x-0 bottom-0 z-50 rounded-t-[12px] bg-[var(--ivory)] border-t border-[var(--line)] p-6 shadow-2xl max-h-[90vh] overflow-y-auto focus:outline-none md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:rounded-[8px] md:border md:border-[var(--line)]"
+          className="fixed inset-x-0 bottom-0 z-50 rounded-t-[12px] bg-[var(--ivory)] border-t border-[var(--line)] p-6 shadow-2xl max-h-[90vh] overflow-y-auto focus:outline-none sheet-bottom md:sheet-none md:dialog-scale md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:rounded-[8px] md:border md:border-[var(--line)]"
         >
           {/* Header */}
           <div className="flex items-start justify-between pb-4 border-b border-[var(--line)]">

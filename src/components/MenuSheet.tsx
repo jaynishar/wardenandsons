@@ -22,12 +22,12 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         {/* Overlay */}
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none transition-opacity" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none dialog-overlay" />
 
         {/* Content sliding from left */}
         <Dialog.Content
           aria-describedby="menu-sheet-description"
-          className="fixed inset-y-0 left-0 z-50 w-full max-w-[320px] bg-[var(--ivory)] border-r border-[var(--line)] p-6 shadow-xl flex flex-col justify-between overflow-y-auto focus:outline-none"
+          className="fixed inset-y-0 left-0 z-50 w-full max-w-[320px] bg-[var(--ivory)] border-r border-[var(--line)] p-6 shadow-xl flex flex-col justify-between overflow-y-auto focus:outline-none sheet-left"
         >
           <div className="space-y-6">
             {/* Sheet Header */}
