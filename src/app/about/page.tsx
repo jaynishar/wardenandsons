@@ -60,7 +60,7 @@ export default function AboutPage() {
       {/* Story & Store Photo Grid */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         <div className="lg:col-span-6">
-          <div className="relative h-[340px] sm:h-[460px] overflow-hidden border-2 border-[var(--ink)]">
+          <div className="relative h-[340px] sm:h-[460px] overflow-hidden rounded-md border border-[var(--line)] shadow-xs">
             <Image
               src="/store_front.webp"
               alt="Inside Warden & Sons Kids Wear boutique at Kemps Corner, Mumbai"
@@ -102,7 +102,7 @@ export default function AboutPage() {
           <div className="pt-2 flex flex-wrap gap-3">
             <Link
               href="/shop/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-xs"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-sm bg-forest text-white hover:bg-forest-dark font-medium text-xs shadow-xs"
             >
               <span>Browse Catalogue</span>
               <ArrowRight className="w-4 h-4" />
@@ -114,7 +114,7 @@ export default function AboutPage() {
               data-track="whatsapp_click"
               data-track-location="hero"
               data-track-category="about"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-border-soft text-near-black hover:bg-bg-cream font-bold text-xs shadow-xs"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-sm bg-white border border-border-soft text-near-black hover:bg-bg-cream font-medium text-xs shadow-xs"
             >
               <MessageSquare className="w-4 h-4 text-whatsapp" />
               <span>Say Hello on WhatsApp</span>
@@ -124,7 +124,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Grid */}
-      <section className="bg-white rounded-3xl border border-border-soft p-8 sm:p-12 shadow-xs space-y-8">
+      <section className="bg-white rounded-md border border-border-soft p-8 sm:p-12 shadow-xs space-y-8">
         <div className="text-center space-y-2 max-w-xl mx-auto">
           <span className="text-xs font-bold text-[var(--blue)]">
             Core Principles
@@ -140,9 +140,9 @@ export default function AboutPage() {
             return (
               <div
                 key={v.title}
-                className="p-6 bg-bg-cream rounded-2xl border border-border-soft space-y-3"
+                className="p-6 bg-bg-cream rounded-sm border border-border-soft space-y-3"
               >
-                <div className="w-12 h-12 rounded-xl bg-forest text-white flex items-center justify-center">
+                <div className="w-12 h-12 rounded-sm bg-forest text-white flex items-center justify-center">
                   <Icon className="w-6 h-6 text-gold" />
                 </div>
                 <h3 className="font-serif font-bold text-base text-near-black">{v.title}</h3>
@@ -156,7 +156,7 @@ export default function AboutPage() {
       {/* Social Proof & Folded-in Reviews */}
 
       {/* Visit Store Callout */}
-      <section className="bg-bg-cream rounded-3xl border border-border-soft p-8 sm:p-10 text-center space-y-4 max-w-3xl mx-auto">
+      <section className="bg-bg-cream rounded-md border border-border-soft p-8 sm:p-10 text-center space-y-4 max-w-3xl mx-auto">
         <h3 className="font-serif text-2xl font-bold text-forest">
           Visit Our Kemps Corner Shop
         </h3>
@@ -167,14 +167,14 @@ export default function AboutPage() {
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link
             href="/visit-us/"
-            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-forest text-white text-xs font-bold shadow-xs hover:bg-forest-dark"
+            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-sm bg-forest text-white text-xs font-medium shadow-xs hover:bg-forest-dark"
           >
             <span>View Map & Directions</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <a
             href={BUSINESS_CONFIG.phone.telLink}
-            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-white border border-border-soft text-near-black text-xs font-bold shadow-xs hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-sm bg-white border border-border-soft text-near-black text-xs font-medium shadow-xs hover:bg-gray-50"
           >
             <Phone className="w-4 h-4 text-gold" />
             <span>Call: {BUSINESS_CONFIG.phone.display}</span>

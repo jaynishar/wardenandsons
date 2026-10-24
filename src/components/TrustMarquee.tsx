@@ -3,12 +3,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const TRUST_PHRASES = [
-  '100% Combed Cotton',
+  '100% Breathable Combed Cotton',
   'South Mumbai Store Est. 1994',
-  'Flat Tape Measurements on WhatsApp',
+  'Physical Tape Measurements on WhatsApp',
   'Cathedral & St. Mary’s Uniforms',
-  'Kemps Corner Near St. Stephen’s',
-  'Open All 7 Days 9am–9pm',
+  'Shop No. 7, Haji Habib Bldg, Kemps Corner',
+  'Open All 7 Days 9:00 AM – 9:00 PM',
+  'Zero Itchy Tulle or Synthetic Linings',
 ];
 
 export function TrustMarquee() {
@@ -34,7 +35,7 @@ export function TrustMarquee() {
   return (
     <div
       ref={containerRef}
-      className="w-full bg-[var(--ink)] text-white overflow-hidden py-3 font-sans group select-none"
+      className="w-full bg-[var(--ink)] text-[#FAF9F6] overflow-hidden py-3 font-sans group select-none border-t border-[var(--line)]"
       aria-label="Store commitments ticker"
     >
       <div
@@ -45,9 +46,9 @@ export function TrustMarquee() {
       >
         {/* Render duplicate items for continuous smooth loop */}
         {[...TRUST_PHRASES, ...TRUST_PHRASES].map((phrase, i) => (
-          <div key={i} className="inline-flex items-center mx-6 text-sm font-medium">
+          <div key={i} className="inline-flex items-center mx-8 text-[13px] font-medium tracking-wide">
             <span>{phrase}</span>
-            <span className="ml-6 text-[var(--yellow)] opacity-60">·</span>
+            <span className="ml-8 text-[var(--terracotta)] opacity-80" aria-hidden="true">·</span>
           </div>
         ))}
       </div>

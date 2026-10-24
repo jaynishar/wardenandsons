@@ -3,177 +3,221 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import Garment, { GarmentName } from '@/components/Garment';
 import { useAddToList } from '@/lib/list-store';
-import type { TileColor } from '@/data/specimens';
+import { IconPlus } from '@/components/icons';
 
-interface ShowcaseItem {
+interface EssentialItem {
   id: string;
   categorySlug: string;
   subSlug: string;
   name: string;
   tag: string;
-  garment: GarmentName;
-  color: TileColor;
-  photo?: string;
-  fact: string;
+  age: string;
+  fabric: string;
+  photo: string;
+  detail: string;
 }
 
-const SHOWCASE_ITEMS: ShowcaseItem[] = [
+const ESSENTIAL_ITEMS: EssentialItem[] = [
   {
-    id: 'jhabla',
+    id: 'nb-jhabla',
     categorySlug: 'newborn',
     subSlug: 'bodysuits-jhablas',
-    name: 'Pure Cotton Jhabla',
+    name: 'Combed Cotton Bodysuits & Jhablas',
     tag: 'Newborn Essential',
-    garment: 'jhabla',
-    color: 'yellow',
+    age: '0–24 Months',
+    fabric: '100% Breathable Combed Cotton',
     photo: '/products/nb-bodysuit.webp',
-    fact: 'Flat-lock interior seams with zero tags touching newborn skin.',
+    detail: 'Flat-lock interior seams with zero tags touching sensitive newborn skin. Diaper-rise room built in.',
   },
   {
-    id: 'swaddle',
+    id: 'nb-swaddle',
     categorySlug: 'newborn',
     subSlug: 'swaddles-blankets',
-    name: 'Open-Weave Swaddle',
+    name: 'Open-Weave Double-Gauze Muslin Swaddles',
     tag: 'Infant Wrap',
-    garment: 'swaddle',
-    color: 'red',
+    age: 'Generous 47" x 47"',
+    fabric: 'Pure Double-Layer Muslin',
     photo: '/products/nb-swaddle.webp',
-    fact: 'Pure double-layer muslin suited for Mumbai humidity.',
+    detail: 'Generously sized open-weave swaddles that prevent heat buildup in Mumbai’s humid coastal climate.',
   },
   {
-    id: 'cricket',
+    id: 'by-cargos',
     categorySlug: 'boys',
-    subSlug: 'sportswear-cricket-whites',
-    name: 'Maidan Cricket Whites',
-    tag: 'Sports Kit',
-    garment: 'sportswear',
-    color: 'red',
-    photo: '/products/by-cricket.webp',
-    fact: 'Heavyweight cotton drill with reinforced knee panels.',
+    subSlug: 'shorts-joggers-cargos',
+    name: 'Reinforced Cotton Cargo Shorts',
+    tag: 'Playwear Staple',
+    age: '0–16 Years',
+    fabric: 'High-Durability Cotton Twill',
+    photo: '/products/by-cargos.webp',
+    detail: 'Deep utility pockets, ribbed elastic waist with functional drawstrings. Built for active outdoor play.',
   },
   {
-    id: 'nightsuit',
-    categorySlug: 'boys',
-    subSlug: 'nightwear',
-    name: 'Hosiery Nightsuit',
-    tag: 'Daily Sleepwear',
-    garment: 'nightsuit',
-    color: 'ink',
-    photo: '/products/by-nightsuit.webp',
-    fact: '100% combed cotton jersey that softens with every machine wash.',
+    id: 'gl-frock',
+    categorySlug: 'girls',
+    subSlug: 'dresses-frocks',
+    name: 'Airy Muslin & Cambric Summer Frocks',
+    tag: 'Daily & Occasion',
+    age: '0–16 Years',
+    fabric: '100% Pure Cotton Cambric',
+    photo: '/products/gl-dress.webp',
+    detail: 'Pre-washed cotton poplin with soft 100% cotton inner linings and zero scratchy tulle on skin.',
   },
   {
-    id: 'uniform',
+    id: 'bk-uniform',
     categorySlug: 'bulk',
     subSlug: 'school-uniforms',
-    name: 'South Mumbai School Uniform',
-    tag: 'Bespoke Cut',
-    garment: 'uniform',
-    color: 'blue',
+    name: 'South Mumbai School Uniforms',
+    tag: 'Cathedral · St. Mary’s',
+    age: 'Ages 3–18',
+    fabric: 'Institutional Poly-Viscose & Cotton',
     photo: '/products/bk-uniform.webp',
-    fact: 'Exact fabric specs for Cathedral, Scottish, and St. Mary’s.',
+    detail: 'Tailored precisely to South Mumbai school dress codes with reinforced stress seams.',
+  },
+  {
+    id: 'by-cricket',
+    categorySlug: 'boys',
+    subSlug: 'sportswear-cricket-whites',
+    name: 'Maidan Cricket Academy Whites',
+    tag: 'Sports Kit',
+    age: 'Junior & Senior Sizes',
+    fabric: 'Heavyweight Breathable Cotton Drill',
+    photo: '/products/by-cricket.webp',
+    detail: 'Reinforced knee panels and breathable mesh inserts for long weekend cricket training on the Maidans.',
   },
 ];
 
 export default function CuratedShowcase() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const active = SHOWCASE_ITEMS[activeIdx];
   const { openAddSheet } = useAddToList();
+  const [filter, setFilter] = useState<'all' | 'newborn' | 'kids' | 'uniforms'>('all');
 
-  const colorStyles: Record<TileColor, { bg: string; fg: string }> = {
-    red: { bg: 'bg-[var(--red)]', fg: 'text-white' },
-    blue: { bg: 'bg-[var(--blue)]', fg: 'text-white' },
-    yellow: { bg: 'bg-[var(--yellow)]', fg: 'text-[var(--ink)]' },
-    ink: { bg: 'bg-[var(--ink)]', fg: 'text-white' },
-  };
-
-  const { bg, fg } = colorStyles[active.color];
+  const filteredItems = ESSENTIAL_ITEMS.filter((item) => {
+    if (filter === 'newborn') return item.categorySlug === 'newborn';
+    if (filter === 'kids') return item.categorySlug === 'boys' || item.categorySlug === 'girls';
+    if (filter === 'uniforms') return item.categorySlug === 'bulk';
+    return true;
+  });
 
   return (
-    <section className="py-12 sm:py-16 bg-[var(--surface)]">
+    <section className="py-14 sm:py-20 font-sans">
       <Container>
-        <div className="max-w-2xl mb-8 sm:mb-12">
-          <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)] tracking-tight">
-            Kemps Corner Essentials
-          </h2>
-          <p className="text-sm sm:text-base text-[var(--muted)] mt-1">
-            Everyday South Mumbai staples stocked fresh year-round.
-          </p>
-        </div>
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
+          <div className="space-y-2">
+            <span className="text-[12px] uppercase tracking-wider text-[var(--terracotta)] font-medium">
+              Kemps Corner Staples
+            </span>
+            <h2 className="font-sans font-medium text-2xl sm:text-3xl lg:text-4xl text-[var(--ink)] tracking-tight">
+              Essential Cotton Pieces
+            </h2>
+            <p className="text-[14px] sm:text-[15px] text-[var(--muted)] max-w-xl font-normal leading-relaxed">
+              Everyday staples stocked fresh year-round at our August Kranti Marg boutique. Add items to your Request List for live tape measurements on WhatsApp.
+            </p>
+          </div>
 
-        {/* 5-item Shelf Tabs */}
-        <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-none mb-8">
-          {SHOWCASE_ITEMS.map((item, idx) => {
-            const isCurrent = idx === activeIdx;
-            return (
+          {/* Department Filter Pills */}
+          <div className="flex flex-wrap gap-2">
+            {[
+              { id: 'all', label: 'All Staples' },
+              { id: 'newborn', label: 'Newborn' },
+              { id: 'kids', label: 'Boys & Girls' },
+              { id: 'uniforms', label: 'Uniforms & Cricket' },
+            ].map((tab) => (
               <button
-                key={item.id}
+                key={tab.id}
                 type="button"
-                onClick={() => setActiveIdx(idx)}
-                className={`px-4 py-2 text-sm font-sans whitespace-nowrap transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)] ${
-                  isCurrent
-                    ? 'bg-[var(--ink)] text-white font-medium'
-                    : 'bg-white text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white'
+                onClick={() => setFilter(tab.id as typeof filter)}
+                className={`px-3.5 py-1.5 text-[13px] font-medium transition-all cursor-pointer rounded-sm border ${
+                  filter === tab.id
+                    ? 'bg-[var(--ink)] border-[var(--ink)] text-white shadow-xs'
+                    : 'bg-white border-[var(--line)] text-[var(--muted)] hover:border-[var(--ink)] hover:text-[var(--ink)]'
                 }`}
               >
-                {item.name}
+                {tab.label}
               </button>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        {/* Disc / Mat Stage Presentation */}
-        <div className="bg-white border-2 border-[var(--ink)] p-6 sm:p-10 lg:p-12">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            {/* Visual Disc with Garment */}
-            <div className="md:col-span-6 flex items-center justify-center">
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full flex items-center justify-center p-8 transition-colors duration-300 bg-[var(--surface)]">
-                {/* Circular mat accent */}
-                <div
-                  className={`w-48 h-48 sm:w-60 sm:h-60 rounded-full ${bg} flex items-center justify-center p-8 transition-transform duration-300 hover:scale-105 shadow-none`}
+        {/* 6-Item Lookbook Grid: 3 cols on desktop, 2 on tablet, 1 on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {filteredItems.map((item) => (
+            <div
+              key={item.id}
+              className="group flex flex-col justify-between bg-white border border-[var(--line)] rounded-md overflow-hidden hover:border-[var(--ink)] transition-all duration-300 shadow-xs"
+            >
+              <div>
+                {/* 4:5 Vertical Portrait Fashion Photograph */}
+                <Link
+                  href={`/shop/${item.categorySlug}/${item.subSlug}/`}
+                  className="block relative aspect-[4/5] w-full overflow-hidden bg-[var(--surface)]"
                 >
-                  <Garment
-                    name={active.garment}
-                    className={`w-full h-full object-contain ${fg}`}
-                    aria-label={active.name}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.photo}
+                    alt={item.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   />
+
+                  {/* Age Badge */}
+                  <div aria-hidden="true" className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 text-[11px] font-medium text-[var(--ink)] border border-[var(--line)] rounded-sm">
+                    {item.age}
+                  </div>
+
+                  {/* Tag Badge */}
+                  <div aria-hidden="true" className="absolute top-3 right-3 bg-[var(--ink)] text-white px-2.5 py-1 text-[11px] font-medium rounded-sm">
+                    {item.tag}
+                  </div>
+                </Link>
+
+                {/* Card Content */}
+                <div className="p-5 space-y-2">
+                  <div className="text-[11px] font-medium uppercase tracking-wider text-[var(--terracotta)]">
+                    {item.fabric}
+                  </div>
+                  <Link
+                    href={`/shop/${item.categorySlug}/${item.subSlug}/`}
+                    className="block group-hover:text-[var(--blue)] transition-colors"
+                  >
+                    <h3 className="font-sans font-medium text-lg leading-snug text-[var(--ink)]">
+                      {item.name}
+                    </h3>
+                  </Link>
+                  <p className="text-[13px] text-[var(--muted)] leading-relaxed font-normal">
+                    {item.detail}
+                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* Information & Action */}
-            <div className="md:col-span-6 space-y-4">
-              <h3 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)]">
-                {active.name}
-              </h3>
-              <p className="text-base text-[var(--ink)] leading-relaxed font-normal">
-                {active.fact}
-              </p>
+              {/* Action Bar */}
+              <div className="px-5 pb-5 pt-2 flex items-center justify-between gap-3 border-t border-[var(--line)]">
+                <Link
+                  href={`/shop/${item.categorySlug}/${item.subSlug}/`}
+                  className="text-[13px] font-medium text-[var(--ink)] hover:text-[var(--terracotta)] inline-flex items-center gap-1 group-hover:underline underline-offset-4"
+                >
+                  <span>Details</span>
+                  <span>&rarr;</span>
+                </Link>
 
-              <div className="pt-4 flex flex-wrap items-center gap-4">
                 <button
                   type="button"
                   onClick={() =>
                     openAddSheet({
-                      categorySlug: active.categorySlug,
-                      subSlug: active.subSlug,
+                      categorySlug: item.categorySlug,
+                      subSlug: item.subSlug,
                     })
                   }
-                  className="h-[52px] px-8 inline-flex items-center justify-center font-sans font-medium text-[15px] bg-[var(--ink)] text-white hover:bg-[var(--blue)] active:scale-[0.98] transition-all cursor-pointer focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+                  className="h-10 px-4 inline-flex items-center gap-1.5 text-[13px] font-medium bg-[var(--surface)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white active:scale-95 transition-all cursor-pointer rounded-sm border border-[var(--line)]"
+                  aria-label={`Add to List: ${item.name}`}
                 >
-                  Add to list
+                  <IconPlus size={15} />
+                  <span>Add to List</span>
                 </button>
-                <Link
-                  href={`/shop/${active.categorySlug}/${active.subSlug}/`}
-                  className="text-sm font-medium text-[var(--ink)] hover:text-[var(--blue)] underline underline-offset-4"
-                >
-                  View full details &rarr;
-                </Link>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </Container>
     </section>

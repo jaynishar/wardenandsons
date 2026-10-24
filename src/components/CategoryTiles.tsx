@@ -3,303 +3,138 @@
 import React from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import Garment, { GarmentName } from '@/components/Garment';
-import { useAddToList } from '@/lib/list-store';
-import { IconPlus } from '@/components/icons';
-import type { TileColor } from '@/data/specimens';
-import { Specimen } from '@/components/Specimen';
 
-interface SubcategorySnapItem {
-  categorySlug: string;
-  subSlug: string;
-  label: string;
+interface DepartmentCard {
+  slug: string;
+  name: string;
   age: string;
-  garment: GarmentName;
-  color: TileColor;
-  photo?: string | null;
+  description: string;
+  image: string;
+  href: string;
+  featuredStaples: string;
 }
 
-const FEATURED_SUBCATEGORIES: SubcategorySnapItem[] = [
+const DEPARTMENTS: DepartmentCard[] = [
   {
-    categorySlug: 'newborn',
-    subSlug: 'bodysuits-jhablas',
-    label: 'Cotton Jhablas',
-    age: '0–24M',
-    garment: 'jhabla',
-    color: 'yellow',
-    photo: '/products/nb-bodysuit.webp',
+    slug: 'newborn',
+    name: 'Newborn & Infants',
+    age: '0–24 Months',
+    description: 'Combed cotton jhablas, open-weave muslin swaddles, rompers, and hooded baby towels.',
+    image: '/categories/newborn.webp',
+    href: '/shop/newborn/',
+    featuredStaples: 'Jhablas · Swaddles · Rompers',
   },
   {
-    categorySlug: 'newborn',
-    subSlug: 'swaddles-blankets',
-    label: 'Muslin Swaddles',
-    age: '0–12M',
-    garment: 'swaddle',
-    color: 'red',
-    photo: '/products/nb-swaddle.webp',
+    slug: 'boys',
+    name: 'Boys’ Wear',
+    age: '0–16 Years',
+    description: 'Everyday cotton t-shirts, reinforced cargo shorts, cricket whites, and hosiery nightsuits.',
+    image: '/categories/boys.webp',
+    href: '/shop/boys/',
+    featuredStaples: 'T-Shirts · Cargos · Nightsuits',
   },
   {
-    categorySlug: 'boys',
-    subSlug: 'shorts-joggers-cargos',
-    label: 'Cargo Shorts',
-    age: '0–16Y',
-    garment: 'shorts',
-    color: 'yellow',
-    photo: '/products/by-cargos.webp',
+    slug: 'girls',
+    name: 'Girls’ Wear',
+    age: '0–16 Years',
+    description: 'Airy cotton and muslin summer frocks, comfortable notched-collar nightsuits, and leggings.',
+    image: '/categories/girls.webp',
+    href: '/shop/girls/',
+    featuredStaples: 'Frocks · Nightwear · Leggings',
   },
   {
-    categorySlug: 'girls',
-    subSlug: 'dresses-frocks',
-    label: 'Cotton Frocks',
-    age: '0–16Y',
-    garment: 'frock',
-    color: 'red',
-    photo: '/products/gl-dress.webp',
+    slug: 'bulk',
+    name: 'School Uniforms & Bulk',
+    age: 'Schools & Teams',
+    description: 'Cathedral, JB Petit, and St. Mary’s school uniforms, dryfit house tees, and cricket kits.',
+    image: '/categories/bulk.webp',
+    href: '/bulk-orders/',
+    featuredStaples: 'Cathedral · St. Mary’s · Cricket Whites',
   },
   {
-    categorySlug: 'boys',
-    subSlug: 'nightwear',
-    label: 'Nightwear Sets',
-    age: '0–16Y',
-    garment: 'nightsuit',
-    color: 'ink',
-    photo: '/products/by-nightsuit.webp',
+    slug: 'men',
+    name: 'Men’s Loungewear',
+    age: 'Sizes S – XXL',
+    description: 'Heavyweight cotton crewneck t-shirts, boxer shorts, and woven poplin sleep pajamas.',
+    image: '/categories/men.webp',
+    href: '/shop/men/',
+    featuredStaples: 'Crew Tees · Boxers · Pajamas',
   },
   {
-    categorySlug: 'bulk',
-    subSlug: 'school-uniforms',
-    label: 'School Uniforms',
-    age: 'All Sizes',
-    garment: 'uniform',
-    color: 'blue',
-    photo: '/products/bk-uniform.webp',
+    slug: 'women',
+    name: 'Women’s Muslin Sleepwear',
+    age: 'Sizes S – XXL',
+    description: 'Breezy double-layer muslin nightwear sets, cotton Lycra stretch leggings, and slub tops.',
+    image: '/categories/women.webp',
+    href: '/shop/women/',
+    featuredStaples: 'Muslin Sets · Tops · Leggings',
   },
 ];
 
 export default function CategoryTiles() {
-  const { openAddSheet } = useAddToList();
-
   return (
-    <section className="py-12 sm:py-16">
+    <section className="py-12 sm:py-16 bg-[var(--surface)] font-sans border-y border-[var(--line)]">
       <Container>
-        {/* Section Heading */}
-        <div className="flex items-baseline justify-between mb-8 sm:mb-10">
-          <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)] tracking-tight">
-            Shop by category
-          </h2>
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
+          <div>
+            <span className="text-[12px] uppercase tracking-wider text-[var(--muted)] font-medium">
+              Departments &amp; Collections
+            </span>
+            <h2 className="font-sans font-medium text-2xl sm:text-3xl lg:text-4xl text-[var(--ink)] tracking-tight mt-1">
+              Shop by Department
+            </h2>
+          </div>
           <Link
             href="/shop/"
-            className="text-sm font-sans font-medium text-[var(--blue)] hover:underline underline-offset-4"
+            className="text-sm font-medium text-[var(--ink)] hover:text-[var(--terracotta)] inline-flex items-center gap-1 group"
           >
-            View all &rarr;
+            <span>View all collections</span>
+            <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
           </Link>
         </div>
 
-        {/* Category Hierarchy Grid: Kids double, Adults smaller, Uniforms wide band */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
-          {/* Newborn - Double Size */}
-          <Link
-            href="/shop/newborn/"
-            className="col-span-2 row-span-2 group block bg-[var(--yellow)] text-[var(--ink)] p-6 sm:p-8 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
-          >
-            <div className="h-full flex flex-col justify-between min-h-[300px] sm:min-h-[380px]">
-              <div>
-                <h3 className="font-sans font-medium text-2xl sm:text-4xl">
-                  Newborn
-                </h3>
-                <p className="text-sm font-medium opacity-80 mt-1">
-                  0–24 Months
-                </p>
-              </div>
-              <div className="w-full flex-1 flex items-center justify-center py-6">
-                <Garment
-                  name="jhabla"
-                  className="w-full h-full max-h-[220px] object-contain transition-transform duration-300 group-hover:scale-105 text-[var(--ink)]"
-                  aria-label="Newborn Jhabla"
+        {/* 6-Card Department Grid: 3 columns on desktop, 2 on tablet, 1 on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {DEPARTMENTS.map((dept) => (
+            <Link
+              key={dept.slug}
+              href={dept.href}
+              className="group block bg-white border border-[var(--line)] rounded-md overflow-hidden hover:border-[var(--ink)] transition-all duration-300 shadow-xs"
+            >
+              {/* Photo Container with 16:10 / 4:3 Ratio */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--surface)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={dept.image}
+                  alt={dept.name}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
-              </div>
-              <div className="text-sm font-medium flex items-center justify-between">
-                <span>Combed cotton essentials</span>
-                <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
-              </div>
-            </div>
-          </Link>
-
-          {/* Boys */}
-          <Link
-            href="/shop/boys/"
-            className="col-span-1 group block bg-[var(--blue)] text-white p-5 sm:p-6 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
-          >
-            <div className="h-full flex flex-col justify-between min-h-[170px] sm:min-h-[200px]">
-              <div>
-                <h3 className="font-sans font-medium text-xl sm:text-2xl">Boys</h3>
-                <p className="text-sm opacity-85 mt-0.5">0–16 Years</p>
-              </div>
-              <div className="w-full flex-1 flex items-center justify-center py-2">
-                <Garment
-                  name="tshirt"
-                  className="w-full h-full max-h-[90px] object-contain transition-transform duration-300 group-hover:scale-105 text-white"
-                  aria-label="Boys T-Shirt"
-                />
-              </div>
-              <span className="text-sm opacity-90">&rarr;</span>
-            </div>
-          </Link>
-
-          {/* Girls */}
-          <Link
-            href="/shop/girls/"
-            className="col-span-1 group block bg-[var(--red)] text-white p-5 sm:p-6 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
-          >
-            <div className="h-full flex flex-col justify-between min-h-[170px] sm:min-h-[200px]">
-              <div>
-                <h3 className="font-sans font-medium text-xl sm:text-2xl">Girls</h3>
-                <p className="text-sm opacity-85 mt-0.5">0–16 Years</p>
-              </div>
-              <div className="w-full flex-1 flex items-center justify-center py-2">
-                <Garment
-                  name="frock"
-                  className="w-full h-full max-h-[90px] object-contain transition-transform duration-300 group-hover:scale-105 text-white"
-                  aria-label="Girls Frock"
-                />
-              </div>
-              <span className="text-sm opacity-90">&rarr;</span>
-            </div>
-          </Link>
-
-          {/* Men - Smaller */}
-          <Link
-            href="/shop/men/"
-            className="col-span-1 group block bg-[var(--ink)] text-white p-5 sm:p-6 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
-          >
-            <div className="h-full flex flex-col justify-between min-h-[150px] sm:min-h-[170px]">
-              <div>
-                <h3 className="font-sans font-medium text-lg sm:text-xl">Men</h3>
-                <p className="text-sm opacity-80 mt-0.5">Sizes S–XXL</p>
-              </div>
-              <div className="w-full flex-1 flex items-center justify-center py-1">
-                <Garment
-                  name="tshirt"
-                  className="w-full h-full max-h-[75px] object-contain transition-transform duration-300 group-hover:scale-105 text-white"
-                  aria-label="Men Cotton Basics"
-                />
-              </div>
-              <span className="text-sm opacity-90">&rarr;</span>
-            </div>
-          </Link>
-
-          {/* Women - Smaller */}
-          <Link
-            href="/shop/women/"
-            className="col-span-1 group block bg-[var(--red)] text-white p-5 sm:p-6 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
-          >
-            <div className="h-full flex flex-col justify-between min-h-[150px] sm:min-h-[170px]">
-              <div>
-                <h3 className="font-sans font-medium text-lg sm:text-xl">Women</h3>
-                <p className="text-sm opacity-80 mt-0.5">Sizes S–XXL</p>
-              </div>
-              <div className="w-full flex-1 flex items-center justify-center py-1">
-                <Garment
-                  name="kaftan"
-                  className="w-full h-full max-h-[75px] object-contain transition-transform duration-300 group-hover:scale-105 text-white"
-                  aria-label="Women Kaftan"
-                />
-              </div>
-              <span className="text-sm opacity-90">&rarr;</span>
-            </div>
-          </Link>
-
-          {/* Uniforms & Bulk - Wide Band */}
-          <Link
-            href="/bulk-orders/"
-            className="col-span-2 md:col-span-4 group block bg-[var(--blue)] text-white p-6 sm:p-8 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
-          >
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="space-y-1">
-                <h3 className="font-sans font-medium text-xl sm:text-2xl">
-                  School Uniforms & Bulk Orders
-                </h3>
-                <p className="text-sm opacity-90 max-w-xl">
-                  Serving Cathedral, Bombay Scottish, St. Mary’s and sports teams across South Mumbai.
-                </p>
-              </div>
-              <div className="flex items-center gap-4">
-                <Garment
-                  name="uniform"
-                  className="w-16 h-20 object-contain text-white"
-                  aria-label="School Uniform"
-                />
-                <span className="h-[44px] px-6 inline-flex items-center justify-center font-sans font-medium text-sm bg-white text-[var(--ink)] group-hover:bg-[var(--ink)] group-hover:text-white transition-colors">
-                  Inquire
-                </span>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Featured essentials grid: 2 col phone, 3 col tablet, 6 col desktop */}
-        <div>
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-sans font-medium text-[var(--ink)]">
-              Popular essentials
-            </h3>
-            <span className="text-sm text-[var(--muted)]">
-              Daily South Mumbai favourites
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {FEATURED_SUBCATEGORIES.map((sub) => (
-              <div
-                key={`${sub.categorySlug}-${sub.subSlug}`}
-                className="bg-[var(--surface)] p-3 flex flex-col justify-between"
-              >
-                <Link
-                  href={`/shop/${sub.categorySlug}/${sub.subSlug}/`}
-                  className="block group"
-                >
-                  <Specimen
-                    category={sub.categorySlug}
-                    sub={sub.subSlug}
-                    garment={sub.garment}
-                    color={sub.color}
-                    photo={sub.photo}
-                    label={sub.label}
-                    ageRange={sub.age}
-                    aspect="4:5"
-                    showCaption={false}
-                  />
-                  <div className="pt-2">
-                    <h4 className="font-sans font-medium text-sm text-[var(--ink)] truncate group-hover:text-[var(--blue)]">
-                      {sub.label}
-                    </h4>
-                    <p className="text-sm text-[var(--muted)]">{sub.age}</p>
-                  </div>
-                </Link>
-
-                <div className="pt-3 mt-2 flex items-center justify-between">
-                  <Link
-                    href={`/shop/${sub.categorySlug}/${sub.subSlug}/`}
-                    className="text-sm font-medium text-[var(--ink)] hover:underline"
-                  >
-                    Details
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      openAddSheet({ categorySlug: sub.categorySlug, subSlug: sub.subSlug });
-                    }}
-                    className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center bg-white text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
-                    aria-label={`Add ${sub.label} to list`}
-                  >
-                    <IconPlus size={16} />
-                  </button>
+                <div className="absolute top-3 right-3 bg-[var(--ink)] text-white text-[11px] font-medium px-2.5 py-1 rounded-sm">
+                  {dept.age}
                 </div>
               </div>
-            ))}
-          </div>
+
+              {/* Card Body */}
+              <div className="p-5 sm:p-6 space-y-2">
+                <div className="text-[11px] uppercase tracking-wider text-[var(--terracotta)] font-medium">
+                  {dept.featuredStaples}
+                </div>
+                <h3 className="font-sans font-medium text-xl text-[var(--ink)] group-hover:text-[var(--blue)] transition-colors">
+                  {dept.name}
+                </h3>
+                <p className="text-[13px] text-[var(--muted)] leading-relaxed font-normal">
+                  {dept.description}
+                </p>
+                <div className="pt-2 flex items-center gap-1.5 text-[13px] font-medium text-[var(--ink)] group-hover:underline underline-offset-4">
+                  <span>Explore department</span>
+                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </Container>
     </section>

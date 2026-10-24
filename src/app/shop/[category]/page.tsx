@@ -205,7 +205,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
           {/* Assistance & Cross-Category Navigation */}
           <div className="space-y-4 pt-4">
-            <div className="p-5 bg-[var(--surface)] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div className="p-6 bg-white border border-[var(--line)] rounded-md flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-xs">
               <p className="text-base text-[var(--ink)] font-medium">
                 Can&apos;t see what you need? Inquire with our Kemps Corner store desk on WhatsApp
               </p>
@@ -216,7 +216,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 data-track="whatsapp_click"
                 data-track-location="category"
                 data-track-category={category}
-                className="h-[48px] px-6 inline-flex items-center justify-center text-sm font-sans font-medium bg-[var(--ink)] text-white hover:bg-[var(--blue)] transition-colors shrink-0"
+                className="h-[46px] px-6 inline-flex items-center justify-center text-[13px] font-sans font-medium bg-[var(--ink)] text-white hover:bg-[var(--blue)] active:scale-[0.98] transition-all rounded-sm shrink-0"
               >
                 Message shop desk &rarr;
               </a>
@@ -246,7 +246,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               Fabric, sizing &amp; store guidance
             </h2>
 
-            <details className="group bg-[var(--surface)] p-5 select-none">
+            <details className="group bg-white border border-[var(--line)] rounded-md p-5 select-none shadow-xs">
               <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                 <span>Fabric &amp; Comfort</span>
                 <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">
@@ -258,7 +258,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               </div>
             </details>
 
-            <details className="group bg-[var(--surface)] p-5 select-none">
+            <details className="group bg-white border border-[var(--line)] rounded-md p-5 select-none shadow-xs">
               <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                 <span>Age &amp; Fit Range</span>
                 <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">
@@ -270,7 +270,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               </div>
             </details>
 
-            <details className="group bg-[var(--surface)] p-5 select-none">
+            <details className="group bg-white border border-[var(--line)] rounded-md p-5 select-none shadow-xs">
               <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                 <span>Sizing &amp; WhatsApp Check</span>
                 <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">
@@ -294,7 +294,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             {/* Boys In-Depth Contextual Details */}
             {category === 'boys' && (
               <>
-                <details className="group bg-[var(--surface)] p-5 select-none">
+                <details className="group bg-white border border-[var(--line)] rounded-md p-5 select-none shadow-xs">
                   <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                     <span>Age Brackets &amp; Numbered Sizes Carried</span>
                     <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">
@@ -319,7 +319,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   </div>
                 </details>
 
-                <details className="group bg-[var(--surface)] p-5 select-none">
+                <details className="group bg-white border border-[var(--line)] rounded-md p-5 select-none shadow-xs">
                   <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                     <span>Authentic Fabrics Built for Mumbai Climate</span>
                     <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">

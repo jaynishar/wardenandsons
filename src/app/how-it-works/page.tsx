@@ -85,11 +85,11 @@ export default function HowItWorksPage() {
           return (
             <div
               key={s.step}
-              className="bg-white rounded-3xl border border-border-soft p-7 sm:p-8 flex flex-col justify-between shadow-xs space-y-6"
+              className="bg-white rounded-md border border-border-soft p-7 sm:p-8 flex flex-col justify-between shadow-xs space-y-6"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-2xl bg-forest text-white flex items-center justify-center shadow-xs">
+                  <div className="w-12 h-12 rounded-sm bg-forest text-white flex items-center justify-center shadow-xs">
                     <Icon className="w-6 h-6 text-gold" />
                   </div>
                   <span className="font-serif text-3xl font-bold text-gold/40">{s.step}</span>
@@ -115,7 +115,7 @@ export default function HowItWorksPage() {
       </div>
 
       {/* In-Depth Explanation & Contextual Authority Section */}
-      <section className="bg-white rounded-3xl p-6 sm:p-10 border border-border-soft shadow-xs space-y-6 text-near-black">
+      <section className="bg-white rounded-md p-6 sm:p-10 border border-border-soft shadow-xs space-y-6 text-near-black">
         <div className="space-y-2 border-b-2 border-[var(--ink)]/15 pb-4">
           <span className="text-[11px] font-sans uppercase tracking-widest text-gold block">
             Personal Care • Zero Friction
@@ -159,7 +159,7 @@ export default function HowItWorksPage() {
       </section>
 
       {/* WhatsApp CTA Card */}
-      <div className="bg-forest text-white rounded-3xl p-8 sm:p-12 text-center space-y-5 max-w-4xl mx-auto ">
+      <div className="bg-forest text-white rounded-md p-8 sm:p-12 text-center space-y-5 max-w-4xl mx-auto ">
         <div className="w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center mx-auto">
           <MessageSquare className="w-7 h-7 text-whatsapp" />
         </div>
@@ -175,7 +175,7 @@ export default function HowItWorksPage() {
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link
             href="/shop/"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-forest hover:bg-bg-cream font-bold text-xs  transition-all hover:scale-102"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm bg-white text-forest hover:bg-bg-cream font-bold text-xs  transition-all hover:scale-102"
           >
             <span>Explore Catalogue</span>
             <ArrowRight className="w-4 h-4" />
@@ -187,7 +187,7 @@ export default function HowItWorksPage() {
             data-track="whatsapp_click"
             data-track-location="footer"
             data-track-category="footer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all hover:scale-102"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all hover:scale-102"
           >
             <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
             <span>Chat with Store ({BUSINESS_CONFIG.phone.display})</span>
@@ -199,7 +199,7 @@ export default function HowItWorksPage() {
             data-track="whatsapp_click"
             data-track-location="video_call"
             data-track-category="video_call"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs  transition-all hover:scale-102 cursor-pointer"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm bg-forest text-white hover:bg-forest-dark font-bold text-xs  transition-all hover:scale-102 cursor-pointer"
           >
             <Video className="w-4 h-4 text-gold" />
             <span>Request a free video call</span>

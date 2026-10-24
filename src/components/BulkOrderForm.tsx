@@ -107,21 +107,21 @@ export default function BulkOrderForm() {
         setTimeout(() => setCopied(false), 2500);
       }
     } catch {
-      // Fallback
+      // Graceful fallback
     }
   };
 
   const handleNewEnquiry = () => {
-    setWhatsappOpened(false);
-    setGeneratedMessage('');
     reset();
+    setGeneratedMessage('');
+    setWhatsappOpened(false);
   };
 
   return (
-    <div className="bg-[var(--surface)] p-6 sm:p-10 font-sans">
+    <div className="bg-white border border-[var(--line)] rounded-md p-6 sm:p-10 font-sans shadow-xs">
       {whatsappOpened ? (
         <div className="py-6 space-y-6">
-          <div className="w-14 h-14 bg-[var(--wa)] text-white flex items-center justify-center mx-auto">
+          <div className="w-14 h-14 bg-[var(--wa)] text-white rounded-full flex items-center justify-center mx-auto">
             <MessageSquare className="w-7 h-7" />
           </div>
 
@@ -134,14 +134,14 @@ export default function BulkOrderForm() {
           </div>
 
           {/* Generated Message Box */}
-          <div className="bg-white p-5 space-y-3 max-w-lg mx-auto">
+          <div className="bg-[var(--surface)] border border-[var(--line)] rounded-md p-5 space-y-3 max-w-lg mx-auto">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-[var(--ink)]">
                 Summary Preview
               </span>
               <button
                 onClick={handleCopyMessage}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--blue)] hover:underline cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--ink)] hover:text-[var(--terracotta)] underline cursor-pointer"
               >
                 {copied ? (
                   <>
@@ -156,7 +156,7 @@ export default function BulkOrderForm() {
                 )}
               </button>
             </div>
-            <pre className="text-sm text-[var(--ink)] whitespace-pre-wrap font-sans bg-[var(--surface)] p-4 max-h-48 overflow-y-auto">
+            <pre className="text-xs sm:text-sm text-[var(--ink)] whitespace-pre-wrap font-sans bg-white border border-[var(--line)] rounded-sm p-4 max-h-48 overflow-y-auto">
               {generatedMessage}
             </pre>
             <p className="text-xs text-[var(--muted)]">
@@ -170,14 +170,14 @@ export default function BulkOrderForm() {
               href={BUSINESS_CONFIG.whatsappUrl(generatedMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="h-[52px] px-8 inline-flex items-center justify-center gap-2 bg-[var(--wa)] text-white text-sm font-medium transition-all cursor-pointer"
+              className="h-[48px] px-7 inline-flex items-center justify-center gap-2 bg-[var(--wa)] hover:bg-[var(--wa-hover)] text-white text-sm font-medium rounded-sm transition-all cursor-pointer shadow-xs"
             >
               <MessageSquare className="w-4 h-4 fill-white" />
               <span>Re-open WhatsApp</span>
             </a>
             <button
               onClick={handleNewEnquiry}
-              className="h-[52px] px-8 text-sm font-medium text-[var(--ink)] bg-white hover:bg-[var(--ink)] hover:text-white transition-all cursor-pointer"
+              className="h-[48px] px-7 text-sm font-medium text-[var(--ink)] bg-[var(--surface)] hover:bg-[var(--ink)] hover:text-white rounded-sm border border-[var(--line)] transition-all cursor-pointer"
             >
               Submit Another Enquiry
             </button>
@@ -189,22 +189,22 @@ export default function BulkOrderForm() {
             <h2 className="font-sans font-medium text-2xl text-[var(--ink)]">
               Request a Bulk Quote
             </h2>
-            <p className="text-sm text-[var(--muted)] mt-1">
+            <p className="text-sm text-[var(--muted)] mt-1 font-normal">
               Share details for school uniforms, institutional wear, or bulk order quantities.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-[var(--ink)] flex items-center gap-1.5">
-                <Building2 className="w-4 h-4 text-[var(--blue)]" />
+              <label className="text-[13px] font-medium text-[var(--ink)] flex items-center gap-1.5">
+                <Building2 className="w-4 h-4 text-[var(--terracotta)]" />
                 School or Organization <span className="text-red-500">*</span>
               </label>
               <input
                 {...register('organization')}
                 type="text"
                 placeholder="e.g. Activity High School / Trust"
-                className="w-full px-4 py-3 bg-white border-2 border-[var(--ink)] text-sm font-sans focus:outline-none focus:border-[var(--blue)]"
+                className="w-full px-4 py-2.5 bg-[var(--bg)] border border-[var(--line)] rounded-sm text-sm font-sans focus:outline-none focus:border-[var(--ink)] transition-colors"
               />
               {errors.organization && (
                 <p className="text-xs text-red-500">
@@ -214,15 +214,15 @@ export default function BulkOrderForm() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-[var(--ink)] flex items-center gap-1.5">
-                <User className="w-4 h-4 text-[var(--blue)]" />
+              <label className="text-[13px] font-medium text-[var(--ink)] flex items-center gap-1.5">
+                <User className="w-4 h-4 text-[var(--terracotta)]" />
                 Contact Person Name <span className="text-red-500">*</span>
               </label>
               <input
                 {...register('contactPerson')}
                 type="text"
                 placeholder="e.g. Ramesh Mehta"
-                className="w-full px-4 py-3 bg-white border-2 border-[var(--ink)] text-sm font-sans focus:outline-none focus:border-[var(--blue)]"
+                className="w-full px-4 py-2.5 bg-[var(--bg)] border border-[var(--line)] rounded-sm text-sm font-sans focus:outline-none focus:border-[var(--ink)] transition-colors"
               />
               {errors.contactPerson && (
                 <p className="text-xs text-red-500">
@@ -234,15 +234,15 @@ export default function BulkOrderForm() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-[var(--ink)] flex items-center gap-1.5">
-                <Phone className="w-4 h-4 text-[var(--blue)]" />
+              <label className="text-[13px] font-medium text-[var(--ink)] flex items-center gap-1.5">
+                <Phone className="w-4 h-4 text-[var(--terracotta)]" />
                 WhatsApp / Phone Number <span className="text-red-500">*</span>
               </label>
               <input
                 {...register('phone')}
                 type="tel"
                 placeholder="e.g. 9820012345"
-                className="w-full px-4 py-3 bg-white border-2 border-[var(--ink)] text-sm font-sans focus:outline-none focus:border-[var(--blue)]"
+                className="w-full px-4 py-2.5 bg-[var(--bg)] border border-[var(--line)] rounded-sm text-sm font-sans focus:outline-none focus:border-[var(--ink)] transition-colors"
               />
               {errors.phone && (
                 <p className="text-xs text-red-500">{errors.phone.message}</p>
@@ -250,15 +250,15 @@ export default function BulkOrderForm() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-[var(--ink)] flex items-center gap-1.5">
-                <Mail className="w-4 h-4 text-[var(--blue)]" />
+              <label className="text-[13px] font-medium text-[var(--ink)] flex items-center gap-1.5">
+                <Mail className="w-4 h-4 text-[var(--terracotta)]" />
                 Email Address (Optional)
               </label>
               <input
                 {...register('email')}
                 type="email"
                 placeholder="e.g. ramesh@organization.org"
-                className="w-full px-4 py-3 bg-white border-2 border-[var(--ink)] text-sm font-sans focus:outline-none focus:border-[var(--blue)]"
+                className="w-full px-4 py-2.5 bg-[var(--bg)] border border-[var(--line)] rounded-sm text-sm font-sans focus:outline-none focus:border-[var(--ink)] transition-colors"
               />
               {errors.email && (
                 <p className="text-xs text-red-500">{errors.email.message}</p>
@@ -268,12 +268,12 @@ export default function BulkOrderForm() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-[var(--ink)]">
+              <label className="text-[13px] font-medium text-[var(--ink)]">
                 Garment Category <span className="text-red-500">*</span>
               </label>
               <select
                 {...register('category')}
-                className="w-full px-4 py-3 bg-white border-2 border-[var(--ink)] text-sm font-sans focus:outline-none focus:border-[var(--blue)]"
+                className="w-full px-4 py-2.5 bg-[var(--bg)] border border-[var(--line)] rounded-sm text-sm font-sans focus:outline-none focus:border-[var(--ink)] transition-colors"
               >
                 <option value="">Select garment type...</option>
                 <option value="School Uniforms (Shirts/Pinafores/Skirts)">
@@ -296,14 +296,14 @@ export default function BulkOrderForm() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-[var(--ink)]">
+              <label className="text-[13px] font-medium text-[var(--ink)]">
                 Approximate Quantity Required <span className="text-red-500">*</span>
               </label>
               <input
                 {...register('quantity')}
                 type="text"
                 placeholder="e.g. 50 sets, 200 t-shirts"
-                className="w-full px-4 py-3 bg-white border-2 border-[var(--ink)] text-sm font-sans focus:outline-none focus:border-[var(--blue)]"
+                className="w-full px-4 py-2.5 bg-[var(--bg)] border border-[var(--line)] rounded-sm text-sm font-sans focus:outline-none focus:border-[var(--ink)] transition-colors"
               />
               {errors.quantity && (
                 <p className="text-xs text-red-500">{errors.quantity.message}</p>
@@ -312,23 +312,23 @@ export default function BulkOrderForm() {
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-[var(--ink)]">
+            <label className="text-[13px] font-medium text-[var(--ink)]">
               Detailed Requirements, Sizes &amp; Deadlines <span className="text-red-500">*</span>
             </label>
             <textarea
               {...register('details')}
               rows={4}
               placeholder="Please specify size ranges (e.g. 4-12 years), fabric preferences (100% combed cotton, drill, matty), target completion date, or any specific design guidelines..."
-              className="w-full px-4 py-3 bg-white border-2 border-[var(--ink)] text-sm font-sans focus:outline-none focus:border-[var(--blue)] resize-none"
+              className="w-full px-4 py-2.5 bg-[var(--bg)] border border-[var(--line)] rounded-sm text-sm font-sans focus:outline-none focus:border-[var(--ink)] resize-none transition-colors"
             />
             {errors.details && (
               <p className="text-xs text-red-500">{errors.details.message}</p>
             )}
           </div>
 
-          <div className="bg-white p-4 flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-[var(--blue)] shrink-0 mt-0.5" />
-            <span className="text-sm text-[var(--ink)]">
+          <div className="bg-[var(--surface)] border border-[var(--line)] rounded-sm p-3.5 flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-[var(--terracotta)] shrink-0 mt-0.5" />
+            <span className="text-xs text-[var(--muted)] leading-relaxed">
               Submitting generates a structured quotation enquiry sent directly to our Kemps Corner
               store manager on WhatsApp ({BUSINESS_CONFIG.phone.display}). You can review before sending.
             </span>
@@ -337,7 +337,7 @@ export default function BulkOrderForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-[52px] bg-[var(--ink)] hover:bg-[var(--blue)] text-white font-medium px-6 text-sm flex items-center justify-center gap-2 cursor-pointer transition-colors"
+            className="w-full h-[48px] bg-[var(--ink)] hover:bg-[var(--blue)] text-white font-medium px-6 text-sm flex items-center justify-center gap-2 cursor-pointer transition-all rounded-sm shadow-xs"
           >
             <MessageSquare className="w-4 h-4 fill-white" />
             <span>Send Bulk Enquiry on WhatsApp</span>

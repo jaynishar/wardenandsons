@@ -40,7 +40,7 @@ export default function SizeGuidePage() {
 
       {/* Direct Quick-Answer Q&A Cards (Targeting Top GSC Queries) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div className="bg-white rounded-2xl p-5 border border-border-soft shadow-xs space-y-2">
+        <div className="bg-white rounded-sm p-5 border border-border-soft shadow-xs space-y-2">
           <div className="flex items-center gap-2 text-forest font-serif font-bold text-base">
             <HelpCircle className="w-4 h-4 text-gold shrink-0" />
             <h3>What Size for Age 4 or 5?</h3>
@@ -50,7 +50,7 @@ export default function SizeGuidePage() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-5 border border-border-soft shadow-xs space-y-2">
+        <div className="bg-white rounded-sm p-5 border border-border-soft shadow-xs space-y-2">
           <div className="flex items-center gap-2 text-forest font-serif font-bold text-base">
             <HelpCircle className="w-4 h-4 text-gold shrink-0" />
             <h3>S Size Age for Kids?</h3>
@@ -60,7 +60,7 @@ export default function SizeGuidePage() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-5 border border-border-soft shadow-xs space-y-2">
+        <div className="bg-white rounded-sm p-5 border border-border-soft shadow-xs space-y-2">
           <div className="flex items-center gap-2 text-forest font-serif font-bold text-base">
             <HelpCircle className="w-4 h-4 text-gold shrink-0" />
             <h3>M Size for Which Age?</h3>
@@ -70,7 +70,7 @@ export default function SizeGuidePage() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-5 border border-border-soft shadow-xs space-y-2">
+        <div className="bg-white rounded-sm p-5 border border-border-soft shadow-xs space-y-2">
           <div className="flex items-center gap-2 text-forest font-serif font-bold text-base">
             <HelpCircle className="w-4 h-4 text-gold shrink-0" />
             <h3>L &amp; XL Size for Which Age?</h3>
@@ -82,7 +82,7 @@ export default function SizeGuidePage() {
       </div>
 
       {/* Primary Kids Size Chart Table (Boys, Girls & Youth) */}
-      <section className="bg-white rounded-3xl p-6 sm:p-8 border border-border-soft shadow-xs space-y-6">
+      <section className="bg-white rounded-md p-6 sm:p-8 border border-border-soft shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-[var(--ink)]/15 pb-5">
           <div>
             <span className="text-[11px] font-sans uppercase tracking-widest text-gold block mb-1">
@@ -169,7 +169,7 @@ export default function SizeGuidePage() {
       </section>
 
       {/* Newborn & Infant Sizing Table */}
-      <section className="bg-white rounded-3xl p-6 sm:p-8 border border-border-soft shadow-xs space-y-6">
+      <section className="bg-white rounded-md p-6 sm:p-8 border border-border-soft shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-[var(--ink)]/15 pb-5">
           <div>
             <span className="text-[11px] font-sans uppercase tracking-widest text-gold block mb-1">
@@ -249,7 +249,7 @@ export default function SizeGuidePage() {
 
       {/* Sizing Tips & Practical Advice */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-2xl p-6 border border-border-soft space-y-3">
+        <div className="bg-white rounded-sm p-6 border border-border-soft space-y-3">
           <div className="w-8 h-8 rounded-lg bg-forest/10 flex items-center justify-center text-forest font-bold">
             1
           </div>
@@ -261,7 +261,7 @@ export default function SizeGuidePage() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-border-soft space-y-3">
+        <div className="bg-white rounded-sm p-6 border border-border-soft space-y-3">
           <div className="w-8 h-8 rounded-lg bg-forest/10 flex items-center justify-center text-forest font-bold">
             2
           </div>
@@ -273,7 +273,7 @@ export default function SizeGuidePage() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-border-soft space-y-3">
+        <div className="bg-white rounded-sm p-6 border border-border-soft space-y-3">
           <div className="w-8 h-8 rounded-lg bg-forest/10 flex items-center justify-center text-forest font-bold">
             3
           </div>
@@ -287,7 +287,7 @@ export default function SizeGuidePage() {
       </section>
 
       {/* WhatsApp Counter Tape Verification CTA */}
-      <div className="bg-forest text-white rounded-3xl p-8 sm:p-12  border border-forest-dark relative overflow-hidden">
+      <div className="bg-forest text-white rounded-md p-8 sm:p-12  border border-forest-dark relative overflow-hidden">
         <div className="relative z-10 max-w-2xl space-y-4">
           <span className="text-[11px] font-sans uppercase tracking-widest text-gold block mb-1">
             Zero-Guesswork Size Service
@@ -309,7 +309,7 @@ export default function SizeGuidePage() {
               data-track="whatsapp_click"
               data-track-location="product"
               data-track-category="size_guide"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all active:scale-[0.98] cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all active:scale-[0.98] cursor-pointer"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
               <span>Ask Size on WhatsApp ({BUSINESS_CONFIG.phone.display})</span>
@@ -317,7 +317,7 @@ export default function SizeGuidePage() {
 
             <Link
               href="/shop/"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all active:scale-[0.98]"
             >
               <span>Explore Catalogue</span>
               <ArrowRight className="w-4 h-4" />

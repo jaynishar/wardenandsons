@@ -38,7 +38,7 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Contact Information Column */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-3xl border border-border-soft p-7 shadow-xs space-y-6">
+          <div className="bg-white rounded-md border border-border-soft p-7 shadow-xs space-y-6">
             <h2 className="font-serif font-bold text-xl text-forest">Kemps Corner Store</h2>
 
             <div className="space-y-4 text-xs sm:text-sm text-muted">
@@ -103,7 +103,7 @@ export default function ContactPage() {
                 data-track="whatsapp_click"
                 data-track-location="footer"
                 data-track-category="contact"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-sm bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
                 <span>Immediate WhatsApp Chat</span>

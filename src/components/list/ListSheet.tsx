@@ -61,7 +61,7 @@ export function ListSheet() {
         <Dialog.Content
           data-ui="list-sheet"
           aria-describedby="list-sheet-description"
-          className="fixed inset-y-0 right-0 z-50 w-full max-w-[420px] bg-white border-l-2 border-[var(--ink)]  flex flex-col justify-between focus:outline-none sheet-right font-sans rounded-none"
+          className="fixed inset-y-0 right-0 z-50 w-full max-w-[420px] bg-[var(--bg)] border-l border-[var(--line)] flex flex-col justify-between focus:outline-none sheet-right font-sans"
         >
           {/* Header */}
           <div className="p-6 border-b border-[var(--surface)] flex items-center justify-between">
@@ -70,7 +70,7 @@ export function ListSheet() {
                 {COPY_DECK.list.title}
               </Dialog.Title>
               {lines.length > 0 && (
-                <span className="px-2 py-0.5 rounded-none bg-[var(--red)] text-white text-xs font-medium">
+                <span className="px-2 py-0.5 rounded-full bg-[var(--wa)] text-white text-xs font-medium">
                   {lines.length} {lines.length === 1 ? 'item' : 'items'}
                 </span>
               )}
@@ -127,10 +127,10 @@ export function ListSheet() {
                   return (
                     <li
                       key={line.id}
-                      className="p-3.5 rounded-none border border-[var(--surface)] bg-white flex gap-3.5 items-start relative group"
+                      className="p-3.5 rounded-sm border border-[var(--line)] bg-white flex gap-3.5 items-start relative group shadow-xs"
                     >
                       {/* Specimen Silhouette Thumbnail */}
-                      <div className="w-14 h-18 shrink-0 rounded-none overflow-hidden bg-[var(--surface)] p-2 flex items-center justify-center">
+                      <div className="w-14 h-18 shrink-0 rounded-sm overflow-hidden bg-[var(--surface)] border border-[var(--line)] p-1.5 flex items-center justify-center">
                         <Garment
                           name={spec.garment}
                           className="w-full h-full object-contain text-[var(--ink)]"

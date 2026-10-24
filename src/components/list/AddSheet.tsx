@@ -87,7 +87,7 @@ export function AddSheet() {
           <Dialog.Content
             data-ui="add-sheet"
             aria-describedby="add-sheet-description"
-            className="fixed inset-x-0 bottom-0 z-50 rounded-none bg-white border-t-2 border-[var(--ink)] p-6 sm:p-8  max-h-[90vh] overflow-y-auto focus:outline-none sheet-bottom md:sheet-none md:dialog-scale md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:border-2 md:border-[var(--ink)] font-sans"
+            className="fixed inset-x-0 bottom-0 z-50 rounded-t-lg bg-[var(--bg)] border-t border-[var(--line)] p-6 sm:p-8 max-h-[90vh] overflow-y-auto focus:outline-none sheet-bottom md:sheet-none md:dialog-scale md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:border md:border-[var(--line)] md:rounded-md shadow-xl font-sans"
           >
             {/* Header */}
             <div className="flex items-start justify-between pb-4 border-b border-[var(--surface)]">

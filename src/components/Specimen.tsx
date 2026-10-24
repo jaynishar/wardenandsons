@@ -18,6 +18,15 @@ export interface SpecimenProps {
   children?: React.ReactNode;
 }
 
+const CATEGORY_FALLBACK_PHOTOS: Record<string, string> = {
+  newborn: '/categories/newborn.webp',
+  boys: '/categories/boys.webp',
+  girls: '/categories/girls.webp',
+  bulk: '/categories/bulk.webp',
+  men: '/categories/men.webp',
+  women: '/categories/women.webp',
+};
+
 export function Specimen({
   category,
   sub,
@@ -34,29 +43,22 @@ export function Specimen({
 }: SpecimenProps) {
   const spec = getSpecimen(category, sub);
   const garment = propGarment || spec.garment;
-  const color = propColor || spec.color;
-  const photo = propPhoto !== undefined ? propPhoto : spec.photo;
+  void (propColor || spec.color);
+  // Use explicit photo if passed, or specimen photo, or category fallback photo
+  const photo =
+    propPhoto !== undefined
+      ? propPhoto
+      : spec.photo || CATEGORY_FALLBACK_PHOTOS[category] || null;
   const label = propLabel || spec.label;
   const ageRange = propAgeRange !== undefined ? propAgeRange : spec.ageRange;
 
-  // Background and foreground token pairings guaranteed WCAG AA >= 4.5:1
-  const colorStyles: Record<TileColor, { bg: string; fg: string }> = {
-    red: { bg: 'bg-[var(--red)]', fg: 'text-white' },
-    blue: { bg: 'bg-[var(--blue)]', fg: 'text-white' },
-    yellow: { bg: 'bg-[var(--yellow)]', fg: 'text-[var(--ink)]' },
-    ink: { bg: 'bg-[var(--ink)]', fg: 'text-white' },
-  };
-
-  const { bg, fg } = colorStyles[color] || colorStyles.blue;
   const aspectClass = aspect === '1:1' ? 'aspect-square' : 'aspect-[4/5]';
 
   return (
-    <div className={`group flex flex-col ${className}`}>
+    <div className={`group flex flex-col font-sans ${className}`}>
       {/* Specimen Visual Box */}
       <div
-        className={`relative w-full ${aspectClass} overflow-hidden ${
-          photo ? 'bg-[var(--surface)]' : `${bg} ${fg}`
-        } transition-transform duration-140`}
+        className={`relative w-full ${aspectClass} overflow-hidden rounded-sm bg-[var(--surface)] border border-[var(--line)] transition-all duration-300 group-hover:border-[var(--ink)]`}
       >
         {photo ? (
           <img
@@ -65,13 +67,13 @@ export function Specimen({
             loading={priority ? 'eager' : 'lazy'}
             decoding="async"
             fetchPriority={priority ? 'high' : 'auto'}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center p-6 sm:p-8">
+          <div className="w-full h-full flex items-center justify-center p-6 bg-[var(--surface)] text-[var(--ink)]">
             <Garment
               name={garment}
-              className={`w-full h-full max-h-[72%] transition-transform duration-300 group-hover:scale-105 ${fg}`}
+              className="w-full h-full max-h-[70%] object-contain text-[var(--ink)] transition-transform duration-300 group-hover:scale-105"
               aria-label={label}
             />
           </div>
@@ -82,12 +84,12 @@ export function Specimen({
 
       {/* Caption beneath tile */}
       {showCaption && (
-        <div className="pt-2 sm:pt-3">
-          <div className="font-sans font-medium text-[14px] sm:text-[15px] leading-tight text-[var(--ink)] truncate">
+        <div className="pt-2.5 sm:pt-3">
+          <div className="font-sans font-medium text-[14px] leading-tight text-[var(--ink)] truncate group-hover:text-[var(--terracotta)] transition-colors">
             {label}
           </div>
           {ageRange ? (
-            <div className="text-[12px] sm:text-[13px] text-[var(--muted)] leading-normal mt-0.5">
+            <div className="text-[12px] text-[var(--muted)] leading-normal mt-0.5">
               {ageRange}
             </div>
           ) : null}

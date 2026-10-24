@@ -42,10 +42,10 @@ export function Ticker1994() {
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--surface)] text-sm font-sans font-medium text-[var(--ink)] cursor-default select-none"
+      className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-[var(--line)] rounded-sm text-[12px] font-sans font-medium text-[var(--ink)] cursor-default select-none"
       title="Serving South Mumbai families since 1994"
     >
-      <span className="w-2 h-2 rounded-none bg-[var(--red)]" />
+      <span className="w-1.5 h-1.5 rounded-full bg-[var(--terracotta)]" />
       <span className="transition-all duration-300">
         {val === 1994 ? 'Established 1994' : '30+ Years in Kemps Corner'}
       </span>

@@ -21,7 +21,7 @@ test.describe('Homepage Smoke & Responsive Tests', () => {
     await expect(page).toHaveTitle(/Warden & Sons/);
 
     // 2. Main navigation works
-    const catalogueLink = page.getByRole('link', { name: 'Catalogue' }).first();
+    const catalogueLink = page.getByRole('link', { name: /Shop|Catalogue/i }).first();
     await expect(catalogueLink).toBeVisible();
     await catalogueLink.click();
     await expect(page).toHaveURL(/\/shop\/?$/);

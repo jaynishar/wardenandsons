@@ -29,7 +29,7 @@ export default function SchoolsServedSection() {
           {schools.map((school, index) => (
             <li
               key={index}
-              className="p-4 bg-white border-2 border-[var(--ink)] text-sm font-bold text-[var(--ink)] flex items-center gap-3"
+              className="p-4 bg-white border border-[var(--line)] rounded-sm text-sm font-medium text-[var(--ink)] flex items-center gap-3 shadow-xs"
             >
               <span className="w-2.5 h-2.5 bg-[var(--blue)] shrink-0" />
               <span>{school}</span>

@@ -1,9 +1,10 @@
 'use client';
 
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react';
 import { Specimen } from '@/components/Specimen';
 import { Chip } from '@/components/ui/Chip';
-import { IconPlus } from '@/components/icons';
+import { IconPlus, IconWhatsApp } from '@/components/icons';
 import { useAddToList } from '@/lib/list-store';
 import { Subcategory, Category, ageOptionsFor } from '@/data/catalogue';
 import { CatalogueItem } from '@/lib/products';
@@ -53,7 +54,7 @@ export default function SubcategoryHero({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Large 4:5 Specimen */}
         <div className="lg:col-span-6">
-          <div className="w-full aspect-[4/5] overflow-hidden bg-[var(--surface)]">
+          <div className="w-full aspect-[4/5] overflow-hidden rounded-md bg-[var(--surface)] border border-[var(--line)]">
             <Specimen
               category={sub.categorySlug}
               sub={sub.slug}
@@ -68,7 +69,7 @@ export default function SubcategoryHero({
         {/* Details, Age Selection & CTAs */}
         <div className="lg:col-span-6 space-y-6">
           <div className="space-y-2">
-            <p className="text-base sm:text-lg text-[var(--ink)] leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--ink)] leading-relaxed font-normal">
               {sub.seoDescription}
             </p>
           </div>
@@ -96,7 +97,7 @@ export default function SubcategoryHero({
                       key={age}
                       selected={isSelected}
                       onClick={() => setSelectedAge(isSelected ? undefined : age)}
-                      className="text-sm font-medium"
+                      className="text-sm font-medium rounded-sm"
                     >
                       {age}
                     </Chip>
@@ -115,18 +116,19 @@ export default function SubcategoryHero({
               data-track="whatsapp_click"
               data-track-location="product"
               data-track-category={sub.categorySlug}
-              className="h-[52px] px-8 inline-flex items-center justify-center font-sans font-medium text-[15px] bg-[var(--wa)] text-white hover:opacity-95 active:scale-[0.98] transition-all cursor-pointer focus-visible:outline-3 focus-visible:outline-[var(--wa)]"
+              className="h-[50px] px-8 inline-flex items-center justify-center gap-2 font-medium text-[14px] bg-[var(--wa)] text-white hover:bg-[var(--wa-hover)] active:scale-[0.98] transition-all cursor-pointer rounded-sm shadow-xs focus-visible:outline-2 focus-visible:outline-[var(--wa)]"
             >
-              Send inquiry on WhatsApp
+              <IconWhatsApp size={18} />
+              <span>Send inquiry on WhatsApp</span>
             </a>
             <button
               type="button"
               onClick={handleAddMain}
-              className="h-[52px] px-8 inline-flex items-center justify-center font-sans font-medium text-[15px] bg-[var(--ink)] text-white hover:bg-[var(--blue)] active:scale-[0.98] transition-all cursor-pointer focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+              className="h-[50px] px-8 inline-flex items-center justify-center font-medium text-[14px] bg-[var(--ink)] text-white hover:bg-[var(--blue)] active:scale-[0.98] transition-all cursor-pointer rounded-sm shadow-xs focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
             >
               Add to list {selectedAge ? `(${selectedAge})` : ''}
             </button>
-            <p className="text-sm text-[var(--muted)] mt-1">
+            <p className="text-[13px] text-[var(--muted)] mt-1">
               Shop desk measures items flat with a measuring tape before you confirm.
             </p>
           </div>
@@ -140,7 +142,7 @@ export default function SubcategoryHero({
             <h2 className="font-sans font-medium text-xl sm:text-2xl text-[var(--ink)]">
               Featured styles
             </h2>
-            <p className="text-base text-[var(--muted)] mt-1">
+            <p className="text-sm text-[var(--muted)] mt-1 font-normal">
               Popular designs in stock at our Kemps Corner store.
             </p>
           </div>
@@ -152,15 +154,15 @@ export default function SubcategoryHero({
               return (
                 <div
                   key={item.id}
-                  className="group bg-[var(--surface)] p-3.5 flex flex-col justify-between hover-lift transition-all"
+                  className="group bg-white border border-[var(--line)] rounded-md p-3.5 flex flex-col justify-between hover:border-[var(--ink)] transition-all duration-300 shadow-xs"
                 >
-                  <div className="w-full aspect-[4/5] overflow-hidden bg-white">
+                  <div className="w-full aspect-[4/5] overflow-hidden rounded-sm bg-[var(--surface)]">
                     {item.image ? (
                       <img
                         src={item.image}
                         alt={item.title}
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-sm text-[var(--muted)]">
@@ -171,17 +173,17 @@ export default function SubcategoryHero({
 
                   <div className="pt-3 mt-2 space-y-2 flex-1 flex flex-col justify-between">
                     <div className="space-y-1">
-                      <h3 className="font-sans font-medium text-sm sm:text-base text-[var(--ink)] line-clamp-1">
+                      <h3 className="font-sans font-medium text-[14px] sm:text-[15px] text-[var(--ink)] line-clamp-1 group-hover:text-[var(--terracotta)] transition-colors">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-[var(--muted)] line-clamp-1">
+                      <p className="text-[12px] text-[var(--muted)] line-clamp-1">
                         {item.fabricDetails} · {item.ageOrSizeRange}
                       </p>
 
                       {price != null && (
                         <div className="pt-1">
                           <span className="font-medium text-sm text-[var(--ink)]">From ₹{price}</span>
-                          <span className="text-xs text-[var(--muted)] block leading-tight">
+                          <span className="text-[11px] text-[var(--muted)] block leading-tight">
                             Final price confirmed on WhatsApp
                           </span>
                         </div>
@@ -192,10 +194,10 @@ export default function SubcategoryHero({
                       <button
                         type="button"
                         onClick={() => handleAddStyle(item.id)}
-                        className="w-full min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 bg-white text-sm font-medium text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white active:scale-[0.98] transition-all cursor-pointer"
+                        className="w-full min-h-[40px] flex items-center justify-center gap-1.5 px-3 py-2 bg-[var(--surface)] text-[13px] font-medium text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white active:scale-[0.98] transition-all cursor-pointer rounded-sm border border-[var(--line)]"
                         aria-label={`Add ${item.title} to list`}
                       >
-                        <IconPlus size={16} />
+                        <IconPlus size={15} />
                         <span>Add to list</span>
                       </button>
                     </div>

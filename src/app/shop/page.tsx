@@ -110,7 +110,7 @@ export default function ShopPage() {
               <Link
                 key={cat.slug}
                 href={cat.href}
-                className="group block bg-[var(--surface)] p-3 sm:p-4 hover-lift transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+                className="group block bg-white border border-[var(--line)] rounded-md p-3 sm:p-4 hover:border-[var(--ink)] shadow-xs transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
               >
                 <Specimen
                   category={cat.slug}

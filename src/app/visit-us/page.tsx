@@ -47,9 +47,9 @@ export default function VisitUsPage() {
         {/* Store Info Cards */}
         <div className="lg:col-span-7 space-y-6">
           {/* Address & Direct Link */}
-          <div className="bg-white rounded-3xl border border-border-soft p-7 shadow-xs space-y-4">
+          <div className="bg-white rounded-md border border-border-soft p-7 shadow-xs space-y-4">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-forest text-white flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-sm bg-forest text-white flex items-center justify-center shrink-0">
                 <MapPin className="w-6 h-6 text-gold" />
               </div>
               <div className="space-y-1">
@@ -72,7 +72,7 @@ export default function VisitUsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="directions_click"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-xs transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-xs transition-all"
               >
                 <span>Google Business Profile</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -83,7 +83,7 @@ export default function VisitUsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="directions_click"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-forest text-forest hover:bg-bg-cream font-bold text-xs shadow-xs transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-white border border-forest text-forest hover:bg-bg-cream font-bold text-xs shadow-xs transition-all"
               >
                 <span>Open in Google Maps</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -96,7 +96,7 @@ export default function VisitUsPage() {
                 data-track="whatsapp_click"
                 data-track-location="footer"
                 data-track-category="visit_us"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-xs transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-xs transition-all"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
                 <span>WhatsApp for Directions</span>
@@ -105,15 +105,15 @@ export default function VisitUsPage() {
           </div>
 
           {/* Operating Hours Card */}
-          <div className="bg-white rounded-3xl border border-border-soft p-7 shadow-xs space-y-4">
+          <div className="bg-white rounded-md border border-border-soft p-7 shadow-xs space-y-4">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-forest text-white flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-sm bg-forest text-white flex items-center justify-center shrink-0">
                 <Clock className="w-6 h-6 text-gold" />
               </div>
               <div className="space-y-1">
                 <h2 className="font-serif font-bold text-lg text-near-black">Opening Hours</h2>
                 <div className="space-y-1 text-xs sm:text-sm text-muted pt-1">
-                  <div className="flex justify-between py-1 border-b-2 border-[var(--ink)]/15/60">
+                  <div className="flex justify-between py-1 border-b border-[var(--line)]">
                     <span className="font-semibold text-near-black">Monday – Sunday:</span>
                     <span className="text-forest font-bold">9:00 AM – 9:00 PM</span>
                   </div>
@@ -130,7 +130,7 @@ export default function VisitUsPage() {
           </div>
 
           {/* Getting here Section */}
-          <div className="bg-bg-cream rounded-3xl border border-border-soft p-7 space-y-4">
+          <div className="bg-bg-cream rounded-md border border-border-soft p-7 space-y-4">
             <div className="flex items-center gap-2 text-forest">
               <Compass className="w-5 h-5 text-gold" />
               <h2 className="font-serif font-bold text-lg text-near-black">Getting here</h2>
@@ -145,19 +145,19 @@ export default function VisitUsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-track="directions_click"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-xs transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-xs transition-all"
                 >
                   <span>Get directions on Google Maps</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
-              <div className="pt-2 border-t-2 border-[var(--ink)]/15/60">
+              <div className="pt-2 border-t border-[var(--line)]">
                 <p>
                   <strong>Nearby areas we serve:</strong> Kemps Corner, Pedder Road, Altamount Road, Carmichael Road, Malabar Hill, Breach Candy, Nepean Sea Road, Tardeo, South Mumbai, and Grant Road. (TODO: owner confirms additional neighbourhoods served).
                 </p>
               </div>
             </div>
-            <div className="pt-2 border-t-2 border-[var(--ink)]/15/60 flex items-start gap-3 text-xs text-muted">
+            <div className="pt-2 border-t border-[var(--line)] flex items-start gap-3 text-xs text-muted">
               <Car className="w-4 h-4 text-forest shrink-0 mt-0.5" />
               <div>
                 <strong className="text-near-black block">Parking &amp; Transit Guidance:</strong>
@@ -169,7 +169,7 @@ export default function VisitUsPage() {
 
         {/* Right Side: Store Photo & Contact Actions */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="relative h-[320px] sm:h-[400px] rounded-3xl overflow-hidden  border-4 border-white">
+          <div className="relative h-[320px] sm:h-[400px] rounded-md overflow-hidden  border border-[var(--line)] shadow-xs">
             <Image
               src="/store_front.webp"
               alt="Warden & Sons Kids Wear boutique storefront at Kemps Corner, Mumbai"
@@ -180,7 +180,7 @@ export default function VisitUsPage() {
             />
           </div>
 
-          <div className="bg-white rounded-3xl border border-border-soft p-6 shadow-xs space-y-3 text-center">
+          <div className="bg-white rounded-md border border-border-soft p-6 shadow-xs space-y-3 text-center">
             <h3 className="font-serif font-bold text-lg text-forest">Can’t Make It In Person?</h3>
             <p className="text-xs text-muted leading-relaxed">
               Order through our WhatsApp service! We pull live items from the rack, verify measurements with a tape, and arrange delivery across Mumbai.
@@ -193,7 +193,7 @@ export default function VisitUsPage() {
                 data-track="whatsapp_click"
                 data-track-location="footer"
                 data-track-category="visit_us"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all active:scale-[0.98]"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-sm bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all active:scale-[0.98]"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
                 <span>Start WhatsApp Shopping</span>
@@ -211,7 +211,7 @@ export default function VisitUsPage() {
       </div>
 
       {/* In-Store Departments & Contextual Authority Links */}
-      <section className="bg-white rounded-3xl p-6 sm:p-10 border border-border-soft shadow-xs space-y-6 text-near-black">
+      <section className="bg-white rounded-md p-6 sm:p-10 border border-border-soft shadow-xs space-y-6 text-near-black">
         <div className="space-y-2 border-b-2 border-[var(--ink)]/15 pb-4">
           <span className="text-[11px] font-sans uppercase tracking-widest text-gold block">
             What You Will Find In-Store
@@ -225,7 +225,7 @@ export default function VisitUsPage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-xs sm:text-sm leading-relaxed">
-          <div className="bg-bg-cream/40 rounded-2xl p-5 border border-border-soft space-y-2.5">
+          <div className="bg-bg-cream/40 rounded-sm p-5 border border-border-soft space-y-2.5">
             <h3 className="font-serif font-bold text-base text-forest">
               Boys’ Cotton Playwear &amp; Sports
             </h3>
@@ -241,7 +241,7 @@ export default function VisitUsPage() {
             </Link>
           </div>
 
-          <div className="bg-bg-cream/40 rounded-2xl p-5 border border-border-soft space-y-2.5">
+          <div className="bg-bg-cream/40 rounded-sm p-5 border border-border-soft space-y-2.5">
             <h3 className="font-serif font-bold text-base text-forest">
               Newborn Sets &amp; Muslin Swaddles
             </h3>
@@ -257,7 +257,7 @@ export default function VisitUsPage() {
             </Link>
           </div>
 
-          <div className="bg-bg-cream/40 rounded-2xl p-5 border border-border-soft space-y-2.5">
+          <div className="bg-bg-cream/40 rounded-sm p-5 border border-border-soft space-y-2.5">
             <h3 className="font-serif font-bold text-base text-forest">
               Live Sizing &amp; Fitting Checks
             </h3>

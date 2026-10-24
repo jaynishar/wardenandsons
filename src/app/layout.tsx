@@ -18,7 +18,7 @@ import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/conf
 const hankenGrotesk = Hanken_Grotesk({
   variable: '--font-sans',
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
   preload: true,
 });
@@ -83,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" className={`${hankenGrotesk.variable} h-full antialiased`}>
+    <html lang="en-IN" className={`${hankenGrotesk.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         {/* Enable motion layer for JS-enabled browsers without flash */}
         <script
@@ -148,7 +148,9 @@ export default function RootLayout({
         </main>
         <Footer />
         <BottomNav />
-        <WhatsAppButton variant="floating" location="fab" />
+        <aside aria-label="Direct store desk chat">
+          <WhatsAppButton variant="floating" location="fab" />
+        </aside>
         <FlyToCartToast />
         <ConsentBanner />
         <ChatHelperContainer />
