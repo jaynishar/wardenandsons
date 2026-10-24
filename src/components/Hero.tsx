@@ -65,8 +65,8 @@ export default function Hero() {
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
               {/* Masked overflow line-by-line rise (200-700ms) */}
-              <div className="overflow-hidden">
-                <h1 className="animate-masked-rise font-sans font-medium text-[var(--ink)] text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight max-w-xl text-balance">
+              <div className="overflow-hidden animate-masked-rise">
+                <h1 className="font-sans font-medium text-[var(--ink)] text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight max-w-xl text-balance">
                   Kids Clothes in Kemps Corner, South Mumbai
                 </h1>
               </div>

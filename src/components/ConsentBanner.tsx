@@ -11,11 +11,29 @@ export default function ConsentBanner() {
   useEffect(() => {
     setMounted(true);
     const saved = getSavedConsent();
-    if (!saved) {
-      // Small timeout to prevent layout shift during initial paint
-      const timer = setTimeout(() => setVisible(true), 1200);
-      return () => clearTimeout(timer);
-    }
+    if (saved) return;
+
+    let triggered = false;
+    const triggerMount = () => {
+      if (triggered) return;
+      triggered = true;
+      setVisible(true);
+      cleanup();
+    };
+
+    const events = ['pointerdown', 'mousedown', 'keydown', 'touchstart', 'scroll'];
+
+    const cleanup = () => {
+      events.forEach((evt) => {
+        window.removeEventListener(evt, triggerMount, true);
+      });
+    };
+
+    events.forEach((evt) => {
+      window.addEventListener(evt, triggerMount, { capture: true, passive: true, once: true });
+    });
+
+    return cleanup;
   }, []);
 
   // Listen for open requests (e.g. from footer link "Cookie Preferences")
@@ -36,7 +54,7 @@ export default function ConsentBanner() {
     <div
       role="region"
       aria-label="Privacy and Cookie Choices"
-      className="fixed bottom-[calc(var(--bar-h,64px)+env(safe-area-inset-bottom)+16px)] md:bottom-6 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 animate-in fade-in duration-300 font-sans"
+      className="fixed bottom-[calc(var(--bar-h,64px)+env(safe-area-inset-bottom)+16px)] md:bottom-6 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 animate-in fade-in duration-200 font-sans"
     >
       <div className="bg-white border-2 border-[var(--ink)] p-5 shadow-2xl text-[var(--ink)]">
         <div className="space-y-2">

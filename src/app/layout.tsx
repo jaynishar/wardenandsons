@@ -122,14 +122,6 @@ export default function RootLayout({
           <GoogleAnalytics gaId={ANALYTICS_CONFIG.gaMeasurementId} />
         ) : null}
 
-        {/* High-priority LCP hero image preload for instant discovery */}
-        <link
-          rel="preload"
-          as="image"
-          href="/hero-editorial.webp"
-          type="image/webp"
-          fetchPriority="high"
-        />
         {/* Favicon & Web App Icons */}
         <link rel="icon" href="/favicon.ico?v=5" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=5" />

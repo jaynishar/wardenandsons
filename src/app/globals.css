@@ -192,12 +192,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes masked-rise {
-  0% { transform: translateY(100%); opacity: 0; }
+  0% { transform: translateY(12px); opacity: 0.9; }
   100% { transform: translateY(0); opacity: 1; }
 }
 
 .animate-masked-rise {
-  animation: masked-rise 500ms 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: masked-rise 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes shutter {
