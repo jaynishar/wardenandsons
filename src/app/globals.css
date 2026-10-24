@@ -1,58 +1,77 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-ivory: #FBF7F0;
-  --color-paper: #F3EDE2;
-  --color-line: #E3DAC9;
-  --color-ink: #16233F;
-  --color-ink-soft: #4A5470;
-  --color-blue: #2F5FA7;
-  --color-red: #D8402F;
-  --color-yellow: #F1B434;
+  --color-bg: #FFFFFF;
+  --color-surface: #F4F4F2;
+  --color-ink: #0E1A33;
+  --color-muted: #55607A;
+  --color-blue: #2566AE;
+  --color-red: #DF232C;
+  --color-yellow: #F6EF4B;
   --color-wa: #0F7B4F;
 
-  --font-display: var(--font-display), Fraunces, Georgia, serif;
-  --font-body: var(--font-body), 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-sans), 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-sans), 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
 
-  /* Backwards-compatibility aliases for existing components before later redesign steps */
-  --color-bg-cream: #FBF7F0;
-  --color-cream: #FBF7F0;
-  --color-forest: #16233F;
-  --color-forest-dark: #16233F;
-  --color-forest-light: #2F5FA7;
-  --color-gold: #F1B434;
-  --color-gold-hover: #D8402F;
-  --color-gold-light: #F3EDE2;
-  --color-near-black: #16233F;
-  --color-muted: #4A5470;
-  --color-border-soft: #E3DAC9;
+  /* Backward-compatibility aliases for un-migrated inner routes */
+  --color-ivory: #FFFFFF;
+  --color-paper: #F4F4F2;
+  --color-line: #E5E5E3;
+  --color-ink-soft: #55607A;
+  --color-bg-cream: #FFFFFF;
+  --color-cream: #FFFFFF;
+  --color-forest: #0E1A33;
+  --color-forest-dark: #0E1A33;
+  --color-forest-light: #2566AE;
+  --color-gold: #F6EF4B;
+  --color-gold-hover: #DF232C;
+  --color-gold-light: #F4F4F2;
+  --color-near-black: #0E1A33;
+  --color-border-soft: #E5E5E3;
   --color-whatsapp: #0F7B4F;
 
-  --font-serif: var(--font-display), Fraunces, Georgia, serif;
-  --font-sans: var(--font-body), 'DM Sans', system-ui, -apple-system, sans-serif;
-  --font-playfair: var(--font-display);
-  --font-inter: var(--font-body);
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-serif: var(--font-sans), 'Hanken Grotesk', system-ui, sans-serif;
+  --font-sans: var(--font-sans), 'Hanken Grotesk', system-ui, sans-serif;
+  --font-playfair: var(--font-sans);
+  --font-inter: var(--font-sans);
 }
 
 :root {
-  --ivory: #FBF7F0;
-  --paper: #F3EDE2;
-  --line: #E3DAC9;
-  --ink: #16233F;
-  --ink-soft: #4A5470;
-  --blue: #2F5FA7;
-  --red: #D8402F;
-  --yellow: #F1B434;
+  --bg: #FFFFFF;
+  --surface: #F4F4F2;
+  --ink: #0E1A33;
+  --muted: #55607A;
+  --red: #DF232C;
+  --blue: #2566AE;
+  --yellow: #F6EF4B;
   --wa: #0F7B4F;
+
+  /* Aliases for legacy component styles */
+  --ivory: #FFFFFF;
+  --paper: #F4F4F2;
+  --line: #E5E5E3;
+  --ink-soft: #55607A;
+
+  /* Fluid type scale steps */
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);   /* 13–14px */
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);     /* 17–19px */
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);       /* 20–26px */
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);              /* 32–64px */
+  --step-display: clamp(2.5rem, 1.5rem + 5vw, 5.5rem);
+
+  /* Motion curves & tokens */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
 
   /* Safe-area insets */
   --sat: env(safe-area-inset-top, 0px);
   --sar: env(safe-area-inset-right, 0px);
   --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px);
+  --bar-h: 64px;
 
-  background-color: var(--ivory);
+  background-color: var(--bg);
   color: var(--ink);
 }
 
@@ -62,20 +81,20 @@
 
 html {
   font-size: 16px;
-  background-color: var(--ivory);
+  background-color: var(--bg);
   color: var(--ink);
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: var(--font-body), 'DM Sans', system-ui, -apple-system, sans-serif;
-  background-color: var(--ivory);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
   color: var(--ink);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: var(--step-body);
+  line-height: 1.5;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
@@ -95,139 +114,72 @@ object {
   height: auto;
 }
 
-/* Visible focus ring in --blue */
+/* Visible focus ring: 3px --blue, 2px offset */
 :focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 3px solid var(--blue);
   outline-offset: 2px;
 }
 
-/* Selection colour */
+/* Text Selection */
 ::selection {
-  background-color: rgba(47, 95, 167, 0.18);
-  color: var(--ink);
+  background-color: var(--blue);
+  color: #FFFFFF;
 }
 
-/* Typography scale from design rules */
-h1,
-.h1 {
-  font-family: var(--font-display), Fraunces, Georgia, serif;
-  font-size: clamp(34px, 8vw, 56px);
-  line-height: 1.15;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-h2,
-.h2 {
-  font-family: var(--font-display), Fraunces, Georgia, serif;
-  font-size: clamp(24px, 5vw, 36px);
-  line-height: 1.2;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-
-h3,
-.h3 {
-  font-family: var(--font-display), Fraunces, Georgia, serif;
-  font-size: clamp(20px, 4vw, 26px);
-  line-height: 1.25;
-  font-weight: 500;
-}
-
+/* Typography elements */
 p {
-  font-size: 1rem;
-  line-height: 1.6;
+  max-width: 65ch;
+  text-wrap: pretty;
 }
 
-.label-upper {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  text-wrap: balance;
+  letter-spacing: -0.035em;
   font-weight: 500;
 }
 
-.editorial-label {
-  font-family: var(--font-body), 'DM Sans', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-/* =========================================================================
-   STEP R9 MOTION ANIMATIONS & TRANSITIONS
-   Strictly adheres to performance budget and 600ms / 80ms limits.
-   ========================================================================= */
-
-/* 1. Badge Bump Animation (Item added to list) */
+/* Animations */
 @keyframes badge-bump {
   0% { transform: scale(1); }
-  40% { transform: scale(1.35); }
-  70% { transform: scale(0.92); }
+  50% { transform: scale(1.35); }
   100% { transform: scale(1); }
 }
 
 .animate-badge-bump {
-  animation: badge-bump 260ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: badge-bump 260ms var(--ease-out);
 }
 
-/* 2. Logo Letter Tiles Flip Animation (One-time on homepage load, 550ms < 600ms) */
 @keyframes logo-flip {
-  0% {
-    transform: perspective(400px) rotateY(0deg);
-  }
-  50% {
-    transform: perspective(400px) rotateY(180deg);
-  }
-  100% {
-    transform: perspective(400px) rotateY(360deg);
-  }
+  0% { transform: perspective(400px) rotateY(0); }
+  50% { transform: perspective(400px) rotateY(180deg); }
+  100% { transform: perspective(400px) rotateY(360deg); }
 }
 
 .animate-logo-flip {
-  animation: logo-flip 550ms cubic-bezier(0.45, 0.05, 0.55, 0.95) 1;
-  backface-visibility: visible;
+  animation: logo-flip 550ms ease-out;
 }
 
-/* 3. Smooth Sheet & Dialog Transitions */
+/* Page transitions via template.tsx */
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 320ms var(--ease-out);
+}
+
+/* Dialog and sheet keyframes */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-@keyframes slideInFromBottom {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-@keyframes slideOutToBottom {
-  from { transform: translateY(0); }
-  to { transform: translateY(100%); }
-}
-
-@keyframes slideInFromLeft {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes slideOutToLeft {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
-}
-
-@keyframes slideInFromRight {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes slideOutToRight {
-  from { transform: translateX(0); }
-  to { transform: translateX(100%); }
 }
 
 @keyframes scaleIn {
@@ -235,56 +187,42 @@ p {
   to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes scaleOut {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(0.95); }
+@keyframes slideInFromBottom {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
 }
 
-/* Overlay transitions */
-.dialog-overlay[data-state='open'] {
-  animation: fadeIn 200ms ease-out;
-}
-.dialog-overlay[data-state='closed'] {
-  animation: fadeOut 150ms ease-in;
+@keyframes slideInFromRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 }
 
-/* Sheet transitions */
-.sheet-bottom[data-state='open'] {
-  animation: slideInFromBottom 250ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.sheet-bottom[data-state='closed'] {
-  animation: slideOutToBottom 200ms ease-in;
+@keyframes slideInFromLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
 
-.sheet-left[data-state='open'] {
-  animation: slideInFromLeft 260ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.sheet-left[data-state='closed'] {
-  animation: slideOutToLeft 200ms ease-in;
+.dialog-overlay {
+  animation: fadeIn 200ms ease-out forwards;
 }
 
-.sheet-right[data-state='open'] {
-  animation: slideInFromRight 260ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.sheet-right[data-state='closed'] {
-  animation: slideOutToRight 200ms ease-in;
+.dialog-scale {
+  animation: scaleIn 200ms ease-out forwards;
 }
 
-.dialog-scale[data-state='open'] {
-  animation: scaleIn 220ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.dialog-scale[data-state='closed'] {
-  animation: scaleOut 160ms ease-in;
+.sheet-bottom {
+  animation: slideInFromBottom 280ms var(--ease-out) forwards;
 }
 
-.dialog-fade[data-state='open'] {
-  animation: fadeIn 200ms ease-out;
-}
-.dialog-fade[data-state='closed'] {
-  animation: fadeOut 150ms ease-in;
+.sheet-right {
+  animation: slideInFromRight 280ms var(--ease-out) forwards;
 }
 
-/* Prefers-reduced-motion block */
+.sheet-left {
+  animation: slideInFromLeft 280ms var(--ease-out) forwards;
+}
+
+/* Prefers-reduced-motion: disable travel and loops */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -294,35 +232,4 @@ p {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Custom Scrollbar */
-.scrollbar-none {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-none::-webkit-scrollbar {
-  display: none;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--line);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--ink-soft);
-}
-
-.pb-safe {
-  padding-bottom: var(--sab);
-}
-.pt-safe {
-  padding-top: var(--sat);
 }

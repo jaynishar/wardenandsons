@@ -33,14 +33,14 @@
   - Saved direction metadata to `docs/redesign-v2/direction.md`.
   - Committed "P1: direction and copy deck".
 
-- [ ] **P2: Tokens, type and the logo**
-  - Sampled exact logo colors via `scripts/sample-logo.mjs`.
-  - Defined CSS variables & Tailwind config (`--bg`, `--surface`, `--ink`, `--muted`, `--red`, `--blue`, `--yellow`, `--wa`).
-  - Square shape (radius 0), 52px flat buttons, 3px focus ring.
-  - Replaced fonts with dealt sans face via `next/font/google`.
-  - Rebuilt authentic Logo in `src/components/Logo.tsx` without white padding or background halos.
-  - Generated `public/og-card.jpg` and updated metadata defaults.
-  - Verified contrast pairs (>= 4.5:1) and logo transparency.
+- [x] **P2: Tokens, type and the logo**
+  - Sampled exact logo colors via `scripts/sample-logo.mjs` (#DF232C red, #2566AE blue, #F6EF4B yellow, #0E1A33 ink, #55607A muted, #0F7B4F wa).
+  - Defined CSS variables & Tailwind `@theme` in `src/app/globals.css`.
+  - Configured square shapes (radius 0), 52px flat buttons with 3px focus ring, and flat chips.
+  - Replaced Fraunces and DM Sans with `Hanken_Grotesk` loaded via `next/font/google`.
+  - Rebuilt authentic Logo in `src/components/Logo.tsx` with tight crop and 0 background alpha.
+  - Generated transparent assets (`public/brand/logo.webp`, `public/brand/logo.png`) and `public/og-card.jpg` (1200x630).
+  - Verified all 9 contrast pairs pass WCAG AA (>= 4.5:1) and logo transparency on colored surfaces (`docs/redesign-v2/shots/test-logo-on-*.png`).
   - Committed "P2: tokens, type, logo".
 
 - [ ] **P3: Drawn specimens and imagery**

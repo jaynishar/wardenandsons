@@ -1,36 +1,32 @@
 /**
- * WCAG 2.1 Contrast Ratio Verification Script
- * Checks all defined text/background pairs against the minimum 4.5:1 AA standard.
+ * WCAG 2.1 Contrast Ratio Verification Script — Redesign V2
+ * Tests all text/background pairs for Warden & Sons against WCAG AA >= 4.5:1.
  */
 
 const TOKENS = {
-  ivory: '#FBF7F0',
-  paper: '#F3EDE2',
-  line: '#E3DAC9',
-  ink: '#16233F',
-  'ink-soft': '#4A5470',
-  blue: '#2F5FA7',
-  red: '#D8402F',
-  yellow: '#F1B434',
+  bg: '#FFFFFF',
+  surface: '#F4F4F2',
+  ink: '#0E1A33',
+  muted: '#55607A',
+  red: '#DF232C',
+  blue: '#2566AE',
+  yellow: '#F6EF4B',
   wa: '#0F7B4F',
   white: '#FFFFFF',
 };
 
-// Required pairs per Step R1 specification
 const PAIRS_TO_CHECK = [
-  { name: 'ink on ivory', fg: TOKENS.ink, bg: TOKENS.ivory, minRatio: 4.5 },
-  { name: 'ink-soft on ivory', fg: TOKENS['ink-soft'], bg: TOKENS.ivory, minRatio: 4.5 },
-  { name: 'ink-soft on paper', fg: TOKENS['ink-soft'], bg: TOKENS.paper, minRatio: 4.5 },
-  { name: 'white on --wa', fg: TOKENS.white, bg: TOKENS.wa, minRatio: 4.5 },
-  { name: 'ivory on ink', fg: TOKENS.ivory, bg: TOKENS.ink, minRatio: 4.5 },
-  { name: 'blue on ivory', fg: TOKENS.blue, bg: TOKENS.ivory, minRatio: 4.5 },
+  { name: 'ink on bg', fg: TOKENS.ink, bg: TOKENS.bg, minRatio: 4.5 },
+  { name: 'ink on surface', fg: TOKENS.ink, bg: TOKENS.surface, minRatio: 4.5 },
+  { name: 'muted on bg', fg: TOKENS.muted, bg: TOKENS.bg, minRatio: 4.5 },
+  { name: 'muted on surface', fg: TOKENS.muted, bg: TOKENS.surface, minRatio: 4.5 },
+  { name: 'white on wa', fg: TOKENS.white, bg: TOKENS.wa, minRatio: 4.5 },
+  { name: 'white on blue', fg: TOKENS.white, bg: TOKENS.blue, minRatio: 4.5 },
+  { name: 'white on red', fg: TOKENS.white, bg: TOKENS.red, minRatio: 4.5 },
+  { name: 'ink on yellow', fg: TOKENS.ink, bg: TOKENS.yellow, minRatio: 4.5 },
+  { name: 'white on ink', fg: TOKENS.white, bg: TOKENS.ink, minRatio: 4.5 },
 ];
 
-/**
- * Calculates relative luminance for an sRGB hex code
- * @param {string} hex
- * @returns {number}
- */
 function getLuminance(hex) {
   const cleanHex = hex.replace('#', '');
   const r = parseInt(cleanHex.substring(0, 2), 16) / 255;
@@ -44,12 +40,6 @@ function getLuminance(hex) {
   return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
 }
 
-/**
- * Computes contrast ratio between two hex colors
- * @param {string} hex1
- * @param {string} hex2
- * @returns {number}
- */
 function getContrastRatio(hex1, hex2) {
   const lum1 = getLuminance(hex1);
   const lum2 = getLuminance(hex2);
@@ -59,9 +49,9 @@ function getContrastRatio(hex1, hex2) {
 }
 
 function runAudit() {
-  console.log('='.repeat(65));
-  console.log('  WARDEN & SONS — WCAG 2.1 CONTRAST AUDIT (Step R1)');
-  console.log('='.repeat(65));
+  console.log('='.repeat(70));
+  console.log('  WARDEN & SONS — WCAG 2.1 CONTRAST AUDIT (Redesign V2)');
+  console.log('='.repeat(70));
 
   let allPassed = true;
 
@@ -72,7 +62,7 @@ function runAudit() {
     const status = passed ? 'PASS' : 'FAIL';
 
     console.log(
-      `[${status}] ${pair.name.padEnd(22)}: ${formattedRatio.padStart(8)}  (min ${pair.minRatio}:1)  [${pair.fg} on ${pair.bg}]`
+      `[${status}] ${pair.name.padEnd(20)}: ${formattedRatio.padStart(8)}  (min ${pair.minRatio}:1)  [${pair.fg} on ${pair.bg}]`
     );
 
     if (!passed) {
@@ -80,13 +70,13 @@ function runAudit() {
     }
   }
 
-  console.log('='.repeat(65));
+  console.log('='.repeat(70));
 
   if (!allPassed) {
-    console.error('\n Contrast audit failed: One or more text pairs are below the 4.5:1 minimum threshold.');
+    console.error('\nContrast audit failed: One or more text pairs are below 4.5:1.');
     process.exit(1);
   } else {
-    console.log('\n All design token text/background pairs pass WCAG AA (>= 4.5:1).');
+    console.log('\nAll Redesign V2 design token text/background pairs pass WCAG AA (>= 4.5:1).');
     process.exit(0);
   }
 }

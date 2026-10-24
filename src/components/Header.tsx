@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -13,34 +12,32 @@ import {
 import { MenuSheet } from '@/components/MenuSheet';
 import { useListStore, useListCount } from '@/lib/list-store';
 import { useSearchStore } from '@/lib/search-store';
+import { Logo } from '@/components/Logo';
 
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
-  const [shouldFlipLogo, setShouldFlipLogo] = useState(false);
   const [isBumping, setIsBumping] = useState(false);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const prevTotalRef = useRef(0);
   const moreRef = useRef<HTMLDivElement>(null);
   const toggleList = useListStore((state) => state.toggleList);
   const openSearch = useSearchStore((state) => state.openSearch);
   const totalItems = useListCount();
 
-  // One-time logo flip on first load of the homepage (keep under 600ms total: 550ms)
+  // On the home page, the header logo stays hidden until the hero has scrolled away
   useEffect(() => {
-    if (pathname === '/') {
-      try {
-        const flipped = sessionStorage.getItem('warden_logo_flip');
-        if (!flipped) {
-          setShouldFlipLogo(true);
-          sessionStorage.setItem('warden_logo_flip', 'true');
-          const timer = setTimeout(() => setShouldFlipLogo(false), 550);
-          return () => clearTimeout(timer);
-        }
-      } catch {
-        // ignore
-      }
+    if (pathname !== '/') {
+      setScrolledPastHero(true);
+      return;
     }
+    const checkScroll = () => {
+      setScrolledPastHero(window.scrollY > 380);
+    };
+    checkScroll();
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    return () => window.removeEventListener('scroll', checkScroll);
   }, [pathname]);
 
   // Short bump animation when an item is added to the list
@@ -48,34 +45,24 @@ export default function Header() {
     if (totalItems > prevTotalRef.current) {
       setIsBumping(true);
       const timer = setTimeout(() => setIsBumping(false), 260);
-      prevTotalRef.current = totalItems;
       return () => clearTimeout(timer);
     }
     prevTotalRef.current = totalItems;
   }, [totalItems]);
 
+  // Close "More" dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (moreRef.current && !moreRef.current.contains(event.target as Node)) {
         setMoreOpen(false);
       }
-    };
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setMoreOpen(false);
-      }
-    };
-
+    }
     document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const moreLinks = [
+    { label: 'Size guide', href: '/size-guide/' },
     { label: 'How it works', href: '/how-it-works/' },
     { label: 'About', href: '/about/' },
     { label: 'Visit us', href: '/visit-us/' },
@@ -83,39 +70,28 @@ export default function Header() {
     { label: 'Contact', href: '/contact/' },
   ];
 
+  const logoVisibilityClass =
+    pathname === '/' && !scrolledPastHero
+      ? 'opacity-0 pointer-events-none'
+      : 'opacity-100';
+
   return (
     <>
       {/* =========================================================================
-          DESKTOP HEADER (768px and wider): sticky, 64px high
+          DESKTOP HEADER (768px and wider): sticky, 64px high, plain white bar
          ========================================================================= */}
-      <header className="hidden md:block sticky top-0 z-40 h-16 bg-[var(--ivory)] border-b border-[var(--line)]">
+      <header className="hidden md:block sticky top-0 z-40 h-16 bg-[var(--bg)] transition-colors">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-          {/* Logo on Left */}
+          {/* Logo on Left: at least 40px on desktop */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-[var(--blue)] shrink-0"
+            className={`flex items-center gap-2.5 focus-visible:outline-3 focus-visible:outline-[var(--blue)] shrink-0 transition-opacity duration-300 ${logoVisibilityClass}`}
           >
-            <div className={`relative w-11 h-8 rounded-[3px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden ${shouldFlipLogo ? 'animate-logo-flip' : ''}`}>
-              <img
-                src="/brand_logo.webp"
-                alt="Warden & Sons Kids Wear Official Logo"
-                width={44}
-                height={32}
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="font-display font-semibold text-base tracking-tight text-[var(--ink)]">
-                Warden &amp; Sons
-              </span>
-              <span className="text-[10px] label-upper text-[var(--ink-soft)] tracking-wider">
-                Kemps Corner · 1994
-              </span>
-            </div>
+            <Logo height={40} />
           </Link>
 
-          {/* Centre Navigation Links */}
-          <nav aria-label="Main catalogue navigation" className="flex items-center space-x-6 text-sm font-medium">
+          {/* Centre Navigation Links: plain nouns, sentence case */}
+          <nav aria-label="Main catalogue navigation" className="flex items-center space-x-6 text-[15px] font-medium">
             <Link
               href="/shop/newborn/"
               className="text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1"
@@ -160,7 +136,7 @@ export default function Header() {
                 onClick={() => setMoreOpen(!moreOpen)}
                 aria-expanded={moreOpen}
                 aria-haspopup="true"
-                className="inline-flex items-center gap-1 text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1 cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)] rounded-[2px]"
+                className="inline-flex items-center gap-1 text-[var(--ink)] hover:text-[var(--blue)] transition-colors py-1 cursor-pointer focus-visible:outline-3 focus-visible:outline-[var(--blue)] rounded-none"
               >
                 <span>More</span>
                 <IconChevron direction={moreOpen ? 'up' : 'down'} size={14} />
@@ -170,7 +146,7 @@ export default function Header() {
                 <div
                   role="menu"
                   aria-label="More boutique links"
-                  className="absolute right-0 top-full mt-2 w-48 bg-[var(--paper)] border border-[var(--line)] rounded-[4px] shadow-md py-1.5 z-50 animate-in fade-in duration-100"
+                  className="absolute right-0 top-full mt-2 w-48 bg-[var(--surface)] shadow-lg py-1.5 z-50 animate-in fade-in duration-100 rounded-none border-0"
                 >
                   {moreLinks.map((item) => (
                     <Link
@@ -178,7 +154,7 @@ export default function Header() {
                       href={item.href}
                       role="menuitem"
                       onClick={() => setMoreOpen(false)}
-                      className="block px-4 py-2 text-sm text-[var(--ink)] hover:bg-[var(--line)] hover:text-[var(--ink)] transition-colors"
+                      className="block px-4 py-2 text-[14px] text-[var(--ink)] hover:bg-[#eae8e4] transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -195,7 +171,7 @@ export default function Header() {
               type="button"
               onClick={openSearch}
               aria-label="Search catalogue"
-              className="inline-flex items-center gap-1.5 h-10 px-3 rounded-[4px] text-sm font-medium text-[var(--ink)] hover:bg-[var(--paper)] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+              className="inline-flex items-center gap-1.5 h-10 px-3 text-[14px] font-medium text-[var(--ink)] hover:bg-[var(--surface)] transition-colors cursor-pointer rounded-none border-0 focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
             >
               <IconSearch size={18} />
               <span className="hidden lg:inline">Search</span>
@@ -206,11 +182,11 @@ export default function Header() {
               type="button"
               onClick={toggleList}
               aria-label={`My list with ${totalItems} items`}
-              className="inline-flex items-center gap-2 h-10 px-3.5 rounded-[4px] bg-[var(--ink)] text-[var(--ivory)] hover:bg-[#203155] active:scale-[0.98] transition-all duration-[80ms] cursor-pointer text-sm font-medium focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+              className="inline-flex items-center gap-2 h-10 px-3.5 bg-[var(--ink)] text-white hover:bg-[#1a2d52] active:scale-[0.98] transition-transform duration-[140ms] cursor-pointer text-[14px] font-medium rounded-none border-0 focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
             >
               <IconList size={18} />
               <span>My list</span>
-              <span className={`min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--ivory)] text-[var(--ink)] text-[11px] font-bold inline-flex items-center justify-center leading-none ${isBumping ? 'animate-badge-bump' : ''}`}>
+              <span className={`min-w-[18px] h-[18px] px-1 bg-white text-[var(--ink)] text-[11px] font-bold inline-flex items-center justify-center leading-none rounded-none ${isBumping ? 'animate-badge-bump' : ''}`}>
                 {totalItems}
               </span>
             </button>
@@ -219,37 +195,26 @@ export default function Header() {
       </header>
 
       {/* =========================================================================
-          MOBILE TOP BAR (under 768px): 56px high, NOT sticky
+          MOBILE TOP BAR (under 768px): 56px high, plain white bar
          ========================================================================= */}
-      <header className="md:hidden relative h-14 bg-[var(--ivory)] border-b border-[var(--line)]">
+      <header className="md:hidden relative h-14 bg-[var(--bg)]">
         <div className="px-4 h-full flex items-center justify-between">
           {/* Menu Button on Left */}
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
             aria-label="Open navigation menu"
-            className="p-2 -ml-2 text-[var(--ink)] hover:text-[var(--ink-soft)] rounded-[4px] cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+            className="p-2 -ml-2 text-[var(--ink)] hover:text-[var(--muted)] cursor-pointer rounded-none border-0 focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
           >
             <IconMenu size={22} />
           </button>
 
-          {/* Logo Centre */}
+          {/* Logo Centre: at least 32px on phones */}
           <Link
             href="/"
-            className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+            className={`flex items-center focus-visible:outline-3 focus-visible:outline-[var(--blue)] transition-opacity duration-300 ${logoVisibilityClass}`}
           >
-            <div className={`w-8 h-6 rounded-[2px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden ${shouldFlipLogo ? 'animate-logo-flip' : ''}`}>
-              <img
-                src="/brand_logo.webp"
-                alt="Warden & Sons"
-                width={32}
-                height={24}
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <span className="font-display font-semibold text-base text-[var(--ink)] leading-none">
-              Warden &amp; Sons
-            </span>
+            <Logo height={32} />
           </Link>
 
           {/* Search & My List on Right */}
@@ -258,7 +223,7 @@ export default function Header() {
               type="button"
               onClick={openSearch}
               aria-label="Search catalogue"
-              className="p-2 text-[var(--ink)] hover:text-[var(--ink-soft)] rounded-[4px] cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+              className="p-2 text-[var(--ink)] hover:text-[var(--muted)] cursor-pointer rounded-none border-0 focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
             >
               <IconSearch size={20} />
             </button>
@@ -267,11 +232,11 @@ export default function Header() {
               type="button"
               onClick={toggleList}
               aria-label={`My list, ${totalItems} items`}
-              className="p-2 text-[var(--ink)] hover:text-[var(--ink-soft)] rounded-[4px] cursor-pointer relative focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+              className="p-2 text-[var(--ink)] hover:text-[var(--muted)] cursor-pointer relative rounded-none border-0 focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
             >
               <IconList size={20} />
               {totalItems > 0 && (
-                <span className={`absolute top-1 right-1 min-w-[15px] h-[15px] px-0.5 rounded-full bg-[var(--ink)] text-[var(--ivory)] text-[9px] font-bold flex items-center justify-center leading-none ${isBumping ? 'animate-badge-bump' : ''}`}>
+                <span className={`absolute top-1 right-1 min-w-[16px] h-[16px] px-0.5 bg-[var(--ink)] text-white text-[10px] font-bold flex items-center justify-center leading-none rounded-none ${isBumping ? 'animate-badge-bump' : ''}`}>
                   {totalItems}
                 </span>
               )}

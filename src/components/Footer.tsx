@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import React from 'react';
@@ -7,6 +6,7 @@ import { IconPhone, IconWhatsApp, IconPin } from '@/components/icons';
 import ReplyPromise from '@/components/ReplyPromise';
 import { BUSINESS_CONFIG } from '@/config/business';
 import { COPY_DECK } from '@/content/copy';
+import { Logo } from '@/components/Logo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -20,57 +20,41 @@ export default function Footer() {
   return (
     <footer
       aria-label="Site footer"
-      className="bg-[var(--paper)] border-t border-[var(--line)] text-[var(--ink)] font-body pb-[calc(4.5rem+var(--sab))] md:pb-12 pt-12"
+      className="bg-[var(--surface)] text-[var(--ink)] font-body pb-[calc(4.5rem+var(--sab))] md:pb-12 pt-14"
     >
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Main Footer Row */}
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 pb-8 border-b border-[var(--line)]">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-10">
           {/* Brand & Store Address */}
-          <div className="space-y-3 max-w-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-7 rounded-[3px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden">
-                <img
-                  src="/brand_logo.webp"
-                  alt="Warden & Sons Official Crest"
-                  width={40}
-                  height={28}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div>
-                <span className="font-display font-semibold text-lg text-[var(--ink)] block leading-none">
-                  Warden &amp; Sons
-                </span>
-                <span className="label-upper text-[10px] text-[var(--ink-soft)] mt-0.5 block">
-                  Kids Wear · Kemps Corner, Mumbai
-                </span>
-              </div>
-            </div>
+          <div className="space-y-4 max-w-sm">
+            <Link href="/" className="inline-block focus-visible:outline-3 focus-visible:outline-[var(--blue)]">
+              <Logo height={48} />
+            </Link>
 
-            <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
-              {COPY_DECK.store.line}
+            <p className="text-[14px] text-[var(--muted)] leading-relaxed">
+              {COPY_DECK.visit.addressLine1}, {COPY_DECK.visit.addressLine2}. {COPY_DECK.visit.hoursDefault}.
             </p>
 
-            <div className="pt-1">
+            <div>
               <a
                 href={BUSINESS_CONFIG.location.googleBusinessShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="directions_click"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--blue)] hover:underline"
+                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--blue)] hover:underline"
               >
-                <IconPin size={14} />
-                <span>Google Business Profile (4.8 ★)</span>
+                <IconPin size={16} />
+                <span>Google Business Profile</span>
               </a>
             </div>
           </div>
 
           {/* Contact & Hours */}
           <div className="space-y-3 max-w-xs">
-            <p className="label-upper text-[var(--ink)] font-semibold">Store Desk</p>
-            <div className="space-y-1.5 text-sm">
+            <p className="text-[15px] text-[var(--ink)] font-semibold">Store desk</p>
+            <div className="space-y-2 text-[14px]">
               <div className="flex items-center gap-2">
-                <IconPhone size={16} className="text-[var(--ink-soft)] shrink-0" />
+                <IconPhone size={16} className="text-[var(--muted)] shrink-0" />
                 <a
                   href={BUSINESS_CONFIG.phone.telLink}
                   data-track="call_click"
@@ -80,7 +64,7 @@ export default function Footer() {
                 </a>
               </div>
               {BUSINESS_CONFIG.phone.landline && (
-                <p className="text-xs text-[var(--ink-soft)] pl-6">
+                <p className="text-[13px] text-[var(--muted)] pl-6">
                   Landline: {BUSINESS_CONFIG.phone.landline}
                 </p>
               )}
@@ -95,16 +79,16 @@ export default function Footer() {
                   data-track-category="footer"
                   className="text-[var(--wa)] font-medium hover:underline"
                 >
-                  WhatsApp Store Desk
+                  WhatsApp store desk
                 </a>
               </div>
-              <ReplyPromise className="text-xs text-[var(--ink-soft)] pl-6 block" />
+              <ReplyPromise className="text-[13px] text-[var(--muted)] pl-6 block" />
               <div className="pt-1 pl-6">
                 <a
                   href="https://www.instagram.com/wardenandsonskidswear/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[var(--ink-soft)] hover:text-[var(--ink)] hover:underline"
+                  className="text-[13px] text-[var(--muted)] hover:text-[var(--ink)] hover:underline"
                 >
                   Instagram: @wardenandsonskidswear
                 </a>
@@ -112,33 +96,33 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Non-orphan Navigation Links */}
+          {/* Navigation Links */}
           <div className="space-y-3">
-            <p className="label-upper text-[var(--ink)] font-semibold">Explore</p>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 text-sm text-[var(--ink-soft)]">
+            <p className="text-[15px] text-[var(--ink)] font-semibold">Categories and guide</p>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-[14px] text-[var(--muted)]">
               <Link href="/shop/newborn/" className="hover:text-[var(--ink)] hover:underline">
                 Newborn
               </Link>
               <Link href="/how-it-works/" className="hover:text-[var(--ink)] hover:underline">
-                How It Works
+                How it works
               </Link>
               <Link href="/shop/boys/" className="hover:text-[var(--ink)] hover:underline">
                 Boys
               </Link>
               <Link href="/about/" className="hover:text-[var(--ink)] hover:underline">
-                About Heritage
+                About us
               </Link>
               <Link href="/shop/girls/" className="hover:text-[var(--ink)] hover:underline">
                 Girls
               </Link>
               <Link href="/visit-us/" className="hover:text-[var(--ink)] hover:underline">
-                Visit Kemps Corner
+                Visit store
               </Link>
               <Link href="/bulk-orders/" className="hover:text-[var(--ink)] hover:underline">
-                Uniforms &amp; Bulk
+                Uniforms &amp; bulk
               </Link>
               <Link href="/size-guide/" className="hover:text-[var(--ink)] hover:underline">
-                Size Guide
+                Size guide
               </Link>
               <Link href="/blog/" className="hover:text-[var(--ink)] hover:underline">
                 Blog
@@ -147,16 +131,16 @@ export default function Footer() {
                 Contact
               </Link>
               <Link href="/shipping-returns/" className="hover:text-[var(--ink)] hover:underline">
-                Delivery &amp; Exchanges
+                Delivery &amp; returns
               </Link>
             </div>
           </div>
         </div>
 
         {/* Bottom Legal & Copyright Strip */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--ink-soft)] pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-[var(--muted)] pt-8">
           <p>© {currentYear} Warden &amp; Sons Kids Wear. All rights reserved.</p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/privacy-policy/" className="hover:text-[var(--ink)] hover:underline">
               Privacy Policy
             </Link>

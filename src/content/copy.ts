@@ -26,6 +26,7 @@ export const COPY_DECK = {
   },
   how: {
     heading: 'How it works',
+    line: 'Pick  ·  Send on WhatsApp  ·  We reply with photos and sizes',
     step1Title: 'Pick',
     step1Desc: 'Browse categories and tap plus to build your list.',
     step2Title: 'Send on WhatsApp',
@@ -33,6 +34,12 @@ export const COPY_DECK = {
     step3Title: 'We reply with photos and sizes',
     step3Desc: 'We confirm live rack photos and check tape measurements.',
     videoChip: 'Free video call',
+  },
+  video: {
+    chip: 'Free video call',
+  },
+  store: {
+    line: 'Shop 7, Haji Habib Building, Kemps Corner · Open daily 9am-9pm',
   },
   reviews: {
     heading: 'Real reviews',

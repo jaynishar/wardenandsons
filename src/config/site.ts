@@ -30,8 +30,8 @@ export const SITE_CONFIG = {
   url: SITE_URL,
   canonicalBase: SITE_URL,
   locale: 'en_IN',
-  themeColor: '#FAF8F5',
-  ogImage: `${SITE_URL}/brand_logo.jpg`,
+  themeColor: '#FFFFFF',
+  ogImage: `${SITE_URL}/og-card.jpg`,
   storefrontImage: `${SITE_URL}/store_front.webp`,
 };
 
@@ -53,13 +53,13 @@ export interface PageMetadataInput {
  * 1. canonical and og:url always match each page's own URL, derived from the same path with trailing slash.
  * 2. og:title, og:description, og:url, and og:image are always provided and match page metadata.
  * 3. No page ever defaults or falls back to the homepage URL as its og:url.
- * 4. og:image dimensions match real pixel size (brand_logo: 800x399).
+ * 4. og:image dimensions match real pixel size (default og-card: 1200x630).
  */
 export function buildPageMetadata({
   path,
   title,
   description,
-  image = `${SITE_URL}/brand_logo.jpg`,
+  image = `${SITE_URL}/og-card.jpg`,
   imageAlt,
   type = 'website',
   publishedTime,

@@ -6,6 +6,11 @@ export interface ChipProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
   children: React.ReactNode;
 }
 
+/**
+ * Warden & Sons UI Chip — Redesign V2
+ * Square (0 radius), filled --surface, selected = ink with white text.
+ * No outlines, no hairlines.
+ */
 export function Chip({
   selected = false,
   className = '',
@@ -16,11 +21,11 @@ export function Chip({
   ...props
 }: ChipProps) {
   const baseStyles =
-    'inline-flex items-center justify-center min-h-[44px] px-4 py-2 text-sm font-medium rounded-full transition-colors cursor-pointer select-none disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-[var(--blue)] focus-visible:outline-offset-2';
+    'inline-flex items-center justify-center min-h-[44px] px-4 py-2 text-[15px] font-medium rounded-none border-0 transition-transform duration-[140ms] active:scale-[0.98] cursor-pointer select-none disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-3 focus-visible:outline-[var(--blue)] focus-visible:outline-offset-2';
 
   const stateStyles = selected
-    ? 'bg-[var(--ink)] text-[var(--ivory)] border border-[var(--ink)] shadow-xs'
-    : 'bg-[var(--paper)] text-[var(--ink)] border border-[var(--line)] hover:border-[var(--ink-soft)] hover:bg-[#eae3d6]';
+    ? 'bg-[var(--ink)] text-white'
+    : 'bg-[var(--surface)] text-[var(--ink)] hover:bg-[#e8e8e4] active:bg-[#deded8]';
 
   return (
     <button

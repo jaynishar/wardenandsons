@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Fraunces, DM_Sans } from 'next/font/google';
+import { Hanken_Grotesk } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -12,18 +12,12 @@ import ChatHelperContainer from '@/components/chat/ChatHelperContainer';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/config/site';
 
-const fraunces = Fraunces({
-  variable: '--font-display',
+const hankenGrotesk = Hanken_Grotesk({
+  variable: '--font-sans',
   subsets: ['latin'],
-  weight: ['500', '600'],
+  weight: ['400', '500'],
   display: 'swap',
-});
-
-const dmSans = DM_Sans({
-  variable: '--font-body',
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -52,10 +46,10 @@ export const metadata: Metadata = {
       'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Serving families for over 30 years with quality cotton newborn essentials, playwear, and custom uniforms via WhatsApp.',
     images: [
       {
-        url: `${SITE_URL}/brand_logo.jpg`,
-        width: 800,
-        height: 399,
-        alt: 'Warden & Sons Kids Wear Official Logo',
+        url: `${SITE_URL}/og-card.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Warden & Sons Kids Wear Official Wordmark',
       },
     ],
   },
@@ -64,7 +58,7 @@ export const metadata: Metadata = {
     title: 'Kids Clothing Store in South Mumbai | Warden & Sons',
     description:
       'Heritage children’s clothing boutique in Kemps Corner, South Mumbai. Quality cotton newborn essentials, boys & girls playwear, and custom uniforms.',
-    images: [`${SITE_URL}/brand_logo.jpg`],
+    images: [`${SITE_URL}/og-card.jpg`],
   },
   icons: {
     icon: [
@@ -86,8 +80,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" className={`${fraunces.variable} ${dmSans.variable} h-full antialiased`}>
+    <html lang="en-IN" className={`${hankenGrotesk.variable} h-full antialiased`}>
       <head>
+        {/* Enable motion layer for JS-enabled browsers without flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('js');`,
+          }}
+        />
+
         {/* Google Consent Mode v2 & DataLayer Initialization */}
         <script
           id="google-consent-mode"
@@ -133,11 +134,11 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=5" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className="min-h-full flex flex-col bg-ivory text-ink selection:bg-paper selection:text-ink">
+      <body className="min-h-full flex flex-col bg-[var(--bg)] text-[var(--ink)] selection:bg-[var(--blue)] selection:text-white">
         {/* Accessible skip link for keyboard users */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--ink)] focus:text-[var(--ivory)] focus:rounded-[4px] focus:outline-2 focus:outline-[var(--blue)] font-medium text-sm shadow-md"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--ink)] focus:text-white focus:outline-3 focus:outline-[var(--blue)] font-medium text-[14px]"
         >
           Skip to content
         </a>

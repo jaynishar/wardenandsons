@@ -28,18 +28,19 @@ export const Button = React.forwardRef<HTMLButtonElement & HTMLAnchorElement, Bu
     },
     ref
   ) => {
+    // 52px tall, square (0 radius), flat, with 3px focus ring
     const baseStyles =
-      'inline-flex items-center justify-center font-medium transition-all duration-[80ms] active:scale-[0.98] select-none text-center cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 focus-visible:outline-2 focus-visible:outline-[var(--blue)] focus-visible:outline-offset-2';
+      'inline-flex items-center justify-center font-medium h-[52px] min-h-[52px] px-6 text-[16px] rounded-none border-0 transition-transform duration-[80ms] active:scale-[0.98] select-none text-center cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 focus-visible:outline-3 focus-visible:outline-[var(--blue)] focus-visible:outline-offset-2';
 
     const variantStyles: Record<ButtonVariant, string> = {
       primary:
-        'h-12 min-h-[48px] px-6 rounded-[4px] bg-[var(--ink)] text-[var(--ivory)] hover:bg-[#203155] active:bg-[#0f172a]',
+        'bg-[var(--ink)] text-white hover:bg-[#16274a] active:bg-[#091224]',
       whatsapp:
-        'h-12 min-h-[48px] px-6 rounded-[4px] bg-[var(--wa)] text-white hover:bg-[#0c6641] active:bg-[#095234]',
+        'bg-[var(--wa)] text-white hover:bg-[#0c6641] active:bg-[#08472d]',
       secondary:
-        'h-12 min-h-[48px] px-6 rounded-[4px] border border-[var(--ink)] bg-transparent text-[var(--ink)] hover:bg-[var(--paper)] active:bg-[var(--line)]',
+        'bg-[var(--surface)] text-[var(--ink)] hover:bg-[#e8e8e4] active:bg-[#deded8]',
       link:
-        'h-auto min-h-0 p-0 rounded-none bg-transparent text-[var(--ink)] hover:text-[var(--blue)] underline underline-offset-4',
+        'h-auto min-h-0 px-0 py-0 bg-transparent text-[var(--ink)] hover:text-[var(--blue)] underline underline-offset-4 active:scale-100',
     };
 
     const widthStyle = fullWidth ? 'w-full' : '';
