@@ -513,3 +513,42 @@ Automated audit scripts executed against static build `out/`:
 7. **Softened Fabric & Health Claims to Confirm:** Review the 19 softened claims listed in Step 6 of this document (e.g., "100% pure cotton", "chemical-free", "azo-free", "prevents prickly heat") and confirm which specific garments meet these claims before restoring them.
 8. **Twinkle Collection & Warden Collection Details:** In `src/data/shops.ts`, provide verified details (what they sell, exact address, and Google Maps links) before `/our-shops/` can be indexed or linked in navigation.
 9. **Size Guide Post Shop Example:** In `/blog/kids-clothing-size-chart-guide/`, add one real sizing example from the shop counter where indicated by the TODO line.
+
+---
+
+## Step R5: Homepage Redesign
+- **Scope**: `src/app/page.tsx` and child components (`Hero.tsx`, `CategoryTiles.tsx`, `HowItWorks.tsx`, `StoreStrip.tsx`).
+- **Metadata & Schema**: Maintained 100% exact parity with baseline title, meta description, canonical URL, Open Graph tags, and `ClothingStore` JSON-LD schema.
+- **5 Calm & Uncluttered Blocks**:
+  1. **HERO (`src/components/Hero.tsx`)**:
+     - Mobile: Hero photo first (aspect ratio 4:5, explicit dimensions 800x1000, priority, `fetchPriority="high"`), exact H1 `"Kids Clothes in Kemps Corner, South Mumbai"`, subline `"Breathable Cotton Comfort, Since 1994."`, `hero.sub` `"Since 1994. Pick what you like and send us your list on WhatsApp."`, primary Button `"Shop"` to `/shop/`, secondary Button `"Chat on WhatsApp"` (tracked, `button_location: "hero"`), and `ReplyPromise` below.
+     - Desktop: Text on left (col-span-7), photo on right (col-span-5).
+  2. **CATEGORY TILES (`src/components/CategoryTiles.tsx`)**:
+     - Small section heading: `"Shop by category"`.
+     - Mobile: Newborn as one wide tile (`col-span-2`), Boys and Girls side by side (`col-span-1` each), Men and Women side by side (`col-span-1` each, smaller, text-led), and Uniforms & Bulk as a wide band linking to `/bulk-orders/`.
+     - Desktop: Kids tiles large in one 3-column row, adults smaller below, Uniforms band under them.
+     - Tiles: Photo 4:5 with fallback placeholder, authentic Marker square (red, blue, yellow in rotation), category label, and small age line. Each tile is one unified link.
+  3. **HOW IT WORKS (`src/components/HowItWorks.tsx`)**:
+     - One calm line using `how.line` (`"Pick · Send on WhatsApp · We reply with photos and sizes"`).
+     - `"Free video call"` chip opening WhatsApp with prefilled video-call enquiry message and `button_location: "video_call"`. Zero icons in circles, zero three-column feature cards.
+  4. **STORE STRIP (`src/components/StoreStrip.tsx`)**:
+     - Concise 21-word intro paragraph built only from verified site facts: `"Family-run kids clothing store at Kemps Corner since 1994. Newborn essentials, everyday kidswear, nightwear, sportswear, school uniforms and a few family basics."`
+     - `store.line`: `"Shop 7, Haji Habib Building, Kemps Corner · Open daily 9am-9pm"`.
+     - `"Directions to store"` link to `/visit-us/`.
+     - Two real Google customer reviews from `src/data/reviews.json` (Kavita S. and Rohit Mehta, verbatim) with `"View on Google"` link to Google Business profile.
+     - `SchoolsServedSection` preserved (renders nothing when empty).
+  5. **FOOTER**: Rendered via R2 in root layout.
+- **Content Audit & Deprecation (`docs/redesign/moved-content.md`)**:
+  - Verified featured products exist on `/shop/`.
+  - Verified 3-step order process exists on `/how-it-works/`.
+  - Verified all 6 FAQ questions exist on `/how-it-works/`.
+  - Verified 30-year heritage text exists on `/about/`.
+  - Total visible word count on homepage: 193 words (exceeds 150-word requirement without CSS hiding or artificial padding).
+- **Quality & Verification**:
+  - H1 count: Exactly 1.
+  - Vitest: 23/23 tests passing.
+  - Next.js static export: 39/39 pages generated.
+  - First-load JS on `/`: **106 kB** (reduced from 167 kB in R0 baseline — 36.5% reduction).
+  - Lighthouse mobile audit on `/`: **Performance 96** (was 57 in R0, +39 pts), **Accessibility 99** (was 96), **SEO 100**, **LCP 2.8s** (was 8.7s, -5.9s), **CLS 0**, **TBT 50ms** (was 280ms, -230ms).
+  - Screenshots captured and verified at 360x640, 390x844, 768x1024, and 1280x800 in `docs/redesign/shots/r5-home-*.png`.
+

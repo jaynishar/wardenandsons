@@ -42,7 +42,18 @@
   - Deleted legacy `CartDrawer.tsx` and `src/store/cart.ts` completely (zero dead code).
   - Added comprehensive Vitest tests in `src/lib/__tests__/list-store.test.ts` (9 tests) and `src/lib/__tests__/whatsapp-list.test.ts` (6 tests). Total 23 vitest tests passing.
   - Verified end-to-end user flow with browser automation: added 3 items, modified quantity, verified URL encoding and message format, verified reduced motion, and captured screenshots at 1280x800 and 390x844 in `docs/redesign/shots/r4-add-sheet-*.png` and `docs/redesign/shots/r4-list-sheet-*.png`.
-- [ ] **R5: Homepage storefront**
+- [x] **R5: Homepage storefront**
+  - Redesigned `src/app/page.tsx` into 5 calm, uncluttered blocks:
+    1. Hero: Mobile photo first (4:5, 800x1000, priority, `fetchPriority="high"`), exact H1, `"Breathable Cotton Comfort, Since 1994."`, `hero.sub`, `"Shop"` primary button, `"Chat on WhatsApp"` secondary tracked button (`button_location: "hero"`), and `ReplyPromise`. Desktop: text left, photo right.
+    2. Category Tiles: Small heading `"Shop by category"`. Mobile: Newborn wide (`col-span-2`), Boys and Girls side by side, Men and Women side by side (smaller, text-led), and Uniforms & Bulk wide band. Desktop: Kids tiles large in one row, adults smaller below, Uniforms band under them. 4:5 photos, Marker square, label, age line, 1 link per tile.
+    3. How It Works: Single line using `how.line`, plus `"Free video call"` chip opening WhatsApp with prefilled message (`button_location: "video_call"`).
+    4. Store Strip: Verified 21-word intro paragraph, `store.line`, Directions link to `/visit-us/`, two real customer reviews from `reviews.json` with `"View on Google"`, and `SchoolsServedSection`.
+    5. Footer: Integrated from R2 in root layout.
+  - Removed featured products, long "How to buy" steps, FAQ, and heritage copy from homepage after verifying 100% presence on `/shop/`, `/how-it-works/`, and `/about/` (`docs/redesign/moved-content.md`). Total visible text: 193 words (requirement >= 150 words).
+  - Maintained exact title, meta description, canonical URL, OG tags, and `ClothingStore` JSON-LD schema (0 diff against baseline). Verified H1 count = 1.
+  - First-load JS on `/` dropped to **106 kB** (36.5% reduction from 167 kB R0 baseline).
+  - Mobile Lighthouse audit on `/`: **Performance 96** (+39 pts vs R0 57), **Accessibility 99** (+3 pts vs 96), **SEO 100**, **LCP 2.8s** (-5.9s vs 8.7s), **CLS 0**, **TBT 50ms** (-230ms vs 280ms).
+  - Saved screenshots at 360x640, 390x844, 768x1024, and 1280x800 in `docs/redesign/shots/r5-home-*.png`.
 - [ ] **R6: Shop category & sub-category pages**
 - [ ] **R7: Client-side instant search (MiniSearch)**
 - [ ] **R8: Phone capture & supporting pages**

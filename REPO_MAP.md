@@ -73,21 +73,22 @@
 - `Breadcrumbs.tsx`: Visual navigational breadcrumbs
 - `BulkOrderForm.tsx`: Bulk uniform enquiry form
 - `list/`: `AddSheet.tsx`, `ListSheet.tsx`, `index.ts` (My list modal & add sheets)
-- `CategoryGrid.tsx`: Visual department category tiles
+- `CategoryTiles.tsx`: Visual department category tiles with Marker square motifs
 - `ConsentBanner.tsx`: Google Consent Mode v2 user consent banner
 - `ContactForm.tsx`: General store query form
 - `FAQ.tsx`: Accordion frequently asked questions
 - `Footer.tsx`: Boutique contact banner, department links, store timings, cookie preferences
 - `GoogleReviewsBlock.tsx`: Local Google review summary badge
 - `Header.tsx`: Responsive navigation header with brand logo crest
-- `Hero.tsx`: Homepage hero section
-- `HowItWorks.tsx`: WhatsApp ordering 3-step feature block
+- `Hero.tsx`: Homepage hero section (responsive photo-first mobile, editorial typography, dual CTAs)
+- `HowItWorks.tsx`: Single-line WhatsApp purchasing summary with video-call action chip
 - `JsonLd.tsx`: Storefront schema.org JSON-LD
 - `ProductCard.tsx`: Catalogue item card with instant WhatsApp and request list actions
 - `ReplyPromise.tsx`: Response time assurance badge
 - `ReviewsCarousel.tsx`: Testimonials carousel
 - `SchoolsServedSection.tsx`: Supplied schools and sports academies showcase
 - `ShopCatalog.tsx`: Catalogue grid with category tabs, search, and sorting
+- `StoreStrip.tsx`: Store introduction, store line, directions link, real Google reviews, and schools section
 - `StickyMobileBar.tsx`: Mobile floating catalogue assistance bar
 - `TrackingProvider.tsx`: Global tracking and navigation tracker wrapper
 - `WhatsAppFloat.tsx`: Floating WhatsApp assistance button with pulsing beacon
