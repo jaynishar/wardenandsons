@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { IconClose, IconPlus, IconMinus } from '@/components/icons';
-import { Button } from '@/components/ui/Button';
 import { Chip } from '@/components/ui/Chip';
 import { useListStore } from '@/lib/list-store';
 import { useAgeStore } from '@/lib/age-store';
@@ -27,7 +26,6 @@ export function AddSheet() {
   useEffect(() => {
     if (target) {
       const options = ageOptionsFor(target.categorySlug, target.subSlug);
-      // Preselect target.age if specified, then ageBand if supported, otherwise first option, otherwise "Not sure"
       if (target.age && (options.includes(target.age) || target.age === 'Not sure')) {
         setSelectedAge(target.age);
       } else if (ageBand && options.includes(ageBand)) {
@@ -88,20 +86,22 @@ export function AddSheet() {
 
           <Dialog.Content
             aria-describedby="add-sheet-description"
-            className="fixed inset-x-0 bottom-0 z-50 rounded-t-[12px] bg-[var(--ivory)] border-t border-[var(--line)] p-6 shadow-2xl max-h-[90vh] overflow-y-auto focus:outline-none sheet-bottom md:sheet-none md:dialog-scale md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:rounded-[8px] md:border md:border-[var(--line)]"
+            className="fixed inset-x-0 bottom-0 z-50 rounded-none bg-white border-t-2 border-[var(--ink)] p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto focus:outline-none sheet-bottom md:sheet-none md:dialog-scale md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:border-2 md:border-[var(--ink)] font-sans"
           >
             {/* Header */}
-            <div className="flex items-start justify-between pb-4 border-b border-[var(--line)]">
+            <div className="flex items-start justify-between pb-4 border-b border-[var(--surface)]">
               <div>
-                <p className="label-upper text-[var(--ink-soft)]">{categoryLabel}</p>
-                <Dialog.Title className="font-display font-semibold text-xl text-[var(--ink)] mt-0.5">
+                <p className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold">
+                  {categoryLabel}
+                </p>
+                <Dialog.Title className="font-sans font-medium text-xl sm:text-2xl text-[var(--ink)] mt-0.5">
                   {subLabel}
                 </Dialog.Title>
               </div>
 
               <Dialog.Close
                 aria-label="Close add sheet"
-                className="p-2 -mr-2 text-[var(--ink-soft)] hover:text-[var(--ink)] rounded-[4px] cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+                className="p-2 -mr-2 text-[var(--ink)] hover:text-[var(--muted)] rounded-none cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
               >
                 <IconClose size={20} />
               </Dialog.Close>
@@ -114,7 +114,7 @@ export function AddSheet() {
             <form onSubmit={handleSubmit} className="mt-6 space-y-6">
               {/* Age / Size Selector */}
               <div>
-                <label className="block label-upper text-[var(--ink)] mb-2 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[var(--ink)] mb-2 font-medium">
                   {COPY_DECK.add.age}
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -124,6 +124,7 @@ export function AddSheet() {
                       type="button"
                       selected={selectedAge === age}
                       onClick={() => setSelectedAge(age)}
+                      className="rounded-none font-medium"
                     >
                       {age}
                     </Chip>
@@ -132,6 +133,7 @@ export function AddSheet() {
                     type="button"
                     selected={selectedAge === 'Not sure'}
                     onClick={() => setSelectedAge('Not sure')}
+                    className="rounded-none font-medium"
                   >
                     {COPY_DECK.add.notSure}
                   </Chip>
@@ -140,7 +142,7 @@ export function AddSheet() {
 
               {/* Quantity Stepper */}
               <div>
-                <label className="block label-upper text-[var(--ink)] mb-2 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[var(--ink)] mb-2 font-medium">
                   Quantity
                 </label>
                 <div className="flex items-center gap-3">
@@ -149,12 +151,12 @@ export function AddSheet() {
                     onClick={() => setQty((prev) => Math.max(1, prev - 1))}
                     disabled={qty <= 1}
                     aria-label="Decrease quantity"
-                    className="w-11 h-11 rounded-[4px] border border-[var(--line)] bg-[var(--paper)] text-[var(--ink)] flex items-center justify-center hover:bg-[#eae3d6] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+                    className="w-11 h-11 rounded-none border border-[var(--ink)] bg-white text-[var(--ink)] flex items-center justify-center hover:bg-[var(--surface)] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
                   >
                     <IconMinus size={16} />
                   </button>
 
-                  <span className="w-12 text-center font-display font-semibold text-lg text-[var(--ink)]">
+                  <span className="w-12 text-center font-sans font-medium text-lg text-[var(--ink)]">
                     {qty}
                   </span>
 
@@ -163,7 +165,7 @@ export function AddSheet() {
                     onClick={() => setQty((prev) => Math.min(20, prev + 1))}
                     disabled={qty >= 20}
                     aria-label="Increase quantity"
-                    className="w-11 h-11 rounded-[4px] border border-[var(--line)] bg-[var(--paper)] text-[var(--ink)] flex items-center justify-center hover:bg-[#eae3d6] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+                    className="w-11 h-11 rounded-none border border-[var(--ink)] bg-white text-[var(--ink)] flex items-center justify-center hover:bg-[var(--surface)] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
                   >
                     <IconPlus size={16} />
                   </button>
@@ -173,10 +175,10 @@ export function AddSheet() {
               {/* Optional Note */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label htmlFor="list-item-note" className="label-upper text-[var(--ink)] font-medium">
+                  <label htmlFor="list-item-note" className="text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
                     {COPY_DECK.add.note}
                   </label>
-                  <span className="text-xs text-[var(--ink-soft)]">
+                  <span className="text-xs text-[var(--muted)]">
                     {note.length}/140
                   </span>
                 </div>
@@ -187,18 +189,21 @@ export function AddSheet() {
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="e.g. prefer pastel shades, softest cotton"
-                  className="w-full h-11 px-3.5 rounded-[4px] border border-[var(--line)] bg-[var(--paper)] text-[var(--ink)] placeholder:text-[var(--ink-soft)]/60 text-sm focus:outline-none focus:border-[var(--blue)] focus:ring-1 focus:ring-[var(--blue)]"
+                  className="w-full h-12 px-3.5 rounded-none border border-[var(--ink)] bg-white text-[var(--ink)] placeholder:text-[var(--muted)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--blue)]"
                 />
-                <p className="text-xs text-[var(--ink-soft)] mt-1.5">
+                <p className="text-xs text-[var(--muted)] mt-1.5">
                   {COPY_DECK.add.noteHelp}
                 </p>
               </div>
 
               {/* Submit CTA */}
               <div className="pt-2">
-                <Button type="submit" variant="primary" fullWidth>
+                <button
+                  type="submit"
+                  className="w-full h-[52px] px-8 inline-flex items-center justify-center font-sans font-medium text-[15px] bg-[var(--ink)] text-white hover:bg-[var(--blue)] active:scale-[0.98] transition-all cursor-pointer rounded-none focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+                >
                   {COPY_DECK.add.cta}
-                </Button>
+                </button>
               </div>
             </form>
           </Dialog.Content>

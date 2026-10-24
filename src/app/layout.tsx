@@ -10,6 +10,7 @@ import TrackingProvider from '@/components/TrackingProvider';
 import ConsentBanner from '@/components/ConsentBanner';
 import ChatHelperContainer from '@/components/chat/ChatHelperContainer';
 import GarmentSprite from '@/components/GarmentSprite';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/config/site';
 
@@ -154,6 +155,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <BottomNav />
+        <WhatsAppButton variant="floating" location="fab" />
         <ConsentBanner />
         <ChatHelperContainer />
       </body>

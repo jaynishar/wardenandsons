@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ShieldCheck } from 'lucide-react';
 import { getSavedConsent, updateGoogleConsent, ConsentChoice } from '@/lib/consent';
 
 export default function ConsentBanner() {
@@ -37,43 +36,40 @@ export default function ConsentBanner() {
     <div
       role="region"
       aria-label="Privacy and Cookie Choices"
-      className="fixed bottom-20 md:bottom-6 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 animate-in fade-in slide-in-from-bottom-4 duration-300"
+      className="fixed bottom-[calc(var(--bar-h,64px)+env(safe-area-inset-bottom)+16px)] md:bottom-6 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 animate-in fade-in duration-300 font-sans"
     >
-      <div className="bg-white/95 backdrop-blur-md rounded-2xl border border-border-soft p-5 shadow-xl text-near-black">
-        <div className="flex items-start gap-3">
-          <div className="w-8 h-8 rounded-full bg-forest/10 text-forest flex items-center justify-center shrink-0 mt-0.5">
-            <ShieldCheck className="w-4 h-4" />
-          </div>
-          <div className="space-y-2 flex-1">
-            <h3 className="font-serif font-bold text-sm text-forest">Privacy & Store Analytics</h3>
-            <p className="text-xs text-muted leading-relaxed">
-              We use privacy-conscious analytics to understand how families discover our cotton
-              essentials and connect with our Kemps Corner store. We never store personal customer
-              details or message text in cookies.
-            </p>
-            <div className="pt-1">
-              <Link
-                href="/privacy-policy/"
-                className="text-[11px] text-forest underline hover:text-gold font-medium"
-              >
-                Read our Customer Privacy Policy
-              </Link>
-            </div>
+      <div className="bg-white border-2 border-[var(--ink)] p-5 shadow-2xl text-[var(--ink)]">
+        <div className="space-y-2">
+          <h3 className="font-sans font-medium text-sm text-[var(--ink)]">
+            Privacy &amp; Store Analytics
+          </h3>
+          <p className="text-xs text-[var(--muted)] leading-relaxed">
+            We use privacy-conscious analytics to understand how families discover our cotton
+            essentials and connect with our Kemps Corner store. We never store personal customer
+            details or inquiry text in cookies.
+          </p>
+          <div className="pt-1">
+            <Link
+              href="/privacy-policy/"
+              className="text-xs text-[var(--blue)] underline hover:text-[var(--ink)] font-medium"
+            >
+              Read Customer Privacy Policy
+            </Link>
           </div>
         </div>
 
-        <div className="mt-4 pt-3 border-t border-border-soft flex items-center justify-end gap-2.5">
+        <div className="mt-4 pt-3 border-t border-[var(--surface)] flex items-center justify-end gap-2.5">
           <button
             type="button"
             onClick={() => handleChoice('essential')}
-            className="min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-semibold text-muted hover:text-near-black hover:bg-bg-cream transition-colors cursor-pointer"
+            className="h-10 min-h-[40px] px-4 rounded-none text-xs font-medium text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--surface)] transition-colors cursor-pointer"
           >
             Essential Only
           </button>
           <button
             type="button"
             onClick={() => handleChoice('all')}
-            className="min-h-[44px] px-4 py-2 rounded-xl text-xs font-bold bg-forest hover:bg-forest-dark text-white shadow-xs transition-colors cursor-pointer"
+            className="h-10 min-h-[40px] px-5 rounded-none text-xs font-medium bg-[var(--ink)] hover:bg-[var(--blue)] text-white transition-colors cursor-pointer"
           >
             Accept All
           </button>

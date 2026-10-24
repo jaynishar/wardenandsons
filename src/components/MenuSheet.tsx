@@ -1,14 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import React from 'react';
 import Link from 'next/link';
 import * as Dialog from '@radix-ui/react-dialog';
-import { IconClose, IconWhatsApp } from '@/components/icons';
-import { Button } from '@/components/ui/Button';
-import { Marker } from '@/components/ui/Marker';
+import { IconClose } from '@/components/icons';
+import { Logo } from '@/components/Logo';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 import ReplyPromise from '@/components/ReplyPromise';
-import { BUSINESS_CONFIG } from '@/config/business';
 
 export interface MenuSheetProps {
   open: boolean;
@@ -27,29 +25,18 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
         {/* Content sliding from left */}
         <Dialog.Content
           aria-describedby="menu-sheet-description"
-          className="fixed inset-y-0 left-0 z-50 w-full max-w-[320px] bg-[var(--ivory)] border-r border-[var(--line)] p-6 shadow-xl flex flex-col justify-between overflow-y-auto focus:outline-none sheet-left"
+          className="fixed inset-y-0 left-0 z-50 w-full max-w-[320px] bg-white border-r border-[var(--ink)] p-6 shadow-xl flex flex-col justify-between overflow-y-auto focus:outline-none sheet-left font-sans"
         >
           <div className="space-y-6">
             {/* Sheet Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-[var(--line)]">
+            <div className="flex items-center justify-between pb-4 border-b border-[var(--surface)]">
               <Dialog.Title className="flex items-center gap-2">
-                <div className="w-8 h-6 rounded-[3px] bg-white border border-[var(--line)] shrink-0 p-0.5 overflow-hidden">
-                  <img
-                    src="/brand_logo.webp"
-                    alt="Warden & Sons"
-                    width={32}
-                    height={24}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="font-display font-semibold text-base text-[var(--ink)]">
-                  Warden &amp; Sons
-                </span>
+                <Logo height={32} />
               </Dialog.Title>
 
               <Dialog.Close
                 aria-label="Close menu"
-                className="p-2 text-[var(--ink)] hover:text-[var(--ink-soft)] rounded-[4px] focus-visible:outline-2 focus-visible:outline-[var(--blue)] cursor-pointer"
+                className="p-2 text-[var(--ink)] hover:text-[var(--muted)] rounded-none focus-visible:outline-2 focus-visible:outline-[var(--blue)] cursor-pointer"
               >
                 <IconClose size={20} />
               </Dialog.Close>
@@ -63,9 +50,8 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
             <nav aria-label="Mobile side navigation" className="space-y-6">
               {/* Group: Kids */}
               <div>
-                <p className="label-upper text-[var(--ink-soft)] mb-2 flex items-center gap-1.5">
-                  <Marker color="blue" />
-                  <span>Kids</span>
+                <p className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold mb-2">
+                  Kids
                 </p>
                 <ul className="space-y-1">
                   <li>
@@ -74,7 +60,7 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
                       onClick={close}
                       className="block py-2 text-base font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
                     >
-                      Newborn (0-24M)
+                      Newborn (0–24M)
                     </Link>
                   </li>
                   <li>
@@ -83,7 +69,7 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
                       onClick={close}
                       className="block py-2 text-base font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
                     >
-                      Boys (2-16Y)
+                      Boys (0–16Y)
                     </Link>
                   </li>
                   <li>
@@ -92,7 +78,7 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
                       onClick={close}
                       className="block py-2 text-base font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
                     >
-                      Girls (2-16Y)
+                      Girls (0–16Y)
                     </Link>
                   </li>
                 </ul>
@@ -100,9 +86,8 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
 
               {/* Group: Family */}
               <div>
-                <p className="label-upper text-[var(--ink-soft)] mb-2 flex items-center gap-1.5">
-                  <Marker color="yellow" />
-                  <span>Family</span>
+                <p className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold mb-2">
+                  Family
                 </p>
                 <ul className="space-y-1">
                   <li>
@@ -111,7 +96,7 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
                       onClick={close}
                       className="block py-2 text-base font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
                     >
-                      Men Basics
+                      Men (S–XXL)
                     </Link>
                   </li>
                   <li>
@@ -120,83 +105,61 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
                       onClick={close}
                       className="block py-2 text-base font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
                     >
-                      Women Basics
+                      Women (S–XXL)
                     </Link>
                   </li>
                 </ul>
               </div>
 
-              {/* Group: Bulk Orders */}
+              {/* Group: Services & Information */}
               <div>
-                <p className="label-upper text-[var(--ink-soft)] mb-2 flex items-center gap-1.5">
-                  <Marker color="red" />
-                  <span>Uniforms &amp; Institutions</span>
+                <p className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold mb-2">
+                  Services
                 </p>
-                <Link
-                  href="/bulk-orders/"
-                  onClick={close}
-                  className="block py-2 text-base font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
-                >
-                  Uniforms &amp; Bulk Orders
-                </Link>
-              </div>
-
-              {/* Group: Boutique Information */}
-              <div className="pt-2 border-t border-[var(--line)]">
-                <p className="label-upper text-[var(--ink-soft)] mb-2">Boutique</p>
                 <ul className="space-y-1 text-sm">
                   <li>
                     <Link
-                      href="/how-it-works/"
+                      href="/bulk-orders/"
                       onClick={close}
-                      className="block py-1.5 text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
+                      className="block py-1.5 font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
                     >
-                      How It Works
+                      Uniforms &amp; Bulk Orders
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/about/"
+                      href="/how-it-works/"
                       onClick={close}
-                      className="block py-1.5 text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
+                      className="block py-1.5 font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
                     >
-                      About Our Heritage
+                      How WhatsApp Ordering Works
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/size-guide/"
+                      onClick={close}
+                      className="block py-1.5 font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
+                    >
+                      Size &amp; Measurement Guide
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/visit-us/"
                       onClick={close}
-                      className="block py-1.5 text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
+                      className="block py-1.5 font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
                     >
                       Visit Kemps Corner Store
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/blog/"
+                      href="/about/"
                       onClick={close}
-                      className="block py-1.5 text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
+                      className="block py-1.5 font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
                     >
-                      Blog &amp; Guides
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/shipping-returns/"
-                      onClick={close}
-                      className="block py-1.5 text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
-                    >
-                      Delivery &amp; Exchanges
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contact/"
-                      onClick={close}
-                      className="block py-1.5 text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
-                    >
-                      Contact Store
+                      About Warden &amp; Sons
                     </Link>
                   </li>
                 </ul>
@@ -204,23 +167,12 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
             </nav>
           </div>
 
-          {/* Bottom WhatsApp CTA */}
-          <div className="pt-6 border-t border-[var(--line)] mt-6">
-            <Button
-              variant="whatsapp"
-              fullWidth
-              href={BUSINESS_CONFIG.phone.whatsappUrl}
-              data-track="whatsapp_click"
-              data-track-location="header"
-              data-track-category="header"
-              onClick={close}
-            >
-              <span className="flex items-center gap-2">
-                <IconWhatsApp size={18} />
-                <span>Chat on WhatsApp</span>
-              </span>
-            </Button>
-            <ReplyPromise className="text-xs text-[var(--ink-soft)] text-center mt-2.5 block" />
+          {/* Sheet Footer Action */}
+          <div className="pt-6 border-t border-[var(--surface)] space-y-3">
+            <WhatsAppButton variant="bar" location="menu_sheet">
+              Chat on WhatsApp
+            </WhatsAppButton>
+            <ReplyPromise className="justify-center" />
           </div>
         </Dialog.Content>
       </Dialog.Portal>

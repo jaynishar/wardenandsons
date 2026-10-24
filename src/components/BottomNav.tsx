@@ -26,42 +26,46 @@ export default function BottomNav() {
     prevTotalRef.current = totalItems;
   }, [totalItems]);
 
-  const isHomeActive = pathname === '/';
-  const isShopActive = pathname.startsWith('/shop');
+  const isShopActive = pathname === '/shop' || pathname === '/shop/';
+  const isCategoryActive = pathname.startsWith('/shop/') && pathname !== '/shop/';
 
   return (
     <nav
       aria-label="Mobile navigation"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-[var(--ivory)] border-t border-[var(--line)] md:hidden h-16 pb-safe"
+      className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-[var(--surface)] md:hidden h-16 pb-[env(safe-area-inset-bottom)] font-sans"
     >
       <div className="grid grid-cols-4 h-full items-stretch">
-        {/* 1. Home */}
-        <Link
-          href="/"
-          className={`relative flex flex-col items-center justify-center h-full min-h-[44px] transition-colors ${
-            isHomeActive ? 'text-[var(--ink)] font-semibold' : 'text-[var(--ink-soft)] hover:text-[var(--ink)]'
-          }`}
-        >
-          <span className="text-xs uppercase tracking-wider">Home</span>
-          {isHomeActive && (
-            <span
-              className="absolute bottom-1 w-6 h-[2px] bg-[var(--ink)] rounded-full"
-              aria-hidden="true"
-            />
-          )}
-        </Link>
-
-        {/* 2. Shop */}
+        {/* 1. Shop */}
         <Link
           href="/shop/"
-          className={`relative flex flex-col items-center justify-center h-full min-h-[44px] transition-colors ${
-            isShopActive ? 'text-[var(--ink)] font-semibold' : 'text-[var(--ink-soft)] hover:text-[var(--ink)]'
+          className={`relative flex flex-col items-center justify-center h-full min-h-[44px] transition-colors rounded-none ${
+            isShopActive
+              ? 'bg-[var(--surface)] text-[var(--ink)] font-semibold'
+              : 'text-[var(--muted)] hover:text-[var(--ink)]'
           }`}
         >
           <span className="text-xs uppercase tracking-wider">Shop</span>
           {isShopActive && (
             <span
-              className="absolute bottom-1 w-6 h-[2px] bg-[var(--ink)] rounded-full"
+              className="absolute top-0 left-0 right-0 h-[2px] bg-[var(--ink)]"
+              aria-hidden="true"
+            />
+          )}
+        </Link>
+
+        {/* 2. Categories */}
+        <Link
+          href="/shop/"
+          className={`relative flex flex-col items-center justify-center h-full min-h-[44px] transition-colors rounded-none ${
+            isCategoryActive
+              ? 'bg-[var(--surface)] text-[var(--ink)] font-semibold'
+              : 'text-[var(--muted)] hover:text-[var(--ink)]'
+          }`}
+        >
+          <span className="text-xs uppercase tracking-wider">Categories</span>
+          {isCategoryActive && (
+            <span
+              className="absolute top-0 left-0 right-0 h-[2px] bg-[var(--ink)]"
               aria-hidden="true"
             />
           )}
@@ -72,7 +76,7 @@ export default function BottomNav() {
           type="button"
           onClick={openSearch}
           aria-label="Search catalogue"
-          className="relative flex flex-col items-center justify-center h-full min-h-[44px] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors cursor-pointer"
+          className="relative flex flex-col items-center justify-center h-full min-h-[44px] text-[var(--muted)] hover:text-[var(--ink)] transition-colors cursor-pointer rounded-none"
         >
           <IconSearch size={18} />
           <span className="text-[10px] uppercase tracking-wider mt-0.5">Search</span>
@@ -83,12 +87,16 @@ export default function BottomNav() {
           type="button"
           onClick={toggleList}
           aria-label={`My list, ${totalItems} items`}
-          className="relative flex flex-col items-center justify-center h-full min-h-[44px] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors cursor-pointer"
+          className="relative flex flex-col items-center justify-center h-full min-h-[44px] text-[var(--muted)] hover:text-[var(--ink)] transition-colors cursor-pointer rounded-none"
         >
           <div className="relative flex items-center justify-center">
             <IconList size={18} />
             {totalItems > 0 && (
-              <span className={`absolute -top-1.5 -right-2.5 min-w-[16px] h-4 px-1 rounded-full bg-[var(--ink)] text-[var(--ivory)] text-[10px] font-bold flex items-center justify-center leading-none ${isBumping ? 'animate-badge-bump' : ''}`}>
+              <span
+                className={`absolute -top-1.5 -right-2.5 min-w-[16px] h-4 px-1 rounded-none bg-[var(--red)] text-white text-[10px] font-bold flex items-center justify-center leading-none ${
+                  isBumping ? 'animate-badge-bump' : ''
+                }`}
+              >
                 {totalItems}
               </span>
             )}

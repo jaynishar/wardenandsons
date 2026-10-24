@@ -148,7 +148,7 @@ export default function ChatHelper() {
           48px round button with WhatsApp green icon, bottom-right above mobile bottom bar.
           Strictly hidden while any dialog or sheet is open.
          ========================================================================= */}
-      {!shouldHideTrigger && (
+      {false && !shouldHideTrigger && (
         <button
           type="button"
           onClick={() => {
@@ -156,9 +156,9 @@ export default function ChatHelper() {
             setIsOpen(true);
           }}
           aria-label="Open guided shopping helper"
-          className="fixed bottom-[calc(4.5rem+var(--sab,0px)+8px)] right-4 md:bottom-6 md:right-6 z-40 w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-[#0F7B4F] text-white flex items-center justify-center shadow-lg hover:bg-[#0c6340] active:scale-[0.98] transition-transform duration-[80ms] cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)] focus-visible:outline-offset-2"
+          className="fixed bottom-[calc(var(--bar-h,64px)+env(safe-area-inset-bottom)+16px)] right-4 md:bottom-6 md:right-6 z-[var(--z-fab,40)] w-14 h-14 min-w-[56px] min-h-[56px] rounded-none bg-[#0F7B4F] text-white flex items-center justify-center shadow-none hover:bg-[#0c6340] active:scale-[0.98] transition-transform duration-[140ms] cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)] focus-visible:outline-offset-2"
         >
-          <IconWhatsApp size={26} />
+          <IconWhatsApp size={28} />
         </button>
       )}
 
