@@ -9,6 +9,7 @@ import { SearchContainer } from '@/components/search';
 import TrackingProvider from '@/components/TrackingProvider';
 import ConsentBanner from '@/components/ConsentBanner';
 import ChatHelperContainer from '@/components/chat/ChatHelperContainer';
+import GarmentSprite from '@/components/GarmentSprite';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/config/site';
 
@@ -135,6 +136,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="min-h-full flex flex-col bg-[var(--bg)] text-[var(--ink)] selection:bg-[var(--blue)] selection:text-white">
+        <GarmentSprite />
         {/* Accessible skip link for keyboard users */}
         <a
           href="#main-content"
