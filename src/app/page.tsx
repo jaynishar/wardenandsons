@@ -6,6 +6,7 @@ import CuratedShowcase from '@/components/CuratedShowcase';
 import HowItWorks from '@/components/HowItWorks';
 import ReviewsSection from '@/components/ReviewsSection';
 import VisitUsSection from '@/components/VisitUsSection';
+import TrustMarquee from '@/components/TrustMarquee';
 import { getClothingStoreSchema } from '@/lib/schema';
 import JsonLd from '@/components/JsonLd';
 import { buildPageMetadata } from '@/config/site';
@@ -43,6 +44,9 @@ export default function HomePage() {
 
       {/* 6. VISIT US & LIVE IST STATUS */}
       <VisitUsSection />
+
+      {/* 7. PAUSABLE TRUST MARQUEE */}
+      <TrustMarquee />
     </div>
   );
 }

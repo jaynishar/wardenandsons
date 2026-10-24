@@ -6,6 +6,7 @@ import { Container } from '@/components/ui/Container';
 import { Logo } from '@/components/Logo';
 import { Garment } from '@/components/Garment';
 import { BUSINESS_CONFIG } from '@/config/business';
+import { Ticker1994 } from '@/components/Ticker1994';
 import type { GarmentName } from '@/components/Garment';
 import type { TileColor } from '@/data/specimens';
 
@@ -41,26 +42,34 @@ export default function Hero() {
   const { bg, fg } = colorStyles[active.color];
 
   return (
-    <section className="pt-6 sm:pt-10 pb-8 sm:pb-12 border-b border-[var(--ink)]">
+    <section className="pt-6 sm:pt-10 pb-8 sm:pb-12 border-b border-[var(--ink)] font-sans">
       <Container>
-        {/* Top-left Big Logo (~70% mobile width, ~28% desktop width) */}
-        <div className="mb-6 sm:mb-8">
-          <Link href="/" aria-label="Warden & Sons Kids Wear Home" className="inline-block">
+        {/* Top-left Big Logo with 0-400ms tiles-drop stagger */}
+        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <Link
+            href="/"
+            aria-label="Warden & Sons Kids Wear Home"
+            className="inline-block animate-tiles-drop"
+          >
             <Logo
               variant="full"
               height={52}
               className="w-[70%] sm:w-[45%] md:w-[28%] max-w-[280px] h-auto object-contain"
             />
           </Link>
+          <Ticker1994 />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Hero Copy & Actions */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
-              <h1 className="font-sans font-medium text-[var(--ink)] text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight max-w-xl text-balance">
-                Kids Clothes in Kemps Corner, South Mumbai
-              </h1>
+              {/* Masked overflow line-by-line rise (200-700ms) */}
+              <div className="overflow-hidden">
+                <h1 className="animate-masked-rise font-sans font-medium text-[var(--ink)] text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight max-w-xl text-balance">
+                  Kids Clothes in Kemps Corner, South Mumbai
+                </h1>
+              </div>
               <p className="text-base sm:text-lg text-[var(--muted)] leading-relaxed max-w-lg">
                 Breathable combed cotton basics, nightwear and uniforms. Pick items, send on WhatsApp.
               </p>
@@ -87,7 +96,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Large Specimen Tile */}
+          {/* Large Specimen Tile: Opens like a shutter (400-1200ms) */}
           <div className="lg:col-span-5">
             <Link
               href={active.href}
@@ -95,7 +104,7 @@ export default function Hero() {
               aria-label={`Explore ${active.label} collection`}
             >
               <div
-                className={`relative w-full aspect-[4/5] max-w-md mx-auto ${bg} ${fg} transition-colors duration-200 flex items-center justify-center p-8 sm:p-12 overflow-hidden shadow-none`}
+                className={`animate-shutter relative w-full aspect-[4/5] max-w-md mx-auto ${bg} ${fg} transition-colors duration-200 flex items-center justify-center p-8 sm:p-12 overflow-hidden shadow-none hover-lift`}
               >
                 <Garment
                   name={active.garment}
@@ -111,7 +120,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Category Picker directly below hero */}
+        {/* Category Picker directly below hero: 160ms slide, 200ms color ease */}
         <div className="mt-8 sm:mt-10 pt-6 border-t border-[var(--surface)]">
           <div
             className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none"

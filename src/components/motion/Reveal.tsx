@@ -14,10 +14,11 @@ export interface RevealProps {
 
 /**
  * Reveal Component
- * Animates opacity from 0 to 1 and an upward translate of 12px when the component
- * enters the viewport, once only.
- * Dynamically loads domAnimation features via LazyMotion to keep initial bundle size lean.
- * Fully bypasses animation if the user prefers reduced motion.
+ * Section Entrance Reveal:
+ * - Triggered by viewport threshold 0.15
+ * - 16-24px rise + opacity 0 to 1 over 360ms ease-out
+ * - Respects prefers-reduced-motion via useReducedMotion
+ * - Dynamically loads domAnimation features via LazyMotion
  */
 export function Reveal({ children, className = '', delay = 0 }: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
@@ -31,8 +32,8 @@ export function Reveal({ children, className = '', delay = 0 }: RevealProps) {
       <m.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-20px' }}
-        transition={{ duration: 0.35, delay, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.36, delay, ease: [0.16, 1, 0.3, 1] }}
         className={className}
       >
         {children}

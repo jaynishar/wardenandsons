@@ -11,6 +11,7 @@ import ConsentBanner from '@/components/ConsentBanner';
 import ChatHelperContainer from '@/components/chat/ChatHelperContainer';
 import GarmentSprite from '@/components/GarmentSprite';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import FlyToCartToast from '@/components/FlyToCartToast';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import { SITE_URL, SITE_CONFIG, ANALYTICS_CONFIG, getCanonicalUrl } from '@/config/site';
 
@@ -156,6 +157,7 @@ export default function RootLayout({
         <Footer />
         <BottomNav />
         <WhatsAppButton variant="floating" location="fab" />
+        <FlyToCartToast />
         <ConsentBanner />
         <ChatHelperContainer />
       </body>

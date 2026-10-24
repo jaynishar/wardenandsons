@@ -176,6 +176,59 @@ h1, h2, h3, h4, h5, h6 {
   animation: page-enter 320ms var(--ease-out);
 }
 
+.animate-page-enter {
+  animation: page-enter 320ms var(--ease-out) both;
+}
+
+/* Phase P6: 1.2s Load Sequence Keyframes */
+@keyframes tiles-drop {
+  0% { transform: translateY(-20px); opacity: 0; }
+  70% { transform: translateY(2px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-tiles-drop {
+  animation: tiles-drop 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes masked-rise {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-masked-rise {
+  animation: masked-rise 500ms 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes shutter {
+  0% { clip-path: inset(50% 0 50% 0); opacity: 0; transform: scale(0.96); }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; transform: scale(1); }
+}
+
+.animate-shutter {
+  animation: shutter 700ms 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Pausable Marquee */
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+/* Fine-pointer hover lift */
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift {
+    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hover-lift:hover {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
 /* Dialog and sheet keyframes */
 @keyframes fadeIn {
   from { opacity: 0; }
