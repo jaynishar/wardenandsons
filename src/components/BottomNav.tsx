@@ -5,10 +5,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { IconSearch, IconList } from '@/components/icons';
 import { useListStore, useListCount } from '@/lib/list-store';
+import { useSearchStore } from '@/lib/search-store';
 
 export default function BottomNav() {
   const pathname = usePathname();
   const toggleList = useListStore((state) => state.toggleList);
+  const openSearch = useSearchStore((state) => state.openSearch);
   const totalItems = useListCount();
 
   const isHomeActive = pathname === '/';
@@ -52,9 +54,10 @@ export default function BottomNav() {
           )}
         </Link>
 
-        {/* 3. Search (wires in R8) */}
+        {/* 3. Search */}
         <button
           type="button"
+          onClick={openSearch}
           aria-label="Search catalogue"
           className="relative flex flex-col items-center justify-center h-full min-h-[44px] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors cursor-pointer"
         >

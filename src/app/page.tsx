@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
+import AgeCard from '@/components/AgeCard';
 import CategoryTiles from '@/components/CategoryTiles';
 import HowItWorks from '@/components/HowItWorks';
 import StoreStrip from '@/components/StoreStrip';
@@ -26,6 +27,9 @@ export default function HomePage() {
 
       {/* 1. HERO */}
       <Hero />
+
+      {/* AGE SELECTION CARD */}
+      <AgeCard />
 
       {/* 2. CATEGORY TILES */}
       <CategoryTiles />

@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import { ListSheet, AddSheet } from '@/components/list';
+import { SearchContainer } from '@/components/search';
 import TrackingProvider from '@/components/TrackingProvider';
 import ConsentBanner from '@/components/ConsentBanner';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
@@ -141,6 +142,7 @@ export default function RootLayout({
         </a>
         <TrackingProvider />
         <Header />
+        <SearchContainer />
         <ListSheet />
         <AddSheet />
         <main id="main-content" className="flex-grow pb-[calc(4.5rem+var(--sab))] md:pb-0">

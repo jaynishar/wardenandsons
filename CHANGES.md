@@ -648,5 +648,44 @@ Automated audit scripts executed against static build `out/`:
     - Captured screenshots at 390x844 and 1280x800 in `docs/redesign/shots/r7-call-form-*.png`.
 - **Needs the Owner**: Set up the Google Sheet and endpoint, confirm retention wording.
 
+---
+
+## Step R8: Search and Age Filter
+- **Scope**: `src/lib/search.ts`, `src/lib/search-store.ts`, `src/components/search/`, `src/lib/age-store.ts`, `src/components/AgeCard.tsx`, `src/components/CategoryTiles.tsx`, `src/components/ShopKidsTiles.tsx`, `src/components/SubcategoryTile.tsx`, `src/components/list/AddSheet.tsx`, `src/components/Header.tsx`, `src/components/BottomNav.tsx`, `src/app/page.tsx`, and `src/app/shop/page.tsx`.
+- **Search Overlay & Engine (`src/components/search/SearchOverlay.tsx`, `src/lib/search.ts`)**:
+  - Implemented client-side search over in-memory catalogue (~40 subcategory documents) using `minisearch`.
+  - Indexed fields: `subLabel` (boost 3), `categoryLabel`, `searchTerms`, and `ageOptions` with prefix matching and fuzzy 0.2.
+  - Dynamically imported on demand via `SearchContainer.tsx` to preserve the first-load JS budget.
+  - Results displayed as rows with 4:5 photo thumbnail, subcategory label, and department category label.
+  - Full keyboard accessibility: ArrowDown and ArrowUp navigation, Enter to open the selected result, and Escape to close.
+  - Copy deck strings used verbatim: `search.placeholder` ("Search, e.g. jhabla, nightsuit") and `search.empty` ("Can't find it? Ask us on WhatsApp.").
+  - Empty search state includes tracked WhatsApp inquiry button with `button_location: "search"`.
+  - Zero search query analytics tracking (preserves visitor search privacy).
+- **Age Band Store (`src/lib/age-store.ts`)**:
+  - Zustand store with `persist` (`warden-age-v1`) holding `newborn`, `2-3Y`, `4-5Y`, `6-7Y`, `8-9Y`, `10-12Y`, `13-16Y`, or `null`.
+  - Strictly client-side on-device state; zero analytics tracking or logging (protects child information).
+- **Inline Age Card (`src/components/AgeCard.tsx`)**:
+  - Positioned directly under Hero on homepage (`src/app/page.tsx`).
+  - Titled `age.prompt` ("Shopping for?") with age chips.
+  - Collapses smoothly upon selection to single line `age.set` ("Showing sizes for {age}") with "Change" and "Clear" actions.
+  - Reserved minimum height (`min-h-[104px]`) preventing layout shift (CLS = 0).
+- **Age Filter Effects**:
+  - `AddSheet.tsx`: Automatically preselects the active age band chip when supported by the subcategory.
+  - `SubcategoryTile.tsx`: Displays a subtle "Fits <age>" badge on tiles covering the chosen age band.
+  - Category Tile Reordering: On homepage (`CategoryTiles.tsx`) and `/shop/` (`ShopKidsTiles.tsx`), Newborn appears first for the newborn band, and Boys & Girls appear first for older bands.
+- **Performance Budget Compliance**:
+  - First-load JS on `/`: **117 kB** (well below 150 kB budget).
+  - First-load JS on `/shop/`: **116 kB**.
+  - First-load JS on `/shop/[category]/[sub]`: **119 kB**.
+  - Shared JS: **103 kB**.
+- **Automated Verification & Tests**:
+  - Vitest test suite (`src/lib/__tests__/search-and-age.test.ts`): 14 tests covering "jhabla" (newborn bodysuits), "night suit", and "cricket whites" queries, age store persistence, badge logic, and tile ordering. Total 58 project tests passing.
+  - Browser verification script (`scripts/verify-r8.mjs`):
+    - Confirmed search queries "jhabla", "nightsuit", "cricket" locate expected subcategories.
+    - Confirmed Enter key navigates to the target subcategory page.
+    - Confirmed AgeCard selection, collapse, persistence across reload, "Fits 4-5Y" badge display, and AddSheet preselection.
+    - Captured screenshots at 390x844 and 1280x800 in `docs/redesign/shots/r8-*.png`.
+
+
 
 

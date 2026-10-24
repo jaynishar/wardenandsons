@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Photo } from '@/components/ui/Photo';
 import { IconPlus } from '@/components/icons';
 import { useAddToList } from '@/lib/list-store';
+import { useAgeStore, subCoversAge } from '@/lib/age-store';
 import { Subcategory } from '@/data/catalogue';
 
 interface SubcategoryTileProps {
@@ -13,11 +14,19 @@ interface SubcategoryTileProps {
 
 export default function SubcategoryTile({ sub }: SubcategoryTileProps) {
   const { openAddSheet } = useAddToList();
+  const ageBand = useAgeStore((state) => state.ageBand);
+  const coversAge = subCoversAge(sub.categorySlug, sub.slug, ageBand);
+  const ageBadgeLabel = ageBand === 'newborn' ? 'Newborn' : ageBand;
   const href = `/shop/${sub.categorySlug}/${sub.slug}/`;
 
   return (
     <div className="group relative bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden hover:border-[var(--ink-soft)] transition-colors flex flex-col justify-between">
-      <Link href={href} className="block w-full">
+      <Link href={href} className="block w-full relative">
+        {coversAge && (
+          <span className="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-[3px] bg-[var(--ivory)] border border-[var(--line)] text-[10px] font-semibold text-[var(--ink)] shadow-xs">
+            Fits {ageBadgeLabel}
+          </span>
+        )}
         <div className="w-full aspect-[4/5] overflow-hidden bg-[var(--paper)]">
           <Photo
             src={sub.photo}

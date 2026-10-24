@@ -11,12 +11,14 @@ import {
 } from '@/components/icons';
 import { MenuSheet } from '@/components/MenuSheet';
 import { useListStore, useListCount } from '@/lib/list-store';
+import { useSearchStore } from '@/lib/search-store';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
   const toggleList = useListStore((state) => state.toggleList);
+  const openSearch = useSearchStore((state) => state.openSearch);
   const totalItems = useListCount();
 
   useEffect(() => {
@@ -155,9 +157,10 @@ export default function Header() {
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-2">
-            {/* Search Button (wires in R8) */}
+            {/* Search Button */}
             <button
               type="button"
+              onClick={openSearch}
               aria-label="Search catalogue"
               className="inline-flex items-center gap-1.5 h-10 px-3 rounded-[4px] text-sm font-medium text-[var(--ink)] hover:bg-[var(--paper)] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
             >
@@ -220,6 +223,7 @@ export default function Header() {
           <div className="flex items-center gap-1 -mr-1">
             <button
               type="button"
+              onClick={openSearch}
               aria-label="Search catalogue"
               className="p-2 text-[var(--ink)] hover:text-[var(--ink-soft)] rounded-[4px] cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
             >

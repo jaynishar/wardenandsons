@@ -79,6 +79,18 @@
   - Configured zero-PII analytics tracking: dispatches `generate_lead` with `lead_type: 'callback'` and `item_count` only upon confirmed `{ok:true}`.
   - Added comprehensive Vitest tests in `src/lib/__tests__/leads.test.ts` (20 tests covering validation, normalisation, payload privacy, honeypot, speed, rate limiting, and mocked fetch paths). Total 44 project tests passing.
   - Verified button visibility, success state, failure state with WhatsApp fallback, and captured screenshots at 390x844 and 1280x800 in `docs/redesign/shots/r7-call-form-*.png`.
-- [ ] **R8: Client-side instant search (MiniSearch) & supporting pages**
+- [x] **R8: Search and age filter**
+  - Built `src/lib/search.ts` with `MiniSearch` index (~40 subcategory documents) indexing subcategory labels (boost 3), category labels, search terms, and age options with prefix matching and fuzzy 0.2. Dynamically loaded on first open.
+  - Implemented `src/components/search/SearchOverlay.tsx` (Radix Dialog: full-screen on mobile, top panel modal on desktop) wired to Header and BottomNav search buttons via `src/lib/search-store.ts` and dynamic `SearchContainer.tsx`.
+  - Added keyboard navigation (ArrowDown, ArrowUp, Enter to select, Esc to close), copy-deck empty state with tracked "Ask on WhatsApp" link (`button_location: "search"`), and zero query analytics tracking.
+  - Built `src/lib/age-store.ts` with Zustand `persist` (key `warden-age-v1`) holding `newborn`, `2-3Y`, `4-5Y`, `6-7Y`, `8-9Y`, `10-12Y`, `13-16Y`, or `null`. Strictly kept on device (zero analytics tracking).
+  - Built `src/components/AgeCard.tsx` under homepage Hero with reserved min-height (`min-h-[104px]`) to prevent layout shift (CLS = 0). Titled `age.prompt` with age chips; collapses upon selection to single line `age.set` ("Showing sizes for {age}") with "Change" and "Clear" actions.
+  - Integrated age band effects across the store:
+    - `AddSheet.tsx`: preselects matching age chip when subcategory supports it.
+    - `SubcategoryTile.tsx`: displays small "Fits <age>" badge when subcategory covers selected age band.
+    - Homepage (`CategoryTiles.tsx`) and `/shop/` (`ShopKidsTiles.tsx`): places Newborn first for newborn band, and Boys & Girls first for older bands.
+  - Verified bundle budget: first-load JS is **117 kB** on `/`, **116 kB** on `/shop/`, and **119 kB** on subcategory routes (well below 150 kB limit).
+  - Added comprehensive Vitest tests in `src/lib/__tests__/search-and-age.test.ts` (14 tests covering "jhabla", "night suit", "cricket whites" queries, age store persistence, badge coverage, and tile reordering). Total 58 project vitest tests passing.
+  - Verified end-to-end browser flows (search queries, keyboard navigation, homepage age card selection, reload persistence, subcategory tile badges, and AddSheet preselection) and saved screenshots in `docs/redesign/shots/r8-*.png`.
 - [ ] **R9: Performance, contrast & accessibility audits**
 - [ ] **R10: Final verification, QA & cleanup**

@@ -6,6 +6,7 @@ import { IconClose, IconPlus, IconMinus } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { Chip } from '@/components/ui/Chip';
 import { useListStore } from '@/lib/list-store';
+import { useAgeStore } from '@/lib/age-store';
 import { getCategory, getSub, ageOptionsFor } from '@/data/catalogue';
 import { COPY_DECK } from '@/content/copy';
 
@@ -13,6 +14,7 @@ export function AddSheet() {
   const target = useListStore((state) => state.addSheetTarget);
   const closeAddSheet = useListStore((state) => state.closeAddSheet);
   const add = useListStore((state) => state.add);
+  const ageBand = useAgeStore((state) => state.ageBand);
 
   const [selectedAge, setSelectedAge] = useState<string>('Not sure');
   const [qty, setQty] = useState<number>(1);
@@ -25,9 +27,13 @@ export function AddSheet() {
   useEffect(() => {
     if (target) {
       const options = ageOptionsFor(target.categorySlug, target.subSlug);
-      // Preselect target.age if specified, otherwise first option if available, otherwise "Not sure"
+      // Preselect target.age if specified, then ageBand if supported, otherwise first option, otherwise "Not sure"
       if (target.age && (options.includes(target.age) || target.age === 'Not sure')) {
         setSelectedAge(target.age);
+      } else if (ageBand && options.includes(ageBand)) {
+        setSelectedAge(ageBand);
+      } else if (ageBand === 'newborn' && target.categorySlug === 'newborn' && options.length > 0) {
+        setSelectedAge(options[0]);
       } else if (options.length > 0) {
         setSelectedAge(options[0]);
       } else {
@@ -36,7 +42,7 @@ export function AddSheet() {
       setQty(1);
       setNote('');
     }
-  }, [target]);
+  }, [target, ageBand]);
 
   if (!target) {
     return (
