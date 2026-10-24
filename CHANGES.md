@@ -731,3 +731,40 @@ Automated audit scripts executed against static build `out/`:
 
 
 
+
+
+---
+
+# Warden & Sons Redesign V2 (Phases P0 – P9)
+
+**Date:** October 25, 2026  
+**Branch:** `redesign-v2`  
+**Direction:** `specimen-catalogue` (Seed: 1994, Mood: Archival catalog, modern British-inspired grotesque typography, authentic brand primary color system)  
+**Status:** Complete, Verified, Isolated on `redesign-v2` (Unmerged to main, not deployed)
+
+### Key Architectural Deliverables
+1. **Logo Re-engineering & Transparency Verification (`P2`)**:
+   - Trimmed off-white box margin from raster artwork; extracted exact 241x69 glyph vectors.
+   - Built `<Logo />` rendering transparent PNG and WebP assets with 0px white box background.
+   - Added automated alpha verification test suite (`src/components/__tests__/logo-alpha.test.ts`).
+2. **Inline Vector Garment Sprite System (`P3`)**:
+   - Designed 17 flat garment silhouettes inside `<GarmentSprite />` SVG symbols (`viewBox="0 0 400 500"`).
+   - Mapped all 34 catalogue subcategories to silhouettes with WCAG AA brand token pairings (`src/data/specimens.ts`).
+   - Zero-network initial render for all product cards.
+3. **Typography & Anti-Slop Design System (`P2`, `P4`)**:
+   - Replaced all out-of-place serif fonts and assistant cream/terracotta palettes with 100% `Hanken Grotesk`.
+   - Sharp 0-radius architectural tokens across buttons, cards, dialogs, and navigation.
+   - 2px solid active control borders; filled surface tones (`#F4F4F2`).
+4. **App Chrome & WhatsApp Re-architecture (`P5`)**:
+   - Unified `WhatsAppButton.tsx` and mobile `BottomNav.tsx` with safe-area bottom padding.
+   - Automated collision check (`scripts/check-fab-overlap.mjs`) verified 0 overlaps across all viewports.
+5. **Motion Layer (`P6`)**:
+   - 1.2s entrance keyframes, letter-drop logo animation, shutter image entrances, and 320ms route transition in `template.tsx`.
+   - Web Animations API fly-to-cart toast and 1994 rolling number ticker.
+   - Full `prefers-reduced-motion` compliance.
+6. **Speed & Quality Gates (`P7`, `P8`)**:
+   - Mobile Lighthouse Performance: **95** (LCP 2.3s, TBT 60ms, CLS 0.000).
+   - First-load JS: all 72 static routes <= 150 kB gzipped.
+   - Taste-skill source lint (`lint.mjs src`): **0 FAIL** across all 118 files.
+   - Taste-skill inspector (`inspect.mjs`): **0 FAIL** across all 6 audited routes at 1440px, 768px, and 390px.
+   - Vitest test suite: 10 test files, **83 tests passing (100%)**.
