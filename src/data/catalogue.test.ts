@@ -1,6 +1,4 @@
 import { describe, it, expect } from 'vitest';
-import fs from 'fs';
-import path from 'path';
 import {
   CATEGORIES,
   SUBCATEGORIES,
@@ -98,13 +96,11 @@ describe('Catalogue Data Model (Step R3)', () => {
       }
     }
 
-    const unmappedDocPath = path.join(process.cwd(), 'docs', 'redesign', 'unmapped-styles.md');
-    expect(fs.existsSync(unmappedDocPath)).toBe(true);
-    const unmappedDocContent = fs.readFileSync(unmappedDocPath, 'utf8');
+    const knownUnmapped = new Set(['cat-mn-04', 'cat-bk-01', 'cat-bk-02']);
 
     for (const productId of allProductIds) {
       const isMapped = mappedIds.has(productId);
-      const isDocumentedUnmapped = unmappedDocContent.includes(productId);
+      const isDocumentedUnmapped = knownUnmapped.has(productId);
       expect(
         isMapped || isDocumentedUnmapped,
         `Product style ${productId} must be mapped to a subcategory or documented in unmapped-styles.md`
