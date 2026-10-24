@@ -24,8 +24,9 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
 
         {/* Content sliding from left */}
         <Dialog.Content
+          data-ui="menu-sheet"
           aria-describedby="menu-sheet-description"
-          className="fixed inset-y-0 left-0 z-50 w-full max-w-[320px] bg-white border-r border-[var(--ink)] p-6 shadow-xl flex flex-col justify-between overflow-y-auto focus:outline-none sheet-left font-sans"
+          className="fixed inset-y-0 left-0 z-50 w-full max-w-[320px] bg-white border-r border-[var(--ink)] p-6  flex flex-col justify-between overflow-y-auto focus:outline-none sheet-left font-sans"
         >
           <div className="space-y-6">
             {/* Sheet Header */}
@@ -50,7 +51,7 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
             <nav aria-label="Mobile side navigation" className="space-y-6">
               {/* Group: Kids */}
               <div>
-                <p className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold mb-2">
+                <p className="text-xs text-[var(--muted)] font-bold mb-2">
                   Kids
                 </p>
                 <ul className="space-y-1">
@@ -86,7 +87,7 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
 
               {/* Group: Family */}
               <div>
-                <p className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold mb-2">
+                <p className="text-xs text-[var(--muted)] font-bold mb-2">
                   Family
                 </p>
                 <ul className="space-y-1">
@@ -113,7 +114,7 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
 
               {/* Group: Services & Information */}
               <div>
-                <p className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold mb-2">
+                <p className="text-xs text-[var(--muted)] font-bold mb-2">
                   Services
                 </p>
                 <ul className="space-y-1 text-sm">
@@ -168,7 +169,7 @@ export function MenuSheet({ open, onOpenChange }: MenuSheetProps) {
           </div>
 
           {/* Sheet Footer Action */}
-          <div className="pt-6 border-t border-[var(--surface)] space-y-3">
+          <div className="pt-6 border-t-2 border-[var(--surface)] space-y-3">
             <WhatsAppButton variant="bar" location="menu_sheet">
               Chat on WhatsApp
             </WhatsAppButton>

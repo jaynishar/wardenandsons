@@ -80,7 +80,7 @@ export default function CategoryTiles() {
   const { openAddSheet } = useAddToList();
 
   return (
-    <section className="py-12 sm:py-16 border-b border-[var(--ink)]">
+    <section className="py-12 sm:py-16">
       <Container>
         {/* Section Heading */}
         <div className="flex items-baseline justify-between mb-8 sm:mb-10">
@@ -104,12 +104,12 @@ export default function CategoryTiles() {
           >
             <div className="h-full flex flex-col justify-between min-h-[300px] sm:min-h-[380px]">
               <div>
-                <span className="text-xs font-semibold tracking-wider uppercase opacity-75">
-                  0–24 Months
-                </span>
-                <h3 className="font-sans font-medium text-2xl sm:text-4xl mt-1">
+                <h3 className="font-sans font-medium text-2xl sm:text-4xl">
                   Newborn
                 </h3>
+                <p className="text-sm font-medium opacity-80 mt-1">
+                  0–24 Months
+                </p>
               </div>
               <div className="w-full flex-1 flex items-center justify-center py-6">
                 <Garment
@@ -118,7 +118,7 @@ export default function CategoryTiles() {
                   aria-label="Newborn Jhabla"
                 />
               </div>
-              <div className="text-xs font-medium tracking-wide flex items-center justify-between">
+              <div className="text-sm font-medium flex items-center justify-between">
                 <span>Combed cotton essentials</span>
                 <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
               </div>
@@ -132,10 +132,8 @@ export default function CategoryTiles() {
           >
             <div className="h-full flex flex-col justify-between min-h-[170px] sm:min-h-[200px]">
               <div>
-                <span className="text-[11px] font-semibold tracking-wider uppercase opacity-80">
-                  0–16 Years
-                </span>
-                <h3 className="font-sans font-medium text-xl sm:text-2xl mt-0.5">Boys</h3>
+                <h3 className="font-sans font-medium text-xl sm:text-2xl">Boys</h3>
+                <p className="text-sm opacity-85 mt-0.5">0–16 Years</p>
               </div>
               <div className="w-full flex-1 flex items-center justify-center py-2">
                 <Garment
@@ -144,7 +142,7 @@ export default function CategoryTiles() {
                   aria-label="Boys T-Shirt"
                 />
               </div>
-              <span className="text-xs opacity-90">&rarr;</span>
+              <span className="text-sm opacity-90">&rarr;</span>
             </div>
           </Link>
 
@@ -155,10 +153,8 @@ export default function CategoryTiles() {
           >
             <div className="h-full flex flex-col justify-between min-h-[170px] sm:min-h-[200px]">
               <div>
-                <span className="text-[11px] font-semibold tracking-wider uppercase opacity-80">
-                  0–16 Years
-                </span>
-                <h3 className="font-sans font-medium text-xl sm:text-2xl mt-0.5">Girls</h3>
+                <h3 className="font-sans font-medium text-xl sm:text-2xl">Girls</h3>
+                <p className="text-sm opacity-85 mt-0.5">0–16 Years</p>
               </div>
               <div className="w-full flex-1 flex items-center justify-center py-2">
                 <Garment
@@ -167,7 +163,7 @@ export default function CategoryTiles() {
                   aria-label="Girls Frock"
                 />
               </div>
-              <span className="text-xs opacity-90">&rarr;</span>
+              <span className="text-sm opacity-90">&rarr;</span>
             </div>
           </Link>
 
@@ -178,10 +174,8 @@ export default function CategoryTiles() {
           >
             <div className="h-full flex flex-col justify-between min-h-[150px] sm:min-h-[170px]">
               <div>
-                <span className="text-[11px] font-semibold tracking-wider uppercase opacity-75">
-                  Sizes S–XXL
-                </span>
-                <h3 className="font-sans font-medium text-lg sm:text-xl mt-0.5">Men</h3>
+                <h3 className="font-sans font-medium text-lg sm:text-xl">Men</h3>
+                <p className="text-sm opacity-80 mt-0.5">Sizes S–XXL</p>
               </div>
               <div className="w-full flex-1 flex items-center justify-center py-1">
                 <Garment
@@ -190,7 +184,7 @@ export default function CategoryTiles() {
                   aria-label="Men Cotton Basics"
                 />
               </div>
-              <span className="text-xs opacity-90">&rarr;</span>
+              <span className="text-sm opacity-90">&rarr;</span>
             </div>
           </Link>
 
@@ -201,10 +195,8 @@ export default function CategoryTiles() {
           >
             <div className="h-full flex flex-col justify-between min-h-[150px] sm:min-h-[170px]">
               <div>
-                <span className="text-[11px] font-semibold tracking-wider uppercase opacity-75">
-                  Sizes S–XXL
-                </span>
-                <h3 className="font-sans font-medium text-lg sm:text-xl mt-0.5">Women</h3>
+                <h3 className="font-sans font-medium text-lg sm:text-xl">Women</h3>
+                <p className="text-sm opacity-80 mt-0.5">Sizes S–XXL</p>
               </div>
               <div className="w-full flex-1 flex items-center justify-center py-1">
                 <Garment
@@ -213,7 +205,7 @@ export default function CategoryTiles() {
                   aria-label="Women Kaftan"
                 />
               </div>
-              <span className="text-xs opacity-90">&rarr;</span>
+              <span className="text-sm opacity-90">&rarr;</span>
             </div>
           </Link>
 
@@ -224,9 +216,6 @@ export default function CategoryTiles() {
           >
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="space-y-1">
-                <span className="text-xs font-semibold tracking-wider uppercase opacity-80">
-                  Custom Orders
-                </span>
                 <h3 className="font-sans font-medium text-xl sm:text-2xl">
                   School Uniforms & Bulk Orders
                 </h3>
@@ -248,22 +237,22 @@ export default function CategoryTiles() {
           </Link>
         </div>
 
-        {/* Native drag row (scroll-snap) of subcategories */}
+        {/* Featured essentials grid: 2 col phone, 3 col tablet, 6 col desktop */}
         <div>
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-sans font-medium text-[var(--ink)]">
               Popular essentials
             </h3>
-            <span className="text-xs text-[var(--muted)] hidden sm:inline">
-              Swipe to explore &rarr;
+            <span className="text-sm text-[var(--muted)]">
+              Daily South Mumbai favourites
             </span>
           </div>
 
-          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {FEATURED_SUBCATEGORIES.map((sub) => (
               <div
                 key={`${sub.categorySlug}-${sub.subSlug}`}
-                className="w-[200px] sm:w-[230px] shrink-0 snap-start bg-white border border-[var(--surface)] p-3 flex flex-col justify-between"
+                className="bg-[var(--surface)] p-3 flex flex-col justify-between"
               >
                 <Link
                   href={`/shop/${sub.categorySlug}/${sub.subSlug}/`}
@@ -284,14 +273,14 @@ export default function CategoryTiles() {
                     <h4 className="font-sans font-medium text-sm text-[var(--ink)] truncate group-hover:text-[var(--blue)]">
                       {sub.label}
                     </h4>
-                    <p className="text-xs text-[var(--muted)]">{sub.age}</p>
+                    <p className="text-sm text-[var(--muted)]">{sub.age}</p>
                   </div>
                 </Link>
 
-                <div className="pt-3 mt-2 border-t border-[var(--surface)] flex items-center justify-between">
+                <div className="pt-3 mt-2 flex items-center justify-between">
                   <Link
                     href={`/shop/${sub.categorySlug}/${sub.subSlug}/`}
-                    className="text-xs font-medium text-[var(--ink)] hover:underline"
+                    className="text-sm font-medium text-[var(--ink)] hover:underline"
                   >
                     Details
                   </Link>
@@ -302,7 +291,7 @@ export default function CategoryTiles() {
                       e.stopPropagation();
                       openAddSheet({ categorySlug: sub.categorySlug, subSlug: sub.subSlug });
                     }}
-                    className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center bg-[var(--surface)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+                    className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center bg-white text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
                     aria-label={`Add ${sub.label} to list`}
                   >
                     <IconPlus size={16} />

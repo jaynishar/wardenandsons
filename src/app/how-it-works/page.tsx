@@ -19,7 +19,7 @@ export const metadata: Metadata = buildPageMetadata({
 export default function HowItWorksPage() {
   const detailedSteps = [
     {
-      step: '01',
+      step: '1',
       title: 'Browse Catalogue & Build Request List',
       description:
         'Explore our digital catalogue of pure combed cotton and muslin kidswear. Select your preferred categories, styles, and age ranges. Adding items to your Request List stores them safely on your device without requiring an account or sign-in.',
@@ -31,7 +31,7 @@ export default function HowItWorksPage() {
       ],
     },
     {
-      step: '02',
+      step: '2',
       title: 'Review & Send Request on WhatsApp',
       description:
         'Click "Send Enquiry on WhatsApp" directly from your Request List. A clear, itemized message is generated for you to review and send to our Kemps Corner shop counter in South Mumbai.',
@@ -43,7 +43,7 @@ export default function HowItWorksPage() {
       ],
     },
     {
-      step: '03',
+      step: '3',
       title: 'Live Photos, Sizing & Confirmation',
       description:
         'Our shop team checks real-time racks, sends you photographs of currently available prints, and confirms measurements with a physical measuring tape. Once approved, you complete payment and arrange delivery or store pickup.',
@@ -66,7 +66,7 @@ export default function HowItWorksPage() {
       />
       {/* Editorial Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
+        <span className="text-xs font-bold text-[var(--ink)]/60 inline-block">
           Personal • Thoughtful • Trustworthy
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
@@ -101,7 +101,7 @@ export default function HowItWorksPage() {
                 <p className="text-xs text-muted leading-relaxed">{s.description}</p>
               </div>
 
-              <div className="pt-4 border-t border-border-soft space-y-2">
+              <div className="pt-4 border-t-2 border-[var(--ink)]/15 space-y-2">
                 {s.details.map((detail, idx) => (
                   <div key={idx} className="flex items-start gap-2 text-xs text-forest">
                     <ShieldCheck className="w-4 h-4 text-whatsapp shrink-0 mt-0.5" />
@@ -116,8 +116,8 @@ export default function HowItWorksPage() {
 
       {/* In-Depth Explanation & Contextual Authority Section */}
       <section className="bg-white rounded-3xl p-6 sm:p-10 border border-border-soft shadow-xs space-y-6 text-near-black">
-        <div className="space-y-2 border-b border-border-soft pb-4">
-          <span className="text-[11px] font-mono uppercase tracking-widest text-gold block">
+        <div className="space-y-2 border-b-2 border-[var(--ink)]/15 pb-4">
+          <span className="text-[11px] font-sans uppercase tracking-widest text-gold block">
             Personal Care • Zero Friction
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
@@ -159,7 +159,7 @@ export default function HowItWorksPage() {
       </section>
 
       {/* WhatsApp CTA Card */}
-      <div className="bg-forest text-white rounded-3xl p-8 sm:p-12 text-center space-y-5 max-w-4xl mx-auto shadow-xl">
+      <div className="bg-forest text-white rounded-3xl p-8 sm:p-12 text-center space-y-5 max-w-4xl mx-auto ">
         <div className="w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center mx-auto">
           <MessageSquare className="w-7 h-7 text-whatsapp" />
         </div>
@@ -175,7 +175,7 @@ export default function HowItWorksPage() {
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link
             href="/shop/"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-forest hover:bg-bg-cream font-bold text-xs shadow-md transition-all hover:scale-102"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-forest hover:bg-bg-cream font-bold text-xs  transition-all hover:scale-102"
           >
             <span>Explore Catalogue</span>
             <ArrowRight className="w-4 h-4" />
@@ -187,7 +187,7 @@ export default function HowItWorksPage() {
             data-track="whatsapp_click"
             data-track-location="footer"
             data-track-category="footer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all hover:scale-102"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all hover:scale-102"
           >
             <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
             <span>Chat with Store ({BUSINESS_CONFIG.phone.display})</span>
@@ -199,7 +199,7 @@ export default function HowItWorksPage() {
             data-track="whatsapp_click"
             data-track-location="video_call"
             data-track-category="video_call"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs shadow-md transition-all hover:scale-102 cursor-pointer"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-forest text-white hover:bg-forest-dark font-bold text-xs  transition-all hover:scale-102 cursor-pointer"
           >
             <Video className="w-4 h-4 text-gold" />
             <span>Request a free video call</span>
@@ -211,7 +211,7 @@ export default function HowItWorksPage() {
       {/* FAQ Accordion Section */}
       <div className="space-y-8 pt-4">
         <div className="text-center space-y-2">
-          <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
+          <span className="text-xs font-bold text-[var(--ink)]/60 inline-block">
             Frequently Asked Questions
           </span>
           <h2 className="font-serif text-3xl font-bold text-forest">Everything You Need to Know</h2>

@@ -171,10 +171,11 @@ export default function ChatHelper() {
           <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 dialog-overlay backdrop-blur-none" />
 
           <Dialog.Content
+            data-ui="chat-helper-dialog"
             id="chat-helper-dialog"
             aria-labelledby={titleId}
             aria-describedby={descId}
-            className="fixed bottom-[calc(4.5rem+var(--sab,0px)+8px)] right-4 left-4 sm:left-auto sm:w-[380px] max-h-[82vh] overflow-y-auto bg-[var(--ivory)] border border-[var(--line)] rounded-[8px] p-5 shadow-2xl z-50 focus:outline-none dialog-scale flex flex-col justify-between"
+            className="fixed bottom-[calc(4.5rem+var(--sab,0px)+8px)] right-4 left-4 sm:left-auto sm:w-[380px] max-h-[82vh] overflow-y-auto bg-[var(--ivory)] border border-[var(--line)] rounded-[8px] p-5  z-50 focus:outline-none dialog-scale flex flex-col justify-between"
           >
             <div>
               {/* Header */}
@@ -264,7 +265,7 @@ export default function ChatHelper() {
                       </button>
                     </div>
 
-                    <div className="space-y-2 pt-1 border-t border-[var(--line)]">
+                    <div className="space-y-2 pt-1 border-t-2 border-[var(--line)]">
                       <button
                         type="button"
                         onClick={() => setStep('uniforms')}
@@ -291,7 +292,7 @@ export default function ChatHelper() {
                   <div className="space-y-4">
                     {/* Age prompt */}
                     <div>
-                      <p className="text-xs uppercase tracking-wider text-[var(--ink-soft)] font-medium">
+                      <p className="text-xs font-bold text-[var(--ink-soft)]">
                         {currentCategory.label} · Pick age:
                       </p>
 
@@ -315,7 +316,7 @@ export default function ChatHelper() {
 
                     {/* Results after age selection */}
                     {selectedAge ? (
-                      <div className="space-y-3 pt-2 border-t border-[var(--line)]">
+                      <div className="space-y-3 pt-2 border-t-2 border-[var(--line)]">
                         <div className="flex items-center justify-between text-xs text-[var(--ink-soft)]">
                           <span>
                             Showing {currentCategory.label} for <strong className="text-[var(--ink)]">{selectedAge}</strong>
@@ -358,7 +359,7 @@ export default function ChatHelper() {
                         </button>
                       </div>
                     ) : (
-                      <div className="pt-2 border-t border-[var(--line)] text-xs text-[var(--ink-soft)]">
+                      <div className="pt-2 border-t-2 border-[var(--line)] text-xs text-[var(--ink-soft)]">
                         Choose an age above to see styles with sizes preselected or message our store.
                       </div>
                     )}
@@ -459,7 +460,7 @@ export default function ChatHelper() {
                 {step === 'visit' && (
                   <div className="space-y-4">
                     <div className="p-3 bg-[var(--paper)] border border-[var(--line)] rounded-[6px] space-y-1">
-                      <p className="text-xs uppercase tracking-wider text-[var(--ink-soft)] font-medium">
+                      <p className="text-xs font-bold text-[var(--ink-soft)]">
                         Store Address
                       </p>
                       <p className="text-sm text-[var(--ink)] font-medium">
@@ -493,7 +494,7 @@ export default function ChatHelper() {
 
             {/* Back to Options footer button when in sub-steps */}
             {step !== 'greeting' && (
-              <div className="pt-3 mt-4 border-t border-[var(--line)]">
+              <div className="pt-3 mt-4 border-t-2 border-[var(--line)]">
                 <button
                   type="button"
                   onClick={resetToGreeting}

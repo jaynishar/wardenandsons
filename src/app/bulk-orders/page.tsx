@@ -2,6 +2,7 @@ import React from 'react';
 import BulkOrderForm from '@/components/BulkOrderForm';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import SchoolsServedSection from '@/components/SchoolsServedSection';
+import TrustMarquee from '@/components/TrustMarquee';
 import { GraduationCap, Trophy, Gift, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -17,7 +18,7 @@ export default function BulkOrdersPage() {
   const capabilities = [
     {
       title: 'School Uniforms & Pinafores',
-      desc: 'Durable, colorfast poly-cotton and pure cotton shirts, skirts, shorts, and trousers made to school dress codes.',
+      desc: 'Durable, colorfast poly-cotton and pure cotton shirts, skirts, shorts, and trousers tailored to school dress codes.',
       icon: GraduationCap,
     },
     {
@@ -27,94 +28,110 @@ export default function BulkOrdersPage() {
     },
     {
       title: 'Annual Day & Event Apparel',
-      desc: 'Vibrant combed cotton screen-printed tees for sports day houses, school clubs, festivals, and cultural gatherings.',
+      desc: 'Combed cotton screen-printed tees for sports day houses, school clubs, festivals, and cultural gatherings.',
       icon: Gift,
     },
   ];
 
   return (
-    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 font-sans">
-      <BreadcrumbJsonLd
-        items={[
-          { name: 'Home', url: getCanonicalUrl('/') },
-          { name: 'Bulk Orders', url: getCanonicalUrl('/bulk-orders') },
-        ]}
-      />
-      {/* Header */}
-      <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
-          Uniforms & Bulk Orders • South Mumbai
-        </span>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
-          Custom School Uniforms & Bulk Apparel
-        </h1>
-        <p className="text-xs sm:text-sm text-muted leading-relaxed">
-          Warden & Sons partners with Mumbai schools, sports academies, and educational foundations
-          to manufacture high-grade cotton uniforms and custom event apparel.
-        </p>
-      </div>
+    <div className="bg-white font-sans text-[var(--ink)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-14">
+        <BreadcrumbJsonLd
+          items={[
+            { name: 'Home', url: getCanonicalUrl('/') },
+            { name: 'Bulk Orders', url: getCanonicalUrl('/bulk-orders') },
+          ]}
+        />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Left Information Side */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-3xl border border-border-soft p-7 shadow-xs space-y-6">
-            <h2 className="font-serif font-bold text-xl text-forest">Production Capabilities</h2>
+        {/* Editorial Header */}
+        <header className="space-y-4 my-8">
+          <h1 className="text-[32px] sm:text-5xl lg:text-[66px] font-black tracking-tight text-[var(--ink)] leading-[1.05]">
+            School Uniforms &amp; Bulk Orders
+          </h1>
+          <p className="text-base sm:text-lg text-[var(--ink)]/80 leading-relaxed max-w-3xl">
+            Warden &amp; Sons partners with South Mumbai schools, sports academies, and educational foundations to manufacture high-grade cotton uniforms and custom event apparel.
+          </p>
+          <div className="pt-2">
+            <a
+              href="#bulk-form"
+              className="inline-flex items-center justify-center px-6 py-3.5 bg-[var(--ink)] text-white text-base font-bold hover:bg-[var(--blue)] transition-colors cursor-pointer"
+            >
+              Request institutional quote
+            </a>
+          </div>
+        </header>
 
-            <div className="space-y-4">
-              {capabilities.map(cap => {
-                const Icon = cap.icon;
-                return (
-                  <div key={cap.title} className="flex gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-bg-cream border border-border-soft flex items-center justify-center shrink-0 text-forest">
-                      <Icon className="w-5 h-5 text-gold" />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-10">
+          {/* Left Column: Capabilities & Desk Contact */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="bg-[var(--surface)] p-6 sm:p-8 space-y-6">
+              <h2 className="text-2xl font-black text-[var(--ink)] tracking-tight">
+                Production Capabilities
+              </h2>
+
+              <div className="space-y-6">
+                {capabilities.map(cap => {
+                  const Icon = cap.icon;
+                  return (
+                    <div key={cap.title} className="flex gap-4 items-start">
+                      <div className="w-10 h-10 bg-white flex items-center justify-center shrink-0 border-2 border-[var(--ink)] text-[var(--ink)]">
+                        <Icon className="w-5 h-5 text-[var(--ink)]" />
+                      </div>
+                      <div className="space-y-1">
+                        <h3 className="font-bold text-base text-[var(--ink)] leading-snug">
+                          {cap.title}
+                        </h3>
+                        <p className="text-base text-[var(--ink)]/75 leading-relaxed">
+                          {cap.desc}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-serif font-bold text-sm text-near-black">{cap.title}</h3>
-                      <p className="text-xs text-muted leading-relaxed mt-0.5">{cap.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+
+              <div className="pt-6 border-t-2 border-[var(--ink)]/15 space-y-3 text-base text-[var(--ink)]">
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-[var(--whatsapp)] shrink-0" />
+                  <span className="font-medium">Custom embroidery, pocket crests, and screen-printing</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-[var(--whatsapp)] shrink-0" />
+                  <span className="font-medium">Fabric swatches shared directly with your committee</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-[var(--whatsapp)] shrink-0" />
+                  <span className="font-medium">Flexible batch sizes and quality-controlled stitching</span>
+                </div>
+              </div>
             </div>
 
-            <div className="pt-4 border-t border-border-soft space-y-2 text-xs text-forest">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-whatsapp shrink-0" />
-                <span>Custom embroidery, pocket crests, and screen-printing</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-whatsapp shrink-0" />
-                <span>Fabric swatches shared directly with your committee</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-whatsapp shrink-0" />
-                <span>Flexible batch sizes and quality-controlled stitching</span>
-              </div>
+            {/* Direct Desk Callout */}
+            <div className="bg-[var(--ink)] text-white p-6 sm:p-8 space-y-3">
+              <h3 className="font-black text-xl text-white tracking-tight">
+                Speak directly with the store desk
+              </h3>
+              <p className="text-base text-white/80 leading-relaxed">
+                Call our Kemps Corner store desk at{' '}
+                <a href={BUSINESS_CONFIG.phone.telLink} className="underline font-bold text-white hover:text-[var(--yellow)]">
+                  {BUSINESS_CONFIG.phone.display}
+                </a>{' '}
+                or message us on WhatsApp with your quantities and delivery deadline.
+              </p>
             </div>
           </div>
 
-          <div className="bg-forest text-white rounded-3xl p-6 shadow-xs space-y-2">
-            <h3 className="font-serif font-bold text-base text-gold">
-              Urgent Uniform Requirement?
-            </h3>
-            <p className="text-xs text-gray-200 leading-relaxed">
-              Call our store desk directly at{' '}
-              <a href={BUSINESS_CONFIG.phone.telLink} className="underline font-bold">
-                {BUSINESS_CONFIG.phone.display}
-              </a>{' '}
-              or message us on WhatsApp with your specifications.
-            </p>
+          {/* Right Column: Form */}
+          <div id="bulk-form" className="lg:col-span-7">
+            <BulkOrderForm />
           </div>
         </div>
 
-        {/* Right Form Side */}
-        <div className="lg:col-span-7">
-          <BulkOrderForm />
-        </div>
+        {/* Optional Schools & Academies */}
+        <SchoolsServedSection />
       </div>
 
-      {/* Schools & Academies Supplied */}
-      <SchoolsServedSection />
+      <TrustMarquee />
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function OurShopsPage() {
 
       {/* Editorial Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
+        <span className="text-xs font-bold text-[var(--ink)]/60 inline-block">
           Retail Locations
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
@@ -94,7 +94,7 @@ export default function OurShopsPage() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-border-soft/60">
+              <div className="pt-4 border-t-2 border-[var(--ink)]/15/60">
                 {hasValidMapLink ? (
                   <a
                     href={shop.googleMapsLink}
@@ -108,7 +108,7 @@ export default function OurShopsPage() {
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 ) : (
-                  <div className="text-center py-2 px-4 rounded-xl bg-bg-cream text-[11px] text-muted italic font-mono border border-border-soft/60">
+                  <div className="text-center py-2 px-4 rounded-xl bg-bg-cream text-[11px] text-muted italic font-sans border border-border-soft/60">
                     Maps link: {shop.googleMapsLink}
                   </div>
                 )}

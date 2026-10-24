@@ -42,7 +42,7 @@ export function Ticker1994() {
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--surface)] border border-[var(--ink)]/15 text-xs font-sans font-medium text-[var(--ink)] cursor-default select-none"
+      className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--surface)] text-sm font-sans font-medium text-[var(--ink)] cursor-default select-none"
       title="Serving South Mumbai families since 1994"
     >
       <span className="w-2 h-2 rounded-none bg-[var(--red)]" />

@@ -2,6 +2,7 @@ import React from 'react';
 import { getBlogPosts } from '@/lib/blog';
 import BlogFilterList from '@/components/BlogFilterList';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
+import TrustMarquee from '@/components/TrustMarquee';
 import type { Metadata } from 'next';
 import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
@@ -15,29 +16,36 @@ export default function BlogIndexPage() {
   const posts = getBlogPosts();
 
   return (
-    <div className="py-12 md:py-20 font-sans max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="bg-white font-sans text-[var(--ink)]">
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: getCanonicalUrl('/') },
           { name: 'Blog', url: getCanonicalUrl('/blog') },
         ]}
       />
-      {/* Header */}
-      <div className="text-center space-y-4">
-        <span className="inline-flex items-center gap-1 bg-primary-100 text-primary-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider font-sans">
-          Warden & Sons Library
-        </span>
-        <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-primary-800 leading-tight">
-          Parenting & Sizing Guides
-        </h1>
-        <p className="text-sm md:text-base text-slate-600 max-w-xl mx-auto leading-relaxed">
-          Expert advice on dressing kids in Mumbai, understanding cotton GSM weights, baby
-          swaddling, and school uniform guides.
-        </p>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 space-y-10">
+        {/* Editorial Header */}
+        <header className="max-w-4xl space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 bg-[var(--red)]" />
+            <span className="text-sm font-bold text-[var(--ink)]">
+              Store Library · Sizing &amp; Fabric Advice
+            </span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-[66px] font-black tracking-tight text-[var(--ink)] leading-[1.05]">
+            Parenting, Sizing &amp; Pure Cotton Guides
+          </h1>
+          <p className="text-base sm:text-lg text-[var(--ink)]/80 leading-relaxed max-w-2xl">
+            Practical advice from our Kemps Corner shop floor on dressing kids in Mumbai humidity, understanding cotton weaves, swaddling newborns, and choosing durable school essentials.
+          </p>
+        </header>
+
+        {/* Interactive Blog List Component */}
+        <BlogFilterList posts={posts} />
       </div>
 
-      {/* Interactive Blog List Component */}
-      <BlogFilterList posts={posts} />
+      <TrustMarquee />
     </div>
   );
 }

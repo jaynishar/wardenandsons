@@ -5,13 +5,10 @@ import { buildVideoCallUrl } from '@/lib/whatsapp';
 
 export default function HowItWorks() {
   return (
-    <section className="py-12 sm:py-16 border-b border-[var(--ink)]">
+    <section className="py-12 sm:py-16">
       <Container>
         <div className="max-w-2xl mb-8 sm:mb-12">
-          <span className="text-xs font-semibold tracking-wider uppercase text-[var(--muted)]">
-            Simple Process
-          </span>
-          <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)] tracking-tight mt-1">
+          <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)] tracking-tight">
             {COPY_DECK.how.heading}
           </h2>
           <p className="text-sm sm:text-base text-[var(--muted)] mt-1">
@@ -64,14 +61,14 @@ export default function HowItWorks() {
                 {COPY_DECK.how.step3Desc}
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-[var(--ink)]/10">
+            <div className="mt-6 pt-2">
               <a
                 href={buildVideoCallUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="whatsapp_click"
                 data-track-location="video_call"
-                className="text-xs font-medium text-[var(--blue)] hover:underline inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+                className="text-sm font-medium text-[var(--blue)] hover:underline inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
               >
                 <span>{COPY_DECK.how.videoChip || COPY_DECK.video.chip}</span>
                 <span>&rarr;</span>

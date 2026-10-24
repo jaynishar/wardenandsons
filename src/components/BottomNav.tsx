@@ -32,7 +32,7 @@ export default function BottomNav() {
   return (
     <nav
       aria-label="Mobile navigation"
-      className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-[var(--surface)] md:hidden h-16 pb-[env(safe-area-inset-bottom)] font-sans"
+      className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t-2 border-[var(--ink)] md:hidden h-16 pb-[env(safe-area-inset-bottom)] font-sans"
     >
       <div className="grid grid-cols-4 h-full items-stretch">
         {/* 1. Shop */}
@@ -44,7 +44,7 @@ export default function BottomNav() {
               : 'text-[var(--muted)] hover:text-[var(--ink)]'
           }`}
         >
-          <span className="text-xs uppercase tracking-wider">Shop</span>
+          <span className="text-[13px] font-medium">Shop</span>
           {isShopActive && (
             <span
               className="absolute top-0 left-0 right-0 h-[2px] bg-[var(--ink)]"
@@ -62,7 +62,7 @@ export default function BottomNav() {
               : 'text-[var(--muted)] hover:text-[var(--ink)]'
           }`}
         >
-          <span className="text-xs uppercase tracking-wider">Categories</span>
+          <span className="text-[13px] font-medium">Categories</span>
           {isCategoryActive && (
             <span
               className="absolute top-0 left-0 right-0 h-[2px] bg-[var(--ink)]"
@@ -79,7 +79,7 @@ export default function BottomNav() {
           className="relative flex flex-col items-center justify-center h-full min-h-[44px] text-[var(--muted)] hover:text-[var(--ink)] transition-colors cursor-pointer rounded-none"
         >
           <IconSearch size={18} />
-          <span className="text-[10px] uppercase tracking-wider mt-0.5">Search</span>
+          <span className="text-[13px] font-medium mt-0.5">Search</span>
         </button>
 
         {/* 4. List */}
@@ -93,7 +93,7 @@ export default function BottomNav() {
             <IconList size={18} />
             {totalItems > 0 && (
               <span
-                className={`absolute -top-1.5 -right-2.5 min-w-[16px] h-4 px-1 rounded-none bg-[var(--red)] text-white text-[10px] font-bold flex items-center justify-center leading-none ${
+                className={`absolute -top-1.5 -right-2.5 min-w-[16px] h-4 px-1 rounded-none bg-[var(--red)] text-white text-[11px] font-bold flex items-center justify-center leading-none ${
                   isBumping ? 'animate-badge-bump' : ''
                 }`}
               >
@@ -101,7 +101,7 @@ export default function BottomNav() {
               </span>
             )}
           </div>
-          <span className="text-[10px] uppercase tracking-wider mt-0.5">List</span>
+          <span className="text-[13px] font-medium mt-0.5">List</span>
         </button>
       </div>
     </nav>

@@ -12,16 +12,16 @@ export default function SchoolsServedSection() {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 font-sans">
-      <div className="bg-white rounded-3xl border border-border-soft p-8 sm:p-12 shadow-xs space-y-6">
+    <section className="mt-16 font-sans">
+      <div className="bg-[var(--surface)] p-8 sm:p-12 space-y-6">
         <div className="space-y-2">
-          <span className="text-[11px] font-mono uppercase tracking-widest text-gold block">
+          <span className="text-xs font-bold text-[var(--ink)]/60">
             Institutional Trust &amp; Uniforms
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
+          <h2 className="text-2xl sm:text-3xl font-black text-[var(--ink)] tracking-tight">
             Schools and academies we have supplied
           </h2>
-          <p className="text-xs sm:text-sm text-muted leading-relaxed max-w-2xl">
+          <p className="text-sm text-[var(--ink)]/75 leading-relaxed max-w-2xl">
             Warden &amp; Sons has provided uniform sets, sports jerseys, and event wear for educational institutions and sports academies across Mumbai.
           </p>
         </div>
@@ -29,9 +29,9 @@ export default function SchoolsServedSection() {
           {schools.map((school, index) => (
             <li
               key={index}
-              className="p-3.5 rounded-xl bg-bg-cream border border-border-soft text-xs sm:text-sm font-semibold text-forest flex items-center gap-2.5"
+              className="p-4 bg-white border-2 border-[var(--ink)] text-sm font-bold text-[var(--ink)] flex items-center gap-3"
             >
-              <span className="w-2 h-2 rounded-full bg-gold shrink-0" />
+              <span className="w-2.5 h-2.5 bg-[var(--blue)] shrink-0" />
               <span>{school}</span>
             </li>
           ))}

@@ -34,7 +34,7 @@ export function TrustMarquee() {
   return (
     <div
       ref={containerRef}
-      className="w-full bg-[var(--ink)] text-white overflow-hidden py-2.5 border-y border-[var(--ink)] font-sans group select-none"
+      className="w-full bg-[var(--ink)] text-white overflow-hidden py-3 font-sans group select-none"
       aria-label="Store commitments ticker"
     >
       <div
@@ -45,7 +45,7 @@ export function TrustMarquee() {
       >
         {/* Render duplicate items for continuous smooth loop */}
         {[...TRUST_PHRASES, ...TRUST_PHRASES].map((phrase, i) => (
-          <div key={i} className="inline-flex items-center mx-6 text-xs uppercase tracking-widest font-medium">
+          <div key={i} className="inline-flex items-center mx-6 text-sm font-medium">
             <span>{phrase}</span>
             <span className="ml-6 text-[var(--yellow)] opacity-60">·</span>
           </div>

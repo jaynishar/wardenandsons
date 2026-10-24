@@ -85,13 +85,14 @@ export function AddSheet() {
           <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none dialog-overlay" />
 
           <Dialog.Content
+            data-ui="add-sheet"
             aria-describedby="add-sheet-description"
-            className="fixed inset-x-0 bottom-0 z-50 rounded-none bg-white border-t-2 border-[var(--ink)] p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto focus:outline-none sheet-bottom md:sheet-none md:dialog-scale md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:border-2 md:border-[var(--ink)] font-sans"
+            className="fixed inset-x-0 bottom-0 z-50 rounded-none bg-white border-t-2 border-[var(--ink)] p-6 sm:p-8  max-h-[90vh] overflow-y-auto focus:outline-none sheet-bottom md:sheet-none md:dialog-scale md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:border-2 md:border-[var(--ink)] font-sans"
           >
             {/* Header */}
             <div className="flex items-start justify-between pb-4 border-b border-[var(--surface)]">
               <div>
-                <p className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold">
+                <p className="text-xs text-[var(--muted)] font-bold">
                   {categoryLabel}
                 </p>
                 <Dialog.Title className="font-sans font-medium text-xl sm:text-2xl text-[var(--ink)] mt-0.5">
@@ -114,7 +115,7 @@ export function AddSheet() {
             <form onSubmit={handleSubmit} className="mt-6 space-y-6">
               {/* Age / Size Selector */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[var(--ink)] mb-2 font-medium">
+                <label className="block text-xs text-[var(--ink)] mb-2 font-bold">
                   {COPY_DECK.add.age}
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -142,7 +143,7 @@ export function AddSheet() {
 
               {/* Quantity Stepper */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[var(--ink)] mb-2 font-medium">
+                <label className="block text-xs text-[var(--ink)] mb-2 font-bold">
                   Quantity
                 </label>
                 <div className="flex items-center gap-3">
@@ -175,7 +176,7 @@ export function AddSheet() {
               {/* Optional Note */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label htmlFor="list-item-note" className="text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                  <label htmlFor="list-item-note" className="text-xs text-[var(--ink)] font-bold">
                     {COPY_DECK.add.note}
                   </label>
                   <span className="text-xs text-[var(--muted)]">

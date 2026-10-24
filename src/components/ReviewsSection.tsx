@@ -8,14 +8,11 @@ export default function ReviewsSection() {
   const reviews = reviewsData.slice(0, 2);
 
   return (
-    <section className="py-12 sm:py-16 border-b border-[var(--ink)]">
+    <section className="py-12 sm:py-16">
       <Container>
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-8 sm:mb-12">
           <div>
-            <span className="text-xs font-semibold tracking-wider uppercase text-[var(--muted)]">
-              Customer Voices
-            </span>
-            <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)] tracking-tight mt-1">
+            <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)] tracking-tight">
               From Kemps Corner families
             </h2>
           </div>
@@ -40,7 +37,7 @@ export default function ReviewsSection() {
               <blockquote className="font-sans font-normal text-lg sm:text-xl text-[var(--ink)] leading-snug">
                 &ldquo;{rev.text}&rdquo;
               </blockquote>
-              <div className="mt-6 pt-4 border-t border-[var(--ink)]/15 flex items-center justify-between text-xs text-[var(--muted)]">
+              <div className="mt-6 pt-2 flex items-center justify-between text-sm text-[var(--muted)]">
                 <span className="font-medium text-[var(--ink)]">{rev.author}</span>
                 <span>{rev.source}</span>
               </div>

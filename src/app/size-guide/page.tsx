@@ -24,7 +24,7 @@ export default function SizeGuidePage() {
 
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-flex items-center gap-1.5">
+        <span className="text-xs font-bold text-[var(--ink)]/60 bg-white px-3.5 py-1.5 inline-flex items-center gap-1.5">
           <Ruler className="w-3.5 h-3.5 text-gold" />
           <span>Fitting & Measurement Guide</span>
         </span>
@@ -83,9 +83,9 @@ export default function SizeGuidePage() {
 
       {/* Primary Kids Size Chart Table (Boys, Girls & Youth) */}
       <section className="bg-white rounded-3xl p-6 sm:p-8 border border-border-soft shadow-xs space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-soft pb-5">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-[var(--ink)]/15 pb-5">
           <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-gold block mb-1">
+            <span className="text-[11px] font-sans uppercase tracking-widest text-gold block mb-1">
               Boys, Girls & Juniors (2 – 16 Years)
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
@@ -110,7 +110,7 @@ export default function SizeGuidePage() {
                 <th className="py-3 px-3 sm:px-4 font-bold">India / Numbered Size</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border-soft text-near-black">
+            <tbody className="text-near-black">
               <tr className="hover:bg-bg-cream/40 transition-colors">
                 <td className="py-3 px-3 sm:px-4 font-semibold">2 – 3 Years</td>
                 <td className="py-3 px-3 sm:px-4 text-forest font-medium">Toddler / 2-3Y</td>
@@ -170,9 +170,9 @@ export default function SizeGuidePage() {
 
       {/* Newborn & Infant Sizing Table */}
       <section className="bg-white rounded-3xl p-6 sm:p-8 border border-border-soft shadow-xs space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-soft pb-5">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-[var(--ink)]/15 pb-5">
           <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-gold block mb-1">
+            <span className="text-[11px] font-sans uppercase tracking-widest text-gold block mb-1">
               Newborns & Infants (0 – 24 Months)
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
@@ -196,7 +196,7 @@ export default function SizeGuidePage() {
                 <th className="py-3 px-3 sm:px-4 font-bold">Recommended Style</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border-soft text-near-black">
+            <tbody className="text-near-black">
               <tr className="hover:bg-bg-cream/40 transition-colors">
                 <td className="py-3 px-3 sm:px-4 font-semibold">0 – 3 Months</td>
                 <td className="py-3 px-3 sm:px-4 text-muted">20 – 24 in</td>
@@ -287,9 +287,9 @@ export default function SizeGuidePage() {
       </section>
 
       {/* WhatsApp Counter Tape Verification CTA */}
-      <div className="bg-forest text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-forest-dark relative overflow-hidden">
+      <div className="bg-forest text-white rounded-3xl p-8 sm:p-12  border border-forest-dark relative overflow-hidden">
         <div className="relative z-10 max-w-2xl space-y-4">
-          <span className="text-[11px] font-mono uppercase tracking-widest text-gold block mb-1">
+          <span className="text-[11px] font-sans uppercase tracking-widest text-gold block mb-1">
             Zero-Guesswork Size Service
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold leading-tight">
@@ -309,7 +309,7 @@ export default function SizeGuidePage() {
               data-track="whatsapp_click"
               data-track-location="product"
               data-track-category="size_guide"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all active:scale-[0.98] cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all active:scale-[0.98] cursor-pointer"
             >
               <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
               <span>Ask Size on WhatsApp ({BUSINESS_CONFIG.phone.display})</span>

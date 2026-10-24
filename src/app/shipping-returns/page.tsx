@@ -21,7 +21,7 @@ export default function ShippingReturnsPage() {
         ]}
       />
       <div className="space-y-3 mb-8">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-bg-cream px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
+        <span className="text-xs font-bold text-[var(--ink)]/60 inline-block">
           Store Policies & Fulfillment
         </span>
         <h1 className="font-serif text-3xl md:text-4xl font-bold text-forest">

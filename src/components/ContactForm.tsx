@@ -128,7 +128,7 @@ export default function ContactForm() {
           {/* Generated Message Box */}
           <div className="bg-bg-cream rounded-2xl p-4 border border-border-soft space-y-3 max-w-lg mx-auto">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-forest uppercase tracking-wider">
+              <span className="text-[11px] font-bold text-forest ">
                 Message Preview
               </span>
               <button
@@ -254,7 +254,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full min-h-[48px] bg-forest hover:bg-forest-dark text-white font-bold py-3.5 px-4 rounded-xl shadow-xs transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full min-h-[48px] bg-forest hover:bg-forest-dark text-white font-bold py-3.5 px-4 rounded-xl shadow-xs transition-all text-xs  flex items-center justify-center gap-2 cursor-pointer"
           >
             <MessageSquare className="w-4 h-4 text-whatsapp" />
             <span>Open Enquiry in WhatsApp</span>

@@ -92,13 +92,10 @@ export default function CuratedShowcase() {
   const { bg, fg } = colorStyles[active.color];
 
   return (
-    <section className="py-12 sm:py-16 border-b border-[var(--ink)] bg-[var(--surface)]">
+    <section className="py-12 sm:py-16 bg-[var(--surface)]">
       <Container>
         <div className="max-w-2xl mb-8 sm:mb-12">
-          <span className="text-xs font-semibold tracking-wider uppercase text-[var(--muted)]">
-            Curated Shelf
-          </span>
-          <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)] tracking-tight mt-1">
+          <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)] tracking-tight">
             Kemps Corner Essentials
           </h2>
           <p className="text-sm sm:text-base text-[var(--muted)] mt-1">
@@ -115,7 +112,7 @@ export default function CuratedShowcase() {
                 key={item.id}
                 type="button"
                 onClick={() => setActiveIdx(idx)}
-                className={`px-4 py-2 text-xs sm:text-sm font-sans whitespace-nowrap transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)] ${
+                className={`px-4 py-2 text-sm font-sans whitespace-nowrap transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)] ${
                   isCurrent
                     ? 'bg-[var(--ink)] text-white font-medium'
                     : 'bg-white text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white'
@@ -128,7 +125,7 @@ export default function CuratedShowcase() {
         </div>
 
         {/* Disc / Mat Stage Presentation */}
-        <div className="bg-white border border-[var(--ink)] p-6 sm:p-10 lg:p-12">
+        <div className="bg-white border-2 border-[var(--ink)] p-6 sm:p-10 lg:p-12">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             {/* Visual Disc with Garment */}
             <div className="md:col-span-6 flex items-center justify-center">
@@ -148,9 +145,6 @@ export default function CuratedShowcase() {
 
             {/* Information & Action */}
             <div className="md:col-span-6 space-y-4">
-              <span className="text-xs font-semibold tracking-wider uppercase text-[var(--muted)]">
-                {active.tag}
-              </span>
               <h3 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)]">
                 {active.name}
               </h3>

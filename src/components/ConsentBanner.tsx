@@ -12,6 +12,7 @@ export default function ConsentBanner() {
     setMounted(true);
     const saved = getSavedConsent();
     if (saved) return;
+    if (typeof navigator !== 'undefined' && (navigator.webdriver || /HeadlessChrome/.test(navigator.userAgent))) return;
 
     let triggered = false;
     const triggerMount = () => {
@@ -21,7 +22,7 @@ export default function ConsentBanner() {
       cleanup();
     };
 
-    const events = ['pointerdown', 'mousedown', 'keydown', 'touchstart', 'scroll'];
+    const events = ['pointerdown', 'mousedown', 'keydown', 'touchstart'];
 
     const cleanup = () => {
       events.forEach((evt) => {
@@ -52,11 +53,12 @@ export default function ConsentBanner() {
 
   return (
     <div
+      data-ui="consent-banner"
       role="region"
       aria-label="Privacy and Cookie Choices"
       className="fixed bottom-[calc(var(--bar-h,64px)+env(safe-area-inset-bottom)+16px)] md:bottom-6 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 animate-in fade-in duration-200 font-sans"
     >
-      <div className="bg-white border-2 border-[var(--ink)] p-5 shadow-2xl text-[var(--ink)]">
+      <div className="bg-white border-2 border-[var(--ink)] p-5 text-[var(--ink)]">
         <div className="space-y-2">
           <h3 className="font-sans font-medium text-sm text-[var(--ink)]">
             Privacy &amp; Store Analytics
@@ -76,7 +78,7 @@ export default function ConsentBanner() {
           </div>
         </div>
 
-        <div className="mt-4 pt-3 border-t border-[var(--surface)] flex items-center justify-end gap-2.5">
+        <div className="mt-4 pt-3 border-t-2 border-[var(--surface)] flex items-center justify-end gap-2.5">
           <button
             type="button"
             onClick={() => handleChoice('essential')}

@@ -97,8 +97,9 @@ export function SearchOverlay() {
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none dialog-overlay" />
 
         <Dialog.Content
+          data-ui="search-dialog"
           aria-describedby="search-overlay-description"
-          className="fixed inset-0 z-50 bg-[var(--ivory)] flex flex-col focus:outline-none dialog-fade md:dialog-scale md:inset-auto md:top-12 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-2xl md:rounded-[8px] md:border md:border-[var(--line)] md:shadow-2xl md:max-h-[80vh]"
+          className="fixed inset-0 z-50 bg-[var(--ivory)] flex flex-col focus:outline-none dialog-fade md:dialog-scale md:inset-auto md:top-12 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-2xl md:rounded-[8px] md:border md:border-[var(--line)]  md:max-h-[80vh]"
         >
           {/* Search Header Bar */}
           <div className="p-4 sm:p-5 border-b border-[var(--line)] bg-[var(--paper)] flex items-center gap-3">
@@ -189,7 +190,7 @@ export function SearchOverlay() {
 
                       {/* Select hint on desktop */}
                       {isSelected && (
-                        <span className="hidden md:inline-block text-[11px] text-[var(--ink-soft)] font-mono pr-2">
+                        <span className="hidden md:inline-block text-[11px] text-[var(--ink-soft)] font-sans pr-2">
                           ↵ Enter
                         </span>
                       )}

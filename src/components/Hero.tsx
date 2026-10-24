@@ -6,7 +6,6 @@ import { Container } from '@/components/ui/Container';
 import { Logo } from '@/components/Logo';
 import { Garment } from '@/components/Garment';
 import { BUSINESS_CONFIG } from '@/config/business';
-import { Ticker1994 } from '@/components/Ticker1994';
 import type { GarmentName } from '@/components/Garment';
 import type { TileColor } from '@/data/specimens';
 
@@ -42,10 +41,10 @@ export default function Hero() {
   const { bg, fg } = colorStyles[active.color];
 
   return (
-    <section className="pt-6 sm:pt-10 pb-8 sm:pb-12 border-b border-[var(--ink)] font-sans">
+    <section className="pt-6 sm:pt-10 pb-8 sm:pb-12 font-sans">
       <Container>
         {/* Top-left Big Logo with 0-400ms tiles-drop stagger */}
-        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="mb-6 sm:mb-8 flex items-center justify-between gap-4">
           <Link
             href="/"
             aria-label="Warden & Sons Kids Wear Home"
@@ -57,16 +56,15 @@ export default function Hero() {
               className="w-[70%] sm:w-[45%] md:w-[28%] max-w-[280px] h-auto object-contain"
             />
           </Link>
-          <Ticker1994 />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           {/* Hero Copy & Actions */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-8 space-y-6">
             <div className="space-y-3">
               {/* Masked overflow line-by-line rise (200-700ms) */}
               <div className="overflow-hidden animate-masked-rise">
-                <h1 className="font-sans font-medium text-[var(--ink)] text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight max-w-xl text-balance">
+                <h1 className="font-sans font-medium text-[var(--ink)] text-4xl sm:text-5xl lg:text-[66px] leading-[1.04] tracking-tight max-w-none">
                   Kids Clothes in Kemps Corner, South Mumbai
                 </h1>
               </div>
@@ -97,7 +95,7 @@ export default function Hero() {
           </div>
 
           {/* Large Specimen Tile: Opens like a shutter (400-1200ms) */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4">
             <Link
               href={active.href}
               className="block group"
@@ -111,7 +109,7 @@ export default function Hero() {
                   className={`w-full h-full max-h-[75%] transition-transform duration-300 group-hover:scale-105 ${fg}`}
                   aria-label={active.label}
                 />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs tracking-wide uppercase font-medium">
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-sm font-medium">
                   <span>{active.label}</span>
                   <span>{active.age}</span>
                 </div>
@@ -121,9 +119,9 @@ export default function Hero() {
         </div>
 
         {/* Category Picker directly below hero: 160ms slide, 200ms color ease */}
-        <div className="mt-8 sm:mt-10 pt-6 border-t border-[var(--surface)]">
+        <div className="mt-8 sm:mt-10 pt-4">
           <div
-            className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none"
+            className="flex flex-wrap items-center gap-2 sm:gap-3"
             role="tablist"
             aria-label="Category specimen picker"
           >

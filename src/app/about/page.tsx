@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldCheck, Heart, Sparkles, MessageSquare, Phone, ArrowRight } from 'lucide-react';
-import GoogleReviewsBlock from '@/components/GoogleReviewsBlock';
 import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -46,7 +45,7 @@ export default function AboutPage() {
       />
       {/* Intro Heading */}
       <section className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
+        <span className="text-xs font-bold text-[var(--ink)]/60 inline-block">
           {BUSINESS_CONFIG.establishment.displayText}
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
@@ -61,7 +60,7 @@ export default function AboutPage() {
       {/* Story & Store Photo Grid */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         <div className="lg:col-span-6">
-          <div className="relative h-[340px] sm:h-[460px] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+          <div className="relative h-[340px] sm:h-[460px] overflow-hidden border-2 border-[var(--ink)]">
             <Image
               src="/store_front.webp"
               alt="Inside Warden & Sons Kids Wear boutique at Kemps Corner, Mumbai"
@@ -74,7 +73,7 @@ export default function AboutPage() {
         </div>
 
         <div className="lg:col-span-6 space-y-5 text-near-black">
-          <span className="text-xs font-bold uppercase tracking-widest text-gold">
+          <span className="text-xs font-bold text-[var(--blue)]">
             Our Kemps Corner Story
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest leading-snug">
@@ -127,7 +126,7 @@ export default function AboutPage() {
       {/* Values Grid */}
       <section className="bg-white rounded-3xl border border-border-soft p-8 sm:p-12 shadow-xs space-y-8">
         <div className="text-center space-y-2 max-w-xl mx-auto">
-          <span className="text-xs font-bold uppercase tracking-widest text-gold">
+          <span className="text-xs font-bold text-[var(--blue)]">
             Core Principles
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
@@ -155,7 +154,6 @@ export default function AboutPage() {
       </section>
 
       {/* Social Proof & Folded-in Reviews */}
-      <GoogleReviewsBlock />
 
       {/* Visit Store Callout */}
       <section className="bg-bg-cream rounded-3xl border border-border-soft p-8 sm:p-10 text-center space-y-4 max-w-3xl mx-auto">

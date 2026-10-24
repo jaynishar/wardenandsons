@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Specimen } from '@/components/Specimen';
+import { TrustMarquee } from '@/components/TrustMarquee';
 import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
 export const metadata: Metadata = buildPageMetadata({
@@ -92,24 +93,24 @@ export default function ShopPage() {
         />
 
         {/* Page Header */}
-        <div className="pt-2 pb-8 sm:pb-12 border-b border-[var(--ink)]">
-          <h1 className="font-sans font-medium text-3xl sm:text-4xl md:text-5xl text-[var(--ink)] tracking-tight">
+        <div className="pt-2 pb-8 sm:pb-12">
+          <h1 className="font-sans font-medium text-4xl sm:text-5xl lg:text-[66px] leading-[1.05] text-[var(--ink)] tracking-tight">
             Shop Kids Clothes by Age
           </h1>
-          <p className="text-base text-[var(--muted)] mt-3 max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[var(--ink)] mt-3 max-w-2xl leading-relaxed">
             Select items for your Request List. Send us your list on WhatsApp to confirm live colors,
             sizes measured with a tape, and daily pricing directly from our Kemps Corner shop.
           </p>
         </div>
 
         {/* Specimen Tiles Grid: 2 cols mobile, 3 tablet, 4 desktop */}
-        <div className="py-8 sm:py-12">
+        <div className="py-4 sm:py-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {ALL_SHOP_CATEGORIES.map((cat) => (
               <Link
                 key={cat.slug}
                 href={cat.href}
-                className="group block bg-white border border-[var(--surface)] p-3 sm:p-4 hover:border-[var(--ink)] transition-colors focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+                className="group block bg-[var(--surface)] p-3 sm:p-4 hover-lift transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
               >
                 <Specimen
                   category={cat.slug}
@@ -125,6 +126,11 @@ export default function ShopPage() {
           </div>
         </div>
       </Container>
+
+      {/* Brand Trust Strip */}
+      <div className="mt-12 sm:mt-16">
+        <TrustMarquee />
+      </div>
     </div>
   );
 }

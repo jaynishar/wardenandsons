@@ -136,8 +136,9 @@ export function CallbackForm({ open, onOpenChange }: CallbackFormProps) {
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none dialog-overlay" />
 
         <Dialog.Content
+          data-ui="callback-dialog"
           aria-describedby="callback-dialog-description"
-          className="fixed inset-x-0 bottom-0 z-50 rounded-t-[12px] bg-[var(--ivory)] border-t border-[var(--line)] p-6 shadow-2xl max-h-[90vh] overflow-y-auto focus:outline-none sheet-bottom md:sheet-none md:dialog-scale md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:rounded-[8px] md:border md:border-[var(--line)]"
+          className="fixed inset-x-0 bottom-0 z-50 rounded-t-[12px] bg-[var(--ivory)] border-t border-[var(--line)] p-6  max-h-[90vh] overflow-y-auto focus:outline-none sheet-bottom md:sheet-none md:dialog-scale md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto md:w-full md:max-w-md md:rounded-[8px] md:border md:border-[var(--line)]"
         >
           {/* Header */}
           <div className="flex items-start justify-between pb-4 border-b border-[var(--line)]">
@@ -202,7 +203,7 @@ export function CallbackForm({ open, onOpenChange }: CallbackFormProps) {
               <div>
                 <label
                   htmlFor="cb-phone"
-                  className="block text-xs font-medium uppercase tracking-wider text-[var(--ink)] mb-1.5"
+                  className="block text-xs font-medium  text-[var(--ink)] mb-1.5"
                 >
                   Mobile Number <span className="text-[var(--red)]">*</span>
                 </label>
@@ -231,7 +232,7 @@ export function CallbackForm({ open, onOpenChange }: CallbackFormProps) {
               <div>
                 <label
                   htmlFor="cb-name"
-                  className="block text-xs font-medium uppercase tracking-wider text-[var(--ink)] mb-1.5"
+                  className="block text-xs font-medium  text-[var(--ink)] mb-1.5"
                 >
                   Your Name <span className="text-[var(--ink-soft)] font-normal">(optional)</span>
                 </label>
@@ -248,7 +249,7 @@ export function CallbackForm({ open, onOpenChange }: CallbackFormProps) {
 
               {/* Preferred Time Chips */}
               <div>
-                <label className="block text-xs font-medium uppercase tracking-wider text-[var(--ink)] mb-2">
+                <label className="block text-xs font-medium  text-[var(--ink)] mb-2">
                   Preferred Time <span className="text-[var(--ink-soft)] font-normal">(optional)</span>
                 </label>
                 <div className="flex flex-wrap gap-2">

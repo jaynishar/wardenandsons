@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { Container } from '@/components/ui/Container';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import SubcategoryTile from '@/components/SubcategoryTile';
+import { TrustMarquee } from '@/components/TrustMarquee';
 import { CategorySlug } from '@/lib/products';
 import { subsOf, getCategory } from '@/data/catalogue';
 import { BUSINESS_CONFIG } from '@/config/business';
@@ -98,32 +99,32 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
   women: {
     titleTag: "Women's Muslin Sleepwear & Basics | Warden & Sons",
     metaDesc:
-      'Soft double-gauze muslin pajama sets, breathable cotton tops, and comfortable daily leggings for women. Request live availability on WhatsApp.',
+      'Lightweight cotton kaftans, maternity-friendly nighties, and soft muslin sleepwear for women. Chat with our Kemps Corner shop for current prints.',
     heading: 'Women’s Muslin Sleepwear & Basics',
-    subheading: 'Airy double-gauze muslin pajama sets, nightdresses, and cotton tops.',
+    subheading: 'Pure cotton nighties, kaftans, and relaxed loungewear.',
     ageLine: 'Sizes S – XXL',
     fabricText:
-      'Soft double-gauze breathable cotton muslin and combed cotton knits. Extremely gentle on the skin, highly absorbent, and designed for comfortable sleep and daily home wear.',
+      'Fine woven mulmul cotton, premium open-weave muslins, and breathable combed cotton knits. Hand-selected for ease of movement, soft skin feel, and durability across daily home wear.',
     ageText:
-      'Offered in sizes XS through XXL across coordinated pajama sets, buttoned sleep shirts, and lightweight cotton casuals.',
+      'Available across Free Size loungewear (fitting up to 44-inch bust comfortably) and graded sizes from Medium up to 3XL.',
     sizingText:
-      'Muslin fabrics have a natural, relaxed drape that softens with every wash. Let us know on WhatsApp whether you prefer a loose or standard fit, and our team will measure armhole, chest, and pant outseam lengths for you.',
-    relatedSlugs: ['men', 'girls'],
+      'Our kaftans and nightdresses feature relaxed, generous cuts. For maternity and nursing wear, our front-button plackets offer practical day-to-day ease. Inquire directly on WhatsApp to see current prints available at our store.',
+    relatedSlugs: ['newborn', 'girls', 'men'],
   },
   bulk: {
-    titleTag: 'School Uniforms & Bulk Cotton Apparel | Warden & Sons',
+    titleTag: 'School Uniforms & Bulk Orders Mumbai | Warden & Sons',
     metaDesc:
-      "Custom school uniforms, sports jerseys, and bulk cotton children's wear. Request direct WhatsApp quotes and fabric trial swatches.",
+      'School uniforms, sports sets, and custom institutional bulk apparel in South Mumbai. Inquire with our Kemps Corner store desk.',
     heading: 'School Uniforms & Bulk Orders',
-    subheading: 'Custom school uniforms, sports house t-shirts, and group garments.',
-    ageLine: 'Schools & Clubs',
+    subheading: 'Custom school uniforms, sports kits, and institutional bulk orders.',
+    ageLine: 'All school sizes',
     fabricText:
-      'Heavy-duty colorfast cotton drills, breathable pique knits for sports polos, and pre-shrunk twills engineered for daily school use and institutional laundering without fading.',
+      'Durable drill cottons, wrinkle-resistant polyester-viscose blends, and combed cotton knits stitched to institutional requirements.',
     ageText:
-      'Complete sizing ranges from nursery and primary grades through secondary classes (sizes 20 to 42). We supply shirts, skirts, shorts, pinafores, and sports sets.',
+      'Available across all standard school age brackets from kindergarten through high school.',
     sizingText:
-      'We supply size sample sets and clear measurement charts for schools, parent groups, and sports teams. Send your design, fabric, and quantity requirements on WhatsApp for direct quotes and production timelines.',
-    relatedSlugs: ['boys', 'girls'],
+      'We supply Cathedral, Bombay Scottish, St. Mary’s and sports teams across South Mumbai. Message us directly for customized bulk specs and pricing.',
+    relatedSlugs: ['boys', 'girls', 'newborn'],
   },
 };
 
@@ -169,7 +170,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const askUrl = BUSINESS_CONFIG.whatsappUrl(askMessage);
 
   return (
-    <div className="py-6 sm:py-10">
+    <div className="py-6 sm:py-10 font-sans">
       <Container>
         <Breadcrumbs
           items={[
@@ -180,22 +181,22 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         />
 
         {/* Category Header */}
-        <div className="pt-2 pb-6 sm:pb-8 border-b border-[var(--line)] space-y-3">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <h1 className="font-display font-medium text-3xl sm:text-4xl md:text-5xl text-[var(--ink)] tracking-tight">
+        <div className="pt-2 pb-6 sm:pb-8 space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+            <h1 className="font-sans font-medium text-4xl sm:text-5xl lg:text-[66px] leading-[1.05] text-[var(--ink)] tracking-tight">
               {editorial.heading}
             </h1>
-            <span className="text-xs font-medium uppercase tracking-wider text-[var(--ink-soft)] px-3 py-1 rounded-full bg-[var(--paper)] border border-[var(--line)]">
+            <span className="text-sm font-medium text-[var(--muted)]">
               {editorial.ageLine}
             </span>
           </div>
-          <p className="text-base text-[var(--ink-soft)] max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[var(--ink)] max-w-2xl leading-relaxed">
             {editorial.subheading}
           </p>
         </div>
 
         {/* Sub-category Tiles Grid (2 cols mobile, 3 tablet, 4 desktop) */}
-        <div className="py-8 sm:py-10 space-y-8">
+        <div className="py-6 sm:py-8 space-y-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
             {subcategories.map((sub) => (
               <SubcategoryTile key={sub.slug} sub={sub} />
@@ -203,10 +204,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
 
           {/* Assistance & Cross-Category Navigation */}
-          <div className="space-y-4 pt-2">
-            <div className="p-4 sm:p-5 rounded-[6px] bg-[var(--paper)] border border-[var(--line)] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-              <p className="text-sm text-[var(--ink)] font-medium">
-                Can&apos;t see it? Ask us on WhatsApp
+          <div className="space-y-4 pt-4">
+            <div className="p-5 bg-[var(--surface)] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+              <p className="text-base text-[var(--ink)] font-medium">
+                Can&apos;t see what you need? Inquire with our Kemps Corner store desk on WhatsApp
               </p>
               <a
                 href={askUrl}
@@ -215,14 +216,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 data-track="whatsapp_click"
                 data-track-location="category"
                 data-track-category={category}
-                className="inline-flex items-center justify-center min-h-[44px] px-5 py-2 text-xs font-bold uppercase tracking-wider rounded-[4px] bg-[var(--ink)] text-[var(--ivory)] hover:bg-[#203155] transition-colors shrink-0"
+                className="h-[48px] px-6 inline-flex items-center justify-center text-sm font-sans font-medium bg-[var(--ink)] text-white hover:bg-[var(--blue)] transition-colors shrink-0"
               >
                 Message shop desk &rarr;
               </a>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--ink-soft)] pt-1">
-              <span className="font-medium text-[var(--ink)]">Other departments:</span>
+            <div className="flex flex-wrap items-center gap-2 pt-2">
+              <span className="text-sm font-medium text-[var(--ink)]">Other departments:</span>
               {editorial.relatedSlugs.map((relSlug) => {
                 const relCategory = getCategory(relSlug);
                 if (!relCategory) return null;
@@ -230,7 +231,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   <Link
                     key={relSlug}
                     href={`/shop/${relSlug}/`}
-                    className="inline-block px-3 py-1.5 rounded-full bg-[var(--paper)] border border-[var(--line)] hover:border-[var(--ink-soft)] text-[var(--ink)] transition-colors"
+                    className="px-4 py-2 bg-[var(--surface)] text-sm font-medium text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white transition-colors"
                   >
                     {relCategory.label} ({relCategory.ageLine})
                   </Link>
@@ -239,49 +240,49 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </div>
           </div>
 
-          {/* Long SEO Text in Collapsed <details> Accordions */}
-          <div className="pt-8 border-t border-[var(--line)] space-y-3">
-            <h2 className="font-display text-xs uppercase tracking-widest text-[var(--ink-soft)] font-medium mb-2">
+          {/* Long SEO Guidance Accordions */}
+          <div className="pt-8 space-y-4">
+            <h2 className="font-sans text-sm font-medium text-[var(--muted)] mb-3">
               Fabric, sizing &amp; store guidance
             </h2>
 
-            <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
-              <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+            <details className="group bg-[var(--surface)] p-5 select-none">
+              <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                 <span>Fabric &amp; Comfort</span>
-                <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
-                  ▼
+                <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">
+                  &darr;
                 </span>
               </summary>
-              <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60">
+              <div className="pt-3 text-base text-[var(--ink)] leading-relaxed">
                 <p>{editorial.fabricText}</p>
               </div>
             </details>
 
-            <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
-              <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+            <details className="group bg-[var(--surface)] p-5 select-none">
+              <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                 <span>Age &amp; Fit Range</span>
-                <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
-                  ▼
+                <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">
+                  &darr;
                 </span>
               </summary>
-              <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60">
+              <div className="pt-3 text-base text-[var(--ink)] leading-relaxed">
                 <p>{editorial.ageText}</p>
               </div>
             </details>
 
-            <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
-              <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+            <details className="group bg-[var(--surface)] p-5 select-none">
+              <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                 <span>Sizing &amp; WhatsApp Check</span>
-                <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
-                  ▼
+                <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">
+                  &darr;
                 </span>
               </summary>
-              <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60 space-y-2">
+              <div className="pt-3 text-base text-[var(--ink)] leading-relaxed space-y-3">
                 <p>{editorial.sizingText}</p>
-                <div className="pt-1">
+                <div>
                   <Link
                     href="/size-guide/"
-                    className="font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors text-xs underline underline-offset-4 inline-flex items-center gap-1"
+                    className="font-medium text-[var(--blue)] hover:underline text-sm inline-flex items-center gap-1"
                   >
                     <span>View complete size chart in our Size Guide</span>
                     <span aria-hidden="true">&rarr;</span>
@@ -293,14 +294,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             {/* Boys In-Depth Contextual Details */}
             {category === 'boys' && (
               <>
-                <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
-                  <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+                <details className="group bg-[var(--surface)] p-5 select-none">
+                  <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                     <span>Age Brackets &amp; Numbered Sizes Carried</span>
-                    <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
-                      ▼
+                    <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">
+                      &darr;
                     </span>
                   </summary>
-                  <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60 space-y-2">
+                  <div className="pt-3 text-base text-[var(--ink)] leading-relaxed">
                     <ul className="space-y-2">
                       <li>
                         <strong className="text-[var(--ink)]">Toddler Boys (2 – 3 Years):</strong> Sized as Toddler / 2-3Y or Indian Size 20 (Chest: ~21 in). Designed with roomy elastic pull-on waists and soft necklines for easy dressing.
@@ -318,14 +319,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   </div>
                 </details>
 
-                <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
-                  <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+                <details className="group bg-[var(--surface)] p-5 select-none">
+                  <summary className="flex items-center justify-between cursor-pointer font-sans font-medium text-base sm:text-lg text-[var(--ink)] list-none">
                     <span>Authentic Fabrics Built for Mumbai Climate</span>
-                    <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
-                      ▼
+                    <span className="text-sm text-[var(--muted)] group-open:rotate-180 transition-transform">
+                      &darr;
                     </span>
                   </summary>
-                  <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60 space-y-2">
+                  <div className="pt-3 text-base text-[var(--ink)] leading-relaxed space-y-3">
                     <p>
                       Every garment in our boys’ department is selected for durability and breathability. Our everyday t-shirts use heavyweight 180–220 GSM combed cotton that withstands regular washing without losing collar shape. For sports and turf play, moisture-wicking dryfit microfibers keep boys cool, while cricket academy kits use specialized poly-cotton twill designed for morning training at Oval, Azad, and Shivaji Park maidaans.
                     </p>
@@ -333,14 +334,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                       Prefer in-person fitting? Stop by our{' '}
                       <Link
                         href="/visit-us/"
-                        className="text-[var(--ink)] underline font-medium hover:text-[var(--blue)]"
+                        className="text-[var(--blue)] underline font-medium"
                       >
                         Kemps Corner store near Pedder Road flyover
                       </Link>{' '}
                       to inspect fabrics, check sizes, or pick up custom school uniforms. Ordering remotely? See{' '}
                       <Link
                         href="/how-it-works/"
-                        className="text-[var(--ink)] underline font-medium hover:text-[var(--blue)]"
+                        className="text-[var(--blue)] underline font-medium"
                       >
                         how WhatsApp catalogue ordering works
                       </Link>{' '}
@@ -353,6 +354,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
         </div>
       </Container>
+
+      {/* Brand Trust Strip */}
+      <div className="mt-12 sm:mt-16">
+        <TrustMarquee />
+      </div>
     </div>
   );
 }

@@ -142,7 +142,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Legal & Copyright Strip */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-[var(--muted)] pt-8 border-t border-[var(--ink)]/10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--muted)] pt-8">
           <p>© {currentYear} Warden &amp; Sons Kids Wear. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/privacy-policy/" className="hover:text-[var(--ink)] hover:underline">

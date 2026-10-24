@@ -23,7 +23,7 @@ export default function ContactPage() {
       />
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
+        <span className="text-xs font-bold text-[var(--ink)]/60 inline-block">
           We Are Here To Help
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
@@ -95,7 +95,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="pt-2 border-t border-border-soft">
+            <div className="pt-2">
               <a
                 href={BUSINESS_CONFIG.phone.whatsappUrl}
                 target="_blank"
@@ -103,7 +103,7 @@ export default function ContactPage() {
                 data-track="whatsapp_click"
                 data-track-location="footer"
                 data-track-category="contact"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
                 <span>Immediate WhatsApp Chat</span>

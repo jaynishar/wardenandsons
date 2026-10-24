@@ -84,9 +84,10 @@ export function FlyToCartToast() {
 
   return (
     <div
+      data-ui="toast"
       role="status"
       aria-live="polite"
-      className="fixed z-50 bottom-[calc(var(--bar-h,64px)+env(safe-area-inset-bottom)+24px)] md:bottom-8 left-1/2 -translate-x-1/2 bg-[var(--ink)] text-white px-5 py-3 shadow-xl flex items-center gap-4 text-sm font-sans animate-in fade-in slide-in-from-bottom-2 duration-200"
+      className="fixed z-50 bottom-[calc(var(--bar-h,64px)+env(safe-area-inset-bottom)+24px)] md:bottom-8 left-1/2 -translate-x-1/2 bg-[var(--ink)] text-white px-5 py-3  flex items-center gap-4 text-sm font-sans animate-in fade-in slide-in-from-bottom-2 duration-200"
     >
       <span>{toastMessage}</span>
       <button
@@ -95,7 +96,7 @@ export function FlyToCartToast() {
           setToastMessage(null);
           toggleList();
         }}
-        className="text-[var(--yellow)] hover:underline font-medium text-xs uppercase tracking-wider cursor-pointer"
+        className="text-[var(--yellow)] hover:underline font-bold text-sm cursor-pointer"
       >
         View list &rarr;
       </button>

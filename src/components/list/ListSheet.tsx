@@ -59,8 +59,9 @@ export function ListSheet() {
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-none dialog-overlay" />
 
         <Dialog.Content
+          data-ui="list-sheet"
           aria-describedby="list-sheet-description"
-          className="fixed inset-y-0 right-0 z-50 w-full max-w-[420px] bg-white border-l-2 border-[var(--ink)] shadow-2xl flex flex-col justify-between focus:outline-none sheet-right font-sans rounded-none"
+          className="fixed inset-y-0 right-0 z-50 w-full max-w-[420px] bg-white border-l-2 border-[var(--ink)]  flex flex-col justify-between focus:outline-none sheet-right font-sans rounded-none"
         >
           {/* Header */}
           <div className="p-6 border-b border-[var(--surface)] flex items-center justify-between">
@@ -139,7 +140,7 @@ export function ListSheet() {
 
                       {/* Line Details */}
                       <div className="flex-1 min-w-0 pr-6">
-                        <p className="text-[10px] uppercase tracking-wider text-[var(--muted)] font-semibold truncate">
+                        <p className="text-xs text-[var(--muted)] font-bold truncate">
                           {catLabel}
                         </p>
                         <p className="font-sans font-medium text-sm text-[var(--ink)] leading-snug truncate">
@@ -152,10 +153,9 @@ export function ListSheet() {
                             type="button"
                             onClick={cycleAge}
                             title="Click to change age/size"
-                            className="inline-flex items-center px-2 py-0.5 rounded-none text-[11px] font-medium bg-[var(--surface)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white transition-colors cursor-pointer"
+                            className="inline-flex items-center px-2 py-0.5 rounded-none text-xs font-medium bg-[var(--surface)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white transition-colors cursor-pointer"
                           >
                             <span>{line.age || 'Not sure'}</span>
-                            <span className="ml-1 text-[9px]">✎</span>
                           </button>
                         </div>
 
@@ -212,7 +212,7 @@ export function ListSheet() {
 
           {/* Footer Actions */}
           {lines.length > 0 && (
-            <div className="p-6 border-t border-[var(--surface)] bg-white space-y-3">
+            <div className="p-6 border-t-2 border-[var(--surface)] bg-white space-y-3">
               {/* WhatsApp Action Button */}
               <a
                 href={whatsappUrl}

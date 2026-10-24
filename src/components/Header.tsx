@@ -58,7 +58,7 @@ export default function Header() {
           DESKTOP HEADER (768px and wider): sticky, 64px high, plain white bar
           Logo left, Nav center (Shop, Newborn, Boys, Girls, Uniforms, Visit us), Search & List right
          ========================================================================= */}
-      <header className="hidden md:block sticky top-0 z-40 h-16 bg-[var(--bg)] border-b border-[var(--surface)] transition-colors font-sans">
+      <header className="hidden md:block sticky top-0 z-40 h-16 bg-[var(--bg)] transition-colors font-sans">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
           {/* Logo on Left: at least 40px on desktop, no border box or padding */}
           <Link
@@ -153,7 +153,7 @@ export default function Header() {
           MOBILE TOP BAR (under 768px): 56px high, plain white bar
           Clean bar: Logo left, Search, List trigger right, hamburger for full sheet
          ========================================================================= */}
-      <header className="md:hidden sticky top-0 z-40 h-14 bg-[var(--bg)] border-b border-[var(--surface)] font-sans">
+      <header className="md:hidden sticky top-0 z-40 h-14 bg-[var(--bg)] font-sans">
         <div className="px-4 h-full flex items-center justify-between">
           {/* Logo on Left */}
           <Link

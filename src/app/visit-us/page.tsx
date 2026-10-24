@@ -30,7 +30,7 @@ export default function VisitUsPage() {
       />
       {/* Editorial Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-widest text-gold bg-white px-3.5 py-1.5 rounded-full border border-gold/30 inline-block">
+        <span className="text-xs font-bold text-[var(--ink)]/60 inline-block">
           Our Shop
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
@@ -113,7 +113,7 @@ export default function VisitUsPage() {
               <div className="space-y-1">
                 <h2 className="font-serif font-bold text-lg text-near-black">Opening Hours</h2>
                 <div className="space-y-1 text-xs sm:text-sm text-muted pt-1">
-                  <div className="flex justify-between py-1 border-b border-border-soft/60">
+                  <div className="flex justify-between py-1 border-b-2 border-[var(--ink)]/15/60">
                     <span className="font-semibold text-near-black">Monday – Sunday:</span>
                     <span className="text-forest font-bold">9:00 AM – 9:00 PM</span>
                   </div>
@@ -151,13 +151,13 @@ export default function VisitUsPage() {
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
-              <div className="pt-2 border-t border-border-soft/60">
+              <div className="pt-2 border-t-2 border-[var(--ink)]/15/60">
                 <p>
                   <strong>Nearby areas we serve:</strong> Kemps Corner, Pedder Road, Altamount Road, Carmichael Road, Malabar Hill, Breach Candy, Nepean Sea Road, Tardeo, South Mumbai, and Grant Road. (TODO: owner confirms additional neighbourhoods served).
                 </p>
               </div>
             </div>
-            <div className="pt-2 border-t border-border-soft/60 flex items-start gap-3 text-xs text-muted">
+            <div className="pt-2 border-t-2 border-[var(--ink)]/15/60 flex items-start gap-3 text-xs text-muted">
               <Car className="w-4 h-4 text-forest shrink-0 mt-0.5" />
               <div>
                 <strong className="text-near-black block">Parking &amp; Transit Guidance:</strong>
@@ -169,7 +169,7 @@ export default function VisitUsPage() {
 
         {/* Right Side: Store Photo & Contact Actions */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="relative h-[320px] sm:h-[400px] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+          <div className="relative h-[320px] sm:h-[400px] rounded-3xl overflow-hidden  border-4 border-white">
             <Image
               src="/store_front.webp"
               alt="Warden & Sons Kids Wear boutique storefront at Kemps Corner, Mumbai"
@@ -193,7 +193,7 @@ export default function VisitUsPage() {
                 data-track="whatsapp_click"
                 data-track-location="footer"
                 data-track-category="visit_us"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs shadow-md transition-all active:scale-[0.98]"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-bold text-xs  transition-all active:scale-[0.98]"
               >
                 <MessageSquare className="w-4 h-4 fill-white text-whatsapp" />
                 <span>Start WhatsApp Shopping</span>
@@ -212,8 +212,8 @@ export default function VisitUsPage() {
 
       {/* In-Store Departments & Contextual Authority Links */}
       <section className="bg-white rounded-3xl p-6 sm:p-10 border border-border-soft shadow-xs space-y-6 text-near-black">
-        <div className="space-y-2 border-b border-border-soft pb-4">
-          <span className="text-[11px] font-mono uppercase tracking-widest text-gold block">
+        <div className="space-y-2 border-b-2 border-[var(--ink)]/15 pb-4">
+          <span className="text-[11px] font-sans uppercase tracking-widest text-gold block">
             What You Will Find In-Store
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
