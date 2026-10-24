@@ -1,10 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
-import AgeCard from '@/components/AgeCard';
 import CategoryTiles from '@/components/CategoryTiles';
+import CuratedShowcase from '@/components/CuratedShowcase';
 import HowItWorks from '@/components/HowItWorks';
-import StoreStrip from '@/components/StoreStrip';
+import ReviewsSection from '@/components/ReviewsSection';
+import VisitUsSection from '@/components/VisitUsSection';
 import { getClothingStoreSchema } from '@/lib/schema';
 import JsonLd from '@/components/JsonLd';
 import { buildPageMetadata } from '@/config/site';
@@ -25,20 +26,23 @@ export default function HomePage() {
     <div className="font-sans">
       <JsonLd schema={storeSchema} />
 
-      {/* 1. HERO */}
+      {/* 1. HERO & CATEGORY PICKER */}
       <Hero />
 
-      {/* AGE SELECTION CARD */}
-      <AgeCard />
-
-      {/* 2. CATEGORY TILES */}
+      {/* 2. CATALOGUE & HORIZONTAL DRAG ROW */}
       <CategoryTiles />
 
-      {/* 3. HOW IT WORKS */}
+      {/* 3. CURATED SHELF ON DISC */}
+      <CuratedShowcase />
+
+      {/* 4. HOW IT WORKS TILES */}
       <HowItWorks />
 
-      {/* 4. STORE STRIP */}
-      <StoreStrip />
+      {/* 5. VERBATIM CUSTOMER REVIEWS */}
+      <ReviewsSection />
+
+      {/* 6. VISIT US & LIVE IST STATUS */}
+      <VisitUsSection />
     </div>
   );
 }

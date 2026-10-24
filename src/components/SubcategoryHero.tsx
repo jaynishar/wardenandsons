@@ -1,15 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Photo } from '@/components/ui/Photo';
-import { Button } from '@/components/ui/Button';
+import { Specimen } from '@/components/Specimen';
 import { Chip } from '@/components/ui/Chip';
-import { Marker } from '@/components/ui/Marker';
 import { IconPlus } from '@/components/icons';
 import { useAddToList } from '@/lib/list-store';
 import { Subcategory, Category, ageOptionsFor } from '@/data/catalogue';
 import { CatalogueItem } from '@/lib/products';
 import { getProductPriceFrom } from '@/lib/owner-inputs';
+import { BUSINESS_CONFIG } from '@/config/business';
 
 interface SubcategoryHeroProps {
   sub: Subcategory;
@@ -26,8 +25,10 @@ export default function SubcategoryHero({
   const ageOptions = ageOptionsFor(sub.categorySlug, sub.slug);
   const [selectedAge, setSelectedAge] = useState<string | undefined>(undefined);
 
-  // If sub has its own photo, use it; otherwise fallback to first featured style photo or null
-  const displayPhoto = sub.photo || (featuredStyles[0]?.image ?? null);
+  const directInquiryText = `Hi Warden & Sons! I'm inquiring about ${sub.label} for ${category.label}${
+    selectedAge ? ` (Size: ${selectedAge})` : ''
+  }. Please share available options and measurements from your Kemps Corner store.`;
+  const directInquiryUrl = BUSINESS_CONFIG.whatsappUrl(directInquiryText);
 
   const handleAddMain = () => {
     openAddSheet({
@@ -47,44 +48,41 @@ export default function SubcategoryHero({
   };
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 font-sans">
       {/* Hero Visual & Direct Add Action */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Large 4:5 Photo */}
+        {/* Large 4:5 Specimen */}
         <div className="lg:col-span-6">
-          <div className="w-full aspect-[4/5] overflow-hidden rounded-[6px] border border-[var(--line)] bg-[var(--paper)]">
-            <Photo
-              src={displayPhoto}
-              alt={`${sub.label} - ${category.label}`}
-              ratio="4/5"
+          <div className="w-full aspect-[4/5] overflow-hidden border border-[var(--ink)] bg-[var(--surface)]">
+            <Specimen
+              category={sub.categorySlug}
+              sub={sub.slug}
+              label={sub.label}
+              aspect="4:5"
               priority
-              placeholderLabel={sub.label}
-              className="w-full h-full object-cover"
+              showCaption={false}
             />
           </div>
         </div>
 
-        {/* Details, Age Selection & Add to List */}
+        {/* Details, Age Selection & CTAs */}
         <div className="lg:col-span-6 space-y-6">
           <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <Marker color="blue" />
-              <span className="text-xs uppercase tracking-widest text-[var(--ink-soft)] font-medium">
-                {category.label} · {category.ageLine}
-              </span>
-            </div>
-            <h2 className="font-display font-medium text-2xl sm:text-3xl text-[var(--ink)]">
+            <span className="text-xs uppercase tracking-widest text-[var(--muted)] font-semibold">
+              {category.label} · {category.ageLine}
+            </span>
+            <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)]">
               {sub.label}
             </h2>
-            <p className="text-base text-[var(--ink-soft)] leading-relaxed">
+            <p className="text-base text-[var(--muted)] leading-relaxed">
               {sub.seoDescription}
             </p>
           </div>
 
           {/* Age selection chips */}
           {ageOptions.length > 0 && (
-            <div className="space-y-2.5 pt-2 border-t border-[var(--line)]">
-              <div className="flex items-center justify-between text-xs text-[var(--ink-soft)]">
+            <div className="space-y-2.5 pt-4 border-t border-[var(--surface)]">
+              <div className="flex items-center justify-between text-xs text-[var(--muted)]">
                 <span className="font-medium text-[var(--ink)]">Select size / age:</span>
                 {selectedAge && (
                   <button
@@ -104,7 +102,7 @@ export default function SubcategoryHero({
                       key={age}
                       selected={isSelected}
                       onClick={() => setSelectedAge(isSelected ? undefined : age)}
-                      className="text-xs sm:text-sm"
+                      className="text-xs sm:text-sm font-medium"
                     >
                       {age}
                     </Chip>
@@ -114,18 +112,28 @@ export default function SubcategoryHero({
             </div>
           )}
 
-          {/* Add to List CTA Button */}
-          <div className="pt-2">
-            <Button
-              variant="primary"
-              fullWidth
+          {/* Action Buttons: Inquiry on WhatsApp & Add to list */}
+          <div className="pt-2 flex flex-col gap-3">
+            <a
+              href={directInquiryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="whatsapp_click"
+              data-track-location="product"
+              data-track-category={sub.categorySlug}
+              className="h-[52px] px-8 inline-flex items-center justify-center font-sans font-medium text-[15px] bg-[var(--wa)] text-white hover:opacity-95 active:scale-[0.98] transition-all cursor-pointer focus-visible:outline-3 focus-visible:outline-[var(--wa)]"
+            >
+              Send inquiry on WhatsApp
+            </a>
+            <button
+              type="button"
               onClick={handleAddMain}
-              className="text-sm font-medium tracking-wide uppercase"
+              className="h-[52px] px-8 inline-flex items-center justify-center font-sans font-medium text-[15px] bg-[var(--ink)] text-white hover:bg-[var(--blue)] active:scale-[0.98] transition-all cursor-pointer focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
             >
               Add to list {selectedAge ? `(${selectedAge})` : ''}
-            </Button>
-            <p className="text-xs text-[var(--ink-soft)] mt-2 text-center sm:text-left">
-              Select what you need, add optional sizing notes, and send your list on WhatsApp.
+            </button>
+            <p className="text-xs text-[var(--muted)] mt-1">
+              Shop desk measures items flat with a measuring tape before you confirm.
             </p>
           </div>
         </div>
@@ -133,12 +141,12 @@ export default function SubcategoryHero({
 
       {/* Featured Styles Section */}
       {featuredStyles.length > 0 && (
-        <div className="space-y-6 pt-6 border-t border-[var(--line)]">
+        <div className="space-y-6 pt-8 border-t border-[var(--ink)]">
           <div>
-            <h2 className="font-display font-medium text-xl sm:text-2xl text-[var(--ink)]">
+            <h2 className="font-sans font-medium text-xl sm:text-2xl text-[var(--ink)]">
               Featured styles
             </h2>
-            <p className="text-sm text-[var(--ink-soft)] mt-1">
+            <p className="text-sm text-[var(--muted)] mt-1">
               Popular designs in stock at our Kemps Corner store.
             </p>
           </div>
@@ -150,31 +158,36 @@ export default function SubcategoryHero({
               return (
                 <div
                   key={item.id}
-                  className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden hover:border-[var(--ink-soft)] transition-colors flex flex-col justify-between"
+                  className="group bg-white border border-[var(--surface)] p-3 flex flex-col justify-between hover:border-[var(--ink)] transition-colors"
                 >
-                  <div className="w-full aspect-[4/5] overflow-hidden bg-[var(--paper)]">
-                    <Photo
-                      src={item.image}
-                      alt={item.title}
-                      ratio="4/5"
-                      placeholderLabel={item.title}
-                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                    />
+                  <div className="w-full aspect-[4/5] overflow-hidden bg-[var(--surface)]">
+                    {item.image ? (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-xs text-[var(--muted)]">
+                        {item.title}
+                      </div>
+                    )}
                   </div>
 
-                  <div className="p-3.5 sm:p-4 space-y-2 border-t border-[var(--line)] bg-[var(--paper)] flex-1 flex flex-col justify-between">
+                  <div className="pt-3 mt-2 space-y-2 border-t border-[var(--surface)] flex-1 flex flex-col justify-between">
                     <div className="space-y-1">
-                      <h3 className="font-display font-medium text-sm sm:text-base text-[var(--ink)] line-clamp-1">
+                      <h3 className="font-sans font-medium text-sm text-[var(--ink)] line-clamp-1">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-[var(--ink-soft)] line-clamp-1">
+                      <p className="text-xs text-[var(--muted)] line-clamp-1">
                         {item.fabricDetails} · {item.ageOrSizeRange}
                       </p>
 
                       {price != null && (
                         <div className="pt-1">
                           <span className="font-medium text-sm text-[var(--ink)]">From ₹{price}</span>
-                          <span className="text-[10px] text-[var(--ink-soft)] block leading-tight">
+                          <span className="text-[10px] text-[var(--muted)] block leading-tight">
                             Final price confirmed on WhatsApp
                           </span>
                         </div>
@@ -185,7 +198,7 @@ export default function SubcategoryHero({
                       <button
                         type="button"
                         onClick={() => handleAddStyle(item.id)}
-                        className="w-full min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-[4px] bg-white border border-[var(--line)] text-xs font-medium text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--ivory)] active:scale-[0.98] transition-all cursor-pointer"
+                        className="w-full min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 bg-[var(--surface)] text-xs font-medium text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white active:scale-[0.98] transition-all cursor-pointer"
                         aria-label={`Add ${item.title} to list`}
                       >
                         <IconPlus size={16} />

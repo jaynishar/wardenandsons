@@ -1,65 +1,142 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
-import { Photo } from '@/components/ui/Photo';
-import ReplyPromise from '@/components/ReplyPromise';
-import { COPY_DECK } from '@/content/copy';
+import { Logo } from '@/components/Logo';
+import { Garment } from '@/components/Garment';
 import { BUSINESS_CONFIG } from '@/config/business';
+import type { GarmentName } from '@/components/Garment';
+import type { TileColor } from '@/data/specimens';
+
+interface HeroCategory {
+  slug: string;
+  label: string;
+  age: string;
+  garment: GarmentName;
+  color: TileColor;
+  href: string;
+}
+
+const HERO_CATEGORIES: HeroCategory[] = [
+  { slug: 'newborn', label: 'Newborn', age: '0–24M', garment: 'jhabla', color: 'yellow', href: '/shop/newborn/' },
+  { slug: 'boys', label: 'Boys', age: '0–16Y', garment: 'tshirt', color: 'blue', href: '/shop/boys/' },
+  { slug: 'girls', label: 'Girls', age: '0–16Y', garment: 'frock', color: 'red', href: '/shop/girls/' },
+  { slug: 'men', label: 'Men', age: 'S–XXL', garment: 'tshirt', color: 'ink', href: '/shop/men/' },
+  { slug: 'women', label: 'Women', age: 'S–XXL', garment: 'kaftan', color: 'red', href: '/shop/women/' },
+  { slug: 'uniforms', label: 'Uniforms & Bulk', age: 'Schools', garment: 'uniform', color: 'blue', href: '/bulk-orders/' },
+];
 
 export default function Hero() {
-  return (
-    <section className="py-6 sm:py-10 lg:py-14 border-b border-[var(--line)]">
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Mobile: Photo First (order-1 lg:order-2) */}
-          <div className="order-1 lg:order-2 lg:col-span-5">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              <Photo
-                src="/hero-editorial.webp"
-                alt="Children's cotton everyday clothing collection at Warden & Sons, Kemps Corner"
-                priority
-                ratio="4/5"
-                width={800}
-                height={1000}
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className="w-full border border-[var(--line)]"
-              />
-            </div>
-          </div>
+  const [activeSlug, setActiveSlug] = useState('newborn');
+  const active = HERO_CATEGORIES.find((c) => c.slug === activeSlug) || HERO_CATEGORIES[0];
 
-          {/* Mobile: Text Second (order-2 lg:order-1) */}
-          <div className="order-2 lg:order-1 lg:col-span-7 space-y-6 text-left">
+  const colorStyles: Record<TileColor, { bg: string; fg: string }> = {
+    red: { bg: 'bg-[var(--red)]', fg: 'text-white' },
+    blue: { bg: 'bg-[var(--blue)]', fg: 'text-white' },
+    yellow: { bg: 'bg-[var(--yellow)]', fg: 'text-[var(--ink)]' },
+    ink: { bg: 'bg-[var(--ink)]', fg: 'text-white' },
+  };
+
+  const { bg, fg } = colorStyles[active.color];
+
+  return (
+    <section className="pt-6 sm:pt-10 pb-8 sm:pb-12 border-b border-[var(--ink)]">
+      <Container>
+        {/* Top-left Big Logo (~70% mobile width, ~28% desktop width) */}
+        <div className="mb-6 sm:mb-8">
+          <Link href="/" aria-label="Warden & Sons Kids Wear Home" className="inline-block">
+            <Logo
+              variant="full"
+              height={52}
+              className="w-[70%] sm:w-[45%] md:w-[28%] max-w-[280px] h-auto object-contain"
+            />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Hero Copy & Actions */}
+          <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
-              <h1 className="font-display font-medium text-[var(--ink)] text-3xl sm:text-4xl lg:text-5xl leading-[1.15] tracking-tight">
+              <h1 className="font-sans font-medium text-[var(--ink)] text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight max-w-xl text-balance">
                 Kids Clothes in Kemps Corner, South Mumbai
               </h1>
-              <p className="font-display text-lg sm:text-xl text-[var(--ink-soft)] font-medium tracking-tight">
-                Breathable Cotton Comfort, Since 1994.
-              </p>
-              <p className="text-base text-[var(--ink-soft)] leading-relaxed max-w-xl">
-                {COPY_DECK.hero.sub}
+              <p className="text-base sm:text-lg text-[var(--muted)] leading-relaxed max-w-lg">
+                Breathable combed cotton basics, nightwear and uniforms. Pick items, send on WhatsApp.
               </p>
             </div>
 
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
-              <Button href="/shop/" variant="primary">
-                {COPY_DECK.hero.shop}
-              </Button>
-              <Button
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+              <Link
+                href="/shop/"
+                className="h-[52px] px-8 inline-flex items-center justify-center font-sans font-medium text-[15px] bg-[var(--ink)] text-white hover:bg-[var(--blue)] active:scale-[0.98] transition-all cursor-pointer focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+              >
+                Shop
+              </Link>
+              <a
                 href={BUSINESS_CONFIG.phone.whatsappUrl}
-                variant="secondary"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="whatsapp_click"
                 data-track-location="hero"
-                data-track-category="hero"
+                className="h-[52px] px-8 inline-flex items-center justify-center font-sans font-medium text-[15px] bg-white border-2 border-[var(--ink)] text-[var(--ink)] hover:bg-[var(--surface)] active:scale-[0.98] transition-all cursor-pointer focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
               >
-                {COPY_DECK.hero.chat}
-              </Button>
+                Chat on WhatsApp
+              </a>
             </div>
+          </div>
 
-            <ReplyPromise className="justify-start text-left" />
+          {/* Large Specimen Tile */}
+          <div className="lg:col-span-5">
+            <Link
+              href={active.href}
+              className="block group"
+              aria-label={`Explore ${active.label} collection`}
+            >
+              <div
+                className={`relative w-full aspect-[4/5] max-w-md mx-auto ${bg} ${fg} transition-colors duration-200 flex items-center justify-center p-8 sm:p-12 overflow-hidden shadow-none`}
+              >
+                <Garment
+                  name={active.garment}
+                  className={`w-full h-full max-h-[75%] transition-transform duration-300 group-hover:scale-105 ${fg}`}
+                  aria-label={active.label}
+                />
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs tracking-wide uppercase font-medium">
+                  <span>{active.label}</span>
+                  <span>{active.age}</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        {/* Category Picker directly below hero */}
+        <div className="mt-8 sm:mt-10 pt-6 border-t border-[var(--surface)]">
+          <div
+            className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none"
+            role="tablist"
+            aria-label="Category specimen picker"
+          >
+            {HERO_CATEGORIES.map((cat) => {
+              const isActive = cat.slug === activeSlug;
+              return (
+                <button
+                  key={cat.slug}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveSlug(cat.slug)}
+                  className={`px-4 py-2 text-sm font-sans whitespace-nowrap transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)] ${
+                    isActive
+                      ? 'bg-[var(--ink)] text-white font-medium'
+                      : 'bg-[var(--surface)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
           </div>
         </div>
       </Container>

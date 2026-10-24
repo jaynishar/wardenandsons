@@ -20,15 +20,19 @@ export default function Footer() {
   return (
     <footer
       aria-label="Site footer"
-      className="bg-[var(--surface)] text-[var(--ink)] font-body pb-[calc(4.5rem+var(--sab))] md:pb-12 pt-14"
+      className="bg-[var(--surface)] text-[var(--ink)] font-sans border-t-2 border-[var(--ink)] pb-[calc(4.5rem+var(--sab))] md:pb-12 pt-14"
     >
       <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Main Footer Row */}
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-10">
           {/* Brand & Store Address */}
           <div className="space-y-4 max-w-sm">
-            <Link href="/" className="inline-block focus-visible:outline-3 focus-visible:outline-[var(--blue)]">
-              <Logo height={48} />
+            <Link
+              href="/"
+              aria-label="Warden & Sons Kids Wear Home"
+              className="inline-block focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+            >
+              <Logo variant="full" height={56} className="w-auto h-12 sm:h-14 object-contain" />
             </Link>
 
             <p className="text-[14px] text-[var(--muted)] leading-relaxed">
@@ -138,7 +142,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Legal & Copyright Strip */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-[var(--muted)] pt-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-[var(--muted)] pt-8 border-t border-[var(--ink)]/10">
           <p>© {currentYear} Warden &amp; Sons Kids Wear. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/privacy-policy/" className="hover:text-[var(--ink)] hover:underline">

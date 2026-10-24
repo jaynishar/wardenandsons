@@ -3,248 +3,313 @@
 import React from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import { Marker, MarkerColor } from '@/components/ui/Marker';
-import { Photo } from '@/components/ui/Photo';
-import { useAgeStore } from '@/lib/age-store';
-import { Reveal } from '@/components/motion/Reveal';
+import Garment, { GarmentName } from '@/components/Garment';
+import { useAddToList } from '@/lib/list-store';
+import { IconPlus } from '@/components/icons';
+import type { TileColor } from '@/data/specimens';
+import { Specimen } from '@/components/Specimen';
 
-interface CategoryTileItem {
-  slug: string;
-  href: string;
+interface SubcategorySnapItem {
+  categorySlug: string;
+  subSlug: string;
   label: string;
-  ageLine: string;
-  photo: string;
-  markerColor: MarkerColor;
+  age: string;
+  garment: GarmentName;
+  color: TileColor;
+  photo?: string | null;
 }
 
-const KIDS_TILES: CategoryTileItem[] = [
+const FEATURED_SUBCATEGORIES: SubcategorySnapItem[] = [
   {
-    slug: 'newborn',
-    href: '/shop/newborn/',
-    label: 'Newborn',
-    ageLine: '0–24 months',
-    photo: '/categories/newborn.webp',
-    markerColor: 'red',
+    categorySlug: 'newborn',
+    subSlug: 'bodysuits-jhablas',
+    label: 'Cotton Jhablas',
+    age: '0–24M',
+    garment: 'jhabla',
+    color: 'yellow',
+    photo: '/products/nb-bodysuit.webp',
   },
   {
-    slug: 'boys',
-    href: '/shop/boys/',
-    label: 'Boys',
-    ageLine: '0–16 years',
-    photo: '/categories/boys.webp',
-    markerColor: 'blue',
+    categorySlug: 'newborn',
+    subSlug: 'swaddles-blankets',
+    label: 'Muslin Swaddles',
+    age: '0–12M',
+    garment: 'swaddle',
+    color: 'red',
+    photo: '/products/nb-swaddle.webp',
   },
   {
-    slug: 'girls',
-    href: '/shop/girls/',
-    label: 'Girls',
-    ageLine: '0–16 years',
-    photo: '/categories/girls.webp',
-    markerColor: 'yellow',
-  },
-];
-
-const ADULT_TILES: CategoryTileItem[] = [
-  {
-    slug: 'men',
-    href: '/shop/men/',
-    label: 'Men',
-    ageLine: 'Sizes S – XXL',
-    photo: '/categories/men.webp',
-    markerColor: 'red',
+    categorySlug: 'boys',
+    subSlug: 'shorts-joggers-cargos',
+    label: 'Cargo Shorts',
+    age: '0–16Y',
+    garment: 'shorts',
+    color: 'yellow',
+    photo: '/products/by-cargos.webp',
   },
   {
-    slug: 'women',
-    href: '/shop/women/',
-    label: 'Women',
-    ageLine: 'Sizes S – XXL',
-    photo: '/categories/women.webp',
-    markerColor: 'blue',
+    categorySlug: 'girls',
+    subSlug: 'dresses-frocks',
+    label: 'Cotton Frocks',
+    age: '0–16Y',
+    garment: 'frock',
+    color: 'red',
+    photo: '/products/gl-dress.webp',
+  },
+  {
+    categorySlug: 'boys',
+    subSlug: 'nightwear',
+    label: 'Nightwear Sets',
+    age: '0–16Y',
+    garment: 'nightsuit',
+    color: 'ink',
+    photo: '/products/by-nightsuit.webp',
+  },
+  {
+    categorySlug: 'bulk',
+    subSlug: 'school-uniforms',
+    label: 'School Uniforms',
+    age: 'All Sizes',
+    garment: 'uniform',
+    color: 'blue',
+    photo: '/products/bk-uniform.webp',
   },
 ];
 
 export default function CategoryTiles() {
-  const ageBand = useAgeStore((state) => state.ageBand);
-  const isOlderBand = Boolean(ageBand && ageBand !== 'newborn');
-
-  const newborn = KIDS_TILES[0];
-  const boys = KIDS_TILES[1];
-  const girls = KIDS_TILES[2];
-
-  const renderNewbornTile = () => (
-    <Reveal key="newborn" className="col-span-2 md:col-span-1 h-full">
-      <Link
-        href={newborn.href}
-        className="group w-full h-full bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden hover:border-[var(--ink-soft)] active:scale-[0.98] transition-all duration-[80ms] block"
-      >
-        <div className="flex flex-row md:flex-col items-center md:items-stretch">
-          <div className="w-32 sm:w-44 md:w-full shrink-0 aspect-[4/5] overflow-hidden bg-[var(--paper)]">
-            <Photo
-              src={newborn.photo}
-              alt={newborn.label}
-              ratio="4/5"
-              placeholderLabel={newborn.label}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="p-4 sm:p-5 flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <Marker color={newborn.markerColor} />
-              <span className="font-display font-medium text-lg sm:text-xl text-[var(--ink)]">
-                {newborn.label}
-              </span>
-            </div>
-            <p className="text-xs sm:text-sm text-[var(--ink-soft)]">
-              {newborn.ageLine}
-            </p>
-          </div>
-        </div>
-      </Link>
-    </Reveal>
-  );
-
-  const renderBoysTile = () => (
-    <Reveal key="boys" className="col-span-1 h-full">
-      <Link
-        href={boys.href}
-        className="group w-full h-full bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden hover:border-[var(--ink-soft)] active:scale-[0.98] transition-all duration-[80ms] flex flex-col"
-      >
-        <div className="w-full aspect-[4/5] overflow-hidden bg-[var(--paper)]">
-          <Photo
-            src={boys.photo}
-            alt={boys.label}
-            ratio="4/5"
-            placeholderLabel={boys.label}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="p-3 sm:p-5 flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <Marker color={boys.markerColor} />
-            <span className="font-display font-medium text-base sm:text-xl text-[var(--ink)]">
-              {boys.label}
-            </span>
-          </div>
-          <p className="text-xs sm:text-sm text-[var(--ink-soft)]">
-            {boys.ageLine}
-          </p>
-        </div>
-      </Link>
-    </Reveal>
-  );
-
-  const renderGirlsTile = () => (
-    <Reveal key="girls" className="col-span-1 h-full">
-      <Link
-        href={girls.href}
-        className="group w-full h-full bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden hover:border-[var(--ink-soft)] active:scale-[0.98] transition-all duration-[80ms] flex flex-col"
-      >
-        <div className="w-full aspect-[4/5] overflow-hidden bg-[var(--paper)]">
-          <Photo
-            src={girls.photo}
-            alt={girls.label}
-            ratio="4/5"
-            placeholderLabel={girls.label}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="p-3 sm:p-5 flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <Marker color={girls.markerColor} />
-            <span className="font-display font-medium text-base sm:text-xl text-[var(--ink)]">
-              {girls.label}
-            </span>
-          </div>
-          <p className="text-xs sm:text-sm text-[var(--ink-soft)]">
-            {girls.ageLine}
-          </p>
-        </div>
-      </Link>
-    </Reveal>
-  );
+  const { openAddSheet } = useAddToList();
 
   return (
-    <section className="py-10 sm:py-14 border-b border-[var(--line)]">
+    <section className="py-12 sm:py-16 border-b border-[var(--ink)]">
       <Container>
-        <div className="space-y-6 sm:space-y-8">
-          {/* Small Heading */}
-          <div className="border-b border-[var(--line)] pb-3">
-            <h2 className="font-display text-xs uppercase tracking-widest text-[var(--ink-soft)] font-medium">
-              Shop by category
-            </h2>
+        {/* Section Heading */}
+        <div className="flex items-baseline justify-between mb-8 sm:mb-10">
+          <h2 className="font-sans font-medium text-2xl sm:text-3xl text-[var(--ink)] tracking-tight">
+            Shop by category
+          </h2>
+          <Link
+            href="/shop/"
+            className="text-sm font-sans font-medium text-[var(--blue)] hover:underline underline-offset-4"
+          >
+            View all &rarr;
+          </Link>
+        </div>
+
+        {/* Category Hierarchy Grid: Kids double, Adults smaller, Uniforms wide band */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
+          {/* Newborn - Double Size */}
+          <Link
+            href="/shop/newborn/"
+            className="col-span-2 row-span-2 group block bg-[var(--yellow)] text-[var(--ink)] p-6 sm:p-8 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+          >
+            <div className="h-full flex flex-col justify-between min-h-[300px] sm:min-h-[380px]">
+              <div>
+                <span className="text-xs font-semibold tracking-wider uppercase opacity-75">
+                  0–24 Months
+                </span>
+                <h3 className="font-sans font-medium text-2xl sm:text-4xl mt-1">
+                  Newborn
+                </h3>
+              </div>
+              <div className="w-full flex-1 flex items-center justify-center py-6">
+                <Garment
+                  name="jhabla"
+                  className="w-full h-full max-h-[220px] object-contain transition-transform duration-300 group-hover:scale-105 text-[var(--ink)]"
+                  aria-label="Newborn Jhabla"
+                />
+              </div>
+              <div className="text-xs font-medium tracking-wide flex items-center justify-between">
+                <span>Combed cotton essentials</span>
+                <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
+              </div>
+            </div>
+          </Link>
+
+          {/* Boys */}
+          <Link
+            href="/shop/boys/"
+            className="col-span-1 group block bg-[var(--blue)] text-white p-5 sm:p-6 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+          >
+            <div className="h-full flex flex-col justify-between min-h-[170px] sm:min-h-[200px]">
+              <div>
+                <span className="text-[11px] font-semibold tracking-wider uppercase opacity-80">
+                  0–16 Years
+                </span>
+                <h3 className="font-sans font-medium text-xl sm:text-2xl mt-0.5">Boys</h3>
+              </div>
+              <div className="w-full flex-1 flex items-center justify-center py-2">
+                <Garment
+                  name="tshirt"
+                  className="w-full h-full max-h-[90px] object-contain transition-transform duration-300 group-hover:scale-105 text-white"
+                  aria-label="Boys T-Shirt"
+                />
+              </div>
+              <span className="text-xs opacity-90">&rarr;</span>
+            </div>
+          </Link>
+
+          {/* Girls */}
+          <Link
+            href="/shop/girls/"
+            className="col-span-1 group block bg-[var(--red)] text-white p-5 sm:p-6 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+          >
+            <div className="h-full flex flex-col justify-between min-h-[170px] sm:min-h-[200px]">
+              <div>
+                <span className="text-[11px] font-semibold tracking-wider uppercase opacity-80">
+                  0–16 Years
+                </span>
+                <h3 className="font-sans font-medium text-xl sm:text-2xl mt-0.5">Girls</h3>
+              </div>
+              <div className="w-full flex-1 flex items-center justify-center py-2">
+                <Garment
+                  name="frock"
+                  className="w-full h-full max-h-[90px] object-contain transition-transform duration-300 group-hover:scale-105 text-white"
+                  aria-label="Girls Frock"
+                />
+              </div>
+              <span className="text-xs opacity-90">&rarr;</span>
+            </div>
+          </Link>
+
+          {/* Men - Smaller */}
+          <Link
+            href="/shop/men/"
+            className="col-span-1 group block bg-[var(--ink)] text-white p-5 sm:p-6 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+          >
+            <div className="h-full flex flex-col justify-between min-h-[150px] sm:min-h-[170px]">
+              <div>
+                <span className="text-[11px] font-semibold tracking-wider uppercase opacity-75">
+                  Sizes S–XXL
+                </span>
+                <h3 className="font-sans font-medium text-lg sm:text-xl mt-0.5">Men</h3>
+              </div>
+              <div className="w-full flex-1 flex items-center justify-center py-1">
+                <Garment
+                  name="tshirt"
+                  className="w-full h-full max-h-[75px] object-contain transition-transform duration-300 group-hover:scale-105 text-white"
+                  aria-label="Men Cotton Basics"
+                />
+              </div>
+              <span className="text-xs opacity-90">&rarr;</span>
+            </div>
+          </Link>
+
+          {/* Women - Smaller */}
+          <Link
+            href="/shop/women/"
+            className="col-span-1 group block bg-[var(--red)] text-white p-5 sm:p-6 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+          >
+            <div className="h-full flex flex-col justify-between min-h-[150px] sm:min-h-[170px]">
+              <div>
+                <span className="text-[11px] font-semibold tracking-wider uppercase opacity-75">
+                  Sizes S–XXL
+                </span>
+                <h3 className="font-sans font-medium text-lg sm:text-xl mt-0.5">Women</h3>
+              </div>
+              <div className="w-full flex-1 flex items-center justify-center py-1">
+                <Garment
+                  name="kaftan"
+                  className="w-full h-full max-h-[75px] object-contain transition-transform duration-300 group-hover:scale-105 text-white"
+                  aria-label="Women Kaftan"
+                />
+              </div>
+              <span className="text-xs opacity-90">&rarr;</span>
+            </div>
+          </Link>
+
+          {/* Uniforms & Bulk - Wide Band */}
+          <Link
+            href="/bulk-orders/"
+            className="col-span-2 md:col-span-4 group block bg-[var(--blue)] text-white p-6 sm:p-8 relative overflow-hidden transition-all focus-visible:outline-3 focus-visible:outline-[var(--blue)]"
+          >
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <span className="text-xs font-semibold tracking-wider uppercase opacity-80">
+                  Custom Orders
+                </span>
+                <h3 className="font-sans font-medium text-xl sm:text-2xl">
+                  School Uniforms & Bulk Orders
+                </h3>
+                <p className="text-sm opacity-90 max-w-xl">
+                  Serving Cathedral, Bombay Scottish, St. Mary’s and sports teams across South Mumbai.
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <Garment
+                  name="uniform"
+                  className="w-16 h-20 object-contain text-white"
+                  aria-label="School Uniform"
+                />
+                <span className="h-[44px] px-6 inline-flex items-center justify-center font-sans font-medium text-sm bg-white text-[var(--ink)] group-hover:bg-[var(--ink)] group-hover:text-white transition-colors">
+                  Inquire
+                </span>
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        {/* Native drag row (scroll-snap) of subcategories */}
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+              Popular essentials
+            </h3>
+            <span className="text-xs text-[var(--muted)] hidden sm:inline">
+              Swipe to explore &rarr;
+            </span>
           </div>
 
-          {/* Kids Tiles: Large (Mobile: Newborn wide, Boys & Girls side by side; Desktop: 3 in one row) */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
-            {isOlderBand ? (
-              <>
-                {renderBoysTile()}
-                {renderGirlsTile()}
-                {renderNewbornTile()}
-              </>
-            ) : (
-              <>
-                {renderNewbornTile()}
-                {renderBoysTile()}
-                {renderGirlsTile()}
-              </>
-            )}
-          </div>
-
-          {/* Adult Tiles: Smaller, text-led, secondary (Side by side on mobile & desktop) */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-3xl mx-auto">
-            {ADULT_TILES.map((cat) => (
-              <Reveal key={cat.slug} className="h-full">
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none">
+            {FEATURED_SUBCATEGORIES.map((sub) => (
+              <div
+                key={`${sub.categorySlug}-${sub.subSlug}`}
+                className="w-[200px] sm:w-[230px] shrink-0 snap-start bg-white border border-[var(--surface)] p-3 flex flex-col justify-between"
+              >
                 <Link
-                  href={cat.href}
-                  className="group w-full h-full bg-[var(--paper)] border border-[var(--line)] rounded-[6px] p-3 sm:p-4 flex items-center gap-3 sm:gap-4 hover:border-[var(--ink-soft)] active:scale-[0.98] transition-all duration-[80ms]"
+                  href={`/shop/${sub.categorySlug}/${sub.subSlug}/`}
+                  className="block group"
                 >
-                  <div className="w-12 sm:w-16 aspect-[4/5] rounded-[4px] overflow-hidden shrink-0 bg-[var(--paper)]">
-                    <Photo
-                      src={cat.photo}
-                      alt={cat.label}
-                      ratio="4/5"
-                      placeholderLabel={cat.label}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1.5 mb-0.5">
-                      <Marker color={cat.markerColor} />
-                      <span className="font-display font-medium text-sm sm:text-base text-[var(--ink)] truncate">
-                        {cat.label}
-                      </span>
-                    </div>
-                    <p className="text-xs text-[var(--ink-soft)]">{cat.ageLine}</p>
+                  <Specimen
+                    category={sub.categorySlug}
+                    sub={sub.subSlug}
+                    garment={sub.garment}
+                    color={sub.color}
+                    photo={sub.photo}
+                    label={sub.label}
+                    ageRange={sub.age}
+                    aspect="4:5"
+                    showCaption={false}
+                  />
+                  <div className="pt-2">
+                    <h4 className="font-sans font-medium text-sm text-[var(--ink)] truncate group-hover:text-[var(--blue)]">
+                      {sub.label}
+                    </h4>
+                    <p className="text-xs text-[var(--muted)]">{sub.age}</p>
                   </div>
                 </Link>
-              </Reveal>
-            ))}
-          </div>
 
-          {/* Uniforms & Bulk: Wide band under them */}
-          <div>
-            <Reveal className="w-full">
-              <Link
-                href="/bulk-orders/"
-                className="group w-full bg-[var(--paper)] border border-[var(--line)] rounded-[6px] p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-[var(--ink-soft)] active:scale-[0.98] transition-all duration-[80ms] block"
-              >
-                <div className="flex items-center gap-3">
-                  <Marker color="yellow" />
-                  <div>
-                    <span className="font-display font-medium text-base sm:text-lg text-[var(--ink)] block">
-                      Uniforms &amp; Bulk
-                    </span>
-                    <p className="text-xs sm:text-sm text-[var(--ink-soft)]">
-                      Custom school uniforms &amp; institutional bulk orders
-                    </p>
-                  </div>
+                <div className="pt-3 mt-2 border-t border-[var(--surface)] flex items-center justify-between">
+                  <Link
+                    href={`/shop/${sub.categorySlug}/${sub.subSlug}/`}
+                    className="text-xs font-medium text-[var(--ink)] hover:underline"
+                  >
+                    Details
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      openAddSheet({ categorySlug: sub.categorySlug, subSlug: sub.subSlug });
+                    }}
+                    className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center bg-[var(--surface)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--blue)]"
+                    aria-label={`Add ${sub.label} to list`}
+                  >
+                    <IconPlus size={16} />
+                  </button>
                 </div>
-                <span className="text-xs uppercase tracking-wider text-[var(--ink)] font-medium underline underline-offset-4 self-start sm:self-center">
-                  Enquire for schools &amp; bulk &rarr;
-                </span>
-              </Link>
-            </Reveal>
+              </div>
+            ))}
           </div>
         </div>
       </Container>
