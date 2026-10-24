@@ -19,7 +19,8 @@
     "audit:contrast": "node scripts/check-contrast.mjs",
     "test:e2e": "playwright test",
     "lighthouse": "lighthouse http://localhost:3000 --view",
-    "check": "npm run lint && npm run typecheck && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run build",
+    "serve:out": "node scripts/serve-out.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
