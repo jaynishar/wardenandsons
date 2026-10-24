@@ -192,7 +192,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'bodysuits-jhablas',
     label: 'Bodysuits & Jhablas',
     seoDescription:
-      'Pure combed cotton jhablas, wrap vests, and snap-bottom infant bodysuits for sensitive newborn skin.',
+      'Pure combed cotton jhablas, wrap vests, and snap infant bodysuits for newborns 0-24M. Enquire on WhatsApp for live photos from our Kemps Corner store.',
     searchTerms: [
       'jhabla',
       'jabla',
@@ -217,7 +217,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'rompers-sleepsuits',
     label: 'Rompers & Sleepsuits',
     seoDescription:
-      'Breathable muslin daytime rompers and two-way zipper sleepsuits for 0 to 24 month babies.',
+      'Breathable muslin daytime rompers and two-way zipper sleepsuits for babies 0-24M. Enquire on WhatsApp for live photos from our Kemps Corner store desk.',
     searchTerms: [
       'romper',
       'rompers',
@@ -241,7 +241,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'swaddles-blankets',
     label: 'Swaddles & Blankets',
     seoDescription:
-      'Generous open-weave double-gauze muslin swaddles and soft cotton receiving blankets.',
+      'Double-gauze breathable muslin swaddles and soft cotton receiving blankets for babies. Enquire on WhatsApp for live photos from our Kemps Corner store.',
     searchTerms: [
       'swaddle',
       'swaddles',
@@ -265,7 +265,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'bath-towels',
     label: 'Bath & Towels',
     seoDescription:
-      'Plush combed cotton hooded baby bath towels and ultra-soft face washcloth sets.',
+      'Plush combed cotton hooded baby bath towels and gentle face washcloth sets for infants. Enquire on WhatsApp for live photos from our Kemps Corner shop.',
     searchTerms: [
       'bath towel',
       'baby towel',
@@ -287,7 +287,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'caps-mittens-booties',
     label: 'Caps, Mittens & Booties',
     seoDescription:
-      'Soft scratch-prevention mittens, ribbed newborn knot caps, booties, and bandana bibs.',
+      'Soft scratch-prevention mittens, ribbed newborn knot caps, booties, and bandana bibs. Enquire on WhatsApp for live photos from our Kemps Corner boutique.',
     searchTerms: [
       'cap',
       'caps',
@@ -316,7 +316,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 't-shirts-shirts',
     label: 'T-shirts & Shirts',
     seoDescription:
-      'Heavy-duty combed cotton daily tees, polo collars, and casual woven cotton shirts for boys.',
+      'Heavy-duty combed cotton daily tees, polo collars, and casual woven shirts for boys 0-16Y. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       't-shirt',
       't shirt',
@@ -341,7 +341,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'shorts-joggers-cargos',
     label: 'Shorts, Joggers & Cargos',
     seoDescription:
-      'Reinforced cotton twill cargo shorts, durable play joggers, and drawstring casual shorts.',
+      'Reinforced cotton twill cargo shorts, durable play joggers, and drawstring casual shorts for boys. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       'shorts',
       'short',
@@ -366,7 +366,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'jeans-trousers',
     label: 'Jeans & Trousers',
     seoDescription:
-      'Comfort-stretch denim jeans, soft cotton chinos, and smart trousers with adjustable waistbands.',
+      'Comfort-stretch denim jeans, soft cotton chinos, and smart trousers for boys 0-16 years. Enquire on WhatsApp for flat tape sizing from Kemps Corner.',
     searchTerms: [
       'jeans',
       'denim',
@@ -387,7 +387,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'nightwear',
     label: 'Nightwear',
     seoDescription:
-      'Two-piece combed hosiery cotton nightsuits, lounge shorts, and breathable sleep pants.',
+      'Two-piece combed hosiery cotton nightsuits, lounge shorts, and breathable sleep pants for boys. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       'nightsuit',
       'night suit',
@@ -410,7 +410,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'sportswear-cricket-whites',
     label: 'Sportswear & Cricket Whites',
     seoDescription:
-      'Dryfit active sports coordinates and school academy match cricket whites (polo and pants).',
+      'Dryfit sports coordinates and school academy match cricket whites for boys 0-16 years. Enquire on WhatsApp for flat measurements from Kemps Corner.',
     searchTerms: [
       'cricket whites',
       'cricket uniform',
@@ -434,7 +434,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'hoodies-jackets',
     label: 'Hoodies & Jackets',
     seoDescription:
-      'Lightweight French terry zipper hoodies, denim overshirts, and windbreakers for travel.',
+      'Lightweight French terry zipper hoodies, denim overshirts, and travel jackets for boys 0-16Y. Enquire on WhatsApp for measurements from Kemps Corner.',
     searchTerms: [
       'hoodie',
       'hoodies',
@@ -457,7 +457,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'thermals-innerwear-socks',
     label: 'Thermals, Innerwear & Socks',
     seoDescription:
-      'Tagless pure cotton briefs, vests, winter thermals, and cushioned cotton sports socks.',
+      'Tagless pure cotton briefs, ribbed vests, winter thermals, and cushioned sports socks for boys. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       'thermal',
       'thermals',
@@ -484,7 +484,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'swimwear',
     label: 'Swimwear',
     seoDescription:
-      'Chlorine-resistant boys swim shorts, rash guards, and UV protective swimming kits.',
+      'Chlorine-resistant boys swim shorts, rash guards, and UV protective swimming sets for 0-16Y. Enquire on WhatsApp for live sizes from Kemps Corner.',
     searchTerms: [
       'swimwear',
       'swim suit',
@@ -506,7 +506,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'dresses-frocks',
     label: 'Dresses & Frocks',
     seoDescription:
-      'Breezy cotton cambric frocks, pure muslin summer dresses, and lined party wear frocks.',
+      'Breezy cotton cambric frocks, pure muslin summer dresses, and lined party frocks for girls 0-16Y. Enquire on WhatsApp for live photos from Kemps Corner.',
     searchTerms: [
       'dress',
       'dresses',
@@ -528,7 +528,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'tops',
     label: 'Tops',
     seoDescription:
-      'Frilled cotton voile tops, casual tunics, and comfortable daily knit t-shirts for girls.',
+      'Frilled cotton voile tops, casual tunics, and comfortable daily knit t-shirts for girls 0-16Y. Enquire on WhatsApp for measurements from Kemps Corner.',
     searchTerms: [
       'top',
       'tops',
@@ -550,7 +550,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'leggings-tights',
     label: 'Leggings & Tights',
     seoDescription:
-      'Four-way stretch cotton lycra ankle leggings, cycling shorts, and daily slip shorts.',
+      'Four-way stretch cotton lycra ankle leggings, cycling shorts, and daily slip shorts for girls. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       'legging',
       'leggings',
@@ -571,7 +571,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'nightwear',
     label: 'Nightwear',
     seoDescription:
-      'Notched-collar buttoned pajama sets, soft hosiery nightsuits, and sleep dresses.',
+      'Notched-collar buttoned pajama sets, soft hosiery nightsuits, and sleep dresses for girls 0-16Y. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       'nightsuit',
       'night suit',
@@ -595,7 +595,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'hoodies-jackets',
     label: 'Hoodies & Jackets',
     seoDescription:
-      'Soft pre-washed denim shackets, cotton cardigans, and lightweight travel hoodies.',
+      'Soft pre-washed denim shackets, cotton cardigans, and lightweight travel hoodies for girls 0-16Y. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       'hoodie',
       'hoodies',
@@ -617,7 +617,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'innerwear-socks',
     label: 'Innerwear & Socks',
     seoDescription:
-      'Soft cotton camisoles, bloomers, seamless slips, frill socks, and daily ankle socks.',
+      'Soft cotton camisoles, bloomers, seamless slips, frill socks, and daily ankle socks for girls. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       'innerwear',
       'panties',
@@ -639,7 +639,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'sportswear',
     label: 'Sportswear',
     seoDescription:
-      'Breathable dryfit active sports sets, track pants, and comfortable cycling shorts.',
+      'Breathable dryfit active sports sets, track pants, and comfortable cycling shorts for girls 0-16Y. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       'sportswear',
       'sports set',
@@ -658,7 +658,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'swimwear',
     label: 'Swimwear',
     seoDescription:
-      'UV protective swimming frocks, one-piece swimsuits, and rash guard swimwear sets.',
+      'UV protective swimming frocks, one-piece swimsuits, and rash guard swimwear sets for girls 0-16Y. Enquire on WhatsApp for sizes from Kemps Corner.',
     searchTerms: [
       'swimwear',
       'swimsuit',
@@ -680,7 +680,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'innerwear',
     label: 'Innerwear',
     seoDescription:
-      'Combed cotton tagless vests, classic briefs, and comfortable woven cotton boxers.',
+      'Combed cotton tagless vests, classic briefs, and comfortable woven cotton boxers in sizes S-XXL. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       'innerwear',
       'vest',
@@ -702,7 +702,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 't-shirts',
     label: 'T-shirts',
     seoDescription:
-      'Heavyweight 200 GSM combed cotton crew-neck tees and everyday plain solid t-shirts.',
+      'Heavyweight 200 GSM combed cotton crew-neck tees and everyday plain solid t-shirts in sizes S-XXL. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       't-shirt',
       't shirt',
@@ -723,7 +723,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'shorts-track-pants',
     label: 'Shorts & Track Pants',
     seoDescription:
-      'Double-knit cotton lounge shorts, interlock track pants, and breathable home trousers.',
+      'Double-knit cotton lounge shorts, interlock track pants, and breathable home trousers in sizes S-XXL. Enquire on WhatsApp for tape sizing from store.',
     searchTerms: [
       'shorts',
       'lounge shorts',
@@ -746,7 +746,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'gym-wear',
     label: 'Gym Wear',
     seoDescription:
-      'Moisture-wicking dryfit t-shirts, workout shorts, and flexible gym training apparel.',
+      'Moisture-wicking dryfit t-shirts, workout shorts, and flexible gym training apparel in sizes S-XXL. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       'gym wear',
       'active wear',
@@ -764,7 +764,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'thermals',
     label: 'Thermals',
     seoDescription:
-      'Warm ribbed cotton-rich thermal tops, long johns, and winter base layers.',
+      'Warm ribbed cotton-rich thermal tops, long johns, and winter base layers in adult sizes S to XXL. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       'thermal',
       'thermals',
@@ -782,7 +782,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'socks-handkerchiefs',
     label: 'Socks & Handkerchiefs',
     seoDescription:
-      'Fine woven cotton handkerchiefs, business socks, and cushioned sports ankle socks.',
+      'Fine woven cotton handkerchiefs, formal dress socks, and cushioned sports ankle socks for men. Enquire on WhatsApp for live stock from Kemps Corner.',
     searchTerms: [
       'socks',
       'cotton socks',
@@ -806,7 +806,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'nightsuits',
     label: 'Nightsuits',
     seoDescription:
-      'Pure double-gauze muslin notched-collar pajama sets and soft cotton sleep shirts.',
+      'Double-gauze muslin buttoned pajama sets, notched-collar nightsuits, and sleep shirts for women. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       'nightsuit',
       'night suit',
@@ -828,7 +828,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'leggings-tights',
     label: 'Leggings & Tights',
     seoDescription:
-      'Opaque four-way stretch cotton lycra churidars, ankle leggings, and comfort tights.',
+      'Four-way stretch cotton ankle-length leggings, daily churidars, and slip shorts in sizes S to XXL. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       'legging',
       'leggings',
@@ -848,7 +848,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     label: 'Tops & Kaftans',
     ageOptions: ['S', 'M', 'L', 'XL', 'XXL', 'Free size'],
     seoDescription:
-      'Airy cotton slub lounge tops, relaxed summer kaftans, and tunic tops for women.',
+      'Airy cotton muslin kaftans, casual summer tunics, and comfortable daily tops in sizes S to XXL. Enquire on WhatsApp for tape sizing from Kemps Corner.',
     searchTerms: [
       'kaftan',
       'kaftans',
@@ -868,7 +868,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 't-shirts',
     label: 'T-shirts',
     seoDescription:
-      'Breathable combed cotton crew-neck tees, solid casual tops, and daily wear t-shirts.',
+      'Soft combed cotton crewneck t-shirts, relaxed daily casual tees, and lounge tops in sizes S to XXL. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       't-shirt',
       't shirt',
@@ -886,7 +886,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'gym-wear',
     label: 'Gym Wear',
     seoDescription:
-      'Flexible yoga pants, cycling shorts, dryfit sports tops, and workout basics.',
+      'Flexible yoga pants, cycling shorts, dryfit sports tops, and workout basics in adult sizes S to XXL. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       'gym wear',
       'active wear',
@@ -903,7 +903,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'innerwear',
     label: 'Innerwear',
     seoDescription:
-      'Anti-chafing slip shorts, breathable cotton camisoles, slips, and everyday inner basics.',
+      'Anti-chafing slip shorts, breathable cotton camisoles, slips, and everyday inner basics in S-XXL. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       'innerwear',
       'slip',
@@ -921,7 +921,7 @@ export const SUBCATEGORIES: Subcategory[] = [
     slug: 'socks-thermals',
     label: 'Socks & Thermals',
     seoDescription:
-      'Cotton everyday ankle socks, winter thermals, and soft thermal leggings.',
+      'Soft cotton everyday ankle socks, winter thermal tops, and thermal leggings in adult sizes S to XXL. Enquire on WhatsApp for sizing from Kemps Corner.',
     searchTerms: [
       'socks',
       'cotton socks',

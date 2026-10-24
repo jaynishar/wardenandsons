@@ -158,4 +158,18 @@ describe('Catalogue Data Model (Step R3)', () => {
     expect(params).toContainEqual({ category: 'boys', sub: 'sportswear-cricket-whites' });
     expect(params).toContainEqual({ category: 'women', sub: 'tops-kaftans' });
   });
+
+  it('checks seoDescription length (140-155 chars) and title format (<= 60 chars) for each subcategory', () => {
+    for (const sub of allSubcategories()) {
+      const category = getCategory(sub.categorySlug);
+      const title = `${sub.label} for ${category?.label} | Warden & Sons`;
+      expect(title.length).toBeLessThanOrEqual(60);
+
+      const descLen = sub.seoDescription.length;
+      expect(
+        descLen >= 140 && descLen <= 155,
+        `Subcategory ${sub.categorySlug}/${sub.slug} seoDescription length is ${descLen} (expected 140-155). Text: "${sub.seoDescription}"`
+      ).toBe(true);
+    }
+  });
 });

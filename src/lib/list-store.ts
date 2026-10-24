@@ -25,6 +25,7 @@ export interface AddSheetTarget {
   categorySlug: string;
   subSlug: string;
   styleId?: string;
+  age?: string;
 }
 
 interface ListState {

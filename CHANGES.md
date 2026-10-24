@@ -552,3 +552,47 @@ Automated audit scripts executed against static build `out/`:
   - Lighthouse mobile audit on `/`: **Performance 96** (was 57 in R0, +39 pts), **Accessibility 99** (was 96), **SEO 100**, **LCP 2.8s** (was 8.7s, -5.9s), **CLS 0**, **TBT 50ms** (was 280ms, -230ms).
   - Screenshots captured and verified at 360x640, 390x844, 768x1024, and 1280x800 in `docs/redesign/shots/r5-home-*.png`.
 
+---
+
+## Step R6: Category and Sub-Category Pages
+- **Scope**: `src/app/shop/`, `src/app/shop/[category]/`, `src/app/shop/[category]/[sub]/`, `SubcategoryTile.tsx`, `SubcategoryHero.tsx`, `sitemap.ts`, and catalogue data.
+- **Hub Page (`/shop/`)**:
+  - Structured into clear groups: "Kids" (Newborn, Boys, Girls) and "Family" (Men, Women), followed by the Uniforms & Bulk wide band linking to `/bulk-orders/`.
+  - Preserved original title (`Kids & Family Clothing Shop in Mumbai | Warden & Sons`), description, canonical URL, and H1 (`Shop Cotton Clothing & Basics`).
+- **Category Pages (`/shop/<category>/`)**:
+  - Preserved existing URLs for `newborn`, `boys`, `girls`, `men`, and `women` with all SEO titles, descriptions, canonicals, and H1s intact.
+  - Rendered visible semantic breadcrumb (`Home > Shop > <Category>`), H1, subtitle (<=20 words), and age line.
+  - Sub-category tile grid (2 cols mobile, 3 cols tablet, 4 cols desktop):
+    - Photo in 4:5 aspect ratio with fallback placeholder.
+    - Category marker square accent, label linking to `/shop/<category>/<sub>/`.
+    - Min 44px touch target `+` button triggering `openAddSheet({ categorySlug, subSlug })`.
+  - Assistance row below the grid: tracked `"Can't see what you're looking for? Ask us on WhatsApp"` and links to sibling/related departments.
+  - Long SEO text (fabric details, age sizing, tape measurement assistance) preserved in `<details>` accordions with verbatim text, collapsed by default for uncluttered UX while remaining 100% indexed in HTML.
+- **Sub-Category Pages (`/shop/<category>/<sub>/`)**:
+  - Implemented dynamic App Router route with `dynamicParams = false` and `generateStaticParams` covering all 34 catalogue subcategories.
+  - Breadcrumbs (`Home > Shop > <Category> > <Subcategory>`), H1 (`<Sub label> for <Category label>`), and concise subtitle.
+  - Title format: `<Sub label> for <Category label> | Warden & Sons` (<= 60 characters).
+  - Authored unique 140–155 character `seoDescription` for every subcategory based on factual catalogue specifications.
+  - `SubcategoryHero.tsx`:
+    - Large 4:5 photograph.
+    - Interactive age selector chips: selecting an age preselects it immediately in the `AddSheet`.
+    - Primary `"Add to list"` action button.
+    - "Featured styles" cards for mapped authentic garments with photo, name, age range, `+` button, and conditional `"From ₹X"` (with "Final price confirmed on WhatsApp" disclaimer).
+  - Sibling navigation row: `"More in <Category>"` and WhatsApp consultation banner.
+  - Structured Data: `BreadcrumbList` schema only in JSON-LD.
+  - Readiness handling: ready subcategories indexed with `sitemap.xml` entries; unready subcategories served with `robots: { index: false, follow: true }` and excluded from sitemap.
+- **Code Clean-up**:
+  - Deleted legacy `ShopCatalog.tsx` and legacy category filters/sorting.
+  - Preserved per-product addition solely through the accessible `AddSheet`.
+- **Verification Results**:
+  - Static export build: 73/73 pages compiled successfully.
+  - Link check (`scripts/crawl-audit.mjs`): 67 HTML pages, 1,984 internal links, and 262 images checked with **0 broken links (zero 404s)**, 0 missing images, and 0 canonical violations.
+  - Shop audit table (`scripts/audit-shop-pages.mjs`): All 40 shop routes passed with 100% compliance across title lengths (<=60 chars), description lengths (140-155 chars on subcategories), exactly 1 H1 per page, matching canonicals, matching `og:url` with trailing slashes, and correct robots/sitemap status.
+  - Functional tests: Verified tile `+` button opens `AddSheet`; verified subcategory age chip preselection and list addition.
+  - Screenshots captured at 390x844 and 1280x800:
+    - `docs/redesign/shots/r6-category-390x844.png`
+    - `docs/redesign/shots/r6-category-1280x800.png`
+    - `docs/redesign/shots/r6-subcategory-390x844.png`
+    - `docs/redesign/shots/r6-subcategory-1280x800.png`
+
+

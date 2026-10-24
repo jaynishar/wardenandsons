@@ -54,7 +54,20 @@
   - First-load JS on `/` dropped to **106 kB** (36.5% reduction from 167 kB R0 baseline).
   - Mobile Lighthouse audit on `/`: **Performance 96** (+39 pts vs R0 57), **Accessibility 99** (+3 pts vs 96), **SEO 100**, **LCP 2.8s** (-5.9s vs 8.7s), **CLS 0**, **TBT 50ms** (-230ms vs 280ms).
   - Saved screenshots at 360x640, 390x844, 768x1024, and 1280x800 in `docs/redesign/shots/r5-home-*.png`.
-- [ ] **R6: Shop category & sub-category pages**
+- [x] **R6: Shop category & sub-category pages**
+  - Built `/shop/` (hub) with editorial category tiles grouped into "Kids" then "Family" plus Uniforms & Bulk band. Preserved original title, description, canonical, and H1.
+  - Rewrote `/shop/<category>/` pages (`newborn`, `boys`, `girls`, `men`, `women`) preserving all original titles, descriptions, canonicals, H1s, and long SEO body text inside `<details>` accordions collapsed by default with verbatim wording.
+  - Added responsive sub-category tile grid (`SubcategoryTile.tsx`: 2 cols mobile, 3 tablet, 4 desktop) with 4:5 photos, placeholder fallback, label link, and 44px touch target `+` button calling `openAddSheet({ categorySlug, subSlug })`.
+  - Added WhatsApp assistance row and related category links below category grids.
+  - Created dynamic sub-category route `src/app/shop/[category]/[sub]/page.tsx` with `generateStaticParams` for all 34 subcategories, `dynamicParams = false`, and `BreadcrumbList` JSON-LD.
+  - Authored unique 140–155 character SEO descriptions for all 34 subcategories; verified titles <= 60 characters with trailing slash canonicals and OG metadata.
+  - Implemented `SubcategoryHero.tsx` with large 4:5 photo, interactive age selection chips (preselecting age into `AddSheet`), primary "Add to list" button, and featured styles cards with "+" button and conditional "From ₹X" (with "Final price confirmed on WhatsApp" disclaimer).
+  - Configured readiness logic: ready pages included in `sitemap.xml` with lastmod; unready pages served with `robots: { index: false, follow: true }` and omitted from sitemap.
+  - Deleted legacy `ShopCatalog.tsx` and legacy category filters/sorting (zero dead code).
+  - Link check (`scripts/crawl-audit.mjs`) verified 67 HTML pages, 1,984 internal links, and 262 images with **0 broken links (zero 404s)**, 0 missing images, and 0 canonical violations.
+  - Built and audited all 40 shop routes (`scripts/audit-shop-pages.mjs`) verifying 100% compliance on title lengths, description lengths, H1 counts, canonical matching, and robots/sitemap alignment.
+  - Verified functional adding flows via Playwright (tile `+` button and subcategory hero age selection).
+  - Saved full-page visual screenshots at 390x844 and 1280x800 in `docs/redesign/shots/r6-category-*.png` and `docs/redesign/shots/r6-subcategory-*.png`.
 - [ ] **R7: Client-side instant search (MiniSearch)**
 - [ ] **R8: Phone capture & supporting pages**
 - [ ] **R9: Performance, contrast & accessibility audits**

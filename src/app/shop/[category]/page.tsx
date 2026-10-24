@@ -1,10 +1,13 @@
+import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowRight, Ruler } from 'lucide-react';
-import { getCatalogueItemsByCategory, CategorySlug } from '@/lib/products';
-import ShopCatalog from '@/components/ShopCatalog';
-import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
+import { Container } from '@/components/ui/Container';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import SubcategoryTile from '@/components/SubcategoryTile';
+import { CategorySlug } from '@/lib/products';
+import { subsOf, getCategory } from '@/data/catalogue';
+import { BUSINESS_CONFIG } from '@/config/business';
 import { getCanonicalUrl, buildPageMetadata } from '@/config/site';
 
 interface CategoryPageProps {
@@ -14,7 +17,7 @@ interface CategoryPageProps {
 const validCategories: CategorySlug[] = ['newborn', 'boys', 'girls', 'men', 'women'];
 
 export async function generateStaticParams() {
-  return validCategories.map(cat => ({
+  return validCategories.map((cat) => ({
     category: cat,
   }));
 }
@@ -24,24 +27,28 @@ interface CategoryEditorial {
   metaDesc: string;
   heading: string;
   subheading: string;
+  ageLine: string;
   fabricText: string;
   ageText: string;
   sizingText: string;
+  relatedSlugs: CategorySlug[];
 }
 
 const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
   newborn: {
-    titleTag: "Newborn Baby Clothes & Swaddles Mumbai | Warden & Sons",
+    titleTag: 'Newborn Baby Clothes & Swaddles Mumbai | Warden & Sons',
     metaDesc:
-      "Breathable combed cotton jhablas, onesies, rompers, and muslin swaddles for babies 0-24M. Request live photos from our Kemps Corner store racks.",
+      'Breathable combed cotton jhablas, onesies, rompers, and muslin swaddles for babies 0-24M. Request live photos from our Kemps Corner store racks.',
     heading: 'Newborn & Infant Clothes (0–24 Months)',
     subheading: 'Cotton basics, muslin swaddles, and everyday comfort for babies.',
+    ageLine: '0–24 months',
     fabricText:
       'Crafted from combed cotton and double-layer open-weave muslin. Soft fabrics suited for Mumbai’s humid coastal weather. Seams are stitched flat and care tags are placed away from sensitive newborn skin.',
     ageText:
       'Sized carefully for infants from birth up to 24 months across 0-3M, 3-6M, 6-12M, 12-18M, and 18-24M stages. Generous diaper-rise room is built into all onesies and rompers.',
     sizingText:
       'Babies grow quickly during the first six months. We suggest taking one size larger for sleepsuits to allow comfortable layering over cloth nappies. On WhatsApp, simply mention your baby’s age or approximate weight, and our shop team will verify dimensions with a physical measuring tape before packing.',
+    relatedSlugs: ['boys', 'girls', 'women'],
   },
   boys: {
     titleTag: "Boys' Clothes, 0-16 Years, Mumbai | Warden & Sons",
@@ -49,12 +56,14 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Durable combed cotton t-shirts, cargo shorts, cricket whites, and nightsuits for boys 0-16 years. Check counter tape sizing directly on WhatsApp.',
     heading: 'Boys Playwear & Clothes (0–16 Years)',
     subheading: 'Breathable cotton t-shirts, shorts, track pants, and nightsuits.',
+    ageLine: '0–16 years',
     fabricText:
       'High-durability 180 to 220 GSM single-jersey cotton for t-shirts, reinforced cotton twill for cargo shorts, and 100% combed hosiery cotton for nightwear. Breathable everyday fabrics keep boys cool while playing outdoors in Mumbai’s heat.',
     ageText:
       'Full coverage from toddlers (0-2Y), junior boys (2-8Y), to older boys and teenagers (8-16Y). Available across standard Indian numbered sizes 20, 22-24, 26, 28-30, 32, and 34-36. Tops feature reinforced collar ribbing and double-needle hems.',
     sizingText:
       'Active boys need room through the shoulders and chest. For shorts and joggers, our waistbands feature soft ribbed elastic with functional drawstrings. When sending your Request List on WhatsApp, tell us your boy’s age and approximate height, and we will measure flat chest and length dimensions for you.',
+    relatedSlugs: ['girls', 'newborn', 'men'],
   },
   girls: {
     titleTag: "Girls' Clothes, 0-16 Years, Mumbai | Warden & Sons",
@@ -62,12 +71,14 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Breathable cotton frocks, daily casual tops, leggings, and notched-collar nightsuits for girls 0-16 years. View current shop racks on WhatsApp.',
     heading: 'Girls Clothing & Sleepwear (0–16 Years)',
     subheading: 'Airy cotton dresses, comfortable nightsuits, tops, and leggings.',
+    ageLine: '0–16 years',
     fabricText:
       'Woven from fine combed cotton poplins, breezy cambric, and soft knit ribbing. Pre-washed fabrics stay soft after repeat laundering and keep cool in warm weather. Party and casual dresses include full cotton linings with zero scratching tulle touching the skin.',
     ageText:
       'Available across toddler (0-2Y), young girls (2-7Y), pre-teens (8-12Y), and teenage girls (13-16Y). Clean silhouettes with practical pockets and durable button closures.',
     sizingText:
       'For dresses, check shoulder-to-knee length. Our nightsuits are cut with a comfortable, relaxed fit for sleeping. Share your daughter’s height and chest measurement on WhatsApp, and our Kemps Corner store desk will confirm flat measurements directly.',
+    relatedSlugs: ['boys', 'newborn', 'women'],
   },
   men: {
     titleTag: "Men's Cotton Loungewear & Basics | Warden & Sons",
@@ -75,12 +86,14 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Comfortable combed cotton crewneck t-shirts, lounge shorts, and woven pajama sets for men. Message our Kemps Corner shop desk for measurements.',
     heading: 'Men’s Cotton Loungewear & Basics',
     subheading: 'Combed cotton t-shirts, boxer shorts, and classic pajama sets.',
+    ageLine: 'Sizes S – XXL',
     fabricText:
       'Constructed with 100% combed long-staple cotton jerseys and woven poplins. Pre-shrunk to prevent size loss in standard machine washing, ensuring airflow and all-day comfort in tropical temperatures.',
     ageText:
       'Available in adult sizes from Small to 3XL across solid crewneck t-shirts, relaxed lounge shorts, and traditional button-down pajama sets.',
     sizingText:
       'Cut with a comfortable, straight drape rather than slim tailoring. If you prefer extra ease for lounging at home, select your usual collar or chest size. Our store team will gladly measure chest and waist dimensions on our counter tape.',
+    relatedSlugs: ['women', 'boys'],
   },
   women: {
     titleTag: "Women's Muslin Sleepwear & Basics | Warden & Sons",
@@ -88,12 +101,14 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       'Soft double-gauze muslin pajama sets, breathable cotton tops, and comfortable daily leggings for women. Request live availability on WhatsApp.',
     heading: 'Women’s Muslin Sleepwear & Basics',
     subheading: 'Airy double-gauze muslin pajama sets, nightdresses, and cotton tops.',
+    ageLine: 'Sizes S – XXL',
     fabricText:
       'Soft double-gauze breathable cotton muslin and combed cotton knits. Extremely gentle on the skin, highly absorbent, and designed for comfortable sleep and daily home wear.',
     ageText:
       'Offered in sizes XS through XXL across coordinated pajama sets, buttoned sleep shirts, and lightweight cotton casuals.',
     sizingText:
       'Muslin fabrics have a natural, relaxed drape that softens with every wash. Let us know on WhatsApp whether you prefer a loose or standard fit, and our team will measure armhole, chest, and pant outseam lengths for you.',
+    relatedSlugs: ['men', 'girls'],
   },
   bulk: {
     titleTag: 'School Uniforms & Bulk Cotton Apparel | Warden & Sons',
@@ -101,12 +116,14 @@ const CATEGORY_EDITORIALS: Record<CategorySlug, CategoryEditorial> = {
       "Custom school uniforms, sports jerseys, and bulk cotton children's wear. Request direct WhatsApp quotes and fabric trial swatches.",
     heading: 'School Uniforms & Bulk Orders',
     subheading: 'Custom school uniforms, sports house t-shirts, and group garments.',
+    ageLine: 'Schools & Clubs',
     fabricText:
       'Heavy-duty colorfast cotton drills, breathable pique knits for sports polos, and pre-shrunk twills engineered for daily school use and institutional laundering without fading.',
     ageText:
       'Complete sizing ranges from nursery and primary grades through secondary classes (sizes 20 to 42). We supply shirts, skirts, shorts, pinafores, and sports sets.',
     sizingText:
       'We supply size sample sets and clear measurement charts for schools, parent groups, and sports teams. Send your design, fabric, and quantity requirements on WhatsApp for direct quotes and production timelines.',
+    relatedSlugs: ['boys', 'girls'],
   },
 };
 
@@ -144,131 +161,198 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   const editorial = CATEGORY_EDITORIALS[category as CategorySlug];
-  const products = getCatalogueItemsByCategory(category as CategorySlug);
-  const displayName = categoryDisplayNames[category] || (category.charAt(0).toUpperCase() + category.slice(1));
+  const subcategories = subsOf(category);
+  const displayName =
+    categoryDisplayNames[category] || (category.charAt(0).toUpperCase() + category.slice(1));
+
+  const askMessage = `Hi Warden & Sons! I'm browsing ${editorial.heading} on your website and can't find what I'm looking for. Can you check live racks?`;
+  const askUrl = BUSINESS_CONFIG.whatsappUrl(askMessage);
 
   return (
-    <div className="py-8 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 font-sans">
-      <BreadcrumbJsonLd
-        items={[
-          { name: 'Home', url: getCanonicalUrl('/') },
-          { name: 'Shop', url: getCanonicalUrl('/shop') },
-          { name: displayName, url: getCanonicalUrl(`/shop/${category}`) },
-        ]}
-      />
+    <div className="py-6 sm:py-10">
+      <Container>
+        <Breadcrumbs
+          items={[
+            { name: 'Home', url: getCanonicalUrl('/') },
+            { name: 'Shop', url: getCanonicalUrl('/shop') },
+            { name: displayName, url: getCanonicalUrl(`/shop/${category}`) },
+          ]}
+        />
 
-      {/* Zara-Style Editorial Header */}
-      <div className="space-y-4 max-w-3xl">
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest tracking-tight">
-          {editorial.heading}
-        </h1>
-        <p className="text-sm sm:text-base text-muted leading-relaxed">{editorial.subheading}</p>
-      </div>
-
-      {/* Helpful Fabric, Age & Sizing Copy (150-250 words) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-cream/50 p-6 md:p-8 rounded-2xl border border-border-soft text-xs sm:text-sm text-muted leading-relaxed">
-        <div className="space-y-2">
-          <h2 className="font-bold text-near-black text-sm uppercase tracking-wider font-mono">
-            Fabric & Comfort
-          </h2>
-          <p>{editorial.fabricText}</p>
-        </div>
-        <div className="space-y-2">
-          <h2 className="font-bold text-near-black text-sm uppercase tracking-wider font-mono">
-            Age & Fit Range
-          </h2>
-          <p>{editorial.ageText}</p>
-        </div>
-        <div className="space-y-2">
-          <h2 className="font-bold text-near-black text-sm uppercase tracking-wider font-mono">
-            Sizing & WhatsApp Check
-          </h2>
-          <p>{editorial.sizingText}</p>
-          <div className="pt-2">
-            <Link
-              href="/size-guide/"
-              className="inline-flex items-center gap-1.5 font-bold text-forest hover:text-gold transition-colors text-xs underline"
-            >
-              <Ruler className="w-3.5 h-3.5 text-gold" />
-              <span>Not sure of the size? See our Size Guide</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Interactive Catalog */}
-      <ShopCatalog
-        products={products}
-        initialCategory={category}
-        categoryTitle={editorial.heading}
-      />
-
-      {/* Category-Specific In-Depth Contextual Section for Boys */}
-      {category === 'boys' && (
-        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-border-soft shadow-xs space-y-6 text-near-black">
-          <div className="space-y-2 border-b border-border-soft pb-4">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-gold block">
-              Boutique Sizing & Fabrics • Kemps Corner
+        {/* Category Header */}
+        <div className="pt-2 pb-6 sm:pb-8 border-b border-[var(--line)] space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h1 className="font-display font-medium text-3xl sm:text-4xl md:text-5xl text-[var(--ink)] tracking-tight">
+              {editorial.heading}
+            </h1>
+            <span className="text-xs font-medium uppercase tracking-wider text-[var(--ink-soft)] px-3 py-1 rounded-full bg-[var(--paper)] border border-[var(--line)]">
+              {editorial.ageLine}
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
-              Boys’ Cotton Clothing, Sizing &amp; Fabrics
-            </h2>
-            <p className="text-xs sm:text-sm text-muted leading-relaxed">
-              Serving South Mumbai families since 1994, Warden &amp; Sons stocks genuine, durable cotton basics for boys from toddlers through teenagers.
-            </p>
+          </div>
+          <p className="text-base text-[var(--ink-soft)] max-w-2xl leading-relaxed">
+            {editorial.subheading}
+          </p>
+        </div>
+
+        {/* Sub-category Tiles Grid (2 cols mobile, 3 tablet, 4 desktop) */}
+        <div className="py-8 sm:py-10 space-y-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+            {subcategories.map((sub) => (
+              <SubcategoryTile key={sub.slug} sub={sub} />
+            ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm leading-relaxed">
-            <div className="space-y-3">
-              <h3 className="font-serif font-bold text-base text-forest">
-                Age Brackets &amp; Numbered Sizes Carried
-              </h3>
-              <ul className="space-y-2 text-muted">
-                <li>
-                  <strong className="text-near-black">Toddler Boys (2 – 3 Years):</strong> Sized as Toddler / 2-3Y or Indian Size 20 (Chest: ~21 in). Designed with roomy elastic pull-on waists and soft necklines for easy dressing.
-                </li>
-                <li>
-                  <strong className="text-near-black">Young Boys (4 – 7 Years):</strong> Sized as XS (4-5Y, Size 22–24) and S (6-7Y, Size 26, Chest: 23–25 in). Built for active daily kindergarten and primary school play.
-                </li>
-                <li>
-                  <strong className="text-near-black">Juniors (8 – 12 Years):</strong> Sized as M (8-9Y, Size 28–30) and L (10-12Y, Size 32, Chest: 27–29 in). Includes coaching cricket whites, sports coordinate sets, and school uniform drill shorts.
-                </li>
-                <li>
-                  <strong className="text-near-black">Teenagers (13 – 16 Years):</strong> Sized as XL (13-16Y, Size 34–36, Chest: 30–32 in). Features durable cotton track pants, crew-neck tees, and relaxed sleepwear.
-                </li>
-              </ul>
-              <div className="pt-2">
-                <Link
-                  href="/size-guide/"
-                  className="font-bold text-forest hover:text-gold transition-colors inline-flex items-center gap-1.5 underline"
-                >
-                  <Ruler className="w-3.5 h-3.5 text-gold" />
-                  <span>Compare complete chest &amp; height dimensions in our Size Guide</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="font-serif font-bold text-base text-forest">
-                Authentic Fabrics Built for Mumbai Climate
-              </h3>
-              <p className="text-muted">
-                Every garment in our boys’ department is selected for durability and breathability. Our everyday t-shirts use heavyweight 180–220 GSM combed cotton that withstands regular washing without losing collar shape. For sports and turf play, moisture-wicking dryfit microfibers keep boys cool, while cricket academy kits use specialized poly-cotton twill designed for morning training at Oval, Azad, and Shivaji Park maidaans.
+          {/* Assistance & Cross-Category Navigation */}
+          <div className="space-y-4 pt-2">
+            <div className="p-4 sm:p-5 rounded-[6px] bg-[var(--paper)] border border-[var(--line)] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+              <p className="text-sm text-[var(--ink)] font-medium">
+                Can&apos;t see it? Ask us on WhatsApp
               </p>
-              <div className="bg-bg-cream/60 rounded-2xl p-4 border border-border-soft space-y-2">
-                <h4 className="font-serif font-bold text-sm text-forest">
-                  In-Store Fittings &amp; WhatsApp Home Service
-                </h4>
-                <p className="text-muted text-xs">
-                  Prefer in-person fitting? Stop by our <Link href="/visit-us/" className="font-bold text-forest underline hover:text-gold">Kemps Corner store near Pedder Road flyover</Link> to inspect fabrics, check sizes, or pick up custom school uniforms. Ordering remotely? See <Link href="/how-it-works/" className="font-bold text-forest underline hover:text-gold">how WhatsApp catalogue ordering works</Link> with flat tape measurements verified before you confirm.
-                </p>
-              </div>
+              <a
+                href={askUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="whatsapp_click"
+                data-track-location="category"
+                data-track-category={category}
+                className="inline-flex items-center justify-center min-h-[44px] px-5 py-2 text-xs font-bold uppercase tracking-wider rounded-[4px] bg-[var(--ink)] text-[var(--ivory)] hover:bg-[#203155] transition-colors shrink-0"
+              >
+                Message shop desk &rarr;
+              </a>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--ink-soft)] pt-1">
+              <span className="font-medium text-[var(--ink)]">Other departments:</span>
+              {editorial.relatedSlugs.map((relSlug) => {
+                const relCategory = getCategory(relSlug);
+                if (!relCategory) return null;
+                return (
+                  <Link
+                    key={relSlug}
+                    href={`/shop/${relSlug}/`}
+                    className="inline-block px-3 py-1.5 rounded-full bg-[var(--paper)] border border-[var(--line)] hover:border-[var(--ink-soft)] text-[var(--ink)] transition-colors"
+                  >
+                    {relCategory.label} ({relCategory.ageLine})
+                  </Link>
+                );
+              })}
             </div>
           </div>
-        </section>
-      )}
+
+          {/* Long SEO Text in Collapsed <details> Accordions */}
+          <div className="pt-8 border-t border-[var(--line)] space-y-3">
+            <h2 className="font-display text-xs uppercase tracking-widest text-[var(--ink-soft)] font-medium mb-2">
+              Fabric, sizing &amp; store guidance
+            </h2>
+
+            <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
+              <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+                <span>Fabric &amp; Comfort</span>
+                <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
+                  ▼
+                </span>
+              </summary>
+              <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60">
+                <p>{editorial.fabricText}</p>
+              </div>
+            </details>
+
+            <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
+              <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+                <span>Age &amp; Fit Range</span>
+                <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
+                  ▼
+                </span>
+              </summary>
+              <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60">
+                <p>{editorial.ageText}</p>
+              </div>
+            </details>
+
+            <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
+              <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+                <span>Sizing &amp; WhatsApp Check</span>
+                <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
+                  ▼
+                </span>
+              </summary>
+              <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60 space-y-2">
+                <p>{editorial.sizingText}</p>
+                <div className="pt-1">
+                  <Link
+                    href="/size-guide/"
+                    className="font-medium text-[var(--ink)] hover:text-[var(--blue)] transition-colors text-xs underline underline-offset-4 inline-flex items-center gap-1"
+                  >
+                    <span>View complete size chart in our Size Guide</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                </div>
+              </div>
+            </details>
+
+            {/* Boys In-Depth Contextual Details */}
+            {category === 'boys' && (
+              <>
+                <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
+                  <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+                    <span>Age Brackets &amp; Numbered Sizes Carried</span>
+                    <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
+                      ▼
+                    </span>
+                  </summary>
+                  <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60 space-y-2">
+                    <ul className="space-y-2">
+                      <li>
+                        <strong className="text-[var(--ink)]">Toddler Boys (2 – 3 Years):</strong> Sized as Toddler / 2-3Y or Indian Size 20 (Chest: ~21 in). Designed with roomy elastic pull-on waists and soft necklines for easy dressing.
+                      </li>
+                      <li>
+                        <strong className="text-[var(--ink)]">Young Boys (4 – 7 Years):</strong> Sized as XS (4-5Y, Size 22–24) and S (6-7Y, Size 26, Chest: 23–25 in). Built for active daily kindergarten and primary school play.
+                      </li>
+                      <li>
+                        <strong className="text-[var(--ink)]">Juniors (8 – 12 Years):</strong> Sized as M (8-9Y, Size 28–30) and L (10-12Y, Size 32, Chest: 27–29 in). Includes coaching cricket whites, sports coordinate sets, and school uniform drill shorts.
+                      </li>
+                      <li>
+                        <strong className="text-[var(--ink)]">Teenagers (13 – 16 Years):</strong> Sized as XL (13-16Y, Size 34–36, Chest: 30–32 in). Features durable cotton track pants, crew-neck tees, and relaxed sleepwear.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details className="group bg-[var(--paper)] border border-[var(--line)] rounded-[6px] overflow-hidden">
+                  <summary className="px-4 py-3.5 flex items-center justify-between cursor-pointer font-display font-medium text-sm sm:text-base text-[var(--ink)] select-none list-none">
+                    <span>Authentic Fabrics Built for Mumbai Climate</span>
+                    <span className="text-[var(--ink-soft)] group-open:rotate-180 transition-transform text-xs">
+                      ▼
+                    </span>
+                  </summary>
+                  <div className="px-4 pb-4 pt-1 text-sm text-[var(--ink-soft)] leading-relaxed border-t border-[var(--line)]/60 space-y-2">
+                    <p>
+                      Every garment in our boys’ department is selected for durability and breathability. Our everyday t-shirts use heavyweight 180–220 GSM combed cotton that withstands regular washing without losing collar shape. For sports and turf play, moisture-wicking dryfit microfibers keep boys cool, while cricket academy kits use specialized poly-cotton twill designed for morning training at Oval, Azad, and Shivaji Park maidaans.
+                    </p>
+                    <p>
+                      Prefer in-person fitting? Stop by our{' '}
+                      <Link
+                        href="/visit-us/"
+                        className="text-[var(--ink)] underline font-medium hover:text-[var(--blue)]"
+                      >
+                        Kemps Corner store near Pedder Road flyover
+                      </Link>{' '}
+                      to inspect fabrics, check sizes, or pick up custom school uniforms. Ordering remotely? See{' '}
+                      <Link
+                        href="/how-it-works/"
+                        className="text-[var(--ink)] underline font-medium hover:text-[var(--blue)]"
+                      >
+                        how WhatsApp catalogue ordering works
+                      </Link>{' '}
+                      with flat tape measurements verified before you confirm.
+                    </p>
+                  </div>
+                </details>
+              </>
+            )}
+          </div>
+        </div>
+      </Container>
     </div>
   );
 }

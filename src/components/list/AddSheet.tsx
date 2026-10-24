@@ -25,8 +25,10 @@ export function AddSheet() {
   useEffect(() => {
     if (target) {
       const options = ageOptionsFor(target.categorySlug, target.subSlug);
-      // Preselect first age option if available, otherwise "Not sure"
-      if (options.length > 0) {
+      // Preselect target.age if specified, otherwise first option if available, otherwise "Not sure"
+      if (target.age && (options.includes(target.age) || target.age === 'Not sure')) {
+        setSelectedAge(target.age);
+      } else if (options.length > 0) {
         setSelectedAge(options[0]);
       } else {
         setSelectedAge('Not sure');

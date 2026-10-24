@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getBlogPosts } from '@/lib/blog';
 import { getCanonicalUrl } from '@/config/site';
+import { allSubcategories, isReady } from '@/data/catalogue';
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
@@ -56,9 +57,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   );
 
+  // Sub-category pages: only ready sub-categories enter the sitemap with lastmod
+  const readySubcategories = allSubcategories().filter(isReady);
+  const subcategoryEntries: MetadataRoute.Sitemap = readySubcategories.map((sub) => ({
+    url: getCanonicalUrl(`/shop/${sub.categorySlug}/${sub.slug}`),
+    lastModified: getGitLastMod('src/data/catalogue.ts'),
+  }));
+
   // Dynamic Blog entries with real lastmod (git date or MDX frontmatter date)
   const blogPosts = getBlogPosts();
-  const blogEntries: MetadataRoute.Sitemap = blogPosts.map(post => {
+  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => {
     const mdxPath = `src/content/blog/${post.slug}.mdx`;
     const fallbackDate = post.date ? new Date(post.date).toISOString().split('T')[0] : '2026-10-23';
     return {
@@ -67,5 +75,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  return [...staticEntries, ...blogEntries];
+  return [...staticEntries, ...subcategoryEntries, ...blogEntries];
 }
