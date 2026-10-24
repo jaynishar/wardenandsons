@@ -212,6 +212,8 @@ export function SearchOverlay() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={handleWhatsAppEmptyClick}
+                    data-track="whatsapp_click"
+                    data-track-location="search"
                     className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[4px] bg-[var(--wa)] text-white text-xs font-medium hover:bg-[#0d6b44] transition-colors"
                   >
                     <IconWhatsApp size={16} />
